@@ -4,15 +4,15 @@ Please contact Avichal Malhotra or Simon Raming for any questions.
 Original Repo for CityLDT: https://gitlab.e3d.rwth-aachen.de/e3d-software-tools/cityldt/cityldt.git
 """
 
-import os
-import teaserplus_gui as tg
-from PySide2 import QtWidgets, QtGui, QtCore
+from PySide6 import QtWidgets, QtGui, QtCore
 
 
 
-
-def screenSizer(self, posx, posy, width, height, app):
-    """func to get size of screen and scale window accordingly"""
+def screenSizer(posx: int, posy: int, width: int, height: int, app: QtWidgets.QApplication) -> tuple[int, int, int, int, float]:
+    """
+    func to get size of screen and scale window dimensions accordingly
+    returns posx, posy, width, height, sizefactor
+    """
     sizefactor = round(app.primaryScreen().size().height()*0.001)              # factor for scaling window, depending on height
     posx *= sizefactor
     posy *= sizefactor
@@ -20,17 +20,21 @@ def screenSizer(self, posx, posy, width, height, app):
     height *= sizefactor
     return posx, posy, width, height, sizefactor
 
-def windowSetup(self, posx, posy, width, height, pypath, title, winFac = 1):
+
+
+def windowSetup(self, posx: int, posy, width, height, title, winFac = 1) -> None:
     """func for loading icon, setting size and title"""
     try:                                                                            # try to load e3d Icon
-        self.setWindowIcon(QtGui.QIcon(os.path.join(pypath, r'pictures\e3dIcon.png')))
+        self.setWindowIcon(QtGui.QIcon(r'pictures\e3dIcon.png'))
     except:
         print('error finding file icon')
     self.setGeometry(posx, posy, width * winFac, height * winFac)                   # setting window size
     self.setFixedSize(width * winFac, height * winFac)                                                # fixing window size
     self.setWindowTitle(title)
 
-def load_banner(self, path, sizefactor, banner_size=150):
+
+
+def load_banner(self, path: str, sizefactor: float, banner_size: int = 150) -> None:
     """loading image from path to self.vbox"""
     try:
         self.banner = QtWidgets.QLabel(self)
@@ -44,13 +48,13 @@ def load_banner(self, path, sizefactor, banner_size=150):
 
 
 
-def messageBox(self, header, message):
+def messageBox(self, header: str, message: str) -> None:
     """pop up message box with header and message"""
     self.message_complete = QtWidgets.QMessageBox.information(self, header, message)
 
 
 
-def next_window(self, window, close=True):
+def next_window(self, window: object, close : bool = True) -> None:
     """calls next window, closes current if True"""
     self.next_window_jump = window
     self.next_window_jump.show()
@@ -58,15 +62,15 @@ def next_window(self, window, close=True):
         self.hide()
 
 
-def dimensions(self):
-    """gets current dimensions of window"""
+def windowPosition(self) -> tuple[int, int]:
+    """gets current window x and y position"""
     posx = self.geometry().x()
     posy = self.geometry().y()
     return posx, posy
 
 
 
-def close_application(self):
+def close_application(self) -> None:
     """quit dialog, to confirm exiting"""
     choice = QtWidgets.QMessageBox.question(self, 'Attention!', 'Do you want to quit?',
                                         QtWidgets.QMessageBox.Yes | QtWidgets.QMessageBox.No)
@@ -77,31 +81,15 @@ def close_application(self):
 
 
 
-def progressLoD(self, max):
+def progressLoD(self, max: float) -> None:
     """setting up progress bar"""
     while self.completedLoD < max:
         self.completedLoD += 1
         self.pB_scanLoD.setValue(self.completedLoD)
-
-    tg.mainWindow.func_eco(self)
-
-def progressTransfrom(self, max):
-    """setting up progress bar"""
-    while self.completedTransform < max:
-        self.completedTransform += 1
-        self.pB_transformation.setValue(self.completedTransform)
+    self.func_eco()
 
 
-
-# def reset_buildingComboBox(self):
-#     """to reset the current building comboBox"""
-#     self.tableDict = {}
-#     for i in range(1, self.cB_curBuilding.count()):
-#         self.cB_curBuilding.removeItem(1)
-
-
-
-def setTableRowColor(self, colorCode, index):
+def setTableRowColor(self, colorCode: tuple, index: int) -> None:
     """sets the background color of a row with by index"""
     if self.gB_buildings.isChecked() and index >= 0:
         qColor = QtGui.QColor(*colorCode)
@@ -112,23 +100,4 @@ def setTableRowColor(self, colorCode, index):
                 print('error setting background color')
 
         self.cBoxes[index].setStyleSheet("QCheckBox {background-color: rgb" + str(colorCode) + "}")
-
-
-
-def createListForComboBox(dictionary, maxLength):
-    """creating list for adding dictionary to combo box"""
-    finished = []
-    for key in dictionary:
-        if key == '':
-            finished.append('')
-        else:
-            finished.append(key + ' : ' + ' ' * (maxLength - len(key)) + str(dictionary[key]))
-    return finished
-
-def divider ():
-    div = QtWidgets.QLabel ('')
-    div.setStyleSheet ("QLabel {background-color: #3e3e3e; padding: 0; margin: 0; border-bottom: 1 solid #666; border-top: 0 solid #2a2a2a;}")
-    div.setMaximumHeight(1)
-    return div
-
 

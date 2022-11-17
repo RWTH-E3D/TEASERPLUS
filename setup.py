@@ -82,5 +82,5 @@ setup(
         "Topic :: Scientific/Engineering",
         "Topic :: Utilities",
     ],
-    install_requires=["mako", "pytest", "pandas", "numpy", "lxml", "buildingspy"],
+    install_requires=["mako", "pytest", "pandas", "numpy", "lxml", "buildingspy", "PySide6"],
 )
