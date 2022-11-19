@@ -11,6 +11,7 @@ CityGML file format .gml
 
 import lxml.etree as ET
 import statistics
+from pyproj import Proj, transform
 from teaser.data.dataclass import DataClass
 from teaser.data.surfacegml import SurfaceGML
 from teaser.logic.archetypebuildings.bmvbs.singlefamilydwelling \
@@ -145,7 +146,7 @@ def load_gml_lxml(path, prj, method, chosen_gmls=None, yoc_list=None):
 
         """Check for BuildingParts"""
         if building_lxml.find('./bldg:consistsOfBuildingPart', namespace) is not None:
-            load_gml_buildingparts_lxml(prj=prj, gml_bldg=building_lxml, namespace=namespace,
+            load_gml_buildingparts_lxml(prj=prj, gml_bldg=building_lxml, boundary_box=boundary_box, namespace=namespace,
                                         bldg_name=bldg_name, method=method)
             continue
 
@@ -158,9 +159,10 @@ def load_gml_lxml(path, prj, method, chosen_gmls=None, yoc_list=None):
 
         """Set Building Attribute"""
         if yoc_list is not None:
-            _set_attributes(bldg=bldg, gml_bldg=building_lxml, bldg_yoc=yoc_list[i])
+            _set_attributes(bldg=bldg, gml_bldg=building_lxml, boundary_box=boundary_box, bldg_yoc=yoc_list[i])
         else:
-            _set_attributes(bldg=bldg, gml_bldg=building_lxml, namespace=namespace, bldg_name=bldg_name)
+            _set_attributes(bldg=bldg, gml_bldg=building_lxml, boundary_box=boundary_box,
+                            namespace=namespace, bldg_name=bldg_name)
 
         """Calculate building height through GML surfaces, overwrites measured height from GML Building"""
         bldg.set_height_gml()
@@ -181,7 +183,7 @@ def load_gml_lxml(path, prj, method, chosen_gmls=None, yoc_list=None):
     return gml_copy_list, boundary_box
 
 
-def load_gml_buildingparts_lxml(prj, gml_bldg, namespace, bldg_name, method, yoc=None, calc_sep=True):
+def load_gml_buildingparts_lxml(prj, gml_bldg, boundary_box, namespace, bldg_name, method, yoc=None, calc_sep=True):
     """
     This function loads buildings parts from a CityGML Buildings,
     assigns archetypes by gml function and creates TEASER building
@@ -217,9 +219,9 @@ def load_gml_buildingparts_lxml(prj, gml_bldg, namespace, bldg_name, method, yoc
             get_gml_surfaces(bldg=bldg, city_object=gml_bldg_part, namespace=namespace)
 
             if yoc is not None:
-                _set_attributes(bldg=bldg, gml_bldg=gml_bldg, bldg_yoc=yoc)
+                _set_attributes(bldg=bldg, gml_bldg=gml_bldg,boundary_box=boundary_box, namespace=namespace, bldg_yoc=yoc)
             else:
-                _set_attributes(bldg=bldg, gml_bldg=gml_bldg, namespace=namespace, bldg_name=bldg_name,
+                _set_attributes(bldg=bldg, gml_bldg=gml_bldg, boundary_box=boundary_box, namespace=namespace, bldg_name=bldg_name,
                                 gml_bldg_part=gml_bldg_part, bldg_part=number_of_buildpart)
 
             bldg.set_height_gml()
@@ -315,6 +317,32 @@ def assign_archetype(prj, building_lxml, namespace, bldg_name, method):
     else:
         bldg = Building(parent=prj, name=bldg_name)
     return bldg
+
+
+def calc_lat_long(boundary_box, namespace):
+    """
+    Calculates the latitude and longitude for the middle point of the Boundary Box (City Model Envelope)
+    Currently only for epsg:25832
+    ToDO: extract srs or crs from envelope name and set into inProj
+    Parameters
+    ----------
+    boundary_box:
+    namespace: lxml.msmap()
+                Original namespaces from CityGML file (root)
+
+    Returns
+    -------
+    Rounded Latitude and Longitude of the boundary box
+    """
+    print(boundary_box.find(".//gml:lowerCorner", namespace).text.split())
+    low_cor = boundary_box.find(".//gml:lowerCorner", namespace).text.split()
+    upp_cor = boundary_box.find(".//gml:upperCorner", namespace).text.split()
+    x1 = (float(low_cor[0]) + float(upp_cor[0]))/2
+    y1 = (float(low_cor[1]) + float(upp_cor[1]))/2
+    inProj = Proj('epsg:25832')
+    outProj = Proj('epsg:4326')
+    x2, y2 = transform(inProj, outProj, x1, y1)
+    return round(x2, 2), round(y2,2)
 
 
 def get_gml_surfaces(bldg, city_object, namespace):
@@ -471,7 +499,7 @@ def get_lod(city_object):
     return lod
 
 
-def _set_attributes(bldg, gml_bldg, namespace, bldg_name, gml_bldg_part=None, bldg_part=None,
+def _set_attributes(bldg, gml_bldg, boundary_box, namespace, bldg_name, gml_bldg_part=None, bldg_part=None,
                     measured_mean_height=None, bldg_yoc=None):
     """This function tries to set attributes for type building generation.
 
@@ -509,6 +537,11 @@ def _set_attributes(bldg, gml_bldg, namespace, bldg_name, gml_bldg_part=None, bl
     except UserWarning:
         bldg.name = gml_bldg.id
         print("no name specified in gml file")
+        pass
+    try:
+        bldg.latitude, bldg.longitude = calc_lat_long(boundary_box=boundary_box, namespace=namespace)
+    except (UserWarning, AttributeError):
+        print("no Envelope Boundary Box is specified in gml file")
         pass
     try:
         bldg.number_of_floors = int(gml_bldg.find(".//bldg:storeysAboveGround", namespace).text)
