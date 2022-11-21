@@ -137,8 +137,6 @@ class MainWindow(QtWidgets.QWidget):
         self.completedLoD = 0
         self.buildingDict = {}
 
-        # table row index to comboBox index
-        self.tableDict = {}
 
 
     def func_selectFile(self) -> None:
@@ -428,7 +426,9 @@ class TeaserEnrichment(QtWidgets.QWidget):
 
         if buildingsToChange == {} and self.savedChanges == {}:
             # got no changes to save -> can continue with original file
-            fileToSimulate = self.inpPath
+            gf.messageBox(self, "Important set method for buildings",
+                          "Please make sure to set a method for every building")
+            return
         elif buildingsToChange == None:
             # failed to get values -> abort
             return
@@ -438,7 +438,24 @@ class TeaserEnrichment(QtWidgets.QWidget):
             return
         else:
             # changed values are all saved
+            # make sure that method has been set for all buildings
+            for key in self.buildingDict:
+                if self.buildingDict[key]["selected"]:
+                    buildingname = self.buildingDict[key]["buildingname"]
+                    if buildingname in buildingsToChange.keys():
+                        if "usage" not in buildingsToChange[buildingname]:
+                            gf.messageBox(self, "Error", f"Missing method for {buildingname}")
+                            return
+                    else:
+                        gf.messageBox(self, "Error", f"Missing method for {buildingname}")
+                        return
+                    if not self.buildingDict[key]["values"]["YoC"]:
+                        if "Yoc" not in buildingsToChange[buildingname]:
+                            gf.messageBox(self, "Error", 
+                                          f"Missing year of construction for {buildingname}")
+                            return
             fileToSimulate = self.fileToSimulate
+        
         global POSX, POSY
         POSX, POSY = gf.windowPosition(self)
         gf.next_window(self, SetupSimulation(self, self.buildingDict, buildingsToChange, fileToSimulate))
