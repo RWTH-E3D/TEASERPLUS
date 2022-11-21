@@ -42,8 +42,6 @@ def choose_gml_lxml(path, bldg_ids=None, bldg_names=None, bldg_addresses=None):
 
     :param path:string
             path of CityGML file
-    :param prj:Project()
-            Teaser instance of Project()
     :param bldg_ids:list[string]
             users choice
     :param bldg_names:list[string]
