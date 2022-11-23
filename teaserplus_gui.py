@@ -442,15 +442,14 @@ class TeaserEnrichment(QtWidgets.QWidget):
             for key in self.buildingDict:
                 if self.buildingDict[key]["selected"]:
                     buildingname = self.buildingDict[key]["buildingname"]
-                    if buildingname in buildingsToChange.keys():
-                        if "usage" not in buildingsToChange[buildingname]:
-                            gf.messageBox(self, "Error", f"Missing method for {buildingname}")
-                            return
-                    else:
+                    if buildingname not in buildingsToChange.keys():
+                        gf.messageBox(self, "Error", f"Missing method for {buildingname}")
+                        return
+                    if "usage" not in buildingsToChange[buildingname]:
                         gf.messageBox(self, "Error", f"Missing method for {buildingname}")
                         return
                     if not self.buildingDict[key]["values"]["YoC"]:
-                        if "Yoc" not in buildingsToChange[buildingname]:
+                        if "YoC" not in buildingsToChange[buildingname]:
                             gf.messageBox(self, "Error", 
                                           f"Missing year of construction for {buildingname}")
                             return
@@ -642,6 +641,7 @@ class SetupSimulation(QtWidgets.QWidget):
         bld_undefined = []
         for key in self.buildingDict:
             if self.buildingDict[key]["selected"]:
+                print(self.buildingDict[key])
                 buildingname = self.buildingDict[key]["buildingname"]
                 if buildingname in self.buildingsToChange.keys():
                     if "usage" in self.buildingsToChange[buildingname]:
