@@ -19,7 +19,7 @@ import os
 import sys
 from PySide6 import QtWidgets, QtCore
 import gui_functions as gf
-import tplusselection as sel
+
 
 # positions and dimensions of window
 POSX = 275
@@ -140,10 +140,10 @@ class MainWindow(QtWidgets.QWidget):
 
 
     def func_selectFile(self) -> None:
-        res = sel.select_gml(self)
+        res = gf.select_gml(self)
         if res:
             self.inpPath = res
-            sel.get_files(self)
+            gf.get_files(self)
         else:
             pass
 
@@ -333,7 +333,7 @@ class TeaserEnrichment(QtWidgets.QWidget):
 
     def func_saveToCityGML(self, newFile: bool) -> None:
         """function to save changes from self.tbl_selBuildings to either the exisitng or a new file"""
-        buildingsToChange = sel.getDataFromTable(self)
+        buildingsToChange = gf.getDataFromTable(self)
         
         if buildingsToChange == None:
             # failed to get values -> abort
@@ -342,7 +342,7 @@ class TeaserEnrichment(QtWidgets.QWidget):
             gf.messageBox(self, "Important", "Please make changes before saving.")
             return
 
-        path = sel.saveChangesToCityGML(self, self.inpPath, newFile, buildingsToChange)
+        path = gf.saveChangesToCityGML(self, self.inpPath, newFile, buildingsToChange)
         if path != "":
             self.savedChanges = buildingsToChange
             self.fileToSimulate = path
@@ -401,7 +401,7 @@ class TeaserEnrichment(QtWidgets.QWidget):
                 combBox.removeItem(y)
             combBox.addItems(yoc_classes)
 
-        archeTypes = sel.getArchetypes(basepath)
+        archeTypes = gf.getArchetypes(basepath)
         archeTypes = [self.comB_method.currentText() + "/" + x for x in archeTypes]
         for combBox in self.combBoxesUse:
             if combBox.count() == 1:
@@ -422,7 +422,7 @@ class TeaserEnrichment(QtWidgets.QWidget):
     def func_setupSim(self) -> None:
         """ first checks if there is info that would have needed to be saved"""
 
-        buildingsToChange = sel.getDataFromTable(self)
+        buildingsToChange = gf.getDataFromTable(self)
 
         if buildingsToChange == {} and self.savedChanges == {}:
             # got no changes to save -> can continue with original file
@@ -616,7 +616,7 @@ class SetupSimulation(QtWidgets.QWidget):
 
     def func_expPath(self) -> None:
         """select export path"""
-        path = sel.select_folder(self, self.txtB_expPath, "Select export folder")
+        path = gf.select_folder(self, self.txtB_expPath, "Select export folder")
         if path:
             self.expPath = path
         else:
