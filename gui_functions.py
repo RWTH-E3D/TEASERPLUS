@@ -519,7 +519,7 @@ def getDataFromTable(self) -> dict:
             try:
                 inted = int(self.tbl_selBuildings.item(i, 2).text())
             except:
-                messageBox(self, "Error", "Failed to covnert 'YoC' value (row " + str(i) + ") '" +  self.tbl_selBuildings.item(i, 2).text() + "' to an integer.\nPlease change the value.")
+                messageBox(self, "Error", "Failed to convert 'YoC' value (row " + str(i) + ") '" +  self.tbl_selBuildings.item(i, 2).text() + "' to an integer.\nPlease change the value.")
                 return None
             valuesToChange["YoC"] = inted
 
@@ -532,15 +532,15 @@ def getDataFromTable(self) -> dict:
                 try:
                     inted = int(self.tbl_selBuildings.item(i, 4).text())
                 except:
-                    messageBox(self, "Error", "Failed to covnert 'No. of floors value' (row " + str(i) + ") '" +  self.tbl_selBuildings.item(i, 4).text() + "' to an integer.\nPlease change the value.")
+                    messageBox(self, "Error", "Failed to convert 'No. of floors value' (row " + str(i) + ") '" +  self.tbl_selBuildings.item(i, 4).text() + "' to an integer.\nPlease change the value.")
                     return None
                 valuesToChange["SAG"] = inted
             elif self.tbl_selBuildings.item(i, 5).text() != "":
                 floated = 0
                 try:
-                    floated = float(self.tbl_selBuildings.item(i, 4).text())
+                    floated = float(self.tbl_selBuildings.item(i, 5).text())
                 except:
-                    messageBox(self, "Error", "Failed to covnert 'Floor height' value (row " + str(i) + ") '" +  self.tbl_selBuildings.item(i, 5).text() + "' to an float.\nPlease change the value.")
+                    messageBox(self, "Error", "Failed to convert 'Floor height' value (row " + str(i) + ") '" +  self.tbl_selBuildings.item(i, 5).text() + "' to a float.\nPlease change the value.")
                     return None
                 valuesToChange["storeyHeight"] = floated
         
