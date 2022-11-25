@@ -236,7 +236,7 @@ class TeaserEnrichment(QtWidgets.QWidget):
 
         self.tbl_selBuildings = QtWidgets.QTableWidget()
         self.tbl_selBuildings.setColumnCount(7)
-        self.tbl_selBuildings.setHorizontalHeaderLabels(['Name of building/utility', 'LoD', 'YoC', 'YoC Class', 'No. of floors', 'Floor height', 'Usage Type'])
+        self.tbl_selBuildings.setHorizontalHeaderLabels(['Name of building/utility', 'LoD', 'YoC', 'YoC Class', 'No. of floors', 'Floor height [m]', 'Usage Type'])
         self.tbl_selBuildings.setEditTriggers(QtWidgets.QAbstractItemView.DoubleClicked)
         self.tbl_selBuildings.horizontalHeader().setSectionResizeMode(QtWidgets.QHeaderView.Stretch)
         self.vbox.addWidget(self.tbl_selBuildings)
