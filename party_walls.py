@@ -162,23 +162,27 @@ def find_party_walls(buildingLike_0: object, buildingLike_1: object):
             if np.array_equal(vector_0, vector_1) or np.array_equal(vector_0, -vector_1):
                 # create rotaion matrix, that 3rd axis can be ignored
                 # check if rotation is needed
-                if np.array_equal(vector_0, np.array([0, 0, 1])) or np.array_equal(vector_0, -np.array([0, 0, 1])):
+                if np.array_equal(vector_0, np.array([0, 1, 0])) or np.array_equal(vector_0, -np.array([0, 1, 0])):
                     # rotation not needed
                     poly_0_rotated = buildingLike_0.walls[gml_id_0]
                     poly_1_rotated = buildingLike_1.walls[gml_id_1]
                 else:
                     # needs to be rotated
                     rotation_matrix = rotation_matrix_from_vectors(
-                        vector_0, np.array([0, 0, 1]))
+                        vector_0, np.array([0, 1, 0]))
                     # rotate coordinates
                     poly_0_rotated = np.dot(
                         buildingLike_0.walls[gml_id_0], rotation_matrix)
                     poly_1_rotated = np.dot(
                         buildingLike_1.walls[gml_id_1], rotation_matrix)
 
+                # check distance in rotated y direction (if distance is too large, walls shouldn't be considered as party walls)
+                if np.mean(poly_0_rotated, axis=0)[1] != np.mean(poly_1_rotated, axis=0)[1]:
+                    continue
+
                 # delete 3rd axis
-                poly_0_rotated_2D = np.delete(poly_0_rotated, 2, axis=1)
-                poly_1_rotated_2D = np.delete(poly_1_rotated, 2, axis=1)
+                poly_0_rotated_2D = np.delete(poly_0_rotated, 1, axis=1)
+                poly_1_rotated_2D = np.delete(poly_1_rotated, 1, axis=1)
                 # create shapely polygons
                 p_0 = slyGeom.Polygon(poly_0_rotated_2D)
                 p_1 = slyGeom.Polygon(poly_1_rotated_2D)
@@ -323,11 +327,10 @@ class Dataset():
 
             # self collision check
             for j, poly_0 in enumerate(polys_in_building_0):
-                p_0 = slyGeom.Polygon(poly_0["coor"])
+                p_0 = self._create_buffered_polygon(poly_0["coor"])
                 for poly_1 in polys_in_building_0[j+1:]:
                     p_1 = slyGeom.Polygon(poly_1["coor"])
                     if not p_0.intersection(p_1).is_empty:
-                        # To-Do: in building self collison is detected
                         party_walls = find_party_walls(
                             poly_0["parent"], poly_1["parent"])
                         if party_walls != []:
@@ -338,11 +341,10 @@ class Dataset():
                 # collision with the building itself
                 if building_1.has_geometry():
                     for poly_0 in polys_in_building_0:
-                        p_0 = slyGeom.Polygon(poly_0["coor"])
+                        p_0 = self._create_buffered_polygon(poly_0["coor"])
                         for gml_id, poly_1 in building_1.grounds.items():
                             p_1 = slyGeom.Polygon(poly_1)
                             if not p_0.intersection(p_1).is_empty:
-                                # To-Do: building (or bp) with other building
                                 party_walls = find_party_walls(
                                     poly_0["parent"], building_1)
                                 if party_walls != []:
@@ -354,7 +356,7 @@ class Dataset():
                     for b_part in building_1.building_parts:
                         if b_part.has_geometry():
                             for poly_0 in polys_in_building_0:
-                                p_0 = slyGeom.Polygon(poly_0["coor"])
+                                p_0 = self._create_buffered_polygon(poly_0["coor"])
                                 for gml_id, poly_1 in b_part.grounds.items():
                                     p_1 = slyGeom.Polygon(poly_1)
                                     if not p_0.intersection(p_1).is_empty:
@@ -365,3 +367,9 @@ class Dataset():
                                             self.party_walls.extend(
                                                 party_walls)
                                         break
+
+    def _create_buffered_polygon(self, coordinates: np.ndarray, buffer: float = 0.15) -> slyGeom.Polygon:
+        """creates a buffered shapely polygon"""
+        poly = slyGeom.Polygon(coordinates)
+        return poly.buffer(buffer)
+
