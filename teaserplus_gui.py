@@ -245,7 +245,8 @@ class TeaserEnrichment(QtWidgets.QWidget):
         self.lGrid = QtWidgets.QGridLayout()
         
         self.comB_method = QtWidgets.QComboBox()
-        self.comB_method.addItems(["Choose method", "IWU", "tabula_de", "tabula_dk", "urbanrenet"])
+        self.comB_method.setPlaceholderText("Choose method here")
+        self.comB_method.addItems(["IWU", "tabula_de", "tabula_dk", "urbanrenet"])
         self.lGrid.addWidget(self.comB_method, 0, 0, 1, 1)
 
         self.btn_saveToCityGML = QtWidgets.QPushButton("Save to CityGML file")
@@ -302,7 +303,7 @@ class TeaserEnrichment(QtWidgets.QWidget):
             self.tbl_selBuildings.setItem(rowCount, 2, newItem)
 
             self.combBoxesYoc.append(QtWidgets.QComboBox(parent=self.tbl_selBuildings))
-            self.combBoxesYoc[-1].addItems(["choose method first"])
+            self.combBoxesYoc[-1].setPlaceholderText("choose method first")
             self.tbl_selBuildings.setCellWidget(rowCount, 3, self.combBoxesYoc[-1])
 
             newItem = QtWidgets.QTableWidgetItem(str(self.buildingDict[key]["values"]["SAG"]))
@@ -312,7 +313,7 @@ class TeaserEnrichment(QtWidgets.QWidget):
             self.tbl_selBuildings.setItem(rowCount, 5, newItem)
 
             self.combBoxesUse.append(QtWidgets.QComboBox(parent=self.tbl_selBuildings))
-            self.combBoxesUse[-1].addItems(["choose method first"])
+            self.combBoxesUse[-1].setPlaceholderText("choose method first")
             self.tbl_selBuildings.setCellWidget(rowCount, 6, self.combBoxesUse[-1])
 
             # make changes to editabiltiy of the table items
@@ -355,7 +356,7 @@ class TeaserEnrichment(QtWidgets.QWidget):
         """function, called when something is changed within the table, to update QTableWidgetItem flags"""
         if item.column() == 2:
             if item.text() != "":
-                self.tbl_selBuildings.cellWidget(item.row(), 3).setCurrentIndex(0)
+                self.tbl_selBuildings.cellWidget(item.row(), 3).setCurrentIndex(-1)
                 self.tbl_selBuildings.cellWidget(item.row(), 3).setEnabled(False)
             else:
                 self.tbl_selBuildings.cellWidget(item.row(), 3).setEnabled(True)
@@ -367,12 +368,8 @@ class TeaserEnrichment(QtWidgets.QWidget):
 
     def func_methodChanged(self) -> None:
         """function to update comboBoxes when method is changed"""
-        if self.comB_method.itemText(0) == "Choose method":
-            self.comB_method.removeItem(0)
-
         # yoc_classes default from TypeBuildingElements.json
         yoc_classes = ["0-1918", "1919-1948", "1949-1968", "1969-1978", "1979-1983", "1984-1994", "1995-2015"]
-
 
         if self.comB_method.currentText() == "IWU":
             basepath = os.path.join("teaser/logic/archetypebuildings/bmvbs")
@@ -383,18 +380,16 @@ class TeaserEnrichment(QtWidgets.QWidget):
 
         elif self.comB_method.currentText() == "tabula_dk":
             basepath = os.path.join("teaser/logic/archetypebuildings/tabula/dk")
-            yoc_classes = ["0-1850", "1851-1931", "1931-1950" "1951-1960", "1961-1972", "1973-1978", "1979-1998", "1999-2006", "2007-2010"]
+            yoc_classes = ["0-1850", "1851-1931", "1931-1950", "1951-1960", "1961-1972", "1973-1978", "1979-1998", "1999-2006", "2007-2010"]
             
         elif self.comB_method.currentText() == "urbanrenet":
             basepath = os.path.join("teaser/logic/archetypebuildings/urbanrenet")
 
         for combBox in self.combBoxesYoc:
-            if combBox.count() == 1:
-                combBox.removeItem(0)
-                combBox.addItem("click to select")
+            combBox.setPlaceholderText("click to select")
             i = combBox.currentIndex()
             toRemove = list(range(1, combBox.count()))
-            if i != 0:
+            if i != -1:
                 toRemove.remove(i)
             toRemove.reverse()
             for y in toRemove:
@@ -404,17 +399,14 @@ class TeaserEnrichment(QtWidgets.QWidget):
         archeTypes = gf.getArchetypes(basepath)
         archeTypes = [self.comB_method.currentText() + "/" + x for x in archeTypes]
         for combBox in self.combBoxesUse:
-            if combBox.count() == 1:
-                combBox.removeItem(0)
-                combBox.addItem("click to select")
+            combBox.setPlaceholderText("click to select")
             i = combBox.currentIndex()
             toRemove = list(range(1, combBox.count()))
-            if i != 0:
+            if i != -1:
                 toRemove.remove(i)
             toRemove.reverse()
             for y in toRemove:
                 combBox.removeItem(y)
-            
             combBox.addItems(archeTypes)
             
 
@@ -523,9 +515,9 @@ class SetupSimulation(QtWidgets.QWidget):
         self.mGrid.addWidget(self.lbl_weatherFile, 2, 0, 1, 1)
 
         self.comB_weatherFile = QtWidgets.QComboBox()
+        self.comB_weatherFile.setPlaceholderText("click to select weather file")
         self.mGrid.addWidget(self.comB_weatherFile, 2, 1, 1, 4)
 
-        self.comB_weatherFile.addItem("select weather file")
         weatherpath = os.path.join("teaser", "data", "input", "inputdata", "weatherdata")
         for candidate in os.listdir(weatherpath):
             if os.path.isfile(os.path.join(weatherpath, candidate)) and candidate.endswith(".mos"):
@@ -560,7 +552,7 @@ class SetupSimulation(QtWidgets.QWidget):
         self.lGrid.addWidget(self.lbl_carrier1, 1, 2, 1, 1)
 
         self.comB_carrier1 = QtWidgets.QComboBox()
-        self.comB_carrier1.addItems(["UUID from OEKOBAUDAT.de"])
+        self.comB_carrier1.setPlaceholderText("UUID from OEKOBAUDAT.de")
         self.lGrid.addWidget(self.comB_carrier1, 1, 3, 1, 2)
         
         self.txtB_carrier1PEF = QtWidgets.QLineEdit("")
@@ -572,7 +564,7 @@ class SetupSimulation(QtWidgets.QWidget):
         self.lGrid.addWidget(self.lbl_carrier2, 2, 2, 1, 1)
 
         self.comB_carrier2 = QtWidgets.QComboBox()
-        self.comB_carrier2.addItems(["UUID from OEKOBAUDAT.de"])
+        self.comB_carrier2.setPlaceholderText("UUID from OEKOBAUDAT.de")
         self.lGrid.addWidget(self.comB_carrier2, 2, 3, 1, 2)
         
         self.txtB_carrier2PEF = QtWidgets.QLineEdit("")
@@ -588,7 +580,7 @@ class SetupSimulation(QtWidgets.QWidget):
         self.lGrid.addWidget(self.lbl_carrierN, 3, 2, 1, 1)
 
         self.comB_carrierN = QtWidgets.QComboBox()
-        self.comB_carrierN.addItems(["UUID from OEKOBAUDAT.de"])
+        self.comB_carrierN.setPlaceholderText("UUID from OEKOBAUDAT.de")
         self.lGrid.addWidget(self.comB_carrierN, 3, 3, 1, 2)
         
         self.txtB_carrierNPEF = QtWidgets.QLineEdit("")
@@ -630,36 +622,47 @@ class SetupSimulation(QtWidgets.QWidget):
             gf.messageBox(self, "Error", "Please select an export path before continuing")
             return
 
-        if self.comB_weatherFile.currentIndex() == 0:
+        if self.comB_weatherFile.currentIndex() == -1:
             gf.messageBox(self, "Error", "Please select a weather file before continuing")
             return
+
+        bp_counter = {}
         
         bld_IWU = []
         bld_tabula_de = []
         bld_tabula_dk = []
         bld_urbanrenet = []
         bld_undefined = []
+        print(self.buildingDict)
         for key in self.buildingDict:
             if self.buildingDict[key]["selected"]:
-                print(self.buildingDict[key])
                 buildingname = self.buildingDict[key]["buildingname"]
+                if "/" in buildingname:
+                    parent = buildingname.split("/")[0]
+                    if parent not in bp_counter:
+                        bp_counter[parent] = 1
+                    else:
+                        bp_counter[parent] -=- 1
+                    buildingname_teasered = parent + "/bp" + str(bp_counter[parent])
+                else:
+                    buildingname_teasered = buildingname
                 if buildingname in self.buildingsToChange.keys():
                     if "usage" in self.buildingsToChange[buildingname]:
                         if self.buildingsToChange[buildingname]["usage"].startswith("IWU"):
-                            bld_IWU.append(buildingname)
+                            bld_IWU.append(buildingname_teasered)
                         elif self.buildingsToChange[buildingname]["usage"].startswith("tabula_de"):
-                            bld_tabula_de.append(buildingname)
+                            bld_tabula_de.append(buildingname_teasered)
                         elif self.buildingsToChange[buildingname]["usage"].startswith("tabula_dk"):
-                            bld_tabula_dk.append(buildingname)
+                            bld_tabula_dk.append(buildingname_teasered)
                         elif self.buildingsToChange[buildingname]["usage"].startswith("urbanrenet"):
-                            bld_urbanrenet.append(buildingname)
+                            bld_urbanrenet.append(buildingname_teasered)
                         else:
                             print(f"Error getting the right method for {buildingname}")
-                            bld_undefined.append(buildingname)
+                            bld_undefined.append(buildingname_teasered)
                     else:
-                        bld_undefined.append(buildingname)
+                        bld_undefined.append(buildingname_teasered)
                 else:
-                    bld_undefined.append(buildingname)
+                    bld_undefined.append(buildingname_teasered)
 
 
         weatherfile = self.comB_weatherFile.currentText()

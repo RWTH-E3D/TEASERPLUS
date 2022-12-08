@@ -523,7 +523,7 @@ def getDataFromTable(self) -> dict:
                 return None
             valuesToChange["YoC"] = inted
 
-        elif self.tbl_selBuildings.item(i, 2).text() == "" and self.tbl_selBuildings.cellWidget(i, 3).currentIndex() != 0:
+        elif self.tbl_selBuildings.item(i, 2).text() == "" and self.tbl_selBuildings.cellWidget(i, 3).currentIndex() != -1:
             valuesToChange["YoC"] = sum([int(x) for x in self.tbl_selBuildings.cellWidget(i, 3).currentText().split("-")]) // 2
 
         if self.valueDict[buildingname]["SAG"] == "" and self.valueDict[buildingname]["storeyHeight"] == "":
@@ -544,7 +544,7 @@ def getDataFromTable(self) -> dict:
                     return None
                 valuesToChange["storeyHeight"] = floated
         
-        if self.tbl_selBuildings.cellWidget(i, 6).currentIndex() != 0:
+        if self.tbl_selBuildings.cellWidget(i, 6).currentIndex() != -1:
             valuesToChange["usage"] = self.tbl_selBuildings.cellWidget(i, 6).currentText()
 
         if valuesToChange != {}:
