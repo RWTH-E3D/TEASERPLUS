@@ -176,8 +176,8 @@ def find_party_walls(buildingLike_0: object, buildingLike_1: object):
                     poly_1_rotated = np.dot(
                         buildingLike_1.walls[gml_id_1], rotation_matrix)
 
-                # check distance in rotated y direction (if distance is too large, walls shouldn't be considered as party walls)
-                if np.mean(poly_0_rotated, axis=0)[1] != np.mean(poly_1_rotated, axis=0)[1]:
+                # check distance in rotated y direction (if distance is larger than 0.15 [uom] walls shouldn't be considered as party walls)
+                if abs(np.mean(poly_0_rotated, axis=0)[1] - np.mean(poly_1_rotated, axis=0)[1]) >= 0.15:
                     continue
 
                 # delete 3rd axis
