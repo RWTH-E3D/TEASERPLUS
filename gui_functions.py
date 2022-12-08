@@ -464,7 +464,7 @@ def setOrChangeValue(building_E, nss, valueType: str, value:str) -> None:
     else:
         archetypeMethod, usage = value.split("/", 1)
         if archetypeMethod == "IWU":
-            if usage.startswith("custom") or value == "office":
+            if usage.startswith("custom") or usage == "office":
                 target_E.text = "1120"
             elif usage == "singlefamilydwelling":
                 target_E.text = "1000"
