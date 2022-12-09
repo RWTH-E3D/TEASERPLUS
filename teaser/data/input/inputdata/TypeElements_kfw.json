@@ -1,0 +1,3277 @@
+{
+    "version": "0.7",
+    "OuterWall_[1000, 3000]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_kfw70_tabula_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.17,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_kfw55_tabula_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.21,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.28,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.2,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_tabula_standard_2_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.2,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_kfw70_tabula_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.17,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_kfw55_tabula_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.2,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.22,
+                "material": {
+                    "name": "XPS_2_core_layer",
+                    "material_id": "6377221c-3a43-11e7-9599-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_kfw70_tabula_2_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.17,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_kfw55_tabula_2_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.2,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.22,
+                "material": {
+                    "name": "XPS_2_core_layer",
+                    "material_id": "6377221c-3a43-11e7-9599-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.28,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_tabula_adv_retrofit_2_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.28,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_kfw70_tabula_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_kfw55_tabula_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.3,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.3,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.037,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_kfw70_tabula_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.037,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_kfw55_tabula_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.06,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.037,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_kfw70_tabula_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.037,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_kfw55_tabula_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.06,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.037,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_kfw70_tabula_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_kfw55_tabula_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.06,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_kfw55_tabula_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.6,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.5617090909090908,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.5,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.9565142857142858,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_tabula_standard_2_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.6,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.45541538461538456,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_kfw70_tabula_2_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.6,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.45541538461538456,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_kfw55_tabula_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.6,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.5617090909090908,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_kfw55_tabula_2_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.6,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.5617090909090908,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.5,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.9565142857142858,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_tabula_adv_retrofit_2_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.5,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.6308,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_kfw55_tabula_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.6,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.5617090909090908,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.5,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.9565142857142858,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.6,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.45541538461538456,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_kfw70_tabula_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.6,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.45541538461538456,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.6,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.45541538461538456,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_kfw70_tabula_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.6,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.45541538461538456,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.6,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.45541538461538456,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_kfw70_tabula_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.6,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.9565142857142858,
+                "material": {
+                    "name": "glas_generic",
+                    "material_id": "0abbb19a-83ff-11e6-bacd-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "vapourpermeable_wood_fibreboard",
+                    "material_id": "258fb6be-3a43-11e7-81b6-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "solid_brick_extruded",
+                    "material_id": "607e0626-3a43-11e7-8945-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_kfw70_tabula_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "vapourpermeable_wood_fibreboard",
+                    "material_id": "258fb6be-3a43-11e7-81b6-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.25,
+                "material": {
+                    "name": "glass_fibre_batt_40",
+                    "material_id": "2797e0fa-3a43-11e7-ae72-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "solid_brick_extruded",
+                    "material_id": "607e0626-3a43-11e7-8945-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_kfw55_tabula_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "vapourpermeable_wood_fibreboard",
+                    "material_id": "258fb6be-3a43-11e7-81b6-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.3,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "solid_brick_extruded",
+                    "material_id": "607e0626-3a43-11e7-8945-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "vapourpermeable_wood_fibreboard",
+                    "material_id": "258fb6be-3a43-11e7-81b6-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.39,
+                "material": {
+                    "name": "glass_fibre_batt_40",
+                    "material_id": "2797e0fa-3a43-11e7-ae72-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "solid_brick_extruded",
+                    "material_id": "607e0626-3a43-11e7-8945-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "vapourpermeable_wood_fibreboard",
+                    "material_id": "258fb6be-3a43-11e7-81b6-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "glass_fibre_batt_40",
+                    "material_id": "2797e0fa-3a43-11e7-ae72-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.05,
+                "material": {
+                    "name": "glass_fibre_batt_70",
+                    "material_id": "27a720e4-3a43-11e7-8394-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "solid_brick_extruded",
+                    "material_id": "607e0626-3a43-11e7-8945-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_kfw70_tabula_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "vapourpermeable_wood_fibreboard",
+                    "material_id": "258fb6be-3a43-11e7-81b6-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.25,
+                "material": {
+                    "name": "glass_fibre_batt_40",
+                    "material_id": "2797e0fa-3a43-11e7-ae72-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "solid_brick_extruded",
+                    "material_id": "607e0626-3a43-11e7-8945-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_kfw55_tabula_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "vapourpermeable_wood_fibreboard",
+                    "material_id": "258fb6be-3a43-11e7-81b6-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.29,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "solid_brick_extruded",
+                    "material_id": "607e0626-3a43-11e7-8945-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "vapourpermeable_wood_fibreboard",
+                    "material_id": "258fb6be-3a43-11e7-81b6-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.39,
+                "material": {
+                    "name": "glass_fibre_batt_40",
+                    "material_id": "2797e0fa-3a43-11e7-ae72-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "solid_brick_extruded",
+                    "material_id": "607e0626-3a43-11e7-8945-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.18,
+                "material": {
+                    "name": "glass_fibre_batt_70",
+                    "material_id": "27a720e4-3a43-11e7-8394-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "bituminized_felt_2",
+                    "material_id": "24ce8040-3a43-11e7-9beb-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_kfw70_tabula_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.35,
+                "material": {
+                    "name": "glass_fibre_batt_70",
+                    "material_id": "27a720e4-3a43-11e7-8394-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "bituminized_felt_2",
+                    "material_id": "24ce8040-3a43-11e7-9beb-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_kfw55_tabula_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.36,
+                "material": {
+                    "name": "glass_fibre_batt_70",
+                    "material_id": "27a720e4-3a43-11e7-8394-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "bituminized_felt_2",
+                    "material_id": "24ce8040-3a43-11e7-9beb-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.4,
+                "material": {
+                    "name": "glass_fibre_batt_70",
+                    "material_id": "27a720e4-3a43-11e7-8394-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "bituminized_felt_2",
+                    "material_id": "24ce8040-3a43-11e7-9beb-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.03,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_1_middle",
+                    "material_id": "65155036-3a43-11e7-a4da-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.09,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_kfw70_tabula_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.03,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_1_middle",
+                    "material_id": "65155036-3a43-11e7-a4da-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.13,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_kfw55_tabula_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.03,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_1_middle",
+                    "material_id": "65155036-3a43-11e7-a4da-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.22,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.03,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_1_middle",
+                    "material_id": "65155036-3a43-11e7-a4da-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.29,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.03,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_1_middle",
+                    "material_id": "65155036-3a43-11e7-a4da-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.1,
+                "material": {
+                    "name": "EPS_040_15",
+                    "material_id": "25d281da-3a43-11e7-8191-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_kfw70_tabula_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.03,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_1_middle",
+                    "material_id": "65155036-3a43-11e7-a4da-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.14,
+                "material": {
+                    "name": "XPS_2_core_layer",
+                    "material_id": "6377221c-3a43-11e7-9599-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_kfw55_tabula_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.03,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_1_middle",
+                    "material_id": "65155036-3a43-11e7-a4da-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.22,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.03,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_1_middle",
+                    "material_id": "65155036-3a43-11e7-a4da-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.29,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.03,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_1_middle",
+                    "material_id": "65155036-3a43-11e7-a4da-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.09,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_kfw70_tabula_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_tabula_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.03,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_1_middle",
+                    "material_id": "65155036-3a43-11e7-a4da-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.19,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_kfw55_tabula_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_tabula_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.03,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_1_middle",
+                    "material_id": "65155036-3a43-11e7-a4da-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.3,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.03,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_1_middle",
+                    "material_id": "65155036-3a43-11e7-a4da-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.3,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "InnerWall_[1000, 3000]_tabula_standard": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "lime_plaster",
+                    "material_id": "2e2c8180-3a43-11e7-a6be-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.15,
+                "material": {
+                    "name": "vertical_core_brick_700",
+                    "material_id": "291e6c06-3a43-11e7-ac4a-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "lime_plaster",
+                    "material_id": "2e2c8180-3a43-11e7-a6be-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Ceiling_[1000, 3000]_tabula_standard": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7000000000000002,
+        "layer": {
+            "0": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete_CEM_II_BS325R_wz05",
+                    "material_id": "253f8030-3a43-11e7-8735-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.06,
+                "material": {
+                    "name": "EPS_040_15",
+                    "material_id": "25d281da-3a43-11e7-8191-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_2_bottom",
+                    "material_id": "6755e6e6-3a43-11e7-adad-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Floor_[1000, 3000]_tabula_standard": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "tabula_standard",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7000000000000002,
+        "layer": {
+            "0": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_2_bottom",
+                    "material_id": "6755e6e6-3a43-11e7-adad-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.06,
+                "material": {
+                    "name": "EPS_040_15",
+                    "material_id": "25d281da-3a43-11e7-8191-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete_CEM_II_BS325R_wz05",
+                    "material_id": "253f8030-3a43-11e7-8735-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_kfw40_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw40_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.118,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_kfw40_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw40_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.6,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.028,
+                "material": {
+                    "name": "Glas1995_2015Waermeschutzverglasungdreifach",
+                    "material_id": "0abbb1a2-83ff-11e6-946a-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_kfw40_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw40_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_2_bottom",
+                    "material_id": "6755e6e6-3a43-11e7-adad-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete_CEM_II_BS325R_wz05",
+                    "material_id": "253f8030-3a43-11e7-8735-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.28,
+                "material": {
+                    "name": "XPS_3_top_layer",
+                    "material_id": "625f2664-3a43-11e7-ae0a-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_kfw55_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.062,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_kfw55_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.6,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.0224,
+                "material": {
+                    "name": "Glas1995_2015Waermeschutzverglasungdreifach",
+                    "material_id": "0abbb1a2-83ff-11e6-946a-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_kfw55_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_2_bottom",
+                    "material_id": "6755e6e6-3a43-11e7-adad-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete_CEM_II_BS325R_wz05",
+                    "material_id": "253f8030-3a43-11e7-8735-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "XPS_3_top_layer",
+                    "material_id": "625f2664-3a43-11e7-ae0a-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_kfw70_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.037,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_kfw70_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.5,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.0204,
+                "material": {
+                    "name": "Glas1995_2015Waermeschutzverglasungdreifach",
+                    "material_id": "0abbb1a2-83ff-11e6-946a-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_kfw70_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_2_bottom",
+                    "material_id": "6755e6e6-3a43-11e7-adad-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete_CEM_II_BS325R_wz05",
+                    "material_id": "253f8030-3a43-11e7-8735-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.135,
+                "material": {
+                    "name": "XPS_3_top_layer",
+                    "material_id": "625f2664-3a43-11e7-ae0a-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Door_[1000, 3000]_kfw100_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw100_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.037,
+                "material": {
+                    "name": "wood_wool_board_magnesia_460",
+                    "material_id": "2cb5f992-3a43-11e7-8a6c-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "oak_longitudinal",
+                    "material_id": "25be60b0-3a43-11e7-aece-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "Window_[1000, 3000]_kfw100_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw100_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "g_value": 0.5,
+        "a_conv": 0.02,
+        "shading_g_total": 1.0,
+        "shading_max_irr": 100.0,
+        "layer": {
+            "0": {
+                "thickness": 0.0317,
+                "material": {
+                    "name": "Glas1995_2015Holzfensterzweifach",
+                    "material_id": "0abbb19d-83ff-11e6-b8bb-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "GroundFloor_[1000, 3000]_kfw100_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw100_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "oak_old",
+                    "material_id": "25b5d680-3a43-11e7-ba46-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "cement_floating_screed_2_bottom",
+                    "material_id": "6755e6e6-3a43-11e7-adad-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "concrete_CEM_II_BS325R_wz05",
+                    "material_id": "253f8030-3a43-11e7-8735-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.09,
+                "material": {
+                    "name": "XPS_3_top_layer",
+                    "material_id": "625f2664-3a43-11e7-ae0a-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_kfw100_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw100_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.0125,
+                "material": {
+                    "name": "gypsum_plasterboard_DF_GKF_dh",
+                    "material_id": "f880ac04-6ccb-11ed-9016-5405db524342"
+                }
+            },
+            "1": {
+                "thickness": 0.015,
+                "material": {
+                    "name": "OSB3_oriented_strand_board",
+                    "material_id": "39085c92-3a43-11e7-b4ea-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.0106,
+                "material": {
+                    "name": "contructionwood_dh",
+                    "material_id": "f8808506-6ccb-11ed-9a99-5405db524342"
+                }
+            },
+            "3": {
+                "thickness": 0.0916,
+                "material": {
+                    "name": "mineral_wool_040",
+                    "material_id": "35d01e70-3a43-11e7-a6cf-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "WF_insulation_board_180_dh",
+                    "material_id": "f880ac02-6ccb-11ed-a0b0-5405db524342"
+                }
+            },
+            "5": {
+                "thickness": 0.007,
+                "material": {
+                    "name": "plaster_system_dh",
+                    "material_id": "f880ac03-6ccb-11ed-95db-5405db524342"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_kfw100_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw100_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.015,
+                "material": {
+                    "name": "gypsum_plasterboard_DF_GKF_dh",
+                    "material_id": "f880ac04-6ccb-11ed-9016-5405db524342"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "mineral_wool_040",
+                    "material_id": "35d01e70-3a43-11e7-a6cf-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.017,
+                "material": {
+                    "name": "contructionwood_dh",
+                    "material_id": "f8808506-6ccb-11ed-9a99-5405db524342"
+                }
+            },
+            "3": {
+                "thickness": 0.1398,
+                "material": {
+                    "name": "mineral_wool_040",
+                    "material_id": "35d01e70-3a43-11e7-a6cf-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.025,
+                "material": {
+                    "name": "OSB3_oriented_strand_board",
+                    "material_id": "39085c92-3a43-11e7-b4ea-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_kfw70_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.0125,
+                "material": {
+                    "name": "gypsum_plasterboard_DF_GKF_dh",
+                    "material_id": "f880ac04-6ccb-11ed-9016-5405db524342"
+                }
+            },
+            "1": {
+                "thickness": 0.015,
+                "material": {
+                    "name": "OSB3_oriented_strand_board",
+                    "material_id": "39085c92-3a43-11e7-b4ea-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.0158,
+                "material": {
+                    "name": "contructionwood_dh",
+                    "material_id": "f8808506-6ccb-11ed-9a99-5405db524342"
+                }
+            },
+            "3": {
+                "thickness": 0.1372,
+                "material": {
+                    "name": "mineral_wool_040",
+                    "material_id": "35d01e70-3a43-11e7-a6cf-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.06,
+                "material": {
+                    "name": "WF_insulation_board_180_dh",
+                    "material_id": "f880ac02-6ccb-11ed-a0b0-5405db524342"
+                }
+            },
+            "5": {
+                "thickness": 0.007,
+                "material": {
+                    "name": "plaster_system_dh",
+                    "material_id": "f880ac03-6ccb-11ed-95db-5405db524342"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_kfw70_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw70_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.015,
+                "material": {
+                    "name": "gypsum_plasterboard_DF_GKF_dh",
+                    "material_id": "f880ac04-6ccb-11ed-9016-5405db524342"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "mineral_wool_040",
+                    "material_id": "35d01e70-3a43-11e7-a6cf-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.019,
+                "material": {
+                    "name": "contructionwood_dh",
+                    "material_id": "f8808506-6ccb-11ed-9a99-5405db524342"
+                }
+            },
+            "3": {
+                "thickness": 0.156,
+                "material": {
+                    "name": "mineral_wool_040",
+                    "material_id": "35d01e70-3a43-11e7-a6cf-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.025,
+                "material": {
+                    "name": "OSB3_oriented_strand_board",
+                    "material_id": "39085c92-3a43-11e7-b4ea-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_kfw55_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.0125,
+                "material": {
+                    "name": "gypsum_plasterboard_DF_GKF_dh",
+                    "material_id": "f880ac04-6ccb-11ed-9016-5405db524342"
+                }
+            },
+            "1": {
+                "thickness": 0.015,
+                "material": {
+                    "name": "OSB3_oriented_strand_board",
+                    "material_id": "39085c92-3a43-11e7-b4ea-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.0182,
+                "material": {
+                    "name": "contructionwood_dh",
+                    "material_id": "f8808506-6ccb-11ed-9a99-5405db524342"
+                }
+            },
+            "3": {
+                "thickness": 0.1577,
+                "material": {
+                    "name": "mineral_wool_040",
+                    "material_id": "35d01e70-3a43-11e7-a6cf-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.06,
+                "material": {
+                    "name": "WF_insulation_board_180_dh",
+                    "material_id": "f880ac02-6ccb-11ed-a0b0-5405db524342"
+                }
+            },
+            "5": {
+                "thickness": 0.007,
+                "material": {
+                    "name": "plaster_system_dh",
+                    "material_id": "f880ac03-6ccb-11ed-95db-5405db524342"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_kfw55_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw55_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.015,
+                "material": {
+                    "name": "gypsum_plasterboard_DF_GKF_dh",
+                    "material_id": "f880ac04-6ccb-11ed-9016-5405db524342"
+                }
+            },
+            "1": {
+                "thickness": 0.04,
+                "material": {
+                    "name": "mineral_wool_040",
+                    "material_id": "35d01e70-3a43-11e7-a6cf-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.024,
+                "material": {
+                    "name": "contructionwood_dh",
+                    "material_id": "f8808506-6ccb-11ed-9a99-5405db524342"
+                }
+            },
+            "3": {
+                "thickness": 0.1946,
+                "material": {
+                    "name": "mineral_wool_040",
+                    "material_id": "35d01e70-3a43-11e7-a6cf-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.025,
+                "material": {
+                    "name": "OSB3_oriented_strand_board",
+                    "material_id": "39085c92-3a43-11e7-b4ea-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "OuterWall_[1000, 3000]_kfw40_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw40_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.0125,
+                "material": {
+                    "name": "gypsum_plasterboard_DF_GKF_dh",
+                    "material_id": "f880ac04-6ccb-11ed-9016-5405db524342"
+                }
+            },
+            "1": {
+                "thickness": 0.015,
+                "material": {
+                    "name": "OSB3_oriented_strand_board",
+                    "material_id": "39085c92-3a43-11e7-b4ea-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.0288,
+                "material": {
+                    "name": "contructionwood_dh",
+                    "material_id": "f8808506-6ccb-11ed-9a99-5405db524342"
+                }
+            },
+            "3": {
+                "thickness": 0.2473,
+                "material": {
+                    "name": "mineral_wool_040",
+                    "material_id": "35d01e70-3a43-11e7-a6cf-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.06,
+                "material": {
+                    "name": "WF_insulation_board_180_dh",
+                    "material_id": "f880ac02-6ccb-11ed-a0b0-5405db524342"
+                }
+            },
+            "5": {
+                "thickness": 0.007,
+                "material": {
+                    "name": "plaster_system_dh",
+                    "material_id": "f880ac03-6ccb-11ed-95db-5405db524342"
+                }
+            }
+        }
+    },
+    "Rooftop_[1000, 3000]_kfw40_woodframe": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw40_woodframe",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.015,
+                "material": {
+                    "name": "gypsum_plasterboard_DF_GKF_dh",
+                    "material_id": "f880ac04-6ccb-11ed-9016-5405db524342"
+                }
+            },
+            "1": {
+                "thickness": 0.11,
+                "material": {
+                    "name": "mineral_wool_040",
+                    "material_id": "35d01e70-3a43-11e7-a6cf-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.03,
+                "material": {
+                    "name": "contructionwood_dh",
+                    "material_id": "f8808506-6ccb-11ed-9a99-5405db524342"
+                }
+            },
+            "3": {
+                "thickness": 0.2477,
+                "material": {
+                    "name": "mineral_wool_040",
+                    "material_id": "35d01e70-3a43-11e7-a6cf-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.025,
+                "material": {
+                    "name": "OSB3_oriented_strand_board",
+                    "material_id": "39085c92-3a43-11e7-b4ea-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "InnerWall_[1000, 3000]_kfw_woodframe_standard": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw_woodframe_standard",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.025,
+                "material": {
+                    "name": "gypsum_plasterboard_DF_GKF_dh",
+                    "material_id": "f880ac04-6ccb-11ed-9016-5405db524342"
+                }
+            },
+            "1": {
+                "thickness": 0.1446,
+                "material": {
+                    "name": "mineral_wool_040",
+                    "material_id": "35d01e70-3a43-11e7-a6cf-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.0154,
+                "material": {
+                    "name": "contructionwood_dh",
+                    "material_id": "f8808506-6ccb-11ed-9a99-5405db524342"
+                }
+            },
+            "3": {
+                "thickness": 0.025,
+                "material": {
+                    "name": "gypsum_plasterboard_DF_GKF_dh",
+                    "material_id": "f880ac04-6ccb-11ed-9016-5405db524342"
+                }
+            }
+        }
+    },
+    "Ceiling_[1000, 3000]_kfw_woodframe_standard": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw_woodframe_standard",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.025,
+                "material": {
+                    "name": "dry_screed_dh",
+                    "material_id": "f880ac05-6ccb-11ed-85c9-5405db524342"
+                }
+            },
+            "1": {
+                "thickness": 0.03,
+                "material": {
+                    "name": "impact_sound_insulation_MW_T_dh",
+                    "material_id": "60873b48-7616-11ed-9b8f-5405db524342"
+                }
+            },
+            "2": {
+                "thickness": 0.019,
+                "material": {
+                    "name": "OSB3_oriented_strand_board",
+                    "material_id": "39085c92-3a43-11e7-b4ea-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.1238,
+                "material": {
+                    "name": "air",
+                    "material_id": "6cb62e70-3a43-11e7-a790-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.0872,
+                "material": {
+                    "name": "mineral_wool_040",
+                    "material_id": "35d01e70-3a43-11e7-a6cf-2cd444b2e704"
+                }
+            },
+            "5": {
+                "thickness": 0.033,
+                "material": {
+                    "name": "contructionwood_dh",
+                    "material_id": "f8808506-6ccb-11ed-9a99-5405db524342"
+                }
+            },
+            "6": {
+                "thickness": 0.025,
+                "material": {
+                    "name": "gypsum_plasterboard_DF_GKF_dh",
+                    "material_id": "f880ac04-6ccb-11ed-9016-5405db524342"
+                }
+            }
+        }
+    },
+    "Floor_[1000, 3000]_kfw_woodframe_standard": {
+        "building_age_group": [
+            1000,
+            3000
+        ],
+        "construction_type": "kfw_woodframe_standard",
+        "inner_radiation": 5.0,
+        "inner_convection": 1.7,
+        "layer": {
+            "0": {
+                "thickness": 0.025,
+                "material": {
+                    "name": "gypsum_plasterboard_DF_GKF_dh",
+                    "material_id": "f880ac04-6ccb-11ed-9016-5405db524342"
+                }
+            },
+            "1": {
+                "thickness": 0.033,
+                "material": {
+                    "name": "contructionwood_dh",
+                    "material_id": "f8808506-6ccb-11ed-9a99-5405db524342"
+                }
+            },
+            "2": {
+                "thickness": 0.0872,
+                "material": {
+                    "name": "mineral_wool_040",
+                    "material_id": "35d01e70-3a43-11e7-a6cf-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.1238,
+                "material": {
+                    "name": "air",
+                    "material_id": "6cb62e70-3a43-11e7-a790-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.019,
+                "material": {
+                    "name": "OSB3_oriented_strand_board",
+                    "material_id": "39085c92-3a43-11e7-b4ea-2cd444b2e704"
+                }
+            },
+            "5": {
+                "thickness": 0.03,
+                "material": {
+                    "name": "impact_sound_insulation_MW_T_dh",
+                    "material_id": "60873b48-7616-11ed-9b8f-5405db524342"
+                }
+            },
+            "6": {
+                "thickness": 0.025,
+                "material": {
+                    "name": "dry_screed_dh",
+                    "material_id": "f880ac05-6ccb-11ed-85c9-5405db524342"
+                }
+            }
+        }
+    }
+}
