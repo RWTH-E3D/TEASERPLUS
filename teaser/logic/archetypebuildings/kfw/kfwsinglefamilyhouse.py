@@ -57,6 +57,7 @@ class KfwSingleFamilyHouse(Residential):
     Regarding the new wood frame archetypes, the U-Values used for the KfW efficiency
     levels were derived from research on current building standards and monitorings of
     KfW programs carried out by IWU.
+    The U-Values for KfW40 correspond to those of a passive house.
     The components and some materials (if not already available in TEASER) used
     were mostly taken from the wood-components-catalog 'dataholz.eu' and components
     not available in the catalog (window, door, ground floor) were calculated using
@@ -146,9 +147,12 @@ class KfwSingleFamilyHouse(Residential):
             if "kfw40" in self.construction_type:
                 self._construction_type_1 = "tabula_adv_retrofit_1_SFH"
                 self._construction_type_2 = "tabula_adv_retrofit_2_SFH"
-            elif "kfw55" or "kfw70" in self.construction_type:
-                # before: Tabula retrofit [2016, 2100] (now kfw55)
-                # and Tabula retrofit [2010, 2015] (now kfw70)
+            elif "kfw55" in self.construction_type:
+                # before: Tabula retrofit [2016, 2100]
+                self._construction_type_1 = self.construction_type + "_1_SFH"
+                self._construction_type_2 = self.construction_type + "_2_SFH"
+            elif "kfw70" in self.construction_type:
+                # before: Tabula retrofit [2010, 2015]
                 self._construction_type_1 = self.construction_type + "_1_SFH"
                 self._construction_type_2 = self.construction_type + "_2_SFH"
             elif "kfw100" in self.construction_type:
@@ -237,8 +241,6 @@ class KfwSingleFamilyHouse(Residential):
         }
 
         self.building_age_group = None
-
-        # Calculation of ahu in the case of a building with air handling unit
 
         if self.with_ahu is True:
             self.central_ahu.temperature_profile = (

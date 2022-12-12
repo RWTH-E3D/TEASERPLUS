@@ -92,8 +92,12 @@ class KfwMultiFamilyHouse(KfwSingleFamilyHouse):
             if "kfw40" in self.construction_type:
                 self._construction_type_1 = "tabula_adv_retrofit_1_MFH"
                 self._construction_type_2 = "tabula_adv_retrofit_2_MFH"
-            elif "kfw55" or "kfw70" in self.construction_type:
-                # before: Tabula retrofit [2016, 2100] and Tabula retrofit [2010, 2015]
+            elif "kfw55" in self.construction_type:
+                # before: Tabula retrofit [2016, 2100]
+                self._construction_type_1 = self.construction_type + "_1_MFH"
+                self._construction_type_2 = self.construction_type + "_2_MFH"
+            elif "kfw70" in self.construction_type:
+                # before: Tabula retrofit [2010, 2015]
                 self._construction_type_1 = self.construction_type + "_1_MFH"
                 self._construction_type_2 = self.construction_type + "_2_MFH"
             elif "kfw100" in self.construction_type:
