@@ -1057,8 +1057,8 @@ internal_gains_mode: int [1, 2, 3]
         citygml_out.save_gml_lxml(self, new_path, ref_coordinates=ref_coordinates,
                                   gml_copy=gml_copy, with_results=with_results)
 
-    def load_citygml(self, method="tabula_de", path=None, energyade=False,
-                     gml_bldg_ids=None, gml_bldg_names=None, gml_bldg_addresses=None):
+    def load_citygml(self, method=None, path=None, energyade=False,
+                     gml_bldg_ids=None, gml_bldg_names=None, gml_bldg_addresses=None, archetypes=None):
     # def load_citygml(self, method="iwu" (it has to be a string), path=None, energyade=False(if energy ade as an input),
                      # gml_bldg_ids=None(this is list and the rest as well), gml_bldg_names=None, gml_bldg_addresses=None):
         """Loads buildings from a citygml file
@@ -1094,23 +1094,32 @@ internal_gains_mode: int [1, 2, 3]
             user's selection
         :param gml_bldg_ids: List[string]
             user's selection
-
+        :param archetypes: List[string]
+            list of selected archetypes
         """
+
+        if method is None:
+            method = "tabula_de"
+
         gml_copy = None
         boundary_box = None
         if energyade is True:
             energyade_in.load_ade_lxml(path, self)
         elif gml_bldg_names is not None:
             chosen_gmls=citygml_in.choose_gml_lxml(path, bldg_names=gml_bldg_names)
-            gml_copy, boundary_box = citygml_in.load_gml_lxml(path, self, method=method, chosen_gmls=chosen_gmls)
+            gml_copy, boundary_box = citygml_in.load_gml_lxml(path, self, method=method, chosen_gmls=chosen_gmls,
+                                                              archetypes=archetypes)
         elif gml_bldg_ids is not None:
             chosen_gmls=citygml_in.choose_gml_lxml(path, bldg_ids=gml_bldg_ids)
-            gml_copy, boundary_box = citygml_in.load_gml_lxml(path, self, method=method, chosen_gmls=chosen_gmls)
+            gml_copy, boundary_box = citygml_in.load_gml_lxml(path, self, method=method, chosen_gmls=chosen_gmls,
+                                                              archetypes=archetypes)
         elif gml_bldg_addresses is not None:
             chosen_gmls=citygml_in.choose_gml_lxml(path, bldg_addresses=gml_bldg_addresses)
-            gml_copy, boundary_box = citygml_in.load_gml_lxml(path, self, method=method, chosen_gmls=chosen_gmls)
+            gml_copy, boundary_box = citygml_in.load_gml_lxml(path, self, method=method, chosen_gmls=chosen_gmls,
+                                                              archetypes=archetypes)
         else:
-            gml_copy, boundary_box = citygml_in.load_gml_lxml(path, self, method=method, chosen_gmls=None)
+            gml_copy, boundary_box = citygml_in.load_gml_lxml(path, self, method=method, chosen_gmls=None,
+                                                              archetypes=archetypes)
 
         return gml_copy, boundary_box
 

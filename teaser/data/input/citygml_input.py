@@ -43,8 +43,6 @@ def choose_gml_lxml(path, bldg_ids=None, bldg_names=None, bldg_addresses=None):
 
     :param path:string
             path of CityGML file
-    :param prj:Project()
-            Teaser instance of Project()
     :param bldg_ids:list[string]
             users choice
     :param bldg_names:list[string]
@@ -94,7 +92,7 @@ def choose_gml_lxml(path, bldg_ids=None, bldg_names=None, bldg_addresses=None):
     return chosen_gmls, namespace, boundary_box
 
 
-def load_gml_lxml(path, prj, method, chosen_gmls=None, yoc_list=None):
+def load_gml_lxml(path, prj, method, chosen_gmls=None, yoc_list=None, archetypes=None):
     """
     This function loads buildings from a CityGML file, checks for a name, BuildingParts and
     start GML surface extraction and consequent building genaration.
@@ -114,6 +112,8 @@ def load_gml_lxml(path, prj, method, chosen_gmls=None, yoc_list=None):
             List of chosen CityObject(Buildings)
     :param yoc_list: List[]
             List of year of construction for chosen gml buildings
+    :param archetypes: List[string]
+            list of selected archetypes
     :return: gml_copy_list
     :return: boundary_box
     """
@@ -152,7 +152,7 @@ def load_gml_lxml(path, prj, method, chosen_gmls=None, yoc_list=None):
 
         """Assign Archetype"""
         bldg = assign_archetype(prj=prj, building_lxml=building_lxml, namespace=namespace,
-                                bldg_name=bldg_name, method=method)
+                                bldg_name=bldg_name, method=method, archetype=archetypes[i])
 
         """Extract GML surface from File"""
         get_gml_surfaces(bldg=bldg, city_object=building_lxml, namespace=namespace)
@@ -202,6 +202,8 @@ def load_gml_buildingparts_lxml(prj, gml_bldg, boundary_box, namespace, bldg_nam
             either default="iwu" or "tabula_de"
             offices always use "iwu"= BMVBS and other residential
             buildings will be always using "tabula_de"
+    :param archetype: string
+            selected archetype
     :param yoc: Int
             year of construction for chosen gml buildings
     :param calc_sep: Boolean
@@ -214,7 +216,7 @@ def load_gml_buildingparts_lxml(prj, gml_bldg, boundary_box, namespace, bldg_nam
     if calc_sep:
         for number_of_buildpart, gml_bldg_part in enumerate(building_parts):
             bldg = assign_archetype(prj=prj, building_lxml=gml_bldg, namespace=namespace,
-                                    bldg_name=bldg_name, method=method)
+                                    bldg_name=bldg_name, method=method, archetype=archetype)
 
             get_gml_surfaces(bldg=bldg, city_object=gml_bldg_part, namespace=namespace)
 
@@ -241,7 +243,7 @@ def load_gml_buildingparts_lxml(prj, gml_bldg, boundary_box, namespace, bldg_nam
         #TODO: Needs testing! Also take a look at called functions in building and set_gml_height()
     else:
         bldg = assign_archetype(prj=prj, building_lxml=gml_bldg, namespace=namespace,
-                                bldg_name=bldg_name, method=method)
+                                bldg_name=bldg_name, method=method, archetype=archetype)
 
         measured_heights = []
         for number_of_buildpart, gml_bldg_part in enumerate(building_parts):
@@ -271,7 +273,7 @@ def load_gml_buildingparts_lxml(prj, gml_bldg, boundary_box, namespace, bldg_nam
             pass
 
 
-def assign_archetype(prj, building_lxml, namespace, bldg_name, method):
+def assign_archetype(prj, building_lxml, namespace, bldg_name, method, archetype):
     """
     Assigns a archetype and creates a TEASER building on bases of Bilding Function scrapped from CityGML Building.
 
@@ -288,11 +290,41 @@ def assign_archetype(prj, building_lxml, namespace, bldg_name, method):
             either default="iwu" or "tabula_de"
             offices always use "iwu"= BMVBS and other residential
             buildings will be always using "tabula_de"
+    :param archetype: string
+            selected archetype
     :return: bldg - TEASER Building
             An Instant of a TEASER Building in the Project with Name
     """
+    if archetype is not None:
+        if method == "tabula_de":
+            prj.data = DataClass(used_statistic="tabula_de")
+            if archetype == "sfh":
+                bldg = SingleFamilyHouse(parent=prj, name=bldg_name)
+            elif archetype == "mfh":
+                bldg = MultiFamilyHouse(parent=prj, name=bldg_name)
+            elif archetype == "th":
+                bldg = TerracedHouse(parent=prj, name=bldg_name)
+            elif archetype == "ap":
+                bldg = ApartmentBlock(parent=prj, name=bldg_name)
+            else:
+                print("Unknown Archetype")
+                bldg = Building(parent=prj, name=bldg_name)
 
-    if building_lxml.find('bldg:function', namespace) is not None:
+        elif method == "iwu":
+            prj.data = DataClass(used_statistic='iwu')
+            if archetype == "sfd":
+                bldg = SingleFamilyDwelling(parent=prj, name=bldg_name)
+            elif archetype == "office":
+                bldg = Office(parent=prj, name=bldg_name)
+            else:
+                print("Unknown Archetype")
+                bldg = Building(parent=prj, name=bldg_name)
+
+        elif method == "urbanrenet":
+            prj.data = DataClass(used_statistic='iwu')
+            pass
+
+    elif building_lxml.find('bldg:function', namespace) is not None:
         bldg_function = building_lxml.find('bldg:function', namespace).text
 
         if bldg_function in alkis_sfh_codes:  # Single Family Buildings
