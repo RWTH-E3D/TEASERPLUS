@@ -151,10 +151,15 @@ def load_gml_lxml(path, prj, method, chosen_gmls=None, yoc_list=None, archetypes
             continue
 
         """Assign Archetype"""
-        bldg = assign_archetype(prj=prj, building_lxml=building_lxml, namespace=namespace,
-                                bldg_name=bldg_name, method=method, archetype=archetypes[i])
+        if archetypes is None:
+            bldg = assign_archetype(prj=prj, building_lxml=building_lxml, namespace=namespace,
+                                    bldg_name=bldg_name, method=method, archetype=None)
+        else:
+            bldg = assign_archetype(prj=prj, building_lxml=building_lxml, namespace=namespace,
+                                    bldg_name=bldg_name, method=method, archetype=archetypes[i])
 
         """Extract GML surface from File"""
+        # TODO: please make it better:(
         get_gml_surfaces(bldg=bldg, city_object=building_lxml, namespace=namespace)
 
         """Set Building Attribute"""
