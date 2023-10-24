@@ -12,18 +12,18 @@ CityGML file format .gml
 import lxml.etree as ET
 import statistics
 from pyproj import Proj, transform
-from teaser.data.dataclass import DataClass
-from teaser.data.surfacegml import SurfaceGML
-from teaser.logic.archetypebuildings.bmvbs.singlefamilydwelling \
+from teaser.teaser.data.dataclass import DataClass
+from teaser.teaser.data.surfacegml import SurfaceGML
+from teaser.teaser.logic.archetypebuildings.bmvbs.singlefamilydwelling \
                          import SingleFamilyDwelling
-from teaser.logic.archetypebuildings.bmvbs.office import Office
-from teaser.logic.archetypebuildings.bmvbs.custom.institute import Institute
-from teaser.logic.archetypebuildings.bmvbs.custom.institute4 import Institute4
-from teaser.logic.archetypebuildings.tabula.de.singlefamilyhouse import SingleFamilyHouse
-from teaser.logic.archetypebuildings.tabula.de.multifamilyhouse import MultiFamilyHouse
-from teaser.logic.archetypebuildings.tabula.de.terracedhouse import TerracedHouse
-from teaser.logic.archetypebuildings.tabula.de.apartmentblock import ApartmentBlock
-from teaser.logic.buildingobjects.building import Building
+from teaser.teaser.logic.archetypebuildings.bmvbs.office import Office
+from teaser.teaser.logic.archetypebuildings.bmvbs.custom.institute import Institute
+from teaser.teaser.logic.archetypebuildings.bmvbs.custom.institute4 import Institute4
+from teaser.teaser.logic.archetypebuildings.tabula.de.singlefamilyhouse import SingleFamilyHouse
+from teaser.teaser.logic.archetypebuildings.tabula.de.multifamilyhouse import MultiFamilyHouse
+from teaser.teaser.logic.archetypebuildings.tabula.de.terracedhouse import TerracedHouse
+from teaser.teaser.logic.archetypebuildings.tabula.de.apartmentblock import ApartmentBlock
+from teaser.teaser.logic.buildingobjects.building import Building
 
 import copy
 
@@ -164,7 +164,7 @@ def load_gml_lxml(path, prj, method, chosen_gmls=None, yoc_list=None, archetypes
 
         """Set Building Attribute"""
         if yoc_list is not None:
-            _set_attributes(bldg=bldg, gml_bldg=building_lxml, boundary_box=boundary_box, bldg_yoc=yoc_list[i])
+            _set_attributes(bldg=bldg, gml_bldg=building_lxml, boundary_box=boundary_box, bldg_yoc=yoc_list[i], namespace=namespace, bldg_name=bldg_name)
         else:
             _set_attributes(bldg=bldg, gml_bldg=building_lxml, boundary_box=boundary_box,
                             namespace=namespace, bldg_name=bldg_name)

@@ -1,16 +1,16 @@
 # created June 2015
 # by TEASER4 Development Team
 
-from teaser.logic.archetypebuildings.residential import Residential
-from teaser.logic.buildingobjects.useconditions import UseConditions as UseCond
-from teaser.logic.buildingobjects.buildingphysics.ceiling import Ceiling
-from teaser.logic.buildingobjects.buildingphysics.floor import Floor
-from teaser.logic.buildingobjects.buildingphysics.groundfloor import GroundFloor
-from teaser.logic.buildingobjects.buildingphysics.innerwall import InnerWall
-from teaser.logic.buildingobjects.buildingphysics.outerwall import OuterWall
-from teaser.logic.buildingobjects.buildingphysics.rooftop import Rooftop
-from teaser.logic.buildingobjects.buildingphysics.window import Window
-from teaser.logic.buildingobjects.thermalzone import ThermalZone
+from teaser.teaser.logic.archetypebuildings.residential import Residential
+from teaser.teaser.logic.buildingobjects.useconditions import UseConditions as UseCond
+from teaser.teaser.logic.buildingobjects.buildingphysics.ceiling import Ceiling
+from teaser.teaser.logic.buildingobjects.buildingphysics.floor import Floor
+from teaser.teaser.logic.buildingobjects.buildingphysics.groundfloor import GroundFloor
+from teaser.teaser.logic.buildingobjects.buildingphysics.innerwall import InnerWall
+from teaser.teaser.logic.buildingobjects.buildingphysics.outerwall import OuterWall
+from teaser.teaser.logic.buildingobjects.buildingphysics.rooftop import Rooftop
+from teaser.teaser.logic.buildingobjects.buildingphysics.window import Window
+from teaser.teaser.logic.buildingobjects.thermalzone import ThermalZone
 
 
 class SingleFamilyDwelling(Residential):

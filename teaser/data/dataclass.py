@@ -1,7 +1,7 @@
 """This module holds file paths and bindings for json data."""
 import os
 import sys
-import teaser.logic.utilities as utils
+import teaser.teaser.logic.utilities as utils
 import json
 import collections
 

@@ -1,17 +1,17 @@
 # created April 2017
 # by TEASER Development Team
 
-from teaser.logic.archetypebuildings.residential import Residential
-from teaser.logic.buildingobjects.useconditions import UseConditions as UseCond
-from teaser.logic.buildingobjects.buildingphysics.ceiling import Ceiling
-from teaser.logic.buildingobjects.buildingphysics.floor import Floor
-from teaser.logic.buildingobjects.buildingphysics.groundfloor import GroundFloor
-from teaser.logic.buildingobjects.buildingphysics.innerwall import InnerWall
-from teaser.logic.buildingobjects.buildingphysics.outerwall import OuterWall
-from teaser.logic.buildingobjects.buildingphysics.rooftop import Rooftop
-from teaser.logic.buildingobjects.buildingphysics.window import Window
-from teaser.logic.buildingobjects.buildingphysics.door import Door
-from teaser.logic.buildingobjects.thermalzone import ThermalZone
+from teaser.teaser.logic.archetypebuildings.residential import Residential
+from teaser.teaser.logic.buildingobjects.useconditions import UseConditions as UseCond
+from teaser.teaser.logic.buildingobjects.buildingphysics.ceiling import Ceiling
+from teaser.teaser.logic.buildingobjects.buildingphysics.floor import Floor
+from teaser.teaser.logic.buildingobjects.buildingphysics.groundfloor import GroundFloor
+from teaser.teaser.logic.buildingobjects.buildingphysics.innerwall import InnerWall
+from teaser.teaser.logic.buildingobjects.buildingphysics.outerwall import OuterWall
+from teaser.teaser.logic.buildingobjects.buildingphysics.rooftop import Rooftop
+from teaser.teaser.logic.buildingobjects.buildingphysics.window import Window
+from teaser.teaser.logic.buildingobjects.buildingphysics.door import Door
+from teaser.teaser.logic.buildingobjects.thermalzone import ThermalZone
 
 
 class SingleFamilyHouse(Residential):
@@ -41,7 +41,7 @@ class SingleFamilyHouse(Residential):
     always specify the exact construction of building elements, but always
     provides a prescribed U-Value. We used the U-Value and the given material
     information to determine thickness of each layer and implemented it into
-    elements json ('teaser.data.input.inputdata.TypeElements_TABULA_DK.json'). The
+    elements json ('teaser.teaser.data.input.inputdata.TypeElements_TABULA_DK.json'). The
     material properties have been assumed from the "Handbook for Energy
     Consultants - HB2016" (http://www.hbemo.dk/). As there might be some
     differences in the assumptions for material properties from TABULA and

@@ -11,7 +11,7 @@ import os
 import lxml.etree as ET
 from datetime import date, datetime
 import uuid
-import teaser.data.output.citygml_classes as cl
+import teaser.teaser.data.output.citygml_classes as cl
 import pandas as pd
 
 

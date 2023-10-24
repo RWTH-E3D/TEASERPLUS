@@ -1,7 +1,7 @@
 # created June 2015
 # by TEASER4 Development Team
 
-from teaser.logic.archetypebuildings.urbanrenet.est1a \
+from teaser.teaser.logic.archetypebuildings.urbanrenet.est1a \
     import EST1a
 
 

@@ -6,9 +6,9 @@
 This module contains function to call Templates for IBPSA model generation
 """
 
-import teaser.data.output.aixlib_output as ibpsa_output
+import teaser.teaser.data.output.aixlib_output as ibpsa_output
 import os.path
-import teaser.logic.utilities as utilities
+import teaser.teaser.logic.utilities as utilities
 from mako.template import Template
 from mako.lookup import TemplateLookup
 
@@ -70,8 +70,7 @@ def export_ibpsa(
 
     uses = uses = [
         'Modelica(version="' + prj.modelica_info.version + '")',
-        library + '(version="' + prj.buildings[-1].library_attr.version[
-            library] + '")']
+        library + '(version="' + prj.buildings[-1].library_attr.version + '")']
 
     lookup = TemplateLookup(directories=[utilities.get_full_path(
         os.path.join('data', 'output', 'modelicatemplate'))])

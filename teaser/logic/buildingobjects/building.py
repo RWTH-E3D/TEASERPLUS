@@ -8,10 +8,10 @@ import random
 import uuid
 import re
 import warnings
-from teaser.logic.buildingobjects.calculation.aixlib import AixLib
-from teaser.logic.buildingobjects.calculation.ibpsa import IBPSA
+from teaser.teaser.logic.buildingobjects.calculation.aixlib import AixLib
+from teaser.teaser.logic.buildingobjects.calculation.ibpsa import IBPSA
 
-from teaser.logic.buildingobjects.buildingsystems.buildingahu import BuildingAHU
+from teaser.teaser.logic.buildingobjects.buildingsystems.buildingahu import BuildingAHU
 
 
 class Building(object):

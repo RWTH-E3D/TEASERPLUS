@@ -1,7 +1,7 @@
 """This module contains function to save material classes."""
 import warnings
 import json
-import teaser.logic.utilities as utilities
+import teaser.teaser.logic.utilities as utilities
 import collections
 
 

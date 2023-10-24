@@ -1,7 +1,7 @@
 # created April 2017
 # by TEASER Development Team
 
-from teaser.logic.archetypebuildings.tabula.de.singlefamilyhouse import \
+from teaser.teaser.logic.archetypebuildings.tabula.de.singlefamilyhouse import \
     SingleFamilyHouse
 
 

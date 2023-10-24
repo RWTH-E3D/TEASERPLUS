@@ -3,50 +3,50 @@
 import warnings
 import os
 import re
-import teaser.logic.utilities as utilities
-import teaser.data.input.teaserjson_input as tjson_in
-import teaser.data.output.teaserjson_output as tjson_out
-import teaser.data.output.aixlib_output as aixlib_output
-import teaser.data.output.ibpsa_output as ibpsa_output
-from teaser.data.dataclass import DataClass
-from teaser.logic.archetypebuildings.bmvbs.office import Office
-from teaser.logic.archetypebuildings.bmvbs.custom.institute import Institute
-from teaser.logic.archetypebuildings.bmvbs.custom.institute4 import Institute4
-from teaser.logic.archetypebuildings.bmvbs.custom.institute8 import Institute8
-from teaser.logic.archetypebuildings.urbanrenet.est1a import EST1a
-from teaser.logic.archetypebuildings.urbanrenet.est1b import EST1b
-from teaser.logic.archetypebuildings.urbanrenet.est2 import EST2
-from teaser.logic.archetypebuildings.urbanrenet.est3 import EST3
-from teaser.logic.archetypebuildings.urbanrenet.est4a import EST4a
-from teaser.logic.archetypebuildings.urbanrenet.est4b import EST4b
-from teaser.logic.archetypebuildings.urbanrenet.est5 import EST5
-from teaser.logic.archetypebuildings.urbanrenet.est6 import EST6
-from teaser.logic.archetypebuildings.urbanrenet.est7 import EST7
-from teaser.logic.archetypebuildings.urbanrenet.est8a import EST8a
-from teaser.logic.archetypebuildings.urbanrenet.est8b import EST8b
-from teaser.logic.archetypebuildings.tabula.de.singlefamilyhouse import (
+import teaser.teaser.logic.utilities as utilities
+import teaser.teaser.data.input.teaserjson_input as tjson_in
+import teaser.teaser.data.output.teaserjson_output as tjson_out
+import teaser.teaser.data.output.aixlib_output as aixlib_output
+import teaser.teaser.data.output.ibpsa_output as ibpsa_output
+from teaser.teaser.data.dataclass import DataClass
+from teaser.teaser.logic.archetypebuildings.bmvbs.office import Office
+from teaser.teaser.logic.archetypebuildings.bmvbs.custom.institute import Institute
+from teaser.teaser.logic.archetypebuildings.bmvbs.custom.institute4 import Institute4
+from teaser.teaser.logic.archetypebuildings.bmvbs.custom.institute8 import Institute8
+from teaser.teaser.logic.archetypebuildings.urbanrenet.est1a import EST1a
+from teaser.teaser.logic.archetypebuildings.urbanrenet.est1b import EST1b
+from teaser.teaser.logic.archetypebuildings.urbanrenet.est2 import EST2
+from teaser.teaser.logic.archetypebuildings.urbanrenet.est3 import EST3
+from teaser.teaser.logic.archetypebuildings.urbanrenet.est4a import EST4a
+from teaser.teaser.logic.archetypebuildings.urbanrenet.est4b import EST4b
+from teaser.teaser.logic.archetypebuildings.urbanrenet.est5 import EST5
+from teaser.teaser.logic.archetypebuildings.urbanrenet.est6 import EST6
+from teaser.teaser.logic.archetypebuildings.urbanrenet.est7 import EST7
+from teaser.teaser.logic.archetypebuildings.urbanrenet.est8a import EST8a
+from teaser.teaser.logic.archetypebuildings.urbanrenet.est8b import EST8b
+from teaser.teaser.logic.archetypebuildings.tabula.de.singlefamilyhouse import (
     SingleFamilyHouse,
 )
-from teaser.logic.archetypebuildings.tabula.dk.singlefamilyhouse import (
+from teaser.teaser.logic.archetypebuildings.tabula.dk.singlefamilyhouse import (
     SingleFamilyHouse as SingleFamilyHouse_DK,
 )
-from teaser.logic.archetypebuildings.tabula.de.terracedhouse import TerracedHouse
-from teaser.logic.archetypebuildings.tabula.dk.terracedhouse import (
+from teaser.teaser.logic.archetypebuildings.tabula.de.terracedhouse import TerracedHouse
+from teaser.teaser.logic.archetypebuildings.tabula.dk.terracedhouse import (
     TerracedHouse as TerracedHouse_DK,
 )
-from teaser.logic.archetypebuildings.tabula.de.multifamilyhouse import MultiFamilyHouse
-from teaser.logic.archetypebuildings.tabula.de.apartmentblock import ApartmentBlock
-from teaser.logic.archetypebuildings.tabula.dk.apartmentblock import (
+from teaser.teaser.logic.archetypebuildings.tabula.de.multifamilyhouse import MultiFamilyHouse
+from teaser.teaser.logic.archetypebuildings.tabula.de.apartmentblock import ApartmentBlock
+from teaser.teaser.logic.archetypebuildings.tabula.dk.apartmentblock import (
     ApartmentBlock as ApartmentBlock_DK,
 )
-from teaser.logic.archetypebuildings.bmvbs.singlefamilydwelling import (
+from teaser.teaser.logic.archetypebuildings.bmvbs.singlefamilydwelling import (
     SingleFamilyDwelling,
 )
-from teaser.logic.simulation.modelicainfo import ModelicaInfo
+from teaser.teaser.logic.simulation.modelicainfo import ModelicaInfo
 
-import teaser.data.output.citygml_output as citygml_out
-import teaser.data.input.citygml_input as citygml_in
-import teaser.data.input.energyade_input as energyade_in
+import teaser.teaser.data.output.citygml_output as citygml_out
+import teaser.teaser.data.input.citygml_input as citygml_in
+import teaser.teaser.data.input.energyade_input as energyade_in
 
 
 class Project(object):

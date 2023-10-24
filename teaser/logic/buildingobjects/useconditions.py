@@ -1,12 +1,12 @@
 """This module contains UseConditions class."""
 import random
-import teaser.data.input.usecond_input as usecond_input
-import teaser.data.output.usecond_output as usecond_output
+import teaser.teaser.data.input.usecond_input as usecond_input
+import teaser.teaser.data.output.usecond_output as usecond_output
 import pandas as pd
 import uuid
 from itertools import cycle, islice
 from collections import OrderedDict
-from teaser.logic.utilities import division_from_json
+from teaser.teaser.logic.utilities import division_from_json
 
 
 class UseConditions(object):

@@ -1,6 +1,6 @@
 """This module includes AixLib calculation class."""
 
-import teaser.logic.utilities as utilities
+import teaser.teaser.logic.utilities as utilities
 from itertools import cycle, islice
 import os
 import pandas as pd
