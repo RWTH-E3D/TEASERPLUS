@@ -84,6 +84,8 @@ class Building(object):
         Latitude of building location.
     thermal_zones : list
         List with instances of ThermalZone(), that are located in this building.
+    heating_system : list
+        List with instances of HeatingSystem (), that are located in this building.
     outer_area : dict [degree: m2]
         Dictionary with orientation as key and sum of outer wall areas of
         that direction as value.
@@ -154,13 +156,15 @@ class Building(object):
         self.building_id = None
         self.street_name = ""
         self.city = ""
-        self.longitude = 6.05
+        self.longitude = 6.05 #Aachen
         self.latitude = 50.79
 
         self.gml_surfaces = []
         self._thermal_zones = []
         self._outer_area = {}
         self._window_area = {}
+
+        self.heating_system = []
 
         self.bldg_height = None
         self.volume = 0
@@ -188,7 +192,7 @@ class Building(object):
             max_help = 0
             min_help = 9999
             for surface in self.gml_surfaces:
-                z_value = surface.gml_surface[2::3]
+                z_value = surface.gml_surface[2::3] #starts with 3rd element and from there every 3rd (z-values of coord)
                 max_help = max(max_help, max(z_value))
                 min_help = min(min_help, min(z_value))
             self.bldg_height = max_help - min_help
@@ -210,7 +214,7 @@ class Building(object):
         for surface in self.gml_surfaces:
             # print(surface.surface_area, surface.surface_orientation, surface.surface_tilt)
             if surface.surface_orientation == -2 or surface.surface_orientation == -1 and surface.surface_tilt == \
-                    0.0:
+                    0.0: #horizontal
                 surface_max_help.append(surface.surface_area)
         if merge_building_part is False:
             max_area = max(surface_max_help)
@@ -218,7 +222,7 @@ class Building(object):
             max_area = sum(surface_max_help)
         return max_area
 
-    def set_gml_attributes(self, height_of_floor=3.5, merge_building_part=False):
+    def set_gml_attributes(self, height_of_floor=2.8, merge_building_part=False):
         """Sets building attributes from CityGML data
 
         Computes the net_leased_area depending on the footprint area,
@@ -232,7 +236,7 @@ class Building(object):
         ----------
         height_of_floor : float
             average height of each floor of the building, the default value
-            is 3.5 and is absolutely random.
+            is 2.8. See iwu document "Energetische Kenngrößen für Heizungsanlagen im Bestand"
         """
 
         if self.bldg_height is None:
@@ -574,6 +578,8 @@ class Building(object):
         for zone in self.thermal_zones:
             zone.retrofit_zone(type_of_retrofit, window_type, material)
 
+        self.heating_system.retrofit_heating_system(type_of_retrofit, material)
+
         self.calc_building_parameter(
             number_of_elements=self.number_of_elements_calc,
             merge_windows=self.merge_windows_calc,
@@ -759,6 +765,16 @@ class Building(object):
 
         if value is None:
             self._thermal_zones = []
+
+    @property
+    def heating_system(self):
+        return self._heating_system
+
+    @thermal_zones.setter
+    def heating_system(self, value):
+
+        if value is None:
+            self._heating_system = []
 
     @property
     def outer_area(self):

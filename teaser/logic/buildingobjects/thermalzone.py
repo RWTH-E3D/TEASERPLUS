@@ -425,7 +425,7 @@ class ThermalZone(object):
     def add_element(self, building_element):
         """Adds a building element to the corresponding list
 
-        This function adds a BuildingElement instance to the the list
+        This function adds a BuildingElement instance to the list
         depending on the type of the Building Element
 
         Parameters

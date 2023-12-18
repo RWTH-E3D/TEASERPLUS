@@ -160,7 +160,7 @@ class Project(object):
 
         """
         if raise_errors is True:
-            for bldg in reversed(self.buildings):
+            for bldg in reversed(self.buildings): #Loop iterates through the elements in the list self.buildings in reverse order
                 bldg.calc_building_parameter(
                     number_of_elements=self._number_of_elements_calc,
                     merge_windows=self._merge_windows_calc,
@@ -243,7 +243,7 @@ class Project(object):
                     raise ValueError(
                         "you need to set type_of_retrofit for " "TABULA retrofit"
                     )
-                tabula_buildings.append(bldg)
+                tabula_buildings.append(bldg) #bldg added to the end of tabula_buildings-list
             else:
                 if year_of_retrofit is None:
                     raise ValueError("you need to set year_of_retrofit for " "retrofit")
@@ -446,7 +446,7 @@ internal_gains_mode: int [1, 2, 3]
                 construction_type,
             )
 
-        type_bldg.generate_archetype()
+        type_bldg.generate_archetype() #generates a prototype of a residential building with various building elements, their orientations, and other characteristics based on input parameters and predefined factors
         type_bldg.calc_building_parameter(
             number_of_elements=self._number_of_elements_calc,
             merge_windows=self._merge_windows_calc,

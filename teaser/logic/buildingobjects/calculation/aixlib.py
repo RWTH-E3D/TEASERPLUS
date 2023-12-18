@@ -259,7 +259,7 @@ class AixLib(object):
         Note
         ----------
         When time line is created, we need to add a 0 to first element of
-        all boundaries. This is due to to expected format in Modelica.
+        all boundaries. This is due to expected format in Modelica.
 
         Parameters
         ----------

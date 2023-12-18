@@ -30,7 +30,7 @@ def screenSizer(posx: int, posy: int, width: int, height: int, app: QtWidgets.QA
 def windowSetup(self, posx: int, posy, width, height, title, winFac = 1) -> None:
     """func for loading icon, setting size and title"""
     try:                                                                            # try to load e3d Icon
-        self.setWindowIcon(QtGui.QIcon(r'pictures\e3dIcon.png'))
+        self.setWindowIcon(QtGui.QIcon(r'../pictures/e3dIcon.png'))
     except:
         print('error finding file icon')
     self.setGeometry(posx, posy, width * winFac, height * winFac)                   # setting window size
