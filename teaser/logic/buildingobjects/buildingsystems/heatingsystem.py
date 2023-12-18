@@ -52,34 +52,19 @@ class HeatingSystem(object):
         self._avg_temp_distribution_heating = None
         self._avg_temp_distribution_water = None
         self._design_temp_flow = None
-        self._oversizing_factor = 1.2  # standard for existing biuldings (iwu) # todo Anpassen für Neubau?
+        self._oversizing_factor = 1.2  # standard for existing biuldings (iwu)
         self._heat_loss_distribution_heating = None
         self._daily_operating_time_pump = None
 
-        # iwu formula 4-4
-        if self.parent.net_leased_area < 10000:
-            self._daily_operating_time_pump = 7.5 + 1 / (0.06 + 7 / self.parent.net_leased_area)
-        else:
-            self._daily_operating_time_pump = 24
-
-        # iwu formula 2-3, rounded to 5 [kW] # todo check, ob simulated_heat_load in kW
-        if (5 * round(self._oversizing_factor * self.parent.simulated_heat_load / 5)) < 15 or None:
-            self._nominal_heat_output_boiler = 15
-        else:
-            self._nominal_heat_output_boiler = 5 * round(self._oversizing_factor * self.parent.simulated_heat_load / 5)
-
-        # iwu 1.2 for existing buildings
-        if self.parent.year_of_construction >=2016 or self.parent.year_of_retrofit >=2016:
-            self._oversizing_factor = 1
-
-    def setting_heating_system(self, type_heating_system):
+    def setting_values_heating_system(self, type_heating_system):
         """
         Setting values from TABULA-DE for heating and warm water systems.
         Depending on the type and year of construction and type of retrofit.
         Type of heating system needs to be set.
+        If TABULA-values are being used, this function is mandatory to call.
         """
         if type_heating_system is None:
-            if self.parent.year_of_construction >= 2016:  # todo Zeitpunt Neubau definieren
+            if self.parent.year_of_construction >= 2016:
                 type_heating_system = 3  # DENA report 2023 Abb. 41
             else:
                 type_heating_system = 1  # DENA report 2023 Abb. 31
@@ -542,7 +527,7 @@ class HeatingSystem(object):
                         self._storage_water = "water"
 
         if self._heat_generation in ["night storage", "low temperature - not combined"]:
-            self._combined_water_heating = False  # todo wird die Angabe bei Berechnungen gebraucht?
+            self._combined_water_heating = False
 
         if (self._heat_system == "gas" and
             (self._heat_generation in ["circulating water heater", "condensing - decentralised"])) or \
@@ -550,8 +535,7 @@ class HeatingSystem(object):
             self._pipe_routing_heating = "decentralised"
         else:
             self._pipe_routing_heating = "centralised inside"
-        # todo wann ist der Verlauf "centralised outside"? Soll überhaupt eine Unterscheidung vorgenommen werden?
-        #  Macht einen Unterschied der doppelten Rohrlänge aus
+        # todo wann ist der Verlauf "centralised outside"?
 
         if type(self.parent).__name__ in ["SingleFamilyHouse", "TerracedHouse"] and self._pipe_routing_water is None:
             if self._pipe_routing_heating == "decentralised" or self._combined_water_heating is False:
@@ -564,6 +548,7 @@ class HeatingSystem(object):
             else:
                 self._pipe_routing_water = "centralised with circulation"
 
+        # todo definieren anhand NGF und Heizkörper
         if self._heat_generation in ["low temperature", "low temperature-not combined"]:
             self._design_temp_flow = 70
         elif self._heat_generation in ["heatpump ground", "heatpump ground - no buffer storage", "heatpump air"]:
@@ -571,9 +556,34 @@ class HeatingSystem(object):
         else:
             self._design_temp_flow = 55
 
+        # iwu formula 4-4
+        if self.parent.net_leased_area < 10000:
+            self._daily_operating_time_pump = 7.5 + 1 / (0.06 + 7 / self.parent.net_leased_area)
+        else:
+            self._daily_operating_time_pump = 24
+
+        # iwu formula 2-3, rounded to 5 [kW] # todo check, ob simulated_heat_load in kW
+        if (5 * round(self._oversizing_factor * self.parent.simulated_heat_load / 5)) < 15 or None:
+            self._nominal_heat_output_boiler = 15
+        else:
+            self._nominal_heat_output_boiler = 5 * round(
+                self._oversizing_factor * self.parent.simulated_heat_load / 5)
+
+        # definition new / existing buildings
+        if self.parent.year_of_construction >= 2016 or self.parent.year_of_retrofit >= 2016:
+            self._oversizing_factor = 1
+
+        # calculation of the average temperature of the water distribution
+        # iwu chapter 1.2.2
+        if self._pipe_routing_water == "centralised with circulation":
+            self._avg_temp_distribution_water = 50
+
+        elif self._pipe_routing_water in ["centralised without circulation", "decentralised"]:
+            self._avg_temp_distribution_water = 32
+
     def calc_avg_temp_distribution_heating(self, heating_mode):
         # todo heating_mode muss von der Nutzer*in eingetragen werden
-        # todo wie kann der oversizing_factor bestimmt werden?
+        # todo in def setting_values integrieren
         # todo 35 Grad VL integrieren
         """
         Calculation of the average temperature of the heat distribution.
@@ -590,12 +600,6 @@ class HeatingSystem(object):
                     self._avg_temp_distribution_heating = 54
                 elif self._oversizing_factor == 1.2:
                     self._avg_temp_distribution_heating = 50
-                elif self._oversizing_factor == 1.5:
-                    self._avg_temp_distribution_heating = 45
-                elif self._oversizing_factor == 2.0:
-                    self._avg_temp_distribution_heating = 40
-                elif self._oversizing_factor == 3.0:
-                    self._avg_temp_distribution_heating = 37
 
             elif self._design_temp_flow == 70:
 
@@ -603,12 +607,12 @@ class HeatingSystem(object):
                     self._avg_temp_distribution_heating = 44
                 elif self._oversizing_factor == 1.2:
                     self._avg_temp_distribution_heating = 41
-                elif self._oversizing_factor == 1.5:
+                """elif self._oversizing_factor == 1.5:
                     self._avg_temp_distribution_heating = 38
                 elif self._oversizing_factor == 2.0:
                     self._avg_temp_distribution_heating = 34
                 elif self._oversizing_factor == 3.0:
-                    self._avg_temp_distribution_heating = 32
+                    self._avg_temp_distribution_heating = 32"""  # todo im Text beschreiben
 
             elif self._design_temp_flow == 55:
 
@@ -616,12 +620,6 @@ class HeatingSystem(object):
                     self._avg_temp_distribution_heating = 37
                 elif self._oversizing_factor == 1.2:
                     self._avg_temp_distribution_heating = 35
-                elif self._oversizing_factor == 1.5:
-                    self._avg_temp_distribution_heating = 32
-                elif self._oversizing_factor == 2.0:
-                    self._avg_temp_distribution_heating = 30
-                elif self._oversizing_factor == 3.0:
-                    self._avg_temp_distribution_heating = 28
 
         elif heating_mode == "typical":
 
@@ -631,12 +629,6 @@ class HeatingSystem(object):
                     self._avg_temp_distribution_heating = 66
                 elif self._oversizing_factor == 1.2:
                     self._avg_temp_distribution_heating = 63
-                elif self._oversizing_factor == 1.5:
-                    self._avg_temp_distribution_heating = 59
-                elif self._oversizing_factor == 2.0:
-                    self._avg_temp_distribution_heating = 56
-                elif self._oversizing_factor == 3.0:
-                    self._avg_temp_distribution_heating = 53
 
             elif self._design_temp_flow == 70:
 
@@ -644,12 +636,6 @@ class HeatingSystem(object):
                     self._avg_temp_distribution_heating = 53
                 elif self._oversizing_factor == 1.2:
                     self._avg_temp_distribution_heating = 50
-                elif self._oversizing_factor == 1.5:
-                    self._avg_temp_distribution_heating = 48
-                elif self._oversizing_factor == 2.0:
-                    self._avg_temp_distribution_heating = 45
-                elif self._oversizing_factor == 3.0:
-                    self._avg_temp_distribution_heating = 44
 
             elif self._design_temp_flow == 55:
 
@@ -657,26 +643,10 @@ class HeatingSystem(object):
                     self._avg_temp_distribution_heating = 43
                 elif self._oversizing_factor == 1.2:
                     self._avg_temp_distribution_heating = 41
-                elif self._oversizing_factor == 1.5:
-                    self._avg_temp_distribution_heating = 40
-                elif self._oversizing_factor == 2.0:
-                    self._avg_temp_distribution_heating = 38
-                elif self._oversizing_factor == 3.0:
-                    self._avg_temp_distribution_heating = 37
 
             else:
 
                 print("heating_mode must be set to 'optimised' or 'typical'")
-
-    def calc_avg_temp_distribution_water(self):
-        # calculation of the average temperature of the water distribution
-        # iwu chapter 1.2.2
-
-        if self._pipe_routing_water == "centralised with circulation":
-            self._avg_temp_distribution_water = 50
-
-        elif self._pipe_routing_water in ["centralised without circulation", "decentralised"]:
-            self._avg_temp_distribution_water = 32
 
     def _calc_dissipation_distribution_water_for_heating(self):
         # calculation of heat dissipation through distribution of hot water for heating
