@@ -769,6 +769,7 @@ class Building(object):
     @property
     def heating_system(self):
         return self._heating_system
+        # todo Anwendung checken
 
     @thermal_zones.setter
     def heating_system(self, value):
