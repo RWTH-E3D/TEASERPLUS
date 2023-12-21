@@ -32,6 +32,14 @@ class HeatSupplySystem(object):
         """Constructor of HeatSupplySystem class
         """
         self.parent = parent
+        self._year_of_retrofit = self.parent.year_of_retrofit
+        self._type_of_retrofit = None
+        if "adv_retrofit" in [Sfh.construction_type, Th.construction_type, Mfh.construction_type, Ab.construction_type]:
+            self._type_of_retrofit = "adv_retrofit"
+        elif "retrofit" in [Sfh.construction_type, Th.construction_type, Mfh.construction_type, Ab.construction_type]:
+            self._type_of_retrofit = "retrofit"
+        else:
+            self._type_of_retrofit = "standard"
 
         self._length_char = self.parent.get_footprint_gml() / 10  # iwu chapter 4.4.1
 
@@ -52,12 +60,12 @@ class HeatSupplySystem(object):
         self._avg_temp_distribution_water = None
         self._avg_temp_distribution_heating = None
         self._oversizing_factor = 1.2  # standard for existing buildings (iwu)
-        if self.parent.year_of_construction >= 2016 or self.parent.year_of_retrofit >= 2016:
+        if self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016:
             self._oversizing_factor = 1
         self._heat_loss_distribution_heating = None
         self._daily_operating_time_pump = None
 
-    def setting_tabula_values(self, type_heating_system=None):
+    def setting_values(self, type_heat_supply_system=None):
         """
         Setting values from TABULA-DE for heating and warm water systems.
         Depending on the type and year of construction and type of retrofit.
@@ -70,482 +78,682 @@ class HeatSupplySystem(object):
 
         Parameters
         ----------
-        type_heating_system : int (optional)
+        type_heat_supply_system : int (optional)
             defines ....
             Default one (gas) for existing buildings and 3 (electricity)
             for new buildings
         """
-        if type_heating_system in None:
-            if self.parent.year_of_construction >= 2016 or self.parent.year_of_retrofit >= 2016:
-                type_heating_system = 3  # DENA report 2023 Abb. 41
+        if type_heat_supply_system in None:
+            if self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016:
+                type_heat_supply_system = 3  # DENA report 2023 Abb. 41
             else:
-                type_heating_system = 1  # DENA report 2023 Abb. 31
-
+                type_heat_supply_system = 1  # DENA report 2023 Abb. 31
+        
         if type(self.parent).__name__ in ["SingleFamilyHouse", "TerracedHouse"]:
 
             if self.parent.year_of_construction <= 1994:
 
-                if Sfh.construction_type == "tabula_standard" or Th.construction_type == "tabula_standard":
+                if self._type_of_retrofit == "standard":
 
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "low temperature"
                         self._pipe_routing_water = "centralised with circulation"
                         self._heat_loss_distribution_heating = "high"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "oil"
                         self._heat_generation = "low temperature - not combined"
                         self._heat_loss_distribution_heating = "high"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "night storage"
-                    elif type_heating_system == 4:
+                    elif type_heat_supply_system == 4:
                         self._heat_system = "oil"
                         self._heat_generation = "low temperature"
                         self._pipe_routing_water = "centralised with circulation"
                         self._heat_loss_distribution_heating = "high"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Sfh.construction_type == "tabula_retrofit" or Th.construction_type == "tabula_retrofit":
+                elif self._type_of_retrofit == "retrofit":
 
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._heat_loss_distribution_heating = "good"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "oil"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
                         self._heat_loss_distribution_heating = "minimised"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump air"
                         self._storage_water = "solar"
                         self._heat_loss_distribution_heating = "good"
-                    elif type_heating_system == 4:
+                    elif type_heat_supply_system == 4:
                         self._heat_system = "oil"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
                         self._heat_loss_distribution_heating = "minimised"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Sfh.construction_type == "tabula_adv_retrofit" or Th.construction_type == "tabula_adv_retrofit":
+                elif self._type_of_retrofit == "adv_retrofit":
 
                     self._heat_loss_distribution_heating = "minimised"
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
                         self._pipe_routing_heating = "centralised inside"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "solar"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
                         self._storage_water = "water"
-                    elif type_heating_system == 4:
+                    elif type_heat_supply_system == 4:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "solar"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
+
+                else:
+                    raise ValueError(
+                        "Construction_type has to be tabula_standard,"
+                        "tabula_retrofit, "
+                        "tabula_adv_retrofit"
+                    )
 
             elif self.parent.year_of_construction <= 2009:
 
-                if Sfh.construction_type == "tabula_standard" or Th.construction_type == "tabula_standard":
+                if self._type_of_retrofit == "standard":
 
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._heat_loss_distribution_heating = "minimised"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "water"
                         self._pipe_routing_water = "centralised with circulation"
                         self._heat_loss_distribution_heating = "good"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump air"
                         self._storage_water = "solar"
                         self._heat_loss_distribution_heating = "good"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Sfh.construction_type == "tabula_retrofit" or Th.construction_type == "tabula_retrofit":
+                elif self._type_of_retrofit == "retrofit":
 
                     self._heat_loss_distribution_heating = "minimised"
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
                         self._pipe_routing_water = "centralised with circulation"
                         self._pipe_routing_heating = "centralised inside"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "water"
                         self._pipe_routing_water = "centralised with circulation"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump air"
                         self._storage_water = "water"
                         self._pipe_routing_water = "centralised with circulation"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Sfh.construction_type == "tabula_adv_retrofit" or Th.construction_type == "tabula_adv_retrofit":
+                elif self._type_of_retrofit == "adv_retrofit":
 
                     self._heat_loss_distribution_heating = "minimised"
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
                         self._pipe_routing_heating = "centralised inside"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "water"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
                         self._storage_water = "water"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
+
+                else:
+                    raise ValueError(
+                        "Construction_type has to be tabula_standard,"
+                        "tabula_retrofit, "
+                        "tabula_adv_retrofit"
+                    )
 
             elif self.parent.year_of_construction <= 2015:
 
                 self._heat_loss_distribution_heating = "minimised"
-                if Sfh.construction_type == "tabula_standard" or Th.construction_type == "tabula_standard":
+                if self._type_of_retrofit == "standard":
 
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
                         self._pipe_routing_water = "centralised with circulation"
                         self._pipe_routing_heating = "centralised inside"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "water"
                         self._pipe_routing_water = "centralised with circulation"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump air"
                         self._storage_water = "water"
                         self._pipe_routing_water = "centralised with circulation"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Sfh.construction_type == "tabula_retrofit" or Th.construction_type == "tabula_retrofit":
+                elif self._type_of_retrofit == "retrofit":
 
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
                         self._pipe_routing_heating = "centralised inside"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "water"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground - no buffer storage"
                         self._storage_water = "water"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Sfh.construction_type == "tabula_adv_retrofit" or Th.construction_type == "tabula_adv_retrofit":
+                elif self._type_of_retrofit == "adv_retrofit":
 
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
                         self._pipe_routing_heating = "centralised inside"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "solar"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground - no buffer storage"
                         self._storage_water = "water"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
+
+                else:
+                    raise ValueError(
+                        "Construction_type has to be tabula_standard,"
+                        "tabula_retrofit, "
+                        "tabula_adv_retrofit"
+                    )
 
             else:
 
                 self._heat_loss_distribution_heating = "minimised"
-                if Sfh.construction_type == "tabula_standard" or Th.construction_type == "tabula_standard":
+                if self._type_of_retrofit == "standard":
 
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
                         self._pipe_routing_heating = "centralised inside"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "water"
                         self._pipe_routing_water = "centralised with circulation"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground - no buffer storage"
                         self._storage_water = "water"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Sfh.construction_type == "tabula_retrofit" or Th.construction_type == "tabula_retrofit":
+                elif self._type_of_retrofit == "retrofit":
 
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
                         self._pipe_routing_heating = "centralised inside"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "water"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground - no buffer storage"
                         self._storage_water = "water"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Sfh.construction_type == "tabula_adv_retrofit" or Th.construction_type == "tabula_adv_retrofit":
+                elif self._type_of_retrofit == "adv_retrofit":
 
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
                         self._pipe_routing_heating = "centralised inside"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "solar"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground - no buffer storage"
                         self._storage_water = "water"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
+
+                else:
+                    raise ValueError(
+                        "Construction_type has to be tabula_standard,"
+                        "tabula_retrofit, "
+                        "tabula_adv_retrofit"
+                    )
 
         elif type(self.parent).__name__ in ["MultiFamilyHouse", "ApartmentBlock"]:
 
             if self.parent.year_of_construction <= 1994:
 
-                if Mfh.construction_type == "tabula_standard" or Ab.construction_type == "tabula_standard":
+                if self._type_of_retrofit == "standard":
 
                     self._heat_loss_distribution_heating = "high"
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "low temperature"
                         self._storage_water = "water"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "oil"
                         self._heat_generation = "low temperature - not combined"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "night storage"
-                    elif type_heating_system == 4:
+                    elif type_heat_supply_system == 4:
                         self._heat_system = "district"
                         self._heat_generation = "gas - no chp"
-                    elif type_heating_system == 5:
+                    elif type_heat_supply_system == 5:
                         self._heat_system = "gas"
                         self._heat_generation = "circulating water heater"
-                    elif type_heating_system == 6:
+                    elif type_heat_supply_system == 6:
                         self._heat_system = "oil"
                         self._heat_generation = "low temperature"
                         self._storage_water = "water"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Mfh.construction_type == "tabula_retrofit" or Ab.construction_type == "tabula_retrofit":
+                elif self._type_of_retrofit == "retrofit":
 
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "water"
                         self._heat_loss_distribution_heating = "small"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "oil"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
                         self._heat_loss_distribution_heating = "minimised"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing - decentralised"
                         self._heat_loss_distribution_heating = "small"
-                    elif type_heating_system == 4:
+                    elif type_heat_supply_system == 4:
                         self._heat_system = "district"
                         self._heat_generation = "gas - high chp"
                         self._heat_loss_distribution_heating = "small"
-                    elif type_heating_system == 5:
+                    elif type_heat_supply_system == 5:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing - decentralised"
                         self._heat_loss_distribution_heating = "small"
-                    elif type_heating_system == 6:
+                    elif type_heat_supply_system == 6:
                         self._heat_system = "oil"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
                         self._heat_loss_distribution_heating = "minimised"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Mfh.construction_type == "tabula_adv_retrofit" or Ab.construction_type == "tabula_adv_retrofit":
+                elif self._type_of_retrofit == "adv_retrofit":
 
                     self._heat_loss_distribution_heating = "small"
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "solar"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "water"
-                    elif type_heating_system == 4:
+                    elif type_heat_supply_system == 4:
                         self._heat_system = "district"
                         self._heat_generation = "biomass"
-                    elif type_heating_system == 5:
+                    elif type_heat_supply_system == 5:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing - decentralised"
-                    elif type_heating_system == 6:
+                    elif type_heat_supply_system == 6:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "solar"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
+
+                else:
+                    raise ValueError(
+                        "Construction_type has to be tabula_standard,"
+                        "tabula_retrofit, "
+                        "tabula_adv_retrofit"
+                    )
 
             elif self.parent.year_of_construction <= 2009:
 
-                if Mfh.construction_type == "tabula_standard" or Ab.construction_type == "tabula_standard":
+                if self._type_of_retrofit == "standard":
 
                     self._heat_loss_distribution_heating = "small"
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "water"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "water"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump air"
                         self._storage_water = "water"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Mfh.construction_type == "tabula_retrofit" or Ab.construction_type == "tabula_retrofit":
+                elif self._type_of_retrofit == "retrofit":
 
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
                         self._heat_loss_distribution_heating = "minimised"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "water"
                         self._heat_loss_distribution_heating = "minimised"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump air"
                         self._storage_water = "water"
                         self._heat_loss_distribution_heating = "small"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Mfh.construction_type == "tabula_adv_retrofit" or Ab.construction_type == "tabula_adv_retrofit":
+                elif self._type_of_retrofit == "adv_retrofit":
 
                     self._heat_loss_distribution_heating = "minimised"
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "water"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
                         self._storage_water = "water"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
+
+                else:
+                    raise ValueError(
+                        "Construction_type has to be tabula_standard,"
+                        "tabula_retrofit, "
+                        "tabula_adv_retrofit"
+                    )
 
             elif self.parent.year_of_construction <= 2015:
 
-                if Mfh.construction_type == "tabula_standard" or Ab.construction_type == "tabula_standard":
+                if self._type_of_retrofit == "standard":
 
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
                         self._heat_loss_distribution_heating = "minimised"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "water"
                         self._heat_loss_distribution_heating = "minimised"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump air"
                         self._storage_water = "water"
                         self._heat_loss_distribution_heating = "small"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Mfh.construction_type == "tabula_retrofit" or Ab.construction_type == "tabula_retrofit":
+                elif self._type_of_retrofit == "retrofit":
 
                     self._heat_loss_distribution_heating = "minimised"
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "water"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
                         self._storage_water = "water"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Mfh.construction_type == "tabula_adv_retrofit" or Ab.construction_type == "tabula_adv_retrofit":
+                elif self._type_of_retrofit == "adv_retrofit":
 
                     self._heat_loss_distribution_heating = "minimised"
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing - chp"
                         self._storage_water = "solar"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "chp"
                         self._storage_water = "solar"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
                         self._storage_water = "water"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
+
+                else:
+                    raise ValueError(
+                        "Construction_type has to be tabula_standard,"
+                        "tabula_retrofit, "
+                        "tabula_adv_retrofit"
+                    )
 
             else:
 
                 self._heat_loss_distribution_heating = "minimised"
-                if Mfh.construction_type == "tabula_standard" or Ab.construction_type == "tabula_standard":
+                if self._type_of_retrofit == "standard":
 
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "water"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
                         self._storage_water = "water"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Mfh.construction_type == "tabula_retrofit" or Ab.construction_type == "tabula_retrofit":
+                elif self._type_of_retrofit == "retrofit":
 
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
                         self._storage_water = "solar"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
                         self._storage_water = "water"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
                         self._storage_water = "water"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
 
-                elif Mfh.construction_type == "tabula_adv_retrofit" or Ab.construction_type == "tabula_adv_retrofit":
+                elif self._type_of_retrofit == "adv_retrofit":
 
-                    if type_heating_system == 1:
+                    if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing - chp"
                         self._storage_water = "solar"
-                    elif type_heating_system == 2:
+                    elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "chp"
                         self._storage_water = "solar"
-                    elif type_heating_system == 3:
+                    elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
                         self._storage_water = "water"
+                    else:
+                        raise ValueError(
+                            "type_heat_supply_system has to be a number between"
+                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
+                            "for MFH and AB older than 1995 1 to 6 is possible."
+                        )
+
+                else:
+                    raise ValueError(
+                        "Construction_type has to be tabula_standard,"
+                        "tabula_retrofit, "
+                        "tabula_adv_retrofit"
+                    )
 
         if self._heat_generation in ["night storage", "low temperature - not combined"]:
             self._combined_water_heating = False
@@ -569,7 +777,9 @@ class HeatSupplySystem(object):
             else:
                 self._pipe_routing_water = "centralised with circulation"
 
-    def setting_derived_values(self):
+        self._setting_derived_values()
+
+    def _setting_derived_values(self):
 
         # todo definieren anhand NGF und Heizkörper
         if self._heat_generation in ["low temperature", "low temperature-not combined"]:
@@ -649,190 +859,48 @@ class HeatSupplySystem(object):
                 elif self._oversizing_factor == 1.2:
                     self._avg_temp_distribution_heating = 41
 
-    """def replace_window(self, year_of_retrofit, window_type=None):
-        ""Replace a window, with a newer one.
+    def retrofit_heat_supply_system(self, year_of_retrofit, type_of_retrofit=None, type_heat_supply_system=None):
+        """Retrofits all parameters in the system.
 
-        Replaces all attributes from the window and replaces it with a high
-        insulated one.
+        Function call for all elements facing the ambient or ground.
+        Distinguishes if the parent building is a archetype of type 'iwu' or
+        'tabula_de'. If TABULA is used, it will use the pre-defined wall
+        constructions of TABULA.
 
         Parameters
         ----------
-        year_of_retrofit: int
-            The year, the building was refurbished
-        ""
-
-        if window_type is None:
-            window_type = "EnEv"
-        else:
-            pass
+        year_of_retrofit : int
+            Year of last retrofit
+        type_of_retrofit : str
+            The classification of retrofit, if the archetype building
+            approach of TABULA is used.
+        type_heat_supply_system: int
+            Type of the heat supply system
+        """
 
         if year_of_retrofit < 1995:
-            year_of_retrofit = 1995
-            warnings.warn("You are using a year of retrofit not supported\
+            self._year_of_retrofit = 1995
+            raise ValueError("You are using a year of retrofit not supported\
                     by teaser. We will change your year of retrofit to 1995\
                     for the calculation. Be careful!")
 
-        self.set_calc_default()
-        self.layer = None
-        self.load_type_element(year_of_retrofit,
-                               window_type,
-                               self.parent.parent.parent.data)"""
-
-    """def retrofit_wall(self, year_of_retrofit, material=None):
-        ""Retrofits wall to German refurbishment standards.
-
-        This function adds an additional layer of insulation and sets the
-        thickness of the layer according to the retrofit standard in the
-        year of refurbishment. Refurbishment year must be newer then 1977
-
-        Note: To Calculate thickness and U-Value, the standard TEASER
-        coefficients for outer and inner heat transfer are used.
-
-        The used Standards are namely the Waermeschutzverordnung (WSVO) and
-        Energieeinsparverordnung (EnEv)
-
-        Parameters
-        ----------
-        material : string
-            Type of material, that is used for insulation
-        year_of_retrofit : int
-            Year of the retrofit of the wall/building
-
-        ""
-        self.set_calc_default()
-        self.calc_ua_value()
-
-        if material is None:
-            material = "EPS_perimeter_insulation_top_layer"
+        if type_of_retrofit in ["adv_retrofit", "retrofit", "standard", "tabula_adv_retrofit", "tabula_retrofit", 
+                                "tabula_standard"]:
+            self._type_of_retrofit = type_of_retrofit
         else:
-            pass
+            raise ValueError("You are using a type of retrofit not supported\
+                                by teaser. We will change your type of retrofit \
+                                to the next highest type. Be careful!")
+            if self._type_of_retrofit == "adv_retrofit":
+                raise ValueError("already highest available standard of heat_supply_system")
+                self._type_of_retrofit = "adv_retrofit"
+            elif self._type_of_retrofit == "retrofit":
+                self._type_of_retrofit = "adv_retrofit"
+            else:
+                self._type_of_retrofit = "retrofit"
 
-        if year_of_retrofit < 1977:
-            year_of_retrofit = 1977
-            warnings.warn("You are using a year of retrofit not supported\
-                    by teaser. We will change your year of retrofit to 1977\
-                    for the calculation. Be careful!")
+        self.setting_values(type_heat_supply_system)
 
-        if type(self).__name__ == 'OuterWall':
-
-            if 1977 <= year_of_retrofit <= 1981:
-                self.insulate_wall(material)
-                calc_u = 1.06 * self.area
-            elif 1982 <= year_of_retrofit <= 1994:
-                self.insulate_wall(material)
-                calc_u = 0.6 * self.area
-            elif 1995 <= year_of_retrofit <= 2001:
-                self.insulate_wall(material)
-                calc_u = 0.5 * self.area
-            elif 2002 <= year_of_retrofit <= 2008:
-                self.insulate_wall(material)
-                calc_u = 0.45 * self.area
-            elif 2009 <= year_of_retrofit <= 2013:
-                self.insulate_wall(material)
-                calc_u = 0.24 * self.area
-            elif year_of_retrofit >= 2014:
-                self.insulate_wall(material)
-                calc_u = 0.24 * self.area
-
-        elif type(self).__name__ == 'Rooftop':
-
-            if 1977 <= year_of_retrofit <= 1981:
-                self.insulate_wall(material)
-                calc_u = 0.45 * self.area
-            elif 1982 <= year_of_retrofit <= 1994:
-                self.insulate_wall(material)
-                calc_u = 0.45 * self.area
-            elif 1995 <= year_of_retrofit <= 2001:
-                self.insulate_wall(material)
-                calc_u = 0.3 * self.area
-            elif 2002 <= year_of_retrofit <= 2008:
-                self.insulate_wall(material)
-                calc_u = 0.3 * self.area
-            elif 2009 <= year_of_retrofit <= 2013:
-                self.insulate_wall(material)
-                calc_u = 0.2 * self.area
-            elif year_of_retrofit >= 2014:
-                self.insulate_wall(material)
-                calc_u = 0.2 * self.area
-
-        if type(self).__name__ == 'GroundFloor':
-
-            if 1977 <= year_of_retrofit <= 1981:
-                self.insulate_wall(material)
-                calc_u = 0.8 * self.area
-            elif 1982 <= year_of_retrofit <= 1994:
-                self.insulate_wall(material)
-                calc_u = 0.7 * self.area
-            elif 1995 <= year_of_retrofit <= 2001:
-                self.insulate_wall(material)
-                calc_u = 0.5 * self.area
-            elif 2002 <= year_of_retrofit <= 2008:
-                self.insulate_wall(material)
-                calc_u = 0.4 * self.area
-            elif 2009 <= year_of_retrofit <= 2013:
-                self.insulate_wall(material)
-                calc_u = 0.3 * self.area
-            elif year_of_retrofit >= 2014:
-                self.insulate_wall(material)
-                calc_u = 0.3 * self.area
-
-        r_conduc = 0
-
-        if self.ua_value < calc_u:
-            pass
-        else:
-            for count_layer in self.layer[:-1]:
-                r_conduc += (count_layer.thickness /
-                             count_layer.material.thermal_conduc)
-
-                self.layer[-1].thickness = \
-                    (((
-                      1 - calc_u * self.r_inner_comb - calc_u *
-                      self.r_outer_comb) /
-                      calc_u) * self.area - r_conduc) * \
-                    self.layer[-1].material.thermal_conduc
-
-                self.layer[-1].id = len(self.layer)"""
-
-    """def gather_element_properties(self):
-        ""Helper function for matrix calculation.
-
-        Gathers all material properties of the building element and returns
-        them as a np.array. Needed for the calculation of the matrix in
-        equivalent_res(t_bt) especially for walls.
-
-        Returns
-        ----------
-        number_of_layer : int
-            number of layer (length of layer list)
-        density : np.array
-            Numpy array with length of number of layer, filled with density
-            of each layer
-        thermal_conduc : np.array
-            Numpy array with length of number of layer, filled with
-            thermal_conduc of each layer
-        heat_capac : np.array
-            Numpy array with length of number of layer, filled with heat_capac
-            of each layer
-        thickness : np.array
-            Numpy array with length of number of layer, filled with thickness
-            of each layer
-        ""
-
-        number_of_layer = len(self.layer)
-        density = np.zeros(number_of_layer)
-        thermal_conduc = np.zeros(number_of_layer)
-        heat_capac = np.zeros(number_of_layer)
-        thickness = np.zeros(number_of_layer)
-
-        for i in range(number_of_layer):
-
-            density[i] = self.layer[i].material.density
-            thermal_conduc[i] = self.layer[i].material.thermal_conduc
-            heat_capac[i] = self.layer[i].material.heat_capac
-            thickness[i] = self.layer[i].thickness
-
-        return number_of_layer, density, thermal_conduc, heat_capac, thickness"""
 
     """def load_type_element(
             self,
@@ -945,73 +1013,7 @@ class HeatSupplySystem(object):
         buildingelement_output.delete_type_element(element=self,
                                                    data_class=data_class)"""
 
-    """def retrofit_zone(
-            self,
-            type_of_retrofit=None,
-            window_type=None,
-            material=None):
-        ""Retrofits all walls and windows in the zone.
-
-        Function call for all elements facing the ambient or ground.
-        Distinguishes if the parent building is a archetype of type 'iwu' or
-        'tabula_de'. If TABULA is used, it will use the pre-defined wall
-        constructions of TABULA.
-
-        This function covers OuterWall, Rooftop, GroundFloor and Window.
-
-        Parameters
-        ----------
-        type_of_retrofit : str
-            The classification of retrofit, if the archetype building
-            approach of TABULA is used.
-        window_type : str
-            Default: EnEv 2014
-        material : str
-            Default: EPS035
-        ""
-
-        if type_of_retrofit is None:
-            type_of_retrofit = 'retrofit'
-
-        if type(self.parent).__name__ in [
-            "SingleFamilyHouse", "TerracedHouse", "MultiFamilyHouse",
-                "ApartmentBlock"]:
-            for wall_count in self.outer_walls \
-                    + self.rooftops + self.ground_floors + self.doors + \
-                    self.windows:
-                if "adv_retrofit" in wall_count.construction_type:
-                    warnings.warn(
-                        "already highest available standard"
-                        + self.parent.name + wall_count.name)
-                elif "standard" in wall_count.construction_type:
-                    wall_count.load_type_element(
-                        year=self.parent.year_of_construction,
-                        construction=wall_count.construction_type.replace(
-                            "standard", type_of_retrofit))
-                else:
-                    wall_count.load_type_element(
-                        year=self.parent.year_of_construction,
-                        construction=wall_count.construction_type.replace(
-                            "retrofit", type_of_retrofit))
-        else:
-
-            for wall_count in self.outer_walls:
-                wall_count.retrofit_wall(
-                    self.parent.year_of_retrofit,
-                    material)
-            for roof_count in self.rooftops:
-                roof_count.retrofit_wall(
-                    self.parent.year_of_retrofit,
-                    material)
-            for ground_count in self.ground_floors:
-                ground_count.retrofit_wall(
-                    self.parent.year_of_retrofit,
-                    material)
-            for win_count in self.windows:
-                win_count.replace_window(
-                    self.parent.year_of_retrofit,
-                    window_type)
-
+    """
     def delete(self):
         ""Deletes the actual thermal zone safely.
 

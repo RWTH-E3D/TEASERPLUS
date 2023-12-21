@@ -6,11 +6,12 @@
 import math
 from teaser.teaser.logic.buildingobjects.buildingsystems.pe_demand_water import PEDemandWater
 
+
 class PEDemandHeating(object):
     """PEDemandHeating class
 
     This class holds information for the Heating System of the Building.
-    The heat losses for the heating system are being set. This class doesn´t effect
+    The heat losses for the heating system are being set. This class does not affect
     the calculation in Dymola. It uses the calculated heat load and adds
     heat losses for heating to calculate the primary energy demand.
 
@@ -33,9 +34,6 @@ class PEDemandHeating(object):
         self._temp_ambient_heating = self.parent.temp_ambient
         if self.parent.pipe_routing_heating == "centralised outside":
             self._temp_ambient_heating = 13  # iwu formula 4-1
-
-
-    
 
     def _calc_dissipation_distribution_water_for_heating(self):
         """calculation of heat dissipation through distribution of hot water for heating"""
@@ -102,7 +100,8 @@ class PEDemandHeating(object):
                     (1 - heat_loss_factor_strand_water) +
                     (length_stubs_water * heat_loss_coefficient_stubs_water) *
                     (1 - heat_loss_factor_stubs_water)) * \
-                   (self.parent.avg_temp_distribution_water - self._temp_ambient_water) * 24 * self.parent.annual_operating_time_water * \
+                   (self.parent.avg_temp_distribution_water - self._temp_ambient_water) * 24 \
+                   * self.parent.annual_operating_time_water * \
                    self.parent.annual_operating_time_heating / self.parent.annual_operating_time_water
 
     def _calc_dissipation_storage_water_for_heating(self):

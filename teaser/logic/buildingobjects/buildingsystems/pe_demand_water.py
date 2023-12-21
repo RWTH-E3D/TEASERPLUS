@@ -10,7 +10,7 @@ class PEDemandWater(object):
     """PEDemandWater class
 
     This class holds information for the Heating System of the Building.
-    The heat losses for the heating system are being set. This class doesn´t effect
+    The heat losses for the heating system are being set. This class does not affect
     the calculation in Dymola. It uses the calculated heat load and adds
     heat losses for water to calculate the primary energy demand.
 
@@ -34,7 +34,6 @@ class PEDemandWater(object):
         length_horizontal_water = None
         length_strand_water = None
         length_stubs_water = None
-        dissipation_distribution_water = None
         
         # calculation of pipe length for hot water
         # iwu table 9
@@ -72,24 +71,20 @@ class PEDemandWater(object):
             during_interruption = 0.5 * (32 - self.parent.temp_ambient) * (24 - self.parent.daily_operating_time_pump)
             # 32 = avg_temp_distribution_water without circulation
 
-            dissipation_distribution_water = 1 / 1000 * \
-                                            (length_horizontal_water * heat_loss_coefficient_horizontal_water
-                                             + length_strand_water * heat_loss_coefficient_strand_water
-                                             + length_stubs_water * heat_loss_coefficient_stubs_water) \
-                                             * (during_circulation + during_interruption) \
-                                             * self.parent.annual_operating_time_water
+            return 1 / 1000 * (length_horizontal_water * heat_loss_coefficient_horizontal_water
+                               + length_strand_water * heat_loss_coefficient_strand_water
+                               + length_stubs_water * heat_loss_coefficient_stubs_water) \
+                * (during_circulation + during_interruption) \
+                * self.parent.annual_operating_time_water
 
         elif self.parent.pipe_routing_water == "centralised without circulation" or \
                 self.parent.pipe_routing_water == "decentralised":
             # iwu formula 4-5
-            dissipation_distribution_water = 1 / 1000 * \
-                                             (length_horizontal_water * heat_loss_coefficient_horizontal_water
-                                              + length_strand_water * heat_loss_coefficient_strand_water
-                                              + length_stubs_water * heat_loss_coefficient_stubs_water) \
-                                             * (self.parent.avg_temp_distribution_water - self.parent.temp_ambient) \
-                                             * 24 * self.parent.annual_operating_time_water
-
-        return dissipation_distribution_water
+            return 1 / 1000 * (length_horizontal_water * heat_loss_coefficient_horizontal_water
+                               + length_strand_water * heat_loss_coefficient_strand_water
+                               + length_stubs_water * heat_loss_coefficient_stubs_water) \
+               * (self.parent.avg_temp_distribution_water - self.parent.temp_ambient) \
+               * 24 * self.parent.annual_operating_time_water
 
     def calc_dissipation_storage_water(self):
         # iwu chapter 3
@@ -120,7 +115,7 @@ class PEDemandWater(object):
             standby_heat_loss_heating = 0
 
         return 1.2 * (50 - self.parent.temp_ambient) / 45 * self.parent.annual_operating_time_water \
-               * standby_heat_loss_heating
+            * standby_heat_loss_heating
         # DIN V 4701-10 formula 5.1.3-1
 
     def _calc_dissipation_generation_water(self):

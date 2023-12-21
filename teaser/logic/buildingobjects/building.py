@@ -84,8 +84,6 @@ class Building(object):
         Latitude of building location.
     thermal_zones : list
         List with instances of ThermalZone(), that are located in this building.
-    heating_system : list
-        List with instances of HeatingSystem (), that are located in this building.
     outer_area : dict [degree: m2]
         Dictionary with orientation as key and sum of outer wall areas of
         that direction as value.
@@ -132,6 +130,7 @@ class Building(object):
         net_leased_area=None,
         with_ahu=False,
         internal_gains_mode=1,
+        type_heat_supply_system=None
     ):
         """Constructor of Building Class
         """
@@ -141,6 +140,7 @@ class Building(object):
         self.year_of_construction = year_of_construction
         self.net_leased_area = net_leased_area
         self._with_ahu = with_ahu
+        self.type_heat_supply_system = type_heat_supply_system
 
         if with_ahu is True:
             self.central_ahu = BuildingAHU(self)
@@ -163,8 +163,6 @@ class Building(object):
         self._thermal_zones = []
         self._outer_area = {}
         self._window_area = {}
-
-        self.heating_system = []
 
         self.bldg_height = None
         self.volume = 0
@@ -548,6 +546,7 @@ class Building(object):
         type_of_retrofit=None,
         window_type=None,
         material=None,
+        type_heat_supply_system=None
     ):
         """Retrofits all zones in the building
 
@@ -578,7 +577,7 @@ class Building(object):
         for zone in self.thermal_zones:
             zone.retrofit_zone(type_of_retrofit, window_type, material)
 
-        self.heating_system.retrofit_heating_system(type_of_retrofit, material)
+        self.heat_supply_system.retrofit_heat_supply_system(year_of_retrofit, type_of_retrofit, type_heat_supply_system)
 
         self.calc_building_parameter(
             number_of_elements=self.number_of_elements_calc,
@@ -625,7 +624,7 @@ class Building(object):
     def add_zone(self, thermal_zone):
         """Adds a thermal zone to the corresponding list
 
-        This function adds a ThermalZone instance to the the thermal_zones list
+        This function adds a ThermalZone instance to the thermal_zones list
 
         Parameters
         ----------
@@ -638,6 +637,26 @@ class Building(object):
         assert type(thermal_zone).__name__ == "ThermalZone", ass_error_1
 
         self._thermal_zones.append(thermal_zone)
+
+    def set_heat_supply_system(self, heat_supply_system):
+        """Adds a heat supply system to the building
+
+                This function adds a HeatSupplySystem instance to the building
+
+                Parameters
+                ----------
+                heat_supply_system : HeatSupplySystem()
+                    HeatSupplySystem() instance of TEASER
+                """
+
+        ass_error_1 = "System has to be an instance of HeatSupplySystem()"
+
+        assert type(heat_supply_system).__name__ == "HeatSupplySystem", ass_error_1
+
+        if self.type_heat_supply_system:
+            heat_supply_system.setting_values(self.type_heat_supply_system)
+        else:
+            heat_supply_system.setting_values()
 
     @property
     def parent(self):
@@ -700,7 +719,26 @@ class Building(object):
                 self.__year_of_construction = value
 
             except:
-                raise ValueError("Can't convert year of construction to int")
+                raise ValueError("Can't convert year of construction to int")\
+
+    @property
+    def type_heat_supply_system(self):
+        return self.__type_heat_supply_system
+
+    @type_heat_supply_system.setter
+    def type_heat_supply_system(self, value):
+
+        if value in [1,2,3,4,5,6] or value is None:
+
+            self.__type_heat_supply_system = value
+        else:
+            try:
+                value = int(value)
+                if value in [1, 2, 3, 4, 5, 6]:
+                    self.__type_heat_supply_system = value
+
+            except:
+                raise ValueError("Can't convert type heat supply system to int")
 
     @property
     def number_of_floors(self):
@@ -765,17 +803,6 @@ class Building(object):
 
         if value is None:
             self._thermal_zones = []
-
-    @property
-    def heating_system(self):
-        return self._heating_system
-        # todo Anwendung checken
-
-    @thermal_zones.setter
-    def heating_system(self, value):
-
-        if value is None:
-            self._heating_system = []
 
     @property
     def outer_area(self):
