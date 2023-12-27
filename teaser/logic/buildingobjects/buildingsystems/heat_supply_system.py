@@ -884,20 +884,18 @@ class HeatSupplySystem(object):
                     by teaser. We will change your year of retrofit to 1995\
                     for the calculation. Be careful!")
 
-        if type_of_retrofit in ["adv_retrofit", "retrofit", "standard", "tabula_adv_retrofit", "tabula_retrofit", 
-                                "tabula_standard"]:
-            self._type_of_retrofit = type_of_retrofit
+        self._type_of_retrofit = type_of_retrofit
+
+        if "adv_retrofit" in self._type_of_retrofit:
+
+            self._type_of_retrofit = "adv_retrofit"
+            raise ValueError("already highest available standard of heat_supply_system")
+
+        elif "retrofit" in self._type_of_retrofit:
+            self._type_of_retrofit = "adv_retrofit"
+
         else:
-            raise ValueError("You are using a type of retrofit not supported\
-                                by teaser. We will change your type of retrofit \
-                                to the next highest type. Be careful!")
-            if self._type_of_retrofit == "adv_retrofit":
-                raise ValueError("already highest available standard of heat_supply_system")
-                self._type_of_retrofit = "adv_retrofit"
-            elif self._type_of_retrofit == "retrofit":
-                self._type_of_retrofit = "adv_retrofit"
-            else:
-                self._type_of_retrofit = "retrofit"
+            self._type_of_retrofit = "retrofit"
 
         self.setting_values(type_heat_supply_system)
 
@@ -1052,47 +1050,6 @@ class HeatSupplySystem(object):
                 print("Can't convert name to string")
 
     @property
-    def year_of_retrofit(self):
-        return self._year_of_retrofit
-
-    @year_of_retrofit.setter
-    def year_of_retrofit(self, value):
-
-        if isinstance(value, int):
-            pass
-        elif value is None:
-            pass
-        else:
-            try:
-                value = int(value)
-            except:
-                raise ValueError("Can't convert year of retrofit to float")
-
-        if value is not None:
-            if self.year_of_construction is not None:
-                self._year_of_retrofit = value
-            else:
-                raise ValueError("Specify year of construction first")
-                
-    @property
-    def year_of_construction(self):
-        return self._year_of_construction
-
-    @year_of_construction.setter
-    def year_of_construction(self, value):
-
-        if isinstance(value, float):
-            self._year_of_construction = value
-        elif value is None:
-            self._year_of_construction = value
-        else:
-            try:
-                value = int(value)
-                self._year_of_construction = value
-            except:
-                raise ValueError("Can't convert year to int")
-
-    @property
     def construction_type(self):
         return self._construction_type
 
@@ -1147,6 +1104,43 @@ class HeatSupplySystem(object):
                 self._length_char = value
             except:
                 raise ValueError("Can't convert length_char to float")
+
+    @property
+    def year_of_retrofit(self):
+        return self._year_of_retrofit
+
+    @year_of_retrofit.setter
+    def year_of_retrofit(self, value):
+
+        if isinstance(value, int):
+            pass
+        elif value is None:
+            pass
+        else:
+            try:
+                value = int(value)
+            except:
+                raise ValueError("Can't convert year of retrofit to float")
+
+        if value is not None:
+            if self.parent.year_of_construction is not None:
+                self._year_of_retrofit = value
+            else:
+                raise ValueError("Specify year of construction first")
+
+    @property
+    def type_of_retrofit(self):
+        return self._type_of_retrofit
+
+    @type_of_retrofit.setter
+    def type_of_retrofit(self, value):
+        if ["adv_retrofit", "retrofit", "standard", "tabula_adv_retrofit", "tabula_retrofit", "tabula_standard"] \
+                in value or value is None:
+            self._type_of_retrofit = value
+        else:
+            raise ValueError("You are using a type of retrofit not supported\
+                                by teaser. We will change your type of retrofit \
+                                to the next highest type. Be careful!")
 
     @property
     def heat_system(self):
