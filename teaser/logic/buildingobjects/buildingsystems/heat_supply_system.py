@@ -782,12 +782,12 @@ class HeatSupplySystem(object):
     def _setting_derived_values(self):
 
         # todo definieren anhand NGF und Heizkörper
-        if self._heat_generation in ["low temperature", "low temperature-not combined"]:
-            self._design_temp_flow = 70
-        elif self._heat_generation in ["heatpump ground", "heatpump ground - no buffer storage", "heatpump air"]:
+        if "condensing" in self._heat_generation:
+            self._design_temp_flow = 55
+        elif "heatpump" in self._heat_generation:
             self._design_temp_flow = 35
         else:
-            self._design_temp_flow = 55
+            self._design_temp_flow = 70
 
         # iwu formula 4-4
         if self.parent.net_leased_area < 10000:
@@ -815,14 +815,14 @@ class HeatSupplySystem(object):
         # iwu table 1
         if self.parent.net_leased_area / 100 >= 10:  # todo ">= 6" after September 2024
             # heating mode "optimised": hydraulic balancing
-            if self._design_temp_flow == 90:
+            """if self._design_temp_flow == 90:
 
                 if self._oversizing_factor == 1.0:
                     self._avg_temp_distribution_heating = 54
                 elif self._oversizing_factor == 1.2:
-                    self._avg_temp_distribution_heating = 50
+                    self._avg_temp_distribution_heating = 50"""
 
-            elif self._design_temp_flow == 70:
+            if self._design_temp_flow == 70:
 
                 if self._oversizing_factor == 1.0:
                     self._avg_temp_distribution_heating = 44
@@ -836,16 +836,22 @@ class HeatSupplySystem(object):
                 elif self._oversizing_factor == 1.2:
                     self._avg_temp_distribution_heating = 35
 
+            else:
+                if self._oversizing_factor == 1.0:
+                    self._avg_temp_distribution_heating = 27
+                elif self._oversizing_factor == 1.2:
+                    self._avg_temp_distribution_heating = 26
+
         else:
             # heating_mode "typical": no hydraulic balancing
-            if self._design_temp_flow == 90:
+            """if self._design_temp_flow == 90:
 
                 if self._oversizing_factor == 1.0:
                     self._avg_temp_distribution_heating = 66
                 elif self._oversizing_factor == 1.2:
-                    self._avg_temp_distribution_heating = 63
+                    self._avg_temp_distribution_heating = 63"""
 
-            elif self._design_temp_flow == 70:
+            if self._design_temp_flow == 70:
 
                 if self._oversizing_factor == 1.0:
                     self._avg_temp_distribution_heating = 53
@@ -858,6 +864,12 @@ class HeatSupplySystem(object):
                     self._avg_temp_distribution_heating = 43
                 elif self._oversizing_factor == 1.2:
                     self._avg_temp_distribution_heating = 41
+
+            else:
+                if self._oversizing_factor == 1.0:
+                    self._avg_temp_distribution_heating = 29
+                elif self._oversizing_factor == 1.2:
+                    self._avg_temp_distribution_heating = 29
 
     def retrofit_heat_supply_system(self, year_of_retrofit, type_of_retrofit=None, type_heat_supply_system=None):
         """Retrofits all parameters in the system.
@@ -1300,7 +1312,7 @@ class HeatSupplySystem(object):
     @design_temp_flow.setter
     def design_temp_flow(self, value):
 
-        if value in [90, 70, 55, 35]:
+        if value in [70, 55, 35]:  # todo 90 integrieren, falls notwendig
             self._design_temp_flow = value
         else:
             raise ValueError("design_temp_flow no defined value")
