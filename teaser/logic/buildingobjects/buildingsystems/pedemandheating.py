@@ -4,7 +4,7 @@
 """This module includes a class for the Primary Energy Calculation of the Heating System
 """
 import math
-from teaser.teaser.logic.buildingobjects.buildingsystems.pe_demand_water import PEDemandWater
+from teaser.teaser.logic.buildingobjects.buildingsystems.pedemandwater import PEDemandWater
 
 
 class PEDemandHeating(object):
@@ -289,7 +289,7 @@ class PEDemandHeating(object):
                                            math.log10(self.parent.nominal_heat_output_boiler)
 
                 # avg_temp_boiler_heat_period = self.parent.avg_temp_distribution_heating, no standard boiler in archetypes
-                if self.parent.avg_temp_distribution_heating < 70:  # todo gibt es andere Fälle?
+                if self.parent.avg_temp_distribution_heating < 70:
                     if self.parent.heat_generation in ["low temperature", "low temperature - not combined"]:
                         efficiency_correction = 0.0004 * (70 - self.parent.avg_temp_distribution_heating)
                     else:
@@ -358,7 +358,6 @@ class PEDemandHeating(object):
             # iwu formula 5-8
             if self.parent.parent.year_of_construction >= 2016 or self.parent.parent.year_of_retrofit >= 2016:
                 # DIN V 4701-10 formula 5.3.2-4
-                # todo wenn hier Unterscheidung in Bestand und Neubau gemacht wird, wo sonst noch notwenig?
                 return nominal_power_consumption_of_circulator * self.parent.annual_operating_time_heating * \
                        self.parent.daily_operating_time_pump / ((1.4 - 20 / self.parent.parent.net_leased_area) * 1000)
 
@@ -443,39 +442,37 @@ class PEDemandHeating(object):
             # DIN V 4701-10 table C.3-4a
             self.parent.heat_system = "gas"
             self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
 
-            generator_two = 0.2 * (self._dissipation_heating() + self._calc_dissipation_generation_auxiliary_heating())
+            generator_two = 0.2 * (self._dissipation_heating() * 1.1 +
+                                   self._calc_dissipation_generation_auxiliary_heating() * 1.8)
 
-            # final_energy_demand_heating = generator_one + generator_two
-            primary_energy_demand_heating = generator_one * 1.8 + generator_two * 1.1  # multiplied with PEF
+            primary_energy_demand_heating = generator_one * 1.8 + generator_two  # multiplied with PEF
 
         elif self.parent.heat_generation == "condensing - chp":
             # 0.53  natural gas, condensing, 0.47 chp
-            generator_two = 0.47 * (self._dissipation_heating() + self._calc_dissipation_generation_auxiliary_heating())
+            generator_two = 0.47 * (self._dissipation_heating() * 0.7 +
+                                    self._calc_dissipation_generation_auxiliary_heating() * 1.8)
 
             # DIN V 4701-10 table C.3-4a
             self.parent.heat_system = "gas"
             self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
 
-            generator_one = 0.53 * (
-                    self._dissipation_heating() + self._calc_dissipation_generation_auxiliary_heating()) + \
-                            self._calc_dissipation_distribution_auxiliary_heating() + \
-                            self._calc_dissipation_storage_auxiliary_heating()
+            generator_one = 0.53 * (self._dissipation_heating() * 1.1 +
+                                    self._calc_dissipation_generation_auxiliary_heating() * 1.8) + \
+                            (self._calc_dissipation_distribution_auxiliary_heating() +
+                             self._calc_dissipation_storage_auxiliary_heating()) * 1.8
 
-            # final_energy_demand_heating = generator_one + generator_two
-            primary_energy_demand_heating = generator_one * 0.7 + generator_two * 1.1  # multiplied with PEF
+            primary_energy_demand_heating = generator_two + generator_one
 
         else:
-            final_energy_demand_heating = self._dissipation_heating() + \
-                                          self._calc_dissipation_generation_auxiliary_heating() + \
-                                          self._calc_dissipation_distribution_auxiliary_heating() + \
-                                          self._calc_dissipation_storage_auxiliary_heating()
-
-            primary_energy_demand_heating = final_energy_demand_heating * primary_energy_factor
+            primary_energy_demand_heating = self._dissipation_heating() * primary_energy_factor + \
+                                            (self._calc_dissipation_generation_auxiliary_heating() +
+                                             self._calc_dissipation_distribution_auxiliary_heating() +
+                                             self._calc_dissipation_storage_auxiliary_heating()) * 1.8
 
         return primary_energy_demand_heating
-
-
 
     @property
     def parent(self):
@@ -483,7 +480,7 @@ class PEDemandHeating(object):
 
     @parent.setter
     def parent(self, value):
-        from teaser.teaser.logic.buildingobjects.buildingsystems.heat_supply_system import HeatSupplySystem
+        from teaser.teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
         import inspect
         if inspect.isclass(HeatSupplySystem):
             self.__parent = value

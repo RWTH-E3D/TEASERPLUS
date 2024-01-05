@@ -182,7 +182,7 @@ class PEDemandWater(object):
                                    math.log10(self.parent.nominal_heat_output_boiler)
 
         # iwu formula B2
-        if self.parent.avg_temp_distribution_heating < 70:  # todo gibt es andere Fälle?
+        if self.parent.avg_temp_distribution_heating < 70:
             if self.parent.heat_generation in ["low temperature", "low temperature - not combined"]:
                 efficiency_correction = 0.0004 * (70 - self.parent.avg_temp_distribution_heating)
             else:
@@ -331,28 +331,30 @@ class PEDemandWater(object):
 
             self.parent.heat_system = "gas"
             self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
 
-            generator_two = 0.1 * (self._dissipation_water() + self._calc_dissipation_generation_auxiliary_water())
+            generator_two = 0.1 * (self._dissipation_water() * 1.1 +
+                                   self._calc_dissipation_generation_auxiliary_water() * 1.8)
 
-            # final_energy_demand_water = generator_one + generator_two
-            primary_energy_demand_water = generator_one * 1.8 + generator_two * 1.1  # multiplied with PEF
+            primary_energy_demand_water = generator_one * 1.8 + generator_two
 
         elif self.parent.heat_generation == "condensing - chp":
             # TABULA values
             # 0.58 % solar
-            generator_two = 0.05 * (self._dissipation_water() +
-                                    self._calc_dissipation_generation_auxiliary_water())
+            generator_two = 0.05 * (self._dissipation_water() * 0.7 +
+                                    self._calc_dissipation_generation_auxiliary_water() * 1.8)
 
             # DIN V 4701-10 table C.3-4a
             self.parent.heat_system = "gas"
             self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
 
-            generator_one = 0.37 * (self._dissipation_water() + self._calc_dissipation_generation_auxiliary_water()) \
-                            + self._calc_dissipation_distribution_auxiliary_water() \
-                            + self._calc_dissipation_storage_auxiliary_water()
+            generator_one = 0.37 * (self._dissipation_water() * 1.1 +
+                                    self._calc_dissipation_generation_auxiliary_water() * 1.8) \
+                            + (self._calc_dissipation_distribution_auxiliary_water()
+                            + self._calc_dissipation_storage_auxiliary_water()) * 1.8
 
-            # final_energy_demand_water = generator_one + generator_two
-            primary_energy_demand_water = generator_one * 0.7 + generator_two * 1.1  # multiplied with PEF
+            primary_energy_demand_water = generator_two + generator_one
 
         else:
 
@@ -361,12 +363,10 @@ class PEDemandWater(object):
             else:
                 part_generator = 1
 
-            final_energy_demand_water = part_generator * (self._dissipation_water() +
-                                                          self._calc_dissipation_generation_auxiliary_water()) \
-                                        + self._calc_dissipation_distribution_auxiliary_water() + \
-                                        self._calc_dissipation_storage_auxiliary_water()
-
-            primary_energy_demand_water = final_energy_demand_water * primary_energy_factor
+            primary_energy_demand_water = part_generator * (self._dissipation_water() * primary_energy_factor +
+                                                          self._calc_dissipation_generation_auxiliary_water() * 1.8) \
+                                           + (self._calc_dissipation_distribution_auxiliary_water() +
+                                               self._calc_dissipation_storage_auxiliary_water()) * 1.8
 
         return primary_energy_demand_water
 
@@ -376,7 +376,7 @@ class PEDemandWater(object):
 
     @parent.setter
     def parent(self, value):
-        from teaser.teaser.logic.buildingobjects.buildingsystems.heat_supply_system import HeatSupplySystem
+        from teaser.teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
         import inspect
         if inspect.isclass(HeatSupplySystem):
             self.__parent = value

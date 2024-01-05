@@ -3,7 +3,6 @@
 
 """This module includes a class for the Heat Supply System
 """
-# todo Einfügen bei input data?
 
 from teaser.teaser.logic.archetypebuildings.tabula.de.singlefamilyhouse import SingleFamilyHouse as Sfh
 from teaser.teaser.logic.archetypebuildings.tabula.de.multifamilyhouse import MultiFamilyHouse as Mfh
@@ -777,11 +776,10 @@ class HeatSupplySystem(object):
             else:
                 self._pipe_routing_water = "centralised with circulation"
 
-        self._setting_derived_values()
+        self.setting_derived_values()
 
-    def _setting_derived_values(self):
+    def setting_derived_values(self):
 
-        # todo definieren anhand NGF und Heizkörper
         if "condensing" in self._heat_generation:
             self._design_temp_flow = 55
         elif "heatpump" in self._heat_generation:
@@ -810,7 +808,6 @@ class HeatSupplySystem(object):
         elif self._pipe_routing_water in ["centralised without circulation", "decentralised"]:
             self._avg_temp_distribution_water = 32
 
-        # todo 35 Grad VL integrieren
         # calculation of the average temperature of the heating distribution
         # iwu table 1
         if self.parent.net_leased_area / 100 >= 10:  # todo ">= 6" after September 2024
@@ -910,182 +907,6 @@ class HeatSupplySystem(object):
             self._type_of_retrofit = "retrofit"
 
         self.setting_values(type_heat_supply_system)
-
-
-    """def load_type_element(
-            self,
-            year,
-            construction,
-            data_class=None):
-        ""Typical element loader.
-
-        Loads typical building elements according to their construction
-        year and their construction type from a json.
-
-        This function will only work if the parents to Building are set.
-
-        Parameters
-        ----------
-        year : int
-            Year of construction
-
-        construction : str
-            Construction type, code list ('heavy', 'light')
-
-        data_class : DataClass()
-            DataClass containing the bindings for TypeBuildingElement and
-            Material (typically this is the data class stored in prj.data,
-            but the user can individually change that. Default is
-            self.parent.parent.parent.data (which is data_class in current
-            project)
-
-        ""
-
-        if data_class is None:
-            data_class = self.parent.parent.parent.data
-        else:
-            data_class = data_class
-
-        self.layer = None
-        self._inner_convection = None
-        self._inner_radiation = None
-        self._outer_convection = None
-        self._outer_radiation = None
-
-        buildingelement_input.load_type_element(element=self,
-                                                year=year,
-                                                construction=construction,
-                                                data_class=data_class)
-
-    def save_type_element(self, data_class=None):
-        ""Typical element saver.
-
-        Saves typical building elements according to their construction
-        year and their construction type in the json file for type building
-        elements. If the Project parent is set, it automatically saves it to
-        the file given in Project.data. Alternatively you can specify a path to
-        a file of TypeBuildingElements. If this file does not exist,
-        a new file is created.
-
-        Parameters
-        ----------
-
-        data_class : DataClass()
-            DataClass containing the bindings for TypeBuildingElement and
-            Material (typically this is the data class stored in prj.data,
-            but the user can individually change that. Default is
-            self.parent.parent.parent.data (which is data_class in current
-            project)
-
-        ""
-
-        if data_class is None:
-            data_class = self.parent.parent.parent.data
-        else:
-            data_class = data_class
-
-        import teaser.teaser.data.output.buildingelement_output as \
-            buildingelement_output
-
-        buildingelement_output.save_type_element(element=self,
-                                                 data_class=data_class)
-
-    def delete_type_element(self, data_class=None):
-        ""Deletes typical element.
-
-        Deletes typical building elements according to their construction
-        year and their construction type in the json file for type building
-        elements. If the Project parent is set, it automatically saves it to
-        the file given in Project.data. Alternatively you can specify a path to
-        a file of TypeBuildingElements. If this file does not exist,
-        a new file is created.
-
-        Parameters
-        ----------
-
-        data_class : DataClass()
-            DataClass containing the bindings for TypeBuildingElement and
-            Material (typically this is the data class stored in prj.data,
-            but the user can individually change that. Default is
-            self.parent.parent.parent.data (which is data_class in current
-            project)
-
-        ""
-
-        if data_class is None:
-            data_class = self.parent.parent.parent.data
-        else:
-            data_class = data_class
-
-        import teaser.teaser.data.output.buildingelement_output as \
-            buildingelement_output
-
-        buildingelement_output.delete_type_element(element=self,
-                                                   data_class=data_class)"""
-
-    """
-    def delete(self):
-        ""Deletes the actual thermal zone safely.
-
-        This deletes the current thermal Zone and also refreshes the
-        thermal_zones list in the parent Building.
-        ""
-        for index, tz in enumerate(self.parent.thermal_zones):
-            if tz.internal_id == self.internal_id:
-                self.parent.net_leased_area -= self.area
-                self.parent.thermal_zones.pop(index)
-
-                break"""
-
-    """@property
-    def name(self):
-        return self._name
-
-    @name.setter
-    def name(self, value):
-        if isinstance(value, str):
-
-            if value:
-                regex = re.compile('[^a-zA-z0-9]')
-                self._name = regex.sub('', value)
-                if self._name == "None":
-                    self._name = "BuildinElement" + str(
-                        random.randint(1, 500000))
-        elif value is None:
-            self._value = "BuildinElement" + str(random.randint(1, 500000))
-        else:
-            try:
-                value = str(value)
-                regex = re.compile('[^a-zA-z0-9]')
-                self._name = regex.sub('', value)
-            except ValueError:
-                print("Can't convert name to string")
-
-    @property
-    def construction_type(self):
-        return self._construction_type
-
-    @construction_type.setter
-    def construction_type(self, value):
-
-        self._construction_type = value
-        
-    @property
-    def use_conditions(self):
-        return self._use_conditions
-
-    @use_conditions.setter
-    def use_conditions(self, value):
-        ass_error_1 = "Use condition has to be an instance of UseConditions()"
-
-        assert type(value).__name__ == "UseConditions", ass_error_1
-
-        if value is not None:
-            self._use_conditions = value
-            self.typical_length = value.typical_length
-            self.typical_width = value.typical_width
-        self._use_conditions = value
-"""
 
     @property
     def parent(self):
@@ -1312,7 +1133,7 @@ class HeatSupplySystem(object):
     @design_temp_flow.setter
     def design_temp_flow(self, value):
 
-        if value in [70, 55, 35]:  # todo 90 integrieren, falls notwendig
+        if value in [70, 55, 35]:
             self._design_temp_flow = value
         else:
             raise ValueError("design_temp_flow no defined value")
