@@ -1,13 +1,13 @@
 # created November 2023
 # by Clara Schmitz (master thesis)
 
-"""This module includes a class for the primary energy calculation of the warm water system
+"""This module includes a class for the final energy calculation of the warm water system
 """
 import math
 
 
-class PEDemandWater(object):
-    """PEDemandWater class
+class FEDemandWater(object):
+    """FEDemandWater class
 
     This class holds information for the Heating System of the Building.
     The heat losses for the heating system are being set. This class does not affect
@@ -25,7 +25,7 @@ class PEDemandWater(object):
     """
 
     def __init__(self, parent=None):
-        """Constructor of PEDemandWater class
+        """Constructor of FEDemandWater class
         """
         self.parent = parent
 
@@ -101,12 +101,12 @@ class PEDemandWater(object):
                 # heated by electrical energy
                 standby_heat_loss_heating = 0.29 + 0.019 * vol_storage ** 0.8
 
-        elif self.parent.storage_water in ["water", "solar"]:
+        elif self.parent.storage:
             # water: iwu chapter 3.1, solar: iwu table 8
 
             vol_storage = -3.5 * 10 ** (-6) * self.parent.parent.net_leased_area ** 2 + \
                           0.35 * self.parent.parent.net_leased_area + 170
-            if self.parent.storage_water == "water":
+            if self.parent.storage == "water":
                 standby_heat_loss_heating = 0.2 + 0.19 * vol_storage ** 0.4
             else:
                 standby_heat_loss_heating = 0.3 + 0.2 * vol_storage ** 0.4
@@ -230,14 +230,14 @@ class PEDemandWater(object):
 
     def _calc_dissipation_storage_auxiliary_water(self):
 
-        if self.parent.storage_water:
+        if self.parent.storage:
 
-            if self.parent.storage_water == "water":
+            if self.parent.storage == "water":
                 # iwu formula 5-20 to 5-22
                 return (30 + 5 * self.parent.parent.net_leased_area / 100) * 1.2 * \
                        (12.5 * self.parent.parent.net_leased_area + self._calc_dissipation_distribution_water() +
                         self.calc_dissipation_storage_water()) / self.parent.nominal_heat_output_boiler / 1000
-            elif self.parent.storage_water == "solar":
+            else:
                 # iwu formula 5-25 and 5-26
                 return (20 + 5 * self.parent.parent.net_leased_area / 100) * 1750 / 1000
 
@@ -248,7 +248,7 @@ class PEDemandWater(object):
 
         auxiliary_energy_demand_solar = 0
         
-        if self.parent.storage_water == "solar":
+        if self.parent.storage == "solar":
             # DIN V 4701-10 table C.1-4e
             auxiliary_energy_demand_solar = 1
 
@@ -286,9 +286,9 @@ class PEDemandWater(object):
 
         return (auxiliary_energy_demand_solar + auxiliary_energy_demand_boiler) * self.parent.parent.net_leased_area
 
-    def calc_primary_energy_demand_water(self):
+    def calc_final_energy_demand_water(self):
 
-        # DIN V 18599-1 table A.1
+        """# DIN V 18599-1 table A.1
         if self.parent.heat_system in ["gas", "oil"]:
             primary_energy_factor = 1.1
         elif self.parent.heat_system == "electricity":
@@ -301,12 +301,12 @@ class PEDemandWater(object):
             else:
                 primary_energy_factor = 1.3
         else:
-            primary_energy_factor = 0.2
+            primary_energy_factor = 0.2"""
 
         part_solar = 0
 
         # PE for hot water
-        if self.parent.storage_water == "solar":
+        if self.parent.storage == "solar":
             # PEF solar = 0
             if type(self.parent).__name__ in ["MultiFamilyHouse", "ApartmentBlock"]:
                 # TABULA values
@@ -319,7 +319,7 @@ class PEDemandWater(object):
 
         if self.parent.heat_generation == "heatpump air":
             # TABULA values
-            if self.parent.storage_water == "solar":
+            if self.parent.storage == "solar":
                 part_generator_one = 1 - part_solar - 0.1
             else:
                 part_generator_one = 0.9
@@ -333,42 +333,39 @@ class PEDemandWater(object):
             self.parent.heat_generation = "condensing"
             self.parent.setting_derived_values()
 
-            generator_two = 0.1 * (self._dissipation_water() * 1.1 +
-                                   self._calc_dissipation_generation_auxiliary_water() * 1.8)
+            generator_two = 0.1 * (self._dissipation_water() + self._calc_dissipation_generation_auxiliary_water())
 
-            primary_energy_demand_water = generator_one * 1.8 + generator_two
+            final_energy_demand_water = generator_one + generator_two
 
         elif self.parent.heat_generation == "condensing - chp":
             # TABULA values
             # 0.58 % solar
-            generator_two = 0.05 * (self._dissipation_water() * 0.7 +
-                                    self._calc_dissipation_generation_auxiliary_water() * 1.8)
+            generator_two = 0.05 * (self._dissipation_water() + self._calc_dissipation_generation_auxiliary_water())
 
             # DIN V 4701-10 table C.3-4a
             self.parent.heat_system = "gas"
             self.parent.heat_generation = "condensing"
             self.parent.setting_derived_values()
 
-            generator_one = 0.37 * (self._dissipation_water() * 1.1 +
-                                    self._calc_dissipation_generation_auxiliary_water() * 1.8) \
-                            + (self._calc_dissipation_distribution_auxiliary_water()
-                            + self._calc_dissipation_storage_auxiliary_water()) * 1.8
+            generator_one = 0.37 * (self._dissipation_water() + self._calc_dissipation_generation_auxiliary_water()) \
+                            + self._calc_dissipation_distribution_auxiliary_water() \
+                            + self._calc_dissipation_storage_auxiliary_water()
 
-            primary_energy_demand_water = generator_two + generator_one
+            final_energy_demand_water = generator_two + generator_one
 
         else:
 
-            if self.parent.storage_water == "solar":
+            if self.parent.storage == "solar":
                 part_generator = 1 - part_solar
             else:
                 part_generator = 1
 
-            primary_energy_demand_water = part_generator * (self._dissipation_water() * primary_energy_factor +
-                                                          self._calc_dissipation_generation_auxiliary_water() * 1.8) \
-                                           + (self._calc_dissipation_distribution_auxiliary_water() +
-                                               self._calc_dissipation_storage_auxiliary_water()) * 1.8
+            final_energy_demand_water = part_generator * (self._dissipation_water() +
+                                                          self._calc_dissipation_generation_auxiliary_water()) \
+                                        + self._calc_dissipation_distribution_auxiliary_water() + \
+                                        self._calc_dissipation_storage_auxiliary_water()
 
-        return primary_energy_demand_water
+        return final_energy_demand_water
 
     @property
     def parent(self):

@@ -45,7 +45,7 @@ class HeatSupplySystem(object):
         # setting values for generation
         self._heat_system = None
         self._heat_generation = None
-        self._storage_water = None
+        self._storage = None
         self._combined_water_heating = True
         self._nominal_heat_output_boiler = None
         self._temp_ambient = 20
@@ -127,17 +127,17 @@ class HeatSupplySystem(object):
                     elif type_heat_supply_system == 2:
                         self._heat_system = "oil"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._heat_loss_distribution_heating = "minimised"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump air"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._heat_loss_distribution_heating = "good"
                     elif type_heat_supply_system == 4:
                         self._heat_system = "oil"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._heat_loss_distribution_heating = "minimised"
                     else:
                         raise ValueError(
@@ -152,20 +152,20 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._pipe_routing_heating = "centralised inside"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     elif type_heat_supply_system == 4:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -191,13 +191,13 @@ class HeatSupplySystem(object):
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "water"
+                        self._storage = "water"
                         self._pipe_routing_water = "centralised with circulation"
                         self._heat_loss_distribution_heating = "good"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump air"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._heat_loss_distribution_heating = "good"
                     else:
                         raise ValueError(
@@ -212,18 +212,18 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._pipe_routing_water = "centralised with circulation"
                         self._pipe_routing_heating = "centralised inside"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "water"
+                        self._storage = "water"
                         self._pipe_routing_water = "centralised with circulation"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump air"
-                        self._storage_water = "water"
+                        self._storage = "water"
                         self._pipe_routing_water = "centralised with circulation"
                     else:
                         raise ValueError(
@@ -238,16 +238,16 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._pipe_routing_heating = "centralised inside"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -270,18 +270,18 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._pipe_routing_water = "centralised with circulation"
                         self._pipe_routing_heating = "centralised inside"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "water"
+                        self._storage = "water"
                         self._pipe_routing_water = "centralised with circulation"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump air"
-                        self._storage_water = "water"
+                        self._storage = "water"
                         self._pipe_routing_water = "centralised with circulation"
                     else:
                         raise ValueError(
@@ -295,16 +295,16 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._pipe_routing_heating = "centralised inside"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground - no buffer storage"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -317,16 +317,16 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._pipe_routing_heating = "centralised inside"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground - no buffer storage"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -349,17 +349,17 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._pipe_routing_heating = "centralised inside"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "water"
+                        self._storage = "water"
                         self._pipe_routing_water = "centralised with circulation"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground - no buffer storage"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -372,16 +372,16 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._pipe_routing_heating = "centralised inside"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground - no buffer storage"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -394,16 +394,16 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._pipe_routing_heating = "centralised inside"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground - no buffer storage"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -428,7 +428,7 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "low temperature"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "oil"
                         self._heat_generation = "low temperature - not combined"
@@ -444,7 +444,7 @@ class HeatSupplySystem(object):
                     elif type_heat_supply_system == 6:
                         self._heat_system = "oil"
                         self._heat_generation = "low temperature"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -457,12 +457,12 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "water"
+                        self._storage = "water"
                         self._heat_loss_distribution_heating = "small"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "oil"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._heat_loss_distribution_heating = "minimised"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "gas"
@@ -479,7 +479,7 @@ class HeatSupplySystem(object):
                     elif type_heat_supply_system == 6:
                         self._heat_system = "oil"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._heat_loss_distribution_heating = "minimised"
                     else:
                         raise ValueError(
@@ -494,15 +494,15 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     elif type_heat_supply_system == 4:
                         self._heat_system = "district"
                         self._heat_generation = "biomass"
@@ -512,7 +512,7 @@ class HeatSupplySystem(object):
                     elif type_heat_supply_system == 6:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -535,15 +535,15 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump air"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -556,17 +556,17 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._heat_loss_distribution_heating = "minimised"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "water"
+                        self._storage = "water"
                         self._heat_loss_distribution_heating = "minimised"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump air"
-                        self._storage_water = "water"
+                        self._storage = "water"
                         self._heat_loss_distribution_heating = "small"
                     else:
                         raise ValueError(
@@ -581,15 +581,15 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -611,17 +611,17 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                         self._heat_loss_distribution_heating = "minimised"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "water"
+                        self._storage = "water"
                         self._heat_loss_distribution_heating = "minimised"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump air"
-                        self._storage_water = "water"
+                        self._storage = "water"
                         self._heat_loss_distribution_heating = "small"
                     else:
                         raise ValueError(
@@ -636,15 +636,15 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -658,15 +658,15 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing - chp"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "chp"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -689,15 +689,15 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -710,15 +710,15 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "woodpellets"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -731,15 +731,15 @@ class HeatSupplySystem(object):
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing - chp"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                     elif type_heat_supply_system == 2:
                         self._heat_system = "biomass"
                         self._heat_generation = "chp"
-                        self._storage_water = "solar"
+                        self._storage = "solar"
                     elif type_heat_supply_system == 3:
                         self._heat_system = "electricity"
                         self._heat_generation = "heatpump ground"
-                        self._storage_water = "water"
+                        self._storage = "water"
                     else:
                         raise ValueError(
                             "type_heat_supply_system has to be a number between"
@@ -1004,15 +1004,15 @@ class HeatSupplySystem(object):
 
     @property
     def storage_water(self):
-        return self._storage_water
+        return self._storage
 
     @storage_water.setter
     def storage_water(self, value):
 
         if value in ["water", "solar"]:
-            self._storage_water = value
+            self._storage = value
         elif value is None:
-            self._storage_water = value
+            self._storage = value
         else:
             raise ValueError("storage_water no defined value")
 

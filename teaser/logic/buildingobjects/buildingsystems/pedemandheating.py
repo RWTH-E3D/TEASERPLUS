@@ -1,19 +1,19 @@
 # created November 2023
 # by Clara Schmitz (master thesis)
 
-"""This module includes a class for the Primary Energy Calculation of the Heating System
+"""This module includes a class for the Final Energy Calculation of the Heating System
 """
 import math
-from teaser.teaser.logic.buildingobjects.buildingsystems.pedemandwater import PEDemandWater
+from teaser.teaser.logic.buildingobjects.buildingsystems.fedemandwater import FEDemandWater
 
 
-class PEDemandHeating(object):
-    """PEDemandHeating class
+class FEDemandHeating(object):
+    """FEDemandHeating class
 
     This class holds information for the Heating System of the Building.
     The heat losses for the heating system are being set. This class does not affect
     the calculation in Dymola. It uses the calculated heat load and adds
-    heat losses for heating to calculate the primary energy demand.
+    heat losses for heating to calculate the final energy demand.
 
     Parameters
         ----------
@@ -26,7 +26,7 @@ class PEDemandHeating(object):
     """
 
     def __init__(self, parent=None):
-        """Constructor of PEDemandHeating class
+        """Constructor of FEDemandHeating class
         """
         self.parent = parent
         
@@ -106,7 +106,7 @@ class PEDemandHeating(object):
 
     def _calc_dissipation_storage_water_for_heating(self):
 
-        dissipation_storage_water = PEDemandWater.calc_dissipation_storage_water()
+        dissipation_storage_water = FEDemandWater.calc_dissipation_storage_water()
 
         # DIN V 4701-10 table C.1-3a
         if self.parent.pipe_routing_heating == "centralised inside":
@@ -401,23 +401,22 @@ class PEDemandHeating(object):
                 # iwu formula 5-7
                 nominal_power_consumption_boiler = 20 + 0.85 * self.parent.parent.simulated_heat_load
 
-        elif self.parent.heat_generation in ["heatpump ground", "heatpump ground - no buffer storage"]:
+        elif "heatpump ground" in self.parent.heat_generation:
             # DIN V 4701-10 table C3-4c
             auxiliary_energy_demand_boiler = 1.9 * self.parent.parent.net_leased_area ** (-0.1)
 
-        else:
-            auxiliary_energy_demand_boiler = 0
-
         if auxiliary_energy_demand_boiler is None:
             # DIN V 4701-10 formula 5.3.4.2-9 and 5.3.4.2-7
-            auxiliary_energy_demand_boiler = (self.parent.parent.simulated_heat_load / self.parent.nominal_heat_output_boiler) * \
-                                             self.parent.annual_operating_time_heating * 24 * nominal_power_consumption_boiler
+            auxiliary_energy_demand_boiler = (self.parent.parent.simulated_heat_load /
+                                              self.parent.nominal_heat_output_boiler) * \
+                                             self.parent.annual_operating_time_heating * 24 * \
+                                             nominal_power_consumption_boiler
 
         return auxiliary_energy_demand_boiler
 
-    def calc_primary_energy_demand_heating(self):
+    def calc_final_energy_demand_heating(self):
 
-        # DIN V 18599-1 table A.1
+        """# DIN V 18599-1 table A.1
         if self.parent.heat_system in ["gas", "oil"]:
             primary_energy_factor = 1.1
         elif self.parent.heat_system == "electricity":
@@ -430,7 +429,7 @@ class PEDemandHeating(object):
             else:
                 primary_energy_factor = 1.3
         else:
-            primary_energy_factor = 0.2
+            primary_energy_factor = 0.2"""
 
         # PE for heating
         if self.parent.heat_generation == "heatpump air":
@@ -444,35 +443,34 @@ class PEDemandHeating(object):
             self.parent.heat_generation = "condensing"
             self.parent.setting_derived_values()
 
-            generator_two = 0.2 * (self._dissipation_heating() * 1.1 +
-                                   self._calc_dissipation_generation_auxiliary_heating() * 1.8)
+            generator_two = 0.2 * (self._dissipation_heating() + self._calc_dissipation_generation_auxiliary_heating())
 
-            primary_energy_demand_heating = generator_one * 1.8 + generator_two  # multiplied with PEF
+            final_energy_demand_heating = generator_one + generator_two
 
         elif self.parent.heat_generation == "condensing - chp":
             # 0.53  natural gas, condensing, 0.47 chp
-            generator_two = 0.47 * (self._dissipation_heating() * 0.7 +
-                                    self._calc_dissipation_generation_auxiliary_heating() * 1.8)
+            generator_two = 0.47 * (self._dissipation_heating() +
+                                    self._calc_dissipation_generation_auxiliary_heating())
 
             # DIN V 4701-10 table C.3-4a
             self.parent.heat_system = "gas"
             self.parent.heat_generation = "condensing"
             self.parent.setting_derived_values()
 
-            generator_one = 0.53 * (self._dissipation_heating() * 1.1 +
-                                    self._calc_dissipation_generation_auxiliary_heating() * 1.8) + \
-                            (self._calc_dissipation_distribution_auxiliary_heating() +
-                             self._calc_dissipation_storage_auxiliary_heating()) * 1.8
+            generator_one = 0.53 * (self._dissipation_heating() +
+                                    self._calc_dissipation_generation_auxiliary_heating()) + \
+                            self._calc_dissipation_distribution_auxiliary_heating() + \
+                            self._calc_dissipation_storage_auxiliary_heating()
 
-            primary_energy_demand_heating = generator_two + generator_one
+            final_energy_demand_heating = generator_two + generator_one
 
         else:
-            primary_energy_demand_heating = self._dissipation_heating() * primary_energy_factor + \
-                                            (self._calc_dissipation_generation_auxiliary_heating() +
-                                             self._calc_dissipation_distribution_auxiliary_heating() +
-                                             self._calc_dissipation_storage_auxiliary_heating()) * 1.8
+            final_energy_demand_heating = self._dissipation_heating() + \
+                                          self._calc_dissipation_generation_auxiliary_heating() + \
+                                          self._calc_dissipation_distribution_auxiliary_heating() + \
+                                          self._calc_dissipation_storage_auxiliary_heating()
 
-        return primary_energy_demand_heating
+        return final_energy_demand_heating
 
     @property
     def parent(self):
