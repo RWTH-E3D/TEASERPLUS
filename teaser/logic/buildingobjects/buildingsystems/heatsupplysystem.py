@@ -437,7 +437,7 @@ class HeatSupplySystem(object):
                         self._heat_generation = "night storage"
                     elif type_heat_supply_system == 4:
                         self._heat_system = "district"
-                        self._heat_generation = "gas - no chp"
+                        self._heat_generation = "district"
                     elif type_heat_supply_system == 5:
                         self._heat_system = "gas"
                         self._heat_generation = "circulating water heater"
@@ -470,7 +470,7 @@ class HeatSupplySystem(object):
                         self._heat_loss_distribution_heating = "small"
                     elif type_heat_supply_system == 4:
                         self._heat_system = "district"
-                        self._heat_generation = "gas - high chp"
+                        self._heat_generation = "district"
                         self._heat_loss_distribution_heating = "small"
                     elif type_heat_supply_system == 5:
                         self._heat_system = "gas"
@@ -505,7 +505,7 @@ class HeatSupplySystem(object):
                         self._storage = "water"
                     elif type_heat_supply_system == 4:
                         self._heat_system = "district"
-                        self._heat_generation = "biomass"
+                        self._heat_generation = "district"
                     elif type_heat_supply_system == 5:
                         self._heat_system = "gas"
                         self._heat_generation = "condensing - decentralised"
@@ -996,8 +996,7 @@ class HeatSupplySystem(object):
 
         if value in ["low temperature", "condensing", "condensing - decentralised", "condensing - chp",
                      "circulating water heater", "low temperature - not combined", "night storage", "heatpump air",
-                     "heatpump ground", "heatpump ground - no buffer storage", "woodpellets", "chp", "gas - no chp",
-                     "gas - high chp", "biomass"]:
+                     "heatpump ground", "heatpump ground - no buffer storage", "woodpellets", "chp", "district"]:
             self._heat_generation = value
         else:
             raise ValueError("heat_generation no defined value")

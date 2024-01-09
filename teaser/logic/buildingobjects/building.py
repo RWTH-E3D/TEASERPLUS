@@ -12,6 +12,7 @@ from teaser.teaser.logic.buildingobjects.calculation.aixlib import AixLib
 from teaser.teaser.logic.buildingobjects.calculation.ibpsa import IBPSA
 
 from teaser.teaser.logic.buildingobjects.buildingsystems.buildingahu import BuildingAHU
+from teco.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
 
 
 class Building(object):
@@ -577,7 +578,7 @@ class Building(object):
         for zone in self.thermal_zones:
             zone.retrofit_zone(type_of_retrofit, window_type, material)
 
-        self.heat_supply_system.retrofit_heat_supply_system(year_of_retrofit, type_of_retrofit, type_heat_supply_system)
+        HeatSupplySystem.retrofit_heat_supply_system(year_of_retrofit, type_of_retrofit, type_heat_supply_system)
 
         self.calc_building_parameter(
             number_of_elements=self.number_of_elements_calc,
@@ -638,7 +639,7 @@ class Building(object):
 
         self._thermal_zones.append(thermal_zone)
 
-    def set_heat_supply_system(self, heat_supply_system):
+    def set_heat_supply_system(self):
         """Adds a heat supply system to the building
 
                 This function adds a HeatSupplySystem instance to the building
@@ -649,14 +650,7 @@ class Building(object):
                     HeatSupplySystem() instance of TEASER
                 """
 
-        ass_error_1 = "System has to be an instance of HeatSupplySystem()"
-
-        assert type(heat_supply_system).__name__ == "HeatSupplySystem", ass_error_1
-
-        if self.type_heat_supply_system:
-            heat_supply_system.setting_values(self.type_heat_supply_system)
-        else:
-            heat_supply_system.setting_values()
+        HeatSupplySystem.setting_values(self.type_heat_supply_system)
 
     @property
     def parent(self):

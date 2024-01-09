@@ -12,6 +12,7 @@ from teaser.teaser.logic.buildingobjects.buildingphysics.rooftop import Rooftop
 from teaser.teaser.logic.buildingobjects.buildingphysics.window import Window
 from teaser.teaser.logic.buildingobjects.buildingphysics.door import Door
 from teaser.teaser.logic.buildingobjects.thermalzone import ThermalZone
+from teaser.teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
 
 
 class SingleFamilyHouse(Residential):
@@ -109,6 +110,7 @@ class SingleFamilyHouse(Residential):
         with_ahu=False,
         internal_gains_mode=1,
         construction_type=None,
+        type_heat_supply_system=None
     ):
 
         super(SingleFamilyHouse, self).__init__(
@@ -123,6 +125,7 @@ class SingleFamilyHouse(Residential):
         self.construction_type = construction_type
         self.number_of_floors = number_of_floors
         self.height_of_floors = height_of_floors
+        self.type_heat_supply_system = type_heat_supply_system
 
         self._construction_type_1 = self.construction_type + "_1_SFH"
         self._construction_type_2 = self.construction_type + "_2_SFH"
@@ -570,6 +573,8 @@ class SingleFamilyHouse(Residential):
             zone.set_inner_wall_area()
             zone.set_volume_zone()
 
+        HeatSupplySystem.setting_values(self.type_heat_supply_system)
+
     def generate_from_gml(self):
         """Enriches lod1 or lod2 data from CityGML
 
@@ -810,6 +815,7 @@ class SingleFamilyHouse(Residential):
         else:
             for zone in self.thermal_zones:
                 zone.set_volume_zone()
+        HeatSupplySystem.setting_values(self.type_heat_supply_system)
 
     @property
     def construction_type(self):

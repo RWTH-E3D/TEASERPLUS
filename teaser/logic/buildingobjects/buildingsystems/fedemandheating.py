@@ -422,12 +422,7 @@ class FEDemandHeating(object):
         elif self.parent.heat_system == "electricity":
             primary_energy_factor = 1.8
         elif self.parent.heat_system == "district":
-            if self.parent.heat_generation == "gas - high chp":
-                primary_energy_factor = 0.7
-            elif self.parent.heat_generation == "biomass":
-                primary_energy_factor = 0
-            else:
-                primary_energy_factor = 1.3
+            primary_energy_factor = 0.7
         else:
             primary_energy_factor = 0.2"""
 

@@ -80,7 +80,8 @@ class ApartmentBlock(SingleFamilyHouse):
             net_leased_area=None,
             with_ahu=False,
             internal_gains_mode=1,
-            construction_type=None):
+            construction_type=None,
+            type_heat_supply_system=None):
 
         super(ApartmentBlock, self).__init__(
             parent,
@@ -96,6 +97,7 @@ class ApartmentBlock(SingleFamilyHouse):
         self.construction_type = construction_type
         self.number_of_floors = number_of_floors
         self.height_of_floors = height_of_floors
+        self.type_heat_supply_system = type_heat_supply_system
 
         self._construction_type_1 = self.construction_type + '_1_AB'
         self._construction_type_2 = self.construction_type + '_2_AB'

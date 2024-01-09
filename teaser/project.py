@@ -47,6 +47,7 @@ from teaser.teaser.logic.simulation.modelicainfo import ModelicaInfo
 import teaser.teaser.data.output.citygml_output as citygml_out
 import teaser.teaser.data.input.citygml_input as citygml_in
 import teaser.teaser.data.input.energyade_input as energyade_in
+from teaser.teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
 
 
 class Project(object):
@@ -189,6 +190,7 @@ class Project(object):
         type_of_retrofit=None,
         window_type=None,
         material=None,
+        type_heat_supply_system=None
     ):
         """Retrofits all buildings in the project.
 
@@ -230,6 +232,8 @@ class Project(object):
             Default: EnEv 2014, only 'iwu'/'bmbvs' archetype approach.
         material : str
             Default: EPS035, only 'iwu'/'bmbvs' archetype approach.
+        type_heat_supply_system : int
+            Default 1 for buildings younger than 2016, else 3.
 
         """
         ass_error_type = "only 'retrofit' and 'adv_retrofit' are valid "
@@ -258,11 +262,13 @@ class Project(object):
                 )
             self.data = DataClass(used_statistic="tabula_de")
             for bld_tabula in tabula_buildings:
-                bld_tabula.retrofit_building(type_of_retrofit=type_of_retrofit)
+                bld_tabula.retrofit_building(type_of_retrofit=type_of_retrofit,
+                                             type_heat_supply_system=type_heat_supply_system)
 
         else:
             for bld_tabula in tabula_buildings:
-                bld_tabula.retrofit_building(type_of_retrofit=type_of_retrofit)
+                bld_tabula.retrofit_building(type_of_retrofit=type_of_retrofit,
+                                             type_heat_supply_system=type_heat_supply_system)
             self.data = DataClass(used_statistic="iwu")
             for bld_iwu in iwu_buildings:
                 bld_iwu.retrofit_building(
@@ -472,6 +478,7 @@ internal_gains_mode: int [1, 2, 3]
         dormer=None,
         construction_type=None,
         number_of_apartments=None,
+        type_heat_supply_system=None
     ):
         """Add a residential building to the TEASER project.
 
@@ -567,6 +574,9 @@ internal_gains_mode: int [1, 2, 3]
         number_of_apartments : int
             number of apartments inside Building (default = 1). CAUTION only
             used for urbanrenet
+        type_heat_supply_system : int
+            Type of the Heat System
+            Default 1 for buildings younger than 2016, else 3.
 
         Returns
         ----------
@@ -628,6 +638,7 @@ internal_gains_mode: int [1, 2, 3]
                     with_ahu,
                     internal_gains_mode,
                     construction_type,
+                    type_heat_supply_system
                 )
                 type_bldg.generate_archetype()
                 return type_bldg
@@ -1270,6 +1281,7 @@ internal_gains_mode: int [1, 2, 3]
         self._number_of_elements_calc = 2
         self._merge_windows_calc = False
         self._used_library_calc = "AixLib"
+        HeatSupplySystem.setting_values(type_heat_supply_system=None)
 
     @property
     def weather_file_path(self):
