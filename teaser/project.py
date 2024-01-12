@@ -47,7 +47,6 @@ from teaser.teaser.logic.simulation.modelicainfo import ModelicaInfo
 import teaser.teaser.data.output.citygml_output as citygml_out
 import teaser.teaser.data.input.citygml_input as citygml_in
 import teaser.teaser.data.input.energyade_input as energyade_in
-from teaser.teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
 
 
 class Project(object):
@@ -469,6 +468,7 @@ internal_gains_mode: int [1, 2, 3]
         number_of_floors,
         height_of_floors,
         net_leased_area,
+        type_heat_supply_system,
         with_ahu=False,
         internal_gains_mode=1,
         residential_layout=None,
@@ -477,8 +477,7 @@ internal_gains_mode: int [1, 2, 3]
         cellar=None,
         dormer=None,
         construction_type=None,
-        number_of_apartments=None,
-        type_heat_supply_system=None
+        number_of_apartments=None
     ):
         """Add a residential building to the TEASER project.
 
@@ -635,10 +634,10 @@ internal_gains_mode: int [1, 2, 3]
                     number_of_floors,
                     height_of_floors,
                     net_leased_area,
+                    type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
-                    construction_type,
-                    type_heat_supply_system
+                    construction_type
                 )
                 type_bldg.generate_archetype()
                 return type_bldg
@@ -652,9 +651,10 @@ internal_gains_mode: int [1, 2, 3]
                     number_of_floors,
                     height_of_floors,
                     net_leased_area,
+                    type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
-                    construction_type,
+                    construction_type
                 )
                 type_bldg.generate_archetype()
                 return type_bldg
@@ -668,9 +668,10 @@ internal_gains_mode: int [1, 2, 3]
                     number_of_floors,
                     height_of_floors,
                     net_leased_area,
+                    type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
-                    construction_type,
+                    construction_type
                 )
                 type_bldg.generate_archetype()
                 return type_bldg
@@ -684,9 +685,10 @@ internal_gains_mode: int [1, 2, 3]
                     number_of_floors,
                     height_of_floors,
                     net_leased_area,
+                    type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
-                    construction_type,
+                    construction_type
                 )
 
                 type_bldg.generate_archetype()
@@ -717,9 +719,10 @@ internal_gains_mode: int [1, 2, 3]
                     number_of_floors,
                     height_of_floors,
                     net_leased_area,
+                    type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
-                    construction_type,
+                    construction_type
                 )
                 type_bldg.generate_archetype()
                 return type_bldg
@@ -733,9 +736,10 @@ internal_gains_mode: int [1, 2, 3]
                     number_of_floors,
                     height_of_floors,
                     net_leased_area,
+                    type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
-                    construction_type,
+                    construction_type
                 )
                 type_bldg.generate_archetype()
                 return type_bldg
@@ -749,9 +753,10 @@ internal_gains_mode: int [1, 2, 3]
                     number_of_floors,
                     height_of_floors,
                     net_leased_area,
+                    type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
-                    construction_type,
+                    construction_type
                 )
                 type_bldg.generate_archetype()
                 return type_bldg
@@ -1281,7 +1286,6 @@ internal_gains_mode: int [1, 2, 3]
         self._number_of_elements_calc = 2
         self._merge_windows_calc = False
         self._used_library_calc = "AixLib"
-        HeatSupplySystem.setting_values(type_heat_supply_system=None)
 
     @property
     def weather_file_path(self):

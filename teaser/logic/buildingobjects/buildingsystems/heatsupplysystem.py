@@ -4,11 +4,6 @@
 """This module includes a class for the Heat Supply System
 """
 
-from teaser.teaser.logic.archetypebuildings.tabula.de.singlefamilyhouse import SingleFamilyHouse as Sfh
-from teaser.teaser.logic.archetypebuildings.tabula.de.multifamilyhouse import MultiFamilyHouse as Mfh
-from teaser.teaser.logic.archetypebuildings.tabula.de.terracedhouse import TerracedHouse as Th
-from teaser.teaser.logic.archetypebuildings.tabula.de.apartmentblock import ApartmentBlock as Ab
-
 
 class HeatSupplySystem(object):
 
@@ -31,20 +26,34 @@ class HeatSupplySystem(object):
         """Constructor of HeatSupplySystem class
         """
         self.parent = parent
-        self._year_of_retrofit = self.parent.year_of_retrofit
-        self._type_of_retrofit = None
-        if "adv_retrofit" in [Sfh.construction_type, Th.construction_type, Mfh.construction_type, Ab.construction_type]:
-            self._type_of_retrofit = "adv_retrofit"
-        elif "retrofit" in [Sfh.construction_type, Th.construction_type, Mfh.construction_type, Ab.construction_type]:
-            self._type_of_retrofit = "retrofit"
-        else:
-            self._type_of_retrofit = "standard"
 
-        self._length_char = self.parent.get_footprint_gml() / 10  # iwu chapter 4.4.1
+        self._building_type = None
+
+        if type(self.parent).__name__:
+            if any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for
+                   substring in ["singlefamily", "terraced"]):
+                self._building_type = "sfh"
+            elif any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for
+                   substring in ["multifamily", "apartment"]):
+                self._building_type = "mfh"
+        else:
+            if self.parent.net_leased_area / 100 <= 2:
+                self._building_type = "sfh"
+            else:
+                self._building_type = "mfh"
+            
+        if self.parent.year_of_retrofit is None:
+            self._year_of_retrofit = 1
+        else:
+            self._year_of_retrofit = self.parent.year_of_retrofit
+
+        self._length_char = 20
+        # todo self._length_char = self.parent.get_footprint_gml() / 10  # iwu chapter 4.4.1
 
         # setting values for generation
         self._heat_system = None
         self._heat_generation = None
+        self._heat_supply_type = None
         self._storage = None
         self._combined_water_heating = True
         self._nominal_heat_output_boiler = None
@@ -58,13 +67,18 @@ class HeatSupplySystem(object):
         self._design_temp_flow = None
         self._avg_temp_distribution_water = None
         self._avg_temp_distribution_heating = None
-        self._oversizing_factor = 1.2  # standard for existing buildings (iwu)
-        if self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016:
-            self._oversizing_factor = 1
+        self._oversizing_factor = None
+
+        if (self.parent.year_of_construction is not None and self._year_of_retrofit is not None and
+                (self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016)):
+            self._oversizing_factor = 1  # standard for new buildings (iwu)
+        else:
+            self._oversizing_factor = 1.2  # standard for existing buildings (iwu)
+
         self._heat_loss_distribution_heating = None
         self._daily_operating_time_pump = None
 
-    def setting_values(self, type_heat_supply_system=None):
+    def setting_values(self, type_heat_supply_system=None, type_of_retrofit=None):
         """
         Setting values from TABULA-DE for heating and warm water systems.
         Depending on the type and year of construction and type of retrofit.
@@ -82,17 +96,29 @@ class HeatSupplySystem(object):
             Default one (gas) for existing buildings and 3 (electricity)
             for new buildings
         """
-        if type_heat_supply_system in None:
-            if self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016:
-                type_heat_supply_system = 3  # DENA report 2023 Abb. 41
+        if type_heat_supply_system is None:
+            if self._heat_supply_type is None:
+                if self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016:
+                    type_heat_supply_system = 3  # DENA report 2023 Abb. 41
+                else:
+                    type_heat_supply_system = 1  # DENA report 2023 Abb. 31
             else:
-                type_heat_supply_system = 1  # DENA report 2023 Abb. 31
-        
-        if type(self.parent).__name__ in ["SingleFamilyHouse", "TerracedHouse"]:
+                type_heat_supply_system = self._heat_supply_type
+
+        if type_of_retrofit is not None and "adv_retrofit" in type_of_retrofit:
+            retrofit_type = "adv_retrofit"
+        elif type_of_retrofit is not None and "retrofit" in type_of_retrofit:
+            retrofit_type = "retrofit"
+        else:
+            retrofit_type = "standard"
+
+        if self._building_type == "sfh":
+        #if any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for substring
+               # in ["singlefamily", "terraced"]):
 
             if self.parent.year_of_construction <= 1994:
 
-                if self._type_of_retrofit == "standard":
+                if retrofit_type == "standard":
 
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
@@ -118,7 +144,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "retrofit":
+                elif retrofit_type == "retrofit":
 
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
@@ -146,7 +172,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "adv_retrofit":
+                elif retrofit_type == "adv_retrofit":
 
                     self._heat_loss_distribution_heating = "minimised"
                     if type_heat_supply_system == 1:
@@ -182,7 +208,7 @@ class HeatSupplySystem(object):
 
             elif self.parent.year_of_construction <= 2009:
 
-                if self._type_of_retrofit == "standard":
+                if retrofit_type == "standard":
 
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
@@ -206,7 +232,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "retrofit":
+                elif retrofit_type == "retrofit":
 
                     self._heat_loss_distribution_heating = "minimised"
                     if type_heat_supply_system == 1:
@@ -232,7 +258,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "adv_retrofit":
+                elif retrofit_type == "adv_retrofit":
 
                     self._heat_loss_distribution_heating = "minimised"
                     if type_heat_supply_system == 1:
@@ -265,7 +291,7 @@ class HeatSupplySystem(object):
             elif self.parent.year_of_construction <= 2015:
 
                 self._heat_loss_distribution_heating = "minimised"
-                if self._type_of_retrofit == "standard":
+                if retrofit_type == "standard":
 
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
@@ -290,7 +316,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "retrofit":
+                elif retrofit_type == "retrofit":
 
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
@@ -312,7 +338,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "adv_retrofit":
+                elif retrofit_type == "adv_retrofit":
 
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
@@ -344,7 +370,7 @@ class HeatSupplySystem(object):
             else:
 
                 self._heat_loss_distribution_heating = "minimised"
-                if self._type_of_retrofit == "standard":
+                if retrofit_type == "standard":
 
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
@@ -367,7 +393,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "retrofit":
+                elif retrofit_type == "retrofit":
 
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
@@ -389,7 +415,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "adv_retrofit":
+                elif retrofit_type == "adv_retrofit":
 
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
@@ -418,11 +444,11 @@ class HeatSupplySystem(object):
                         "tabula_adv_retrofit"
                     )
 
-        elif type(self.parent).__name__ in ["MultiFamilyHouse", "ApartmentBlock"]:
+        elif self._building_type == "mfh":
 
             if self.parent.year_of_construction <= 1994:
 
-                if self._type_of_retrofit == "standard":
+                if retrofit_type == "standard":
 
                     self._heat_loss_distribution_heating = "high"
                     if type_heat_supply_system == 1:
@@ -452,7 +478,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "retrofit":
+                elif retrofit_type == "retrofit":
 
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
@@ -488,7 +514,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "adv_retrofit":
+                elif retrofit_type == "adv_retrofit":
 
                     self._heat_loss_distribution_heating = "small"
                     if type_heat_supply_system == 1:
@@ -529,7 +555,7 @@ class HeatSupplySystem(object):
 
             elif self.parent.year_of_construction <= 2009:
 
-                if self._type_of_retrofit == "standard":
+                if retrofit_type == "standard":
 
                     self._heat_loss_distribution_heating = "small"
                     if type_heat_supply_system == 1:
@@ -551,7 +577,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "retrofit":
+                elif retrofit_type == "retrofit":
 
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
@@ -575,7 +601,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "adv_retrofit":
+                elif retrofit_type == "adv_retrofit":
 
                     self._heat_loss_distribution_heating = "minimised"
                     if type_heat_supply_system == 1:
@@ -606,7 +632,7 @@ class HeatSupplySystem(object):
 
             elif self.parent.year_of_construction <= 2015:
 
-                if self._type_of_retrofit == "standard":
+                if retrofit_type == "standard":
 
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
@@ -630,7 +656,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "retrofit":
+                elif retrofit_type == "retrofit":
 
                     self._heat_loss_distribution_heating = "minimised"
                     if type_heat_supply_system == 1:
@@ -652,7 +678,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "adv_retrofit":
+                elif retrofit_type == "adv_retrofit":
 
                     self._heat_loss_distribution_heating = "minimised"
                     if type_heat_supply_system == 1:
@@ -684,7 +710,7 @@ class HeatSupplySystem(object):
             else:
 
                 self._heat_loss_distribution_heating = "minimised"
-                if self._type_of_retrofit == "standard":
+                if retrofit_type == "standard":
 
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
@@ -705,7 +731,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "retrofit":
+                elif retrofit_type == "retrofit":
 
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
@@ -726,7 +752,7 @@ class HeatSupplySystem(object):
                             "for MFH and AB older than 1995 1 to 6 is possible."
                         )
 
-                elif self._type_of_retrofit == "adv_retrofit":
+                elif retrofit_type == "adv_retrofit":
 
                     if type_heat_supply_system == 1:
                         self._heat_system = "gas"
@@ -753,6 +779,8 @@ class HeatSupplySystem(object):
                         "tabula_retrofit, "
                         "tabula_adv_retrofit"
                     )
+        else:
+            print("No heat supply system added due to missing building type!")
 
         if self._heat_generation in ["night storage", "low temperature - not combined"]:
             self._combined_water_heating = False
@@ -765,12 +793,16 @@ class HeatSupplySystem(object):
             else:
                 self._pipe_routing_heating = "centralised outside"
 
-        if type(self.parent).__name__ in ["SingleFamilyHouse", "TerracedHouse"] and self._pipe_routing_water is None:
+        # if any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for
+                 # substring in ["singleFamily", "terraced"]) and self._pipe_routing_water is None:
+        if self.parent.net_leased_area / 100 <= 2 and self._pipe_routing_water is None:
             if self._pipe_routing_heating == "decentralised" or self._combined_water_heating is False:
                 self._pipe_routing_water = "decentralised"
             else:
                 self._pipe_routing_water = "centralised without circulation"
-        elif type(self.parent).__name__ in ["MultiFamilyHouse", "ApartmentBlock"]:
+        # elif any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for
+        # substring in ["multiFamily", "apartment"]):
+        else:
             if self._pipe_routing_heating == "decentralised" or self._combined_water_heating is False:
                 self._pipe_routing_water = "decentralised"
             else:
@@ -794,11 +826,17 @@ class HeatSupplySystem(object):
             self._daily_operating_time_pump = 24
 
         # iwu formula 2-3, rounded to 5 [kW] # todo check, ob simulated_heat_load in kW
-        if (5 * round(self._oversizing_factor * self.parent.simulated_heat_load / 5)) < 15 or None:
-            self._nominal_heat_output_boiler = 15
+        if self.parent.simulated_heat_load:
+            if (5 * round(self._oversizing_factor * self.parent.simulated_heat_load / 5)) < 15 or None:
+                self._nominal_heat_output_boiler = 15
+            else:
+                self._nominal_heat_output_boiler = 5 * \
+                                                   round(self._oversizing_factor * self.parent.simulated_heat_load / 5)
         else:
-            self._nominal_heat_output_boiler = 5 * \
-                                               round(self._oversizing_factor * self.parent.simulated_heat_load / 5)
+            self.parent.simulated_heat_load = 100 * self.parent.net_leased_area #Altbau normale Dämmung
+            # todo self.parent.simulated_heat_load = 60 * self.parent.net_leased_area #Gebäude ab 1995
+            # todo self.parent.simulated_heat_load = 50 * self.parent.net_leased_area #Gebäude ab 2002
+
 
         # calculation of the average temperature of the water distribution
         # iwu chapter 1.2.2
@@ -868,7 +906,7 @@ class HeatSupplySystem(object):
                 elif self._oversizing_factor == 1.2:
                     self._avg_temp_distribution_heating = 29
 
-    def retrofit_heat_supply_system(self, year_of_retrofit, type_of_retrofit=None, type_heat_supply_system=None):
+    def retrofit_heat_supply_system(self, year_of_retrofit, type_heat_supply_system=None, type_of_retrofit=None):
         """Retrofits all parameters in the system.
 
         Function call for all elements facing the ambient or ground.
@@ -892,21 +930,27 @@ class HeatSupplySystem(object):
             raise ValueError("You are using a year of retrofit not supported\
                     by teaser. We will change your year of retrofit to 1995\
                     for the calculation. Be careful!")
+        else:
+            self._year_of_retrofit = year_of_retrofit
 
-        self._type_of_retrofit = type_of_retrofit
+        if "adv_retrofit" in type_of_retrofit:
+            retrofit_type = "adv_retrofit"
 
-        if "adv_retrofit" in self._type_of_retrofit:
-
-            self._type_of_retrofit = "adv_retrofit"
             raise ValueError("already highest available standard of heat_supply_system")
 
-        elif "retrofit" in self._type_of_retrofit:
-            self._type_of_retrofit = "adv_retrofit"
+        elif "retrofit" in type_of_retrofit:
+            retrofit_type = "adv_retrofit"
 
         else:
-            self._type_of_retrofit = "retrofit"
+            retrofit_type = "retrofit"
 
-        self.setting_values(type_heat_supply_system)
+        if type_heat_supply_system in None:
+            if self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016:
+                type_heat_supply_system = 3  # DENA report 2023 Abb. 41
+            else:
+                type_heat_supply_system = 1  # DENA report 2023 Abb. 31
+
+        self.setting_values(type_heat_supply_system, retrofit_type)
 
     @property
     def parent(self):
@@ -914,11 +958,12 @@ class HeatSupplySystem(object):
 
     @parent.setter
     def parent(self, value):
-        from teco.logic.buildingobjects.building import Building
+        from teaser.teaser.logic.buildingobjects.building import Building
         import inspect
-        if inspect.isclass(Building):
-            self.__parent = value
-            self.__parent.building = self
+        if value is not None:
+            if inspect.isclass(Building):
+                self.__parent = value
+                self.__parent.heat_supply_system = self
 
     @property
     def length_char(self):
@@ -960,20 +1005,6 @@ class HeatSupplySystem(object):
                 self._year_of_retrofit = value
             else:
                 raise ValueError("Specify year of construction first")
-
-    @property
-    def type_of_retrofit(self):
-        return self._type_of_retrofit
-
-    @type_of_retrofit.setter
-    def type_of_retrofit(self, value):
-        if ["adv_retrofit", "retrofit", "standard", "tabula_adv_retrofit", "tabula_retrofit", "tabula_standard"] \
-                in value or value is None:
-            self._type_of_retrofit = value
-        else:
-            raise ValueError("You are using a type of retrofit not supported\
-                                by teaser. We will change your type of retrofit \
-                                to the next highest type. Be careful!")
 
     @property
     def heat_system(self):

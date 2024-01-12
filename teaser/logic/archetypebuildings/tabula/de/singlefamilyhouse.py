@@ -107,10 +107,10 @@ class SingleFamilyHouse(Residential):
         number_of_floors=None,
         height_of_floors=None,
         net_leased_area=None,
+        type_heat_supply_system=None,
         with_ahu=False,
         internal_gains_mode=1,
-        construction_type=None,
-        type_heat_supply_system=None
+        construction_type=None
     ):
 
         super(SingleFamilyHouse, self).__init__(
@@ -118,6 +118,7 @@ class SingleFamilyHouse(Residential):
             name,
             year_of_construction,
             net_leased_area,
+            type_heat_supply_system,
             with_ahu,
             internal_gains_mode
         )
@@ -125,7 +126,6 @@ class SingleFamilyHouse(Residential):
         self.construction_type = construction_type
         self.number_of_floors = number_of_floors
         self.height_of_floors = height_of_floors
-        self.type_heat_supply_system = type_heat_supply_system
 
         self._construction_type_1 = self.construction_type + "_1_SFH"
         self._construction_type_2 = self.construction_type + "_2_SFH"
@@ -359,6 +359,7 @@ class SingleFamilyHouse(Residential):
         # help area for the correct building area setting while using typeBldgs
         type_bldg_area = self.net_leased_area
         self.net_leased_area = 0.0
+        heatsupplysystem = HeatSupplySystem(parent=self)
 
         for key, value in self.zone_area_factors.items():
             zone = ThermalZone(parent=self)
@@ -573,7 +574,15 @@ class SingleFamilyHouse(Residential):
             zone.set_inner_wall_area()
             zone.set_volume_zone()
 
-        HeatSupplySystem.setting_values(self.type_heat_supply_system)
+        heatsupplysystem.setting_values(self.type_heat_supply_system, self.construction_type)
+        print(heatsupplysystem.parent.year_of_construction)
+        print(heatsupplysystem.year_of_retrofit)
+        print(heatsupplysystem._oversizing_factor)
+        print(heatsupplysystem.heat_generation)
+        print(heatsupplysystem.heat_system)
+        print(heatsupplysystem.pipe_routing_water)
+        print(heatsupplysystem._heat_loss_distribution_heating)
+        print(heatsupplysystem._design_temp_flow)
 
     def generate_from_gml(self):
         """Enriches lod1 or lod2 data from CityGML
@@ -815,7 +824,8 @@ class SingleFamilyHouse(Residential):
         else:
             for zone in self.thermal_zones:
                 zone.set_volume_zone()
-        HeatSupplySystem.setting_values(self.type_heat_supply_system)
+
+        HeatSupplySystem.setting_values(self.type_heat_supply_system, self.construction_type)
 
     @property
     def construction_type(self):

@@ -12,8 +12,6 @@ from teaser.teaser.logic.buildingobjects.calculation.aixlib import AixLib
 from teaser.teaser.logic.buildingobjects.calculation.ibpsa import IBPSA
 
 from teaser.teaser.logic.buildingobjects.buildingsystems.buildingahu import BuildingAHU
-from teco.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
-
 
 class Building(object):
     """Building Class
@@ -88,6 +86,8 @@ class Building(object):
     outer_area : dict [degree: m2]
         Dictionary with orientation as key and sum of outer wall areas of
         that direction as value.
+    heat_supply_system : HeatSupplySystem()
+        Holds the HeatSupplySytsem of the Building
     window_area : dict [degree: m2]
         Dictionary with orientation as key and sum of window areas of
         that direction as value.
@@ -129,9 +129,9 @@ class Building(object):
         name=None,
         year_of_construction=None,
         net_leased_area=None,
+        type_heat_supply_system=None,
         with_ahu=False,
-        internal_gains_mode=1,
-        type_heat_supply_system=None
+        internal_gains_mode=1
     ):
         """Constructor of Building Class
         """
@@ -140,19 +140,20 @@ class Building(object):
         self.name = name
         self.year_of_construction = year_of_construction
         self.net_leased_area = net_leased_area
-        self._with_ahu = with_ahu
         self.type_heat_supply_system = type_heat_supply_system
+        self._with_ahu = with_ahu
+        self.internal_gains_mode = internal_gains_mode
 
         if with_ahu is True:
             self.central_ahu = BuildingAHU(self)
         else:
             self._central_ahu = None
 
-        self.internal_gains_mode = internal_gains_mode
         self.number_of_floors = None
         self.height_of_floors = None
         self.internal_id = uuid.uuid1()
         self._year_of_retrofit = None
+        self._type_of_retrofit = None
         self.type_of_building = type(self).__name__
         self.building_id = None
         self.street_name = ""
@@ -164,6 +165,7 @@ class Building(object):
         self._thermal_zones = []
         self._outer_area = {}
         self._window_area = {}
+        self._heat_supply_system = None
 
         self.bldg_height = None
         self.volume = 0
@@ -578,13 +580,16 @@ class Building(object):
         for zone in self.thermal_zones:
             zone.retrofit_zone(type_of_retrofit, window_type, material)
 
-        HeatSupplySystem.retrofit_heat_supply_system(year_of_retrofit, type_of_retrofit, type_heat_supply_system)
+        self._heat_supply_system.retrofit_heat_supply_system(year_of_retrofit= year_of_retrofit,
+                                                             type_heat_supply_system=type_heat_supply_system,
+                                                             type_of_retrofit= type_of_retrofit)
 
         self.calc_building_parameter(
             number_of_elements=self.number_of_elements_calc,
             merge_windows=self.merge_windows_calc,
             used_library=self.used_library_calc,
         )
+        self._type_of_retrofit = type_of_retrofit
 
     def rotate_building(self, angle):
         """Rotates the building to a given angle
@@ -639,7 +644,7 @@ class Building(object):
 
         self._thermal_zones.append(thermal_zone)
 
-    def set_heat_supply_system(self):
+    def set_heat_supply_system(self, heat_supply_system):
         """Adds a heat supply system to the building
 
                 This function adds a HeatSupplySystem instance to the building
@@ -650,7 +655,11 @@ class Building(object):
                     HeatSupplySystem() instance of TEASER
                 """
 
-        HeatSupplySystem.setting_values(self.type_heat_supply_system)
+        ass_error_2 = "Heat supply system has to be an instance of HeatSupplySystem()"
+
+        assert type(heat_supply_system).__name__ == "HeatSupplySystem", ass_error_2
+
+        self._heat_supply_system = heat_supply_system
 
     @property
     def parent(self):

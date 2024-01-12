@@ -78,10 +78,10 @@ class TerracedHouse(SingleFamilyHouse):
             number_of_floors=None,
             height_of_floors=None,
             net_leased_area=None,
+            type_heat_supply_system=None,
             with_ahu=False,
             internal_gains_mode=1,
-            construction_type=None,
-            type_heat_supply_system=None):
+            construction_type=None):
 
         super(TerracedHouse, self).__init__(
             parent,
@@ -90,6 +90,7 @@ class TerracedHouse(SingleFamilyHouse):
             number_of_floors,
             height_of_floors,
             net_leased_area,
+            type_heat_supply_system,
             with_ahu,
             internal_gains_mode,
             construction_type)
@@ -97,7 +98,6 @@ class TerracedHouse(SingleFamilyHouse):
         self.construction_type = construction_type
         self.number_of_floors = number_of_floors
         self.height_of_floors = height_of_floors
-        self.type_heat_supply_system = type_heat_supply_system
 
         self._construction_type_1 = self.construction_type + '_1_TH'
         self._construction_type_2 = self.construction_type + '_2_TH'

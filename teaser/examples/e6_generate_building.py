@@ -40,7 +40,7 @@ def example_create_building():
     bldg.city = "46325FantasticTown"
     bldg.year_of_construction = 2015
     bldg.number_of_floors = 1
-    bldg.height_of_floors = 3.5
+    bldg.height_of_floors = 2.8
 
     # Instantiate a ThermalZone class and set the Building as a parent of it.
     # Set some parameters of the thermal zone. Be careful: Dymola does not
