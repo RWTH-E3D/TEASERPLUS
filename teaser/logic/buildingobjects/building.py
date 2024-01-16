@@ -12,6 +12,7 @@ from teaser.teaser.logic.buildingobjects.calculation.aixlib import AixLib
 from teaser.teaser.logic.buildingobjects.calculation.ibpsa import IBPSA
 
 from teaser.teaser.logic.buildingobjects.buildingsystems.buildingahu import BuildingAHU
+from teaser.teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
 
 class Building(object):
     """Building Class
@@ -165,7 +166,7 @@ class Building(object):
         self._thermal_zones = []
         self._outer_area = {}
         self._window_area = {}
-        self._heat_supply_system = None
+        self._heat_supply_system = HeatSupplySystem(parent=self)
 
         self.bldg_height = None
         self.volume = 0
@@ -545,12 +546,11 @@ class Building(object):
 
     def retrofit_building(
         self,
-        year_of_retrofit=None,
+        year_of_retrofit,
         type_of_retrofit=None,
         window_type=None,
         material=None,
-        type_heat_supply_system=None
-    ):
+        type_heat_supply_system=None):
         """Retrofits all zones in the building
 
         Function call for each zone.
@@ -574,22 +574,22 @@ class Building(object):
         #  design heat load calculation values (see #518)
         self.sum_heat_load = 0
 
-        if year_of_retrofit is not None:
-            self.year_of_retrofit = year_of_retrofit
+        self.year_of_retrofit = year_of_retrofit
 
         for zone in self.thermal_zones:
             zone.retrofit_zone(type_of_retrofit, window_type, material)
 
-        self._heat_supply_system.retrofit_heat_supply_system(year_of_retrofit= year_of_retrofit,
-                                                             type_heat_supply_system=type_heat_supply_system,
-                                                             type_of_retrofit= type_of_retrofit)
+        self._heat_supply_system.retrofit_heat_supply_system(year_of_retrofit, type_heat_supply_system, type_of_retrofit)
 
         self.calc_building_parameter(
             number_of_elements=self.number_of_elements_calc,
             merge_windows=self.merge_windows_calc,
             used_library=self.used_library_calc,
         )
-        self._type_of_retrofit = type_of_retrofit
+        if type_of_retrofit:
+            self._type_of_retrofit = type_of_retrofit
+        else:
+            self._type_of_retrofit = "retrofit"
 
     def rotate_building(self, angle):
         """Rotates the building to a given angle

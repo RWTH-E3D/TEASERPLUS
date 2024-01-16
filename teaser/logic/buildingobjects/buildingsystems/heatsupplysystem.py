@@ -29,26 +29,12 @@ class HeatSupplySystem(object):
 
         self._building_type = None
 
-        if type(self.parent).__name__:
-            if any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for
-                   substring in ["singlefamily", "terraced"]):
-                self._building_type = "sfh"
-            elif any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for
-                   substring in ["multifamily", "apartment"]):
-                self._building_type = "mfh"
-        else:
-            if self.parent.net_leased_area / 100 <= 2:
-                self._building_type = "sfh"
-            else:
-                self._building_type = "mfh"
+        self._heat_load = None
             
         if self.parent.year_of_retrofit is None:
             self._year_of_retrofit = 1
         else:
             self._year_of_retrofit = self.parent.year_of_retrofit
-
-        self._length_char = 20
-        # todo self._length_char = self.parent.get_footprint_gml() / 10  # iwu chapter 4.4.1
 
         # setting values for generation
         self._heat_system = None
@@ -68,12 +54,6 @@ class HeatSupplySystem(object):
         self._avg_temp_distribution_water = None
         self._avg_temp_distribution_heating = None
         self._oversizing_factor = None
-
-        if (self.parent.year_of_construction is not None and self._year_of_retrofit is not None and
-                (self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016)):
-            self._oversizing_factor = 1  # standard for new buildings (iwu)
-        else:
-            self._oversizing_factor = 1.2  # standard for existing buildings (iwu)
 
         self._heat_loss_distribution_heating = None
         self._daily_operating_time_pump = None
@@ -112,6 +92,25 @@ class HeatSupplySystem(object):
         else:
             retrofit_type = "standard"
 
+        if (self.parent.year_of_construction is not None and self._year_of_retrofit is not None and
+                (self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016)):
+            self._oversizing_factor = 1  # standard for new buildings (iwu)
+        else:
+            self._oversizing_factor = 1.2  # standard for existing buildings (iwu)
+
+        if type(self.parent).__name__:
+            if any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for
+                   substring in ["singlefamily", "terraced"]):
+                self._building_type = "sfh"
+            elif any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for
+                   substring in ["multifamily", "apartment"]):
+                self._building_type = "mfh"
+        else:
+            if self.parent.net_leased_area / 100 <= 2:
+                self._building_type = "sfh"
+            else:
+                self._building_type = "mfh"
+
         if self._building_type == "sfh":
         #if any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for substring
                # in ["singlefamily", "terraced"]):
@@ -139,9 +138,9 @@ class HeatSupplySystem(object):
                         self._heat_loss_distribution_heating = "high"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "retrofit":
@@ -167,9 +166,9 @@ class HeatSupplySystem(object):
                         self._heat_loss_distribution_heating = "minimised"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "adv_retrofit":
@@ -194,14 +193,14 @@ class HeatSupplySystem(object):
                         self._storage = "solar"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 else:
                     raise ValueError(
-                        "Construction_type has to be tabula_standard,"
+                        "Construction_type has to be tabula_standard, "
                         "tabula_retrofit, "
                         "tabula_adv_retrofit"
                     )
@@ -227,9 +226,9 @@ class HeatSupplySystem(object):
                         self._heat_loss_distribution_heating = "good"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "retrofit":
@@ -253,9 +252,9 @@ class HeatSupplySystem(object):
                         self._pipe_routing_water = "centralised with circulation"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "adv_retrofit":
@@ -276,14 +275,14 @@ class HeatSupplySystem(object):
                         self._storage = "water"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 else:
                     raise ValueError(
-                        "Construction_type has to be tabula_standard,"
+                        "Construction_type has to be tabula_standard, "
                         "tabula_retrofit, "
                         "tabula_adv_retrofit"
                     )
@@ -311,9 +310,9 @@ class HeatSupplySystem(object):
                         self._pipe_routing_water = "centralised with circulation"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "retrofit":
@@ -333,9 +332,9 @@ class HeatSupplySystem(object):
                         self._storage = "water"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "adv_retrofit":
@@ -355,14 +354,14 @@ class HeatSupplySystem(object):
                         self._storage = "water"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 else:
                     raise ValueError(
-                        "Construction_type has to be tabula_standard,"
+                        "Construction_type has to be tabula_standard, "
                         "tabula_retrofit, "
                         "tabula_adv_retrofit"
                     )
@@ -388,9 +387,9 @@ class HeatSupplySystem(object):
                         self._storage = "water"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "retrofit":
@@ -410,9 +409,9 @@ class HeatSupplySystem(object):
                         self._storage = "water"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "adv_retrofit":
@@ -432,14 +431,14 @@ class HeatSupplySystem(object):
                         self._storage = "water"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 else:
                     raise ValueError(
-                        "Construction_type has to be tabula_standard,"
+                        "Construction_type has to be tabula_standard, "
                         "tabula_retrofit, "
                         "tabula_adv_retrofit"
                     )
@@ -473,9 +472,9 @@ class HeatSupplySystem(object):
                         self._storage = "water"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "retrofit":
@@ -509,9 +508,9 @@ class HeatSupplySystem(object):
                         self._heat_loss_distribution_heating = "minimised"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "adv_retrofit":
@@ -541,14 +540,14 @@ class HeatSupplySystem(object):
                         self._storage = "solar"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 else:
                     raise ValueError(
-                        "Construction_type has to be tabula_standard,"
+                        "Construction_type has to be tabula_standard, "
                         "tabula_retrofit, "
                         "tabula_adv_retrofit"
                     )
@@ -572,9 +571,9 @@ class HeatSupplySystem(object):
                         self._storage = "water"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "retrofit":
@@ -596,9 +595,9 @@ class HeatSupplySystem(object):
                         self._heat_loss_distribution_heating = "small"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "adv_retrofit":
@@ -618,14 +617,14 @@ class HeatSupplySystem(object):
                         self._storage = "water"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 else:
                     raise ValueError(
-                        "Construction_type has to be tabula_standard,"
+                        "Construction_type has to be tabula_standard, "
                         "tabula_retrofit, "
                         "tabula_adv_retrofit"
                     )
@@ -651,9 +650,9 @@ class HeatSupplySystem(object):
                         self._heat_loss_distribution_heating = "small"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "retrofit":
@@ -673,9 +672,9 @@ class HeatSupplySystem(object):
                         self._storage = "water"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "adv_retrofit":
@@ -695,14 +694,14 @@ class HeatSupplySystem(object):
                         self._storage = "water"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 else:
                     raise ValueError(
-                        "Construction_type has to be tabula_standard,"
+                        "Construction_type has to be tabula_standard, "
                         "tabula_retrofit, "
                         "tabula_adv_retrofit"
                     )
@@ -726,9 +725,9 @@ class HeatSupplySystem(object):
                         self._storage = "water"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "retrofit":
@@ -747,9 +746,9 @@ class HeatSupplySystem(object):
                         self._storage = "water"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 elif retrofit_type == "adv_retrofit":
@@ -768,14 +767,14 @@ class HeatSupplySystem(object):
                         self._storage = "water"
                     else:
                         raise ValueError(
-                            "type_heat_supply_system has to be a number between"
-                            "1 and 3. For SFH or TH older than 1995 1 to 4 and "
-                            "for MFH and AB older than 1995 1 to 6 is possible."
+                            "type_heat_supply_system has to be a number between "
+                            "1 and 3. For SFH or TH before 1995, 1 to 4 is possible. "
+                            "For MFH and AB before 1995, 1 to 6 is possible."
                         )
 
                 else:
                     raise ValueError(
-                        "Construction_type has to be tabula_standard,"
+                        "Construction_type has to be tabula_standard, "
                         "tabula_retrofit, "
                         "tabula_adv_retrofit"
                     )
@@ -812,6 +811,20 @@ class HeatSupplySystem(object):
 
     def setting_derived_values(self):
 
+        try:
+            result = self.parent.get_footprint_gml()
+            if result is not None:
+
+                self._length_char = self.parent.get_footprint_gml() / 10  # iwu chapter 4.4.1
+            else:
+
+                self._length_char = 20  # random value
+                # todo find better value
+        except:
+            self._length_char = 20  # random value
+            # todo find better value
+            print("Mistake while function get_footprint_gml() in Building class.")
+
         if "condensing" in self._heat_generation:
             self._design_temp_flow = 55
         elif "heatpump" in self._heat_generation:
@@ -825,17 +838,21 @@ class HeatSupplySystem(object):
         else:
             self._daily_operating_time_pump = 24
 
-        # iwu formula 2-3, rounded to 5 [kW] # todo check, ob simulated_heat_load in kW
-        if self.parent.simulated_heat_load:
-            if (5 * round(self._oversizing_factor * self.parent.simulated_heat_load / 5)) < 15 or None:
-                self._nominal_heat_output_boiler = 15
+        # iwu formula 2-3, rounded to 5 [kW] # todo check, if simulated_heat_load in kW
+        if self.parent.simulated_heat_load is None:
+            if self.parent.year_of_construction >= 2002 or self._year_of_retrofit >= 2002:
+                self._heat_load = 50 * self.parent.net_leased_area / 1000
+            elif self.parent.year_of_construction >= 1995 or self._year_of_retrofit >= 1995:
+                self._heat_load = 60 * self.parent.net_leased_area / 1000
             else:
-                self._nominal_heat_output_boiler = 5 * \
-                                                   round(self._oversizing_factor * self.parent.simulated_heat_load / 5)
+                self._heat_load = 100 * self.parent.net_leased_area / 1000
         else:
-            self.parent.simulated_heat_load = 100 * self.parent.net_leased_area #Altbau normale Dämmung
-            # todo self.parent.simulated_heat_load = 60 * self.parent.net_leased_area #Gebäude ab 1995
-            # todo self.parent.simulated_heat_load = 50 * self.parent.net_leased_area #Gebäude ab 2002
+            self._heat_load = self.parent.simulated_heat_load
+
+        if (5 * round(self._oversizing_factor * self._heat_load / 5)) < 15 or None:
+            self._nominal_heat_output_boiler = 15
+        else:
+            self._nominal_heat_output_boiler = 5 * round(self._oversizing_factor * self._heat_load / 5)
 
 
         # calculation of the average temperature of the water distribution
@@ -843,7 +860,7 @@ class HeatSupplySystem(object):
         if self._pipe_routing_water == "centralised with circulation":
             self._avg_temp_distribution_water = 50
 
-        elif self._pipe_routing_water in ["centralised without circulation", "decentralised"]:
+        else:
             self._avg_temp_distribution_water = 32
 
         # calculation of the average temperature of the heating distribution
@@ -927,28 +944,31 @@ class HeatSupplySystem(object):
 
         if year_of_retrofit < 1995:
             self._year_of_retrofit = 1995
-            raise ValueError("You are using a year of retrofit not supported\
+            print("You are using a year of retrofit not supported\
                     by teaser. We will change your year of retrofit to 1995\
                     for the calculation. Be careful!")
         else:
             self._year_of_retrofit = year_of_retrofit
 
-        if "adv_retrofit" in type_of_retrofit:
+        if type_of_retrofit and "adv_retrofit" in type_of_retrofit:
             retrofit_type = "adv_retrofit"
 
-            raise ValueError("already highest available standard of heat_supply_system")
+            print("already highest available standard of heat_supply_system, type_of_retrofit stays 'adv_retrofit'.")
 
-        elif "retrofit" in type_of_retrofit:
+        elif type_of_retrofit and "retrofit" in type_of_retrofit:
             retrofit_type = "adv_retrofit"
 
         else:
             retrofit_type = "retrofit"
 
-        if type_heat_supply_system in None:
-            if self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016:
-                type_heat_supply_system = 3  # DENA report 2023 Abb. 41
+        if type_heat_supply_system is None:
+            if self._heat_supply_type is None:
+                if self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016:
+                    type_heat_supply_system = 3  # DENA report 2023 Abb. 41
+                else:
+                    type_heat_supply_system = 1  # DENA report 2023 Abb. 31
             else:
-                type_heat_supply_system = 1  # DENA report 2023 Abb. 31
+                type_heat_supply_system = self._heat_supply_type
 
         self.setting_values(type_heat_supply_system, retrofit_type)
 
@@ -966,6 +986,17 @@ class HeatSupplySystem(object):
                 self.__parent.heat_supply_system = self
 
     @property
+    def building_type(self):
+        return self._building_type
+
+    @building_type.setter
+    def building_type(self, value):
+        if value in ["mfh", "sfh"]:
+            self._building_type = value
+        else:
+            raise ValueError("building_type no defined value")
+
+    @property
     def length_char(self):
         return self._length_char
 
@@ -981,7 +1012,23 @@ class HeatSupplySystem(object):
                 value = float(value)
                 self._length_char = value
             except:
-                raise ValueError("Can't convert length_char to float")
+                raise ValueError("Can't convert length_char to float")\
+
+    @property
+    def heat_load(self):
+        return self._heat_load
+
+    @heat_load.setter
+    def heat_load(self, value):
+
+        if isinstance(value, float):
+            self._heat_load = value
+        else:
+            try:
+                value = float(value)
+                self._heat_load = value
+            except:
+                raise ValueError("Can't convert heat_load to float")
 
     @property
     def year_of_retrofit(self):
@@ -1033,18 +1080,18 @@ class HeatSupplySystem(object):
             raise ValueError("heat_generation no defined value")
 
     @property
-    def storage_water(self):
+    def storage(self):
         return self._storage
 
-    @storage_water.setter
-    def storage_water(self, value):
+    @storage.setter
+    def storage(self, value):
 
         if value in ["water", "solar"]:
             self._storage = value
         elif value is None:
             self._storage = value
         else:
-            raise ValueError("storage_water no defined value")
+            raise ValueError("storage no defined value")
 
     @property
     def combined_water_heating(self):

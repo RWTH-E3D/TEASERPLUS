@@ -38,9 +38,9 @@ class FEDemandHeating(object):
     def _calc_dissipation_distribution_water_for_heating(self):
         """calculation of heat dissipation through distribution of hot water for heating"""
 
-        length_horizontal_water = None
-        length_strand_water = None
-        length_stubs_water = None
+        length_horizontal_water = 0
+        length_strand_water = 0
+        length_stubs_water = 0
 
         # calculation of pipe length for hot water
         # iwu table 9
@@ -68,10 +68,11 @@ class FEDemandHeating(object):
         heat_loss_coefficient_strand_water = 0.2
         heat_loss_factor_strand_water = 0.15
 
-        if self.parent.parent.year_of_construction >= 2000 or self.parent.parent.year_of_retrofit >= 2000:
+        if self.parent.parent.year_of_construction >= 2000 or self.parent.year_of_retrofit >= 2000:
             heat_loss_coefficient_stubs_water = 0.2
         else:
             heat_loss_coefficient_stubs_water = 1.4
+
         heat_loss_factor_stubs_water = 0.15
 
         # DIN V4701-10 formula 5.1.2-2 with iwu formula 4-2 and 4-3
@@ -79,10 +80,11 @@ class FEDemandHeating(object):
 
             during_circulation = (self.parent.avg_temp_distribution_water - self._temp_ambient_water) * \
                                  self.parent.daily_operating_time_pump
+
             during_interruption = 0.5 * (32 - self._temp_ambient_water) * (24 - self.parent.daily_operating_time_pump)
             # 32 = avg_temp_distribution_water without circulation
 
-            return 1 / 1000 * ((length_horizontal_water * heat_loss_coefficient_horizontal_water) *
+            result = 1 / 1000 * ((length_horizontal_water * heat_loss_coefficient_horizontal_water) *
                                (1 - heat_loss_factor_horizontal_water) +
                                (length_strand_water * heat_loss_coefficient_strand_water) *
                                (1 - heat_loss_factor_strand_water) +
@@ -91,9 +93,9 @@ class FEDemandHeating(object):
                    (during_circulation + during_interruption) * self.parent.annual_operating_time_water * \
                    self.parent.annual_operating_time_heating / self.parent.annual_operating_time_water
 
-        elif self.parent.pipe_routing_water in ["centralised without circulation", "decentralised"]:
+        else:
 
-            return 1 / 1000 * \
+            result = 1 / 1000 * \
                    ((length_horizontal_water * heat_loss_coefficient_horizontal_water) *
                     (1 - heat_loss_factor_horizontal_water) +
                     (length_strand_water * heat_loss_coefficient_strand_water) *
@@ -104,48 +106,61 @@ class FEDemandHeating(object):
                    * self.parent.annual_operating_time_water * \
                    self.parent.annual_operating_time_heating / self.parent.annual_operating_time_water
 
+        # print("_calc_dissipation_distribution_water_for_heating: " + str(result))
+        if result is None or result == 0:
+            return 0
+        else:
+            return result
+
     def _calc_dissipation_storage_water_for_heating(self):
 
-        dissipation_storage_water = FEDemandWater.calc_dissipation_storage_water()
+        fedemandwater = FEDemandWater(parent=self.parent)
+        dissipation_storage_water = fedemandwater.calc_dissipation_storage_water()
 
         # DIN V 4701-10 table C.1-3a
         if self.parent.pipe_routing_heating == "centralised inside":
 
             if self.parent.pipe_routing_water == "decentralised":
-                return 0.5 * self.parent.parent.net_leased_area
+                result = 0.5 * self.parent.parent.net_leased_area
 
             # DIN V 4701-10 formula 5.1.3-10
             else:
-                return self.parent.annual_operating_time_heating / self.parent.annual_operating_time_water * \
+                result = self.parent.annual_operating_time_heating / self.parent.annual_operating_time_water * \
                        (1 - 0.15) * dissipation_storage_water
                 # 0.15 = Heat loss factor for components within the thermal envelope, DIN V 4701-10 table 5-2
-
         else:
-            return 0
+            result = 0
+
+        # print("_calc_dissipation_storage_water_for_heating: " + str(result))
+
+        return result
 
     def _calc_dissipation_controll_emission_heating(self):
         # iwu chapter 5.5
-        if self.parent.pipe_routing_heating == "decentralised":
-            return 0
+        if self.parent.pipe_routing_heating != "decentralised":
+            if self.parent.building_type == "sfh":
+                result = 10 * 8760 / 1000
+            else:
+                result = 20 * 8760 / 1000
 
         else:
-            if type(self.parent).__name__ in ["SingleFamilyHouse", "TerracedHouse"]:
-                return 10 * 8760 / 1000
-            elif type(self.parent).__name__ in ["MultiFamilyHouse", "ApartmentBlock"]:
-                return 20 * 8760 / 1000
+            result = 0
+
+        # print("_calc_dissipation_controll_emission_heating: " + str(result))
+        return result
 
     def _calc_dissipation_distribution_heating(self):
         # calculation of heat dissipation through distribution of hot water
 
-        length_horizontal_heating = None
-        length_strand_heating = None
-        length_tethers_heating = None
-        heat_loss_coefficient_horizontal_heating = None
-        heat_loss_factor_horizontal_heating = None
-        heat_loss_coefficient_strand_heating = None
-        heat_loss_factor_strand_heating = None
-        heat_loss_coefficient_tethers_heating = None
-        heat_loss_factor_tethers_heating = None
+        length_horizontal_heating = 0
+        length_strand_heating = 0
+        length_tethers_heating = 0
+        heat_loss_coefficient_horizontal_heating = 0
+        heat_loss_factor_horizontal_heating = 0
+        heat_loss_coefficient_strand_heating = 0
+        heat_loss_factor_strand_heating = 0
+        heat_loss_coefficient_tethers_heating = 0
+        heat_loss_factor_tethers_heating = 0
 
         # calculation of pipe length and heat loss coefficient and factor for heating
         # iwu table 9 and table 10
@@ -158,13 +173,13 @@ class FEDemandHeating(object):
             heat_loss_coefficient_horizontal_heating = 0.2
             heat_loss_factor_horizontal_heating = 1.0
 
-            if self.parent.parent.year_of_construction >= 2000 or self.parent.parent.year_of_retrofit >= 2000:
+            if self.parent.parent.year_of_construction >= 2000 or self.parent.year_of_retrofit >= 2000:
                 heat_loss_coefficient_strand_heating = 0.26
             else:
                 heat_loss_coefficient_strand_heating = 0.8
             heat_loss_factor_strand_heating = 0.35
 
-            if self.parent.parent.year_of_construction >= 2000 or self.parent.parent.year_of_retrofit >= 2000:
+            if self.parent.parent.year_of_construction >= 2000 or self.parent.year_of_retrofit >= 2000:
                 heat_loss_coefficient_tethers_heating = 0.26
             else:
                 heat_loss_coefficient_tethers_heating = 0.8
@@ -179,13 +194,13 @@ class FEDemandHeating(object):
             heat_loss_coefficient_horizontal_heating = 0.2
             heat_loss_factor_horizontal_heating = 1.0
 
-            if self.parent.parent.year_of_construction >= 2000 or self.parent.parent.year_of_retrofit >= 2000:
+            if self.parent.parent.year_of_construction >= 2000 or self.parent.year_of_retrofit >= 2000:
                 heat_loss_coefficient_strand_heating = 0.26
             else:
                 heat_loss_coefficient_strand_heating = 0.2
             heat_loss_factor_strand_heating = 0.15
 
-            if self.parent.parent.year_of_construction >= 2000 or self.parent.parent.year_of_retrofit >= 2000:
+            if self.parent.parent.year_of_construction >= 2000 or self.parent.year_of_retrofit >= 2000:
                 heat_loss_coefficient_tethers_heating = 0.3
             else:
                 heat_loss_coefficient_tethers_heating = 0.26
@@ -196,25 +211,22 @@ class FEDemandHeating(object):
             length_strand_heating = self.parent.length_char * self.parent.parent.number_of_floors * 6
             length_tethers_heating = self.parent.length_char * self.parent.parent.number_of_floors
 
-            if self.parent.parent.year_of_construction >= 2000 or self.parent.parent.year_of_retrofit >= 2000:
+            if self.parent.parent.year_of_construction >= 2000 or self.parent.year_of_retrofit >= 2000:
                 heat_loss_coefficient_strand_heating = 0.26
             else:
                 heat_loss_coefficient_strand_heating = 0.8
             heat_loss_factor_strand_heating = 0.35
 
-            if self.parent.parent.year_of_construction >= 2000 or self.parent.parent.year_of_retrofit >= 2000:
+            if self.parent.parent.year_of_construction >= 2000 or self.parent.year_of_retrofit >= 2000:
                 heat_loss_coefficient_tethers_heating = 0.26
             else:
                 heat_loss_coefficient_tethers_heating = 0.8
             heat_loss_factor_tethers_heating = 0.32
         
         # TABULA values
-        if self.parent.heat_generation == "night storage":
-            return 0
-
-        # iwu formula 4-1
-        else:
-            return 1 / 1000 * ((length_horizontal_heating * heat_loss_coefficient_horizontal_heating) *
+        if self.parent.heat_generation != "night storage":
+            # iwu formula 4-1
+            result = 1 / 1000 * ((length_horizontal_heating * heat_loss_coefficient_horizontal_heating) *
                                heat_loss_factor_horizontal_heating +
                                (length_strand_heating * heat_loss_coefficient_strand_heating) *
                                heat_loss_factor_strand_heating +
@@ -225,12 +237,16 @@ class FEDemandHeating(object):
             # 24 = standard value of daily running time of circulation pump
             # 0.8 = partial heating factor acc. DIN V 4701-10 table 5.3-2 (= 1.0 for horizontal and strand pipes)
 
+        else:
+            result = 0
+
+        return result
+
     def _calc_dissipation_storage_heating(self):
 
         # Condition from TABULA for buffer storage
         if self.parent.heat_generation in ["heatpump air", "condensing - chp", "chp"] or \
-                (self.parent.heat_generation == "heatpump ground" and
-                 type(self.parent).__name__ in ["SingleFamilyHouse", "TerracedHouse"]):
+                (self.parent.heat_generation == "heatpump ground" and self.parent.building_type == "sfh"):
 
             # DIN V 4701-10 formula 5.3.3-2
             vol_storage = 4 * self.parent.parent.net_leased_area ** 0.7
@@ -238,12 +254,16 @@ class FEDemandHeating(object):
                                0.5 + 0.25 * (vol_storage % 1000) ** 0.4
 
             # DIN V 4701-10 formula 5.3.3-1
-            return 1.2 * (self.parent.avg_temp_distribution_heating - self._temp_ambient_heating) / 45 * \
+            result = 1.2 * (self.parent.avg_temp_distribution_heating - self._temp_ambient_heating) / 45 * \
                    self.parent.annual_operating_time_heating * 0.15 * standby_heat_loss_heating
             # 0.15 = Heat loss factor for components within the thermal envelope, table 5-2 DIN V 4701-10
 
         else:
-            return 0
+            result = 0
+
+        # print("_calc_dissipation_distribution_heating: " + str(result))
+
+        return result
 
     def _calc_dissipation_generation_heating(self):
 
@@ -307,7 +327,8 @@ class FEDemandHeating(object):
 
                 avg_standby_heat_loss_heating = standby_heat_loss_heating_70 / 50 * \
                                        (self.parent.avg_temp_distribution_heating - self._temp_ambient_heating)
-                load_level_boiler = 0.3 * self.parent.parent.simulated_heat_load / self.parent.nominal_heat_output_boiler
+
+                load_level_boiler = 0.3 * self.parent.heat_load / self.parent.nominal_heat_output_boiler
 
                 boiler_efficiency = ((boiler_efficiency_70 + efficiency_correction) *
                                      (1 + utilisation_factor_heat_use * avg_standby_heat_loss_heating /
@@ -326,10 +347,29 @@ class FEDemandHeating(object):
             else:
                 expenditure_figure = 1 / (load_factor_boiler * boiler_efficiency)
 
-        return expenditure_figure
+        # print("expenditure_figure: " + str(expenditure_figure))
+
+        if expenditure_figure is None or expenditure_figure == 0:
+
+            return 0
+
+        else:
+
+            return expenditure_figure
 
     def _dissipation_heating(self):
-        return (self.parent.parent.calc_simulated_annual_heat_energy() -
+
+        try:
+            annual_heat_energy = self.parent.parent.calc_simulated_annual_heat_energy()
+            if annual_heat_energy is not None:
+                pass
+            else:
+                annual_heat_energy = self.parent.heat_load * self.parent.annual_operating_time_heating * 24
+        except:
+            annual_heat_energy = self.parent.heat_load * self.parent.annual_operating_time_heating * 24
+            print("Mistake while function calc_simulated_annual_heat_energy() in Building class.")
+
+        result = (annual_heat_energy -
                 self._calc_dissipation_distribution_water_for_heating() -
                 self._calc_dissipation_storage_water_for_heating() +
                 self._calc_dissipation_controll_emission_heating() +
@@ -337,48 +377,66 @@ class FEDemandHeating(object):
                 self._calc_dissipation_storage_heating()) * \
                self._calc_dissipation_generation_heating()
 
-    def _calc_dissipation_distribution_auxiliary_heating(self):
+        # print("_dissipation_heating: " + str(result))
 
-        # DIN V 4701-10 table C.3-2d "night storage"
-        # iwu chapter 5.3 "circulating water heater" already in calc_dissipation_generation_auxiliary_heating
-        if self.parent.heat_generation in ["night storage", "circulating water heater"]:
+        if result is None or result == 0:
+
             return 0
 
         else:
 
+            return result
+
+    def _calc_dissipation_distribution_auxiliary_heating(self):
+
+        # DIN V 4701-10 table C.3-2d "night storage"
+        # iwu chapter 5.3 "circulating water heater" already in calc_dissipation_generation_auxiliary_heating
+        if self.parent.heat_generation not in ["night storage", "circulating water heater"]:
+
             # iwu formula 5-16, 5-17 and 5-19
             if self.parent.heat_loss_distribution_heating == "minimised":
-                nominal_power_consumption_of_circulator = 7.1 + 0.53 * self.parent.parent.simulated_heat_load
+                nominal_power_consumption_of_circulator = 7.1 + 0.53 * self.parent.heat_load
             elif self.parent.heat_loss_distribution_heating == "small":
-                nominal_power_consumption_of_circulator = 25 + 0.77 * self.parent.parent.simulated_heat_load
+                nominal_power_consumption_of_circulator = 25 + 0.77 * self.parent.heat_load
             else:
-                nominal_power_consumption_of_circulator = 163 + 3.7 * self.parent.parent.simulated_heat_load - \
-                                                          0.001 * self.parent.parent.simulated_heat_load ** 2
+                nominal_power_consumption_of_circulator = 163 + 3.7 * self.parent.heat_load - \
+                                                          0.001 * self.parent.heat_load ** 2
 
             # iwu formula 5-8
-            if self.parent.parent.year_of_construction >= 2016 or self.parent.parent.year_of_retrofit >= 2016:
+            if self.parent.parent.year_of_construction >= 2016 or self.parent.year_of_retrofit >= 2016:
                 # DIN V 4701-10 formula 5.3.2-4
-                return nominal_power_consumption_of_circulator * self.parent.annual_operating_time_heating * \
+                result = nominal_power_consumption_of_circulator * self.parent.annual_operating_time_heating * \
                        self.parent.daily_operating_time_pump / ((1.4 - 20 / self.parent.parent.net_leased_area) * 1000)
 
             else:
                 # correction factor for controllable pumps in stock = 1
-                return nominal_power_consumption_of_circulator * self.parent.annual_operating_time_heating * \
+                result = nominal_power_consumption_of_circulator * self.parent.annual_operating_time_heating * \
                        self.parent.daily_operating_time_pump / 1000
+
+        else:
+            result = 0
+
+        # print("_calc_dissipation_distribution_auxiliary_heating: " + str(result))
+
+        return result
 
     def _calc_dissipation_storage_auxiliary_heating(self):
 
         # Condition from TABULA
         if self.parent.heat_generation in ["heatpump air", "condensing - chp", "chp"] or \
                 (self.parent.heat_generation == "heatpump ground" and
-                 type(self.parent).__name__ in ["SingleFamilyHouse", "TerracedHouse"]):
+                 self.parent.building_type == "sfh"):
 
             # DIN V 4701-10 formula 5.3.3-3 and 5.3.3-4
-            return (40 + 0.03 * self.parent.parent.net_leased_area) * 0.3324 * self.parent.annual_operating_time_heating / 1000
+            result = (40 + 0.03 * self.parent.parent.net_leased_area) * 0.3324 * \
+                     self.parent.annual_operating_time_heating / 1000
             # 0.3324 = simultaneous operation with heat generator (if not simultaneous, set tP = 24)
-
         else:
-            return 0
+            result = 0
+
+        # print("_calc_dissipation_storage_auxiliary_heating: " + str(result))
+
+        return result
 
     def _calc_dissipation_generation_auxiliary_heating(self):
 
@@ -387,7 +445,7 @@ class FEDemandHeating(object):
 
         if self.parent.heat_system == "oil":
             # iwu formula 5-6
-            nominal_power_consumption_boiler = 170 + 1.95 * self.parent.parent.simulated_heat_load
+            nominal_power_consumption_boiler = 170 + 1.95 * self.parent.heat_load
 
         elif self.parent.heat_system == "gas":
 
@@ -399,20 +457,27 @@ class FEDemandHeating(object):
 
             else:
                 # iwu formula 5-7
-                nominal_power_consumption_boiler = 20 + 0.85 * self.parent.parent.simulated_heat_load
+                nominal_power_consumption_boiler = 20 + 0.85 * self.parent.heat_load
 
         elif "heatpump ground" in self.parent.heat_generation:
             # DIN V 4701-10 table C3-4c
             auxiliary_energy_demand_boiler = 1.9 * self.parent.parent.net_leased_area ** (-0.1)
 
-        if auxiliary_energy_demand_boiler is None:
+        if auxiliary_energy_demand_boiler is None and nominal_power_consumption_boiler is not None:
             # DIN V 4701-10 formula 5.3.4.2-9 and 5.3.4.2-7
-            auxiliary_energy_demand_boiler = (self.parent.parent.simulated_heat_load /
-                                              self.parent.nominal_heat_output_boiler) * \
+            auxiliary_energy_demand_boiler = (self.parent.heat_load / self.parent.nominal_heat_output_boiler) * \
                                              self.parent.annual_operating_time_heating * 24 * \
                                              nominal_power_consumption_boiler
 
-        return auxiliary_energy_demand_boiler
+        # print("_calc_dissipation_generation_auxiliary_heating: " + str(auxiliary_energy_demand_boiler))
+
+        if auxiliary_energy_demand_boiler is None or auxiliary_energy_demand_boiler == 0:
+
+            return 0
+
+        else:
+
+            return auxiliary_energy_demand_boiler
 
     def calc_final_energy_demand_heating(self):
 
@@ -475,6 +540,6 @@ class FEDemandHeating(object):
     def parent(self, value):
         from teaser.teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
         import inspect
-        if inspect.isclass(HeatSupplySystem):
-            self.__parent = value
-            self.__parent.heat_supply_system = self
+        if value is not None:
+            if inspect.isclass(HeatSupplySystem):
+                self.__parent = value

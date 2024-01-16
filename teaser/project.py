@@ -185,7 +185,7 @@ class Project(object):
 
     def retrofit_all_buildings(
         self,
-        year_of_retrofit=None,
+        year_of_retrofit,
         type_of_retrofit=None,
         window_type=None,
         material=None,
@@ -242,10 +242,6 @@ class Project(object):
 
         for bldg in self.buildings:
             if isinstance(bldg, SingleFamilyHouse):
-                if type_of_retrofit is None:
-                    raise ValueError(
-                        "you need to set type_of_retrofit for " "TABULA retrofit"
-                    )
                 tabula_buildings.append(bldg) #bldg added to the end of tabula_buildings-list
             else:
                 if year_of_retrofit is None:
@@ -254,27 +250,19 @@ class Project(object):
 
         if self.data.used_statistic == "iwu":
             for bld_iwu in iwu_buildings:
-                bld_iwu.retrofit_building(
-                    year_of_retrofit=year_of_retrofit,
-                    window_type=window_type,
-                    material=material,
-                )
+                bld_iwu.retrofit_building(year_of_retrofit, window_type, material)
             self.data = DataClass(used_statistic="tabula_de")
             for bld_tabula in tabula_buildings:
-                bld_tabula.retrofit_building(type_of_retrofit=type_of_retrofit,
-                                             type_heat_supply_system=type_heat_supply_system)
+                    bld_tabula.retrofit_building(year_of_retrofit, type_of_retrofit, window_type, material,
+                                                 type_heat_supply_system)
 
         else:
             for bld_tabula in tabula_buildings:
-                bld_tabula.retrofit_building(type_of_retrofit=type_of_retrofit,
-                                             type_heat_supply_system=type_heat_supply_system)
+                bld_tabula.retrofit_building(year_of_retrofit, type_of_retrofit, window_type, material,
+                                             type_heat_supply_system)
             self.data = DataClass(used_statistic="iwu")
             for bld_iwu in iwu_buildings:
-                bld_iwu.retrofit_building(
-                    year_of_retrofit=year_of_retrofit,
-                    window_type=window_type,
-                    material=material,
-                )
+                bld_iwu.retrofit_building(year_of_retrofit, window_type, material)
 
     def add_non_residential(
         self,

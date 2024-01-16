@@ -13,6 +13,8 @@ from teaser.teaser.logic.buildingobjects.buildingphysics.window import Window
 from teaser.teaser.logic.buildingobjects.buildingphysics.door import Door
 from teaser.teaser.logic.buildingobjects.thermalzone import ThermalZone
 from teaser.teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
+from teaser.teaser.logic.buildingobjects.buildingsystems.fedemandwater import FEDemandWater
+from teaser.teaser.logic.buildingobjects.buildingsystems.fedemandheating import FEDemandHeating
 
 
 class SingleFamilyHouse(Residential):
@@ -360,6 +362,8 @@ class SingleFamilyHouse(Residential):
         type_bldg_area = self.net_leased_area
         self.net_leased_area = 0.0
         heatsupplysystem = HeatSupplySystem(parent=self)
+        fedemandwater = FEDemandWater(parent=heatsupplysystem)
+        fedemandheating = FEDemandHeating(parent=heatsupplysystem)
 
         for key, value in self.zone_area_factors.items():
             zone = ThermalZone(parent=self)
@@ -575,14 +579,24 @@ class SingleFamilyHouse(Residential):
             zone.set_volume_zone()
 
         heatsupplysystem.setting_values(self.type_heat_supply_system, self.construction_type)
-        print(heatsupplysystem.parent.year_of_construction)
-        print(heatsupplysystem.year_of_retrofit)
-        print(heatsupplysystem._oversizing_factor)
-        print(heatsupplysystem.heat_generation)
-        print(heatsupplysystem.heat_system)
-        print(heatsupplysystem.pipe_routing_water)
-        print(heatsupplysystem._heat_loss_distribution_heating)
-        print(heatsupplysystem._design_temp_flow)
+        # print("year_of_construction: " + str(heatsupplysystem.parent.year_of_construction))
+        # print("year_of_retrofit: " + str(heatsupplysystem.year_of_retrofit))
+        # print("net_leased_area: " + str(heatsupplysystem.parent.net_leased_area))
+        # print("simulated_heat_load: " + str(heatsupplysystem.parent.simulated_heat_load))
+        # print("heat_generation: " + str(heatsupplysystem.heat_generation))
+        # print("heat_system: " + str(heatsupplysystem.heat_system))
+        # print("storage: " + str(heatsupplysystem._storage))
+        # print("combined_water_heating: " + str(heatsupplysystem.combined_water_heating))
+        # print("avg_temp_distribution_heating: " + str(heatsupplysystem.avg_temp_distribution_heating))
+        # print("pipe_routing_water: " + str(heatsupplysystem.pipe_routing_water))
+        # print("nominal_heat_output_boiler: " + str(heatsupplysystem.nominal_heat_output_boiler))
+
+        water = fedemandwater.calc_final_energy_demand_water()
+        print("fed_water: " + str(water))
+
+        heating = fedemandheating.calc_final_energy_demand_heating()
+        print("fed_heating: " + str(heating))
+
 
     def generate_from_gml(self):
         """Enriches lod1 or lod2 data from CityGML
@@ -596,7 +610,7 @@ class SingleFamilyHouse(Residential):
         type_bldg_area = self.net_leased_area
         self.net_leased_area = 0.0
         self._check_year_of_construction()
-        print(self.building_age_group)
+        # print(self.building_age_group)
 
         # my variable: decider for inner_wall calculation method
         lod4_innerwalls = False
@@ -616,7 +630,7 @@ class SingleFamilyHouse(Residential):
 
             # TODO: fix with or without Windows scenario 2
 
-            print(self.parent.data.used_statistic)
+            # print(self.parent.data.used_statistic)
             for surface in self.gml_surfaces:
                 if surface.surface_tilt is not None and surface.name is None:
                     if surface.surface_tilt == 90:
@@ -825,7 +839,8 @@ class SingleFamilyHouse(Residential):
             for zone in self.thermal_zones:
                 zone.set_volume_zone()
 
-        HeatSupplySystem.setting_values(self.type_heat_supply_system, self.construction_type)
+        heatsupplysystem = HeatSupplySystem(parent=self)
+        heatsupplysystem.setting_values(self.type_heat_supply_system, self.construction_type)
 
     @property
     def construction_type(self):

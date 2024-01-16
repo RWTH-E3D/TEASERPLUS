@@ -31,9 +31,9 @@ class FEDemandWater(object):
 
     def _calc_dissipation_distribution_water(self):
         # calculation of heat dissipation through distribution of hot water
-        length_horizontal_water = None
-        length_strand_water = None
-        length_stubs_water = None
+        length_horizontal_water = 0
+        length_strand_water = 0
+        length_stubs_water = 0
         
         # calculation of pipe length for hot water
         # iwu table 9
@@ -59,7 +59,7 @@ class FEDemandWater(object):
 
         heat_loss_coefficient_strand_water = 0.2
 
-        if self.parent.parent.year_of_construction >= 2000 or self.parent.parent.year_of_retrofit >= 2000:
+        if self.parent.parent.year_of_construction >= 2000 or self.parent.year_of_retrofit >= 2000:
             heat_loss_coefficient_stubs_water = 0.2
         else:
             heat_loss_coefficient_stubs_water = 1.4
@@ -71,21 +71,25 @@ class FEDemandWater(object):
             during_interruption = 0.5 * (32 - self.parent.temp_ambient) * (24 - self.parent.daily_operating_time_pump)
             # 32 = avg_temp_distribution_water without circulation
 
-            return 1 / 1000 * (length_horizontal_water * heat_loss_coefficient_horizontal_water
+            result = 1 / 1000 * (length_horizontal_water * heat_loss_coefficient_horizontal_water
                                + length_strand_water * heat_loss_coefficient_strand_water
                                + length_stubs_water * heat_loss_coefficient_stubs_water) \
                 * (during_circulation + during_interruption) \
                 * self.parent.annual_operating_time_water
 
-        elif self.parent.pipe_routing_water == "centralised without circulation" or \
-                self.parent.pipe_routing_water == "decentralised":
+        else:
             # iwu formula 4-5
-            return 1 / 1000 * (length_horizontal_water * heat_loss_coefficient_horizontal_water
+            result = 1 / 1000 * (length_horizontal_water * heat_loss_coefficient_horizontal_water
                                + length_strand_water * heat_loss_coefficient_strand_water
                                + length_stubs_water * heat_loss_coefficient_stubs_water) \
                * (self.parent.avg_temp_distribution_water - self.parent.temp_ambient) \
                * 24 * self.parent.annual_operating_time_water
 
+        # print("_calc_dissipation_distribution_water: " + str(result))
+        if result is None or result == 0:
+            return 0
+        else:
+            return result
     def calc_dissipation_storage_water(self):
         # iwu chapter 3
         # standby_heat_loss_heating [kWh/d]
@@ -114,9 +118,15 @@ class FEDemandWater(object):
         else:
             standby_heat_loss_heating = 0
 
-        return 1.2 * (50 - self.parent.temp_ambient) / 45 * self.parent.annual_operating_time_water \
+        result = 1.2 * (50 - self.parent.temp_ambient) / 45 * self.parent.annual_operating_time_water \
             * standby_heat_loss_heating
         # DIN V 4701-10 formula 5.1.3-1
+
+        # print("_calc_dissipation_storage_water: " + str(result))
+        if result is None or result == 0:
+            return 0
+        else:
+            return result
 
     def _calc_dissipation_generation_water(self):
 
@@ -162,11 +172,12 @@ class FEDemandWater(object):
             boiler_efficiency_70_20kw = 0.92
 
         # iwu formula B3
-        load_factor_boiler = (12.5 * self.parent.parent.net_leased_area + self._calc_dissipation_distribution_water() +
-                              self.calc_dissipation_storage_water()) / (self.parent.nominal_heat_output_boiler * 24 *
-                                                                         self.parent.annual_operating_time_water)
+        load_factor_boiler = (12.5 * self.parent.parent.net_leased_area +
+                              self._calc_dissipation_distribution_water() + self.calc_dissipation_storage_water()) \
+                             / (self.parent.nominal_heat_output_boiler * 24 *
+                                self.parent.annual_operating_time_water)
 
-        if not self.parent.combined_water_heating:
+        if self.parent.combined_water_heating is False:
             operating_time_heating = 0
         else:
             operating_time_heating = self.parent.annual_operating_time_heating
@@ -176,10 +187,17 @@ class FEDemandWater(object):
             boiler_efficiency_70 = boiler_efficiency_70_20kw
         else:
             # iwu formula 2-1 and 2-2
-            standby_heat_loss_heating_70 = standby_heat_loss_heating_70_20kw * 2.456 * self.parent.nominal_heat_output_boiler ** (
-                -0.3)
-            boiler_efficiency_70 = boiler_efficiency_70_20kw - 0.0195 + 0.015 * \
-                                   math.log10(self.parent.nominal_heat_output_boiler)
+            if standby_heat_loss_heating_70_20kw is not None:
+                standby_heat_loss_heating_70 = standby_heat_loss_heating_70_20kw * 2.456 * \
+                                               self.parent.nominal_heat_output_boiler ** (-0.3)
+            else:
+                standby_heat_loss_heating_70 = 0
+
+            if boiler_efficiency_70_20kw is not None:
+                boiler_efficiency_70 = boiler_efficiency_70_20kw - 0.0195 + 0.015 * \
+                                       math.log10(self.parent.nominal_heat_output_boiler)
+            else:
+                boiler_efficiency_70 = 0
 
         # iwu formula B2
         if self.parent.avg_temp_distribution_heating < 70:
@@ -193,12 +211,18 @@ class FEDemandWater(object):
         else:
             efficiency_correction = 0
 
-        avg_standby_heat_loss_heating = standby_heat_loss_heating_70 / 50 * (60 - self.parent.temp_ambient)
+        if standby_heat_loss_heating_70 is not None:
+            avg_standby_heat_loss_heating = standby_heat_loss_heating_70 / 50 * (60 - self.parent.temp_ambient)
 
-        if boiler_efficiency and expenditure_figure is None:
+            # print("avg_standby_heat_loss_heating: " + str(avg_standby_heat_loss_heating))
+        else:
+            avg_standby_heat_loss_heating = 0
+
+        if boiler_efficiency is None and expenditure_figure is None:
             boiler_efficiency = boiler_efficiency_70 + efficiency_correction / \
                                 (1 + avg_standby_heat_loss_heating * (1 / load_factor_boiler - 1)
                                  * (1 - operating_time_heating / self.parent.annual_operating_time_water))
+            # print("boiler_efficiency: " + str(boiler_efficiency))
 
         if expenditure_figure is None:
             # DIN V 4701-10 formula 5.1.4-17
@@ -206,27 +230,41 @@ class FEDemandWater(object):
                                   (1 - operating_time_heating / self.parent.annual_operating_time_water)
                                   * avg_standby_heat_loss_heating) / boiler_efficiency
 
-        return expenditure_figure
+        # print("expenditure_figure: " + str(expenditure_figure))
+        if expenditure_figure is None or expenditure_figure == 0:
+            return 0
+        else:
+            return expenditure_figure
 
     def _dissipation_water(self):
 
-        return (12.5 * self.parent.parent.net_leased_area + self._calc_dissipation_distribution_water() +
-                self.calc_dissipation_storage_water()) * self._calc_dissipation_generation_water()
+        result = (12.5 * self.parent.parent.net_leased_area + self._calc_dissipation_distribution_water()
+                  + self.calc_dissipation_storage_water()) * self._calc_dissipation_generation_water()
+
+        # print("_dissipation_water: " + str(result))
+        if result is None or result == 0:
+            return 0
+        else:
+            return result
 
     def _calc_dissipation_distribution_auxiliary_water(self):
 
         if self.parent.pipe_routing_water == "centralised with circulation":
 
             # iwu formula 5-23 and 5-24
-            if self.parent.parent.year_of_construction >= 2016 or self.parent.parent.year_of_retrofit >= 2016:
-                return (27 + 0.008 * self.parent.parent.net_leased_area) * self.parent.annual_operating_time_water * \
+            if self.parent.parent.year_of_construction >= 2016 or self.parent.year_of_retrofit >= 2016:
+                result = (27 + 0.008 * self.parent.parent.net_leased_area) * self.parent.annual_operating_time_water * \
                        self.parent.daily_operating_time_pump / 1000
 
             else:
-                return (30 + 5 * self.parent.parent.net_leased_area / 100) * self.parent.annual_operating_time_water * \
+                result = (30 + 5 * self.parent.parent.net_leased_area / 100) * self.parent.annual_operating_time_water * \
                        self.parent.daily_operating_time_pump / 1000
+
         else:
-            return 0
+            result = 0
+
+        # print("_calc_dissipation_distribution_auxiliary_water: " + str(result))
+        return result
 
     def _calc_dissipation_storage_auxiliary_water(self):
 
@@ -234,15 +272,18 @@ class FEDemandWater(object):
 
             if self.parent.storage == "water":
                 # iwu formula 5-20 to 5-22
-                return (30 + 5 * self.parent.parent.net_leased_area / 100) * 1.2 * \
+                result = (30 + 5 * self.parent.parent.net_leased_area / 100) * 1.2 * \
                        (12.5 * self.parent.parent.net_leased_area + self._calc_dissipation_distribution_water() +
                         self.calc_dissipation_storage_water()) / self.parent.nominal_heat_output_boiler / 1000
             else:
                 # iwu formula 5-25 and 5-26
-                return (20 + 5 * self.parent.parent.net_leased_area / 100) * 1750 / 1000
+                result = (20 + 5 * self.parent.parent.net_leased_area / 100) * 1750 / 1000
 
         else:
-            return 0
+            result = 0
+
+        # print("_calc_dissipation_storage_auxiliary_water: " + str(result))
+        return result
 
     def _calc_dissipation_generation_auxiliary_water(self):
 
@@ -275,16 +316,37 @@ class FEDemandWater(object):
             auxiliary_energy_demand_boiler = 0
 
         else:
-            # iwu formula B3
-            load_factor_boiler = (12.5 * self.parent.parent.net_leased_area + self._calc_dissipation_distribution_water() +
-                                  self.calc_dissipation_storage_water()) / (
+            if self.parent.nominal_heat_output_boiler is not None and self.parent.annual_operating_time_water is not None:
+                # iwu formula B3
+                load_factor_boiler = (12.5 * self.parent.parent.net_leased_area + self._calc_dissipation_distribution_water() +
+                                      self.calc_dissipation_storage_water()) / (
                                              self.parent.nominal_heat_output_boiler * 24 *
                                              self.parent.annual_operating_time_water)
-            # DIN V 4701-10 formula 5.1.4-20 and 5.1.4-29
+            else:
+                print("A required value for load_factor_boiler is None.")
+                load_factor_boiler = 0
+
+           # DIN V 4701-10 formula 5.1.4-20 and 5.1.4-29
             auxiliary_energy_demand_boiler = load_factor_boiler + self.parent.annual_operating_time_water * 24 * 0.045 \
                                              * self.parent.nominal_heat_output_boiler ** 0.48
 
-        return (auxiliary_energy_demand_solar + auxiliary_energy_demand_boiler) * self.parent.parent.net_leased_area
+        if auxiliary_energy_demand_solar is not None and auxiliary_energy_demand_boiler is not None:
+            result = (auxiliary_energy_demand_solar + auxiliary_energy_demand_boiler) * self.parent.parent.net_leased_area
+        elif auxiliary_energy_demand_solar is not None:
+            result = auxiliary_energy_demand_solar * self.parent.parent.net_leased_area
+        elif auxiliary_energy_demand_boiler is not None:
+            result = auxiliary_energy_demand_boiler * self.parent.parent.net_leased_area
+        else:
+            result = 0
+
+        # print("_calc_dissipation_generation_auxiliary_water: " + str(result))
+        if result is None or result == 0:
+
+            return 0
+
+        else:
+
+            return result
 
     def calc_final_energy_demand_water(self):
 
@@ -303,9 +365,9 @@ class FEDemandWater(object):
         # PE for hot water
         if self.parent.storage == "solar":
             # PEF solar = 0
-            if type(self.parent).__name__ in ["MultiFamilyHouse", "ApartmentBlock"]:
+            if self.parent.building_type == "mfh":
                 # TABULA values
-                if self.parent.heat_generation == "chp":
+                if "chp" in self.parent.heat_generation:
                     part_solar = 0.6
                 else:
                     part_solar = 0.4
@@ -370,6 +432,6 @@ class FEDemandWater(object):
     def parent(self, value):
         from teaser.teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
         import inspect
-        if inspect.isclass(HeatSupplySystem):
-            self.__parent = value
-            self.__parent.heat_supply_system = self
+        if value is not None:
+            if inspect.isclass(HeatSupplySystem):
+                self.__parent = value
