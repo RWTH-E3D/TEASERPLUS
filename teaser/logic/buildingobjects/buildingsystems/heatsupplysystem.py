@@ -24,6 +24,8 @@ class HeatSupplySystem(object):
 
     def __init__(self, parent=None):
         """Constructor of HeatSupplySystem class
+
+        heat_load: [kW]
         """
         self.parent = parent
 
@@ -112,8 +114,6 @@ class HeatSupplySystem(object):
                 self._building_type = "mfh"
 
         if self._building_type == "sfh":
-        #if any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for substring
-               # in ["singlefamily", "terraced"]):
 
             if self.parent.year_of_construction <= 1994:
 
@@ -778,6 +778,7 @@ class HeatSupplySystem(object):
                         "tabula_retrofit, "
                         "tabula_adv_retrofit"
                     )
+
         else:
             print("No heat supply system added due to missing building type!")
 
@@ -792,15 +793,12 @@ class HeatSupplySystem(object):
             else:
                 self._pipe_routing_heating = "centralised outside"
 
-        # if any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for
-                 # substring in ["singleFamily", "terraced"]) and self._pipe_routing_water is None:
         if self.parent.net_leased_area / 100 <= 2 and self._pipe_routing_water is None:
             if self._pipe_routing_heating == "decentralised" or self._combined_water_heating is False:
                 self._pipe_routing_water = "decentralised"
             else:
                 self._pipe_routing_water = "centralised without circulation"
-        # elif any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for
-        # substring in ["multiFamily", "apartment"]):
+
         else:
             if self._pipe_routing_heating == "decentralised" or self._combined_water_heating is False:
                 self._pipe_routing_water = "decentralised"
@@ -818,11 +816,10 @@ class HeatSupplySystem(object):
                 self._length_char = self.parent.get_footprint_gml() / 10  # iwu chapter 4.4.1
             else:
 
-                self._length_char = 20  # random value
-                # todo find better value
+                self._length_char = self.parent.net_leased_area / 2.8 / 10  # 2.8 = height_of_floors
         except:
-            self._length_char = 20  # random value
-            # todo find better value
+            self._length_char = self.parent.net_leased_area / 2.8 / 10  # 2.8 = height_of_floors
+
             print("Mistake while function get_footprint_gml() in Building class.")
 
         if "condensing" in self._heat_generation:
@@ -838,22 +835,35 @@ class HeatSupplySystem(object):
         else:
             self._daily_operating_time_pump = 24
 
-        # iwu formula 2-3, rounded to 5 [kW] # todo check, if simulated_heat_load in kW
         if self.parent.simulated_heat_load is None:
-            if self.parent.year_of_construction >= 2002 or self._year_of_retrofit >= 2002:
-                self._heat_load = 50 * self.parent.net_leased_area / 1000
-            elif self.parent.year_of_construction >= 1995 or self._year_of_retrofit >= 1995:
-                self._heat_load = 60 * self.parent.net_leased_area / 1000
-            else:
-                self._heat_load = 100 * self.parent.net_leased_area / 1000
-        else:
-            self._heat_load = self.parent.simulated_heat_load
+            # DIN EN 15378-1:2017-09 table B.38
+            if self.parent.net_leased_area < 1500:
+                if self._building_type == "sfh":
+                    self._heat_load = 45 * self.parent.net_leased_area / 8760  # [kW]
+                else:
+                    self._heat_load = 25 * self.parent.net_leased_area / 8760
 
+            elif self.parent.net_leased_area < 2500:
+                if self._building_type == "sfh":
+                    self._heat_load = 75 * self.parent.net_leased_area / 8760
+                else:
+                    self._heat_load = 40 * self.parent.net_leased_area / 8760
+
+            else:
+                if self._building_type == "sfh":
+                    self._heat_load = 100 * self.parent.net_leased_area / 8760
+                else:
+                    self._heat_load = 60 * self.parent.net_leased_area / 8760
+
+        else:
+            self._heat_load = self.parent.simulated_heat_load # todo check, if simulated_heat_load in kW
+            print("self.parent.simulated_heat_load: ", self.parent.simulated_heat_load)
+
+        # iwu formula 2-3, rounded to 5 [kW]
         if (5 * round(self._oversizing_factor * self._heat_load / 5)) < 15 or None:
             self._nominal_heat_output_boiler = 15
         else:
             self._nominal_heat_output_boiler = 5 * round(self._oversizing_factor * self._heat_load / 5)
-
 
         # calculation of the average temperature of the water distribution
         # iwu chapter 1.2.2
@@ -867,12 +877,6 @@ class HeatSupplySystem(object):
         # iwu table 1
         if self.parent.net_leased_area / 100 >= 10:  # todo ">= 6" after September 2024
             # heating mode "optimised": hydraulic balancing
-            """if self._design_temp_flow == 90:
-
-                if self._oversizing_factor == 1.0:
-                    self._avg_temp_distribution_heating = 54
-                elif self._oversizing_factor == 1.2:
-                    self._avg_temp_distribution_heating = 50"""
 
             if self._design_temp_flow == 70:
 
@@ -896,12 +900,6 @@ class HeatSupplySystem(object):
 
         else:
             # heating_mode "typical": no hydraulic balancing
-            """if self._design_temp_flow == 90:
-
-                if self._oversizing_factor == 1.0:
-                    self._avg_temp_distribution_heating = 66
-                elif self._oversizing_factor == 1.2:
-                    self._avg_temp_distribution_heating = 63"""
 
             if self._design_temp_flow == 70:
 

@@ -12,7 +12,7 @@ from teaser.teaser.logic.buildingobjects.buildingphysics.rooftop import Rooftop
 from teaser.teaser.logic.buildingobjects.buildingphysics.window import Window
 from teaser.teaser.logic.buildingobjects.buildingphysics.door import Door
 from teaser.teaser.logic.buildingobjects.thermalzone import ThermalZone
-from teaser.teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
+from teco.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
 from teaser.teaser.logic.buildingobjects.buildingsystems.fedemandwater import FEDemandWater
 from teaser.teaser.logic.buildingobjects.buildingsystems.fedemandheating import FEDemandHeating
 
@@ -579,23 +579,28 @@ class SingleFamilyHouse(Residential):
             zone.set_volume_zone()
 
         heatsupplysystem.setting_values(self.type_heat_supply_system, self.construction_type)
-        # print("year_of_construction: " + str(heatsupplysystem.parent.year_of_construction))
-        # print("year_of_retrofit: " + str(heatsupplysystem.year_of_retrofit))
-        # print("net_leased_area: " + str(heatsupplysystem.parent.net_leased_area))
-        # print("simulated_heat_load: " + str(heatsupplysystem.parent.simulated_heat_load))
-        # print("heat_generation: " + str(heatsupplysystem.heat_generation))
-        # print("heat_system: " + str(heatsupplysystem.heat_system))
-        # print("storage: " + str(heatsupplysystem._storage))
-        # print("combined_water_heating: " + str(heatsupplysystem.combined_water_heating))
-        # print("avg_temp_distribution_heating: " + str(heatsupplysystem.avg_temp_distribution_heating))
-        # print("pipe_routing_water: " + str(heatsupplysystem.pipe_routing_water))
-        # print("nominal_heat_output_boiler: " + str(heatsupplysystem.nominal_heat_output_boiler))
+        print("year_of_construction: " + str(heatsupplysystem.parent.year_of_construction))
+        print("year_of_retrofit: " + str(heatsupplysystem.year_of_retrofit))
+        print("oversizing_factor: " + str(heatsupplysystem.oversizing_factor))
+        print("building_type: " + str(heatsupplysystem.building_type))
+        print("net_leased_area: " + str(heatsupplysystem.parent.net_leased_area))
+        print("simulated_heat_load: " + str(heatsupplysystem.parent.simulated_heat_load))
+        print("heat_generation: " + str(heatsupplysystem.heat_generation))
+        print("heat_system: " + str(heatsupplysystem.heat_system))
+        print("pipe_routing_heating: " + str(heatsupplysystem.pipe_routing_heating))
+        print("storage: " + str(heatsupplysystem._storage))
+        print("combined_water_heating: " + str(heatsupplysystem.combined_water_heating))
+        print("avg_temp_distribution_heating: " + str(heatsupplysystem.avg_temp_distribution_heating))
+        print("pipe_routing_water: " + str(heatsupplysystem.pipe_routing_water))
+        print("nominal_heat_output_boiler: " + str(heatsupplysystem.nominal_heat_output_boiler))
 
-        water = fedemandwater.calc_final_energy_demand_water()
-        print("fed_water: " + str(water))
+        # water = fedemandwater.calc_final_energy_demand_water()
+        # print("fed_water: " + str(water))
 
-        heating = fedemandheating.calc_final_energy_demand_heating()
-        print("fed_heating: " + str(heating))
+        # heating = fedemandheating.calc_final_energy_demand_heating()
+        # print("fed_heating: " + str(heating))
+
+        heatsupplysystem.calc_lca_data(False, 50)
 
 
     def generate_from_gml(self):
