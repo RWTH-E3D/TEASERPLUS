@@ -585,6 +585,7 @@ class SingleFamilyHouse(Residential):
         print("building_type: " + str(heatsupplysystem.building_type))
         print("net_leased_area: " + str(heatsupplysystem.parent.net_leased_area))
         print("simulated_heat_load: " + str(heatsupplysystem.parent.simulated_heat_load))
+        print("heat_load: " + str(heatsupplysystem.heat_load))
         print("heat_generation: " + str(heatsupplysystem.heat_generation))
         print("heat_system: " + str(heatsupplysystem.heat_system))
         print("pipe_routing_heating: " + str(heatsupplysystem.pipe_routing_heating))

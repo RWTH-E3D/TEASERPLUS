@@ -236,17 +236,17 @@ class FEDemandHeating(object):
                                heat_loss_factor_tethers_heating * 0.8) * \
                    (self.parent.avg_temp_distribution_heating - self._temp_ambient_heating) * \
                    24 * self.parent.annual_operating_time_heating  # [kWh/a]
-            print("self.parent.avg_temp_distribution_heating: ", self.parent.avg_temp_distribution_heating)
-            print("self._temp_ambient_heating: ", self._temp_ambient_heating)
-            print("self.parent.annual_operating_time_heating: ", self.parent.annual_operating_time_heating)
-            print("self.parent.pipe_routing_heating: ", self.parent.pipe_routing_heating)
+            # print("self.parent.avg_temp_distribution_heating: ", self.parent.avg_temp_distribution_heating)
+            # print("self._temp_ambient_heating: ", self._temp_ambient_heating)
+            # print("self.parent.annual_operating_time_heating: ", self.parent.annual_operating_time_heating)
+            # print("self.parent.pipe_routing_heating: ", self.parent.pipe_routing_heating)
             # 24 = standard value of daily running time of circulation pump
             # 0.8 = partial heating factor acc. DIN V 4701-10 table 5.3-2 (= 1.0 for horizontal and strand pipes)
 
         else:
             result = 0
 
-        print("calc_dissipation_distribution_heating", result)
+        # print("calc_dissipation_distribution_heating", result)
 
         return result
 
@@ -318,7 +318,7 @@ class FEDemandHeating(object):
 
                 # avg_temp_boiler_heat_period = self.parent.avg_temp_distribution_heating, no standard boiler in archetypes
                 if self.parent.avg_temp_distribution_heating < 70:
-                    if self.parent.heat_generation in ["low temperature", "low temperature - not combined"]:
+                    if "low temperature" in self.parent.heat_generation:
                         efficiency_correction = 0.0004 * (70 - self.parent.avg_temp_distribution_heating)
                     else:
                         if self.parent.heat_system == "oil":
@@ -327,6 +327,7 @@ class FEDemandHeating(object):
                             efficiency_correction = 0.0024 * (70 - self.parent.avg_temp_distribution_heating)
                 else:
                     efficiency_correction = 0
+                # print("efficiency_correction:", efficiency_correction)
 
                 if self.parent.pipe_routing_heating == "centralised outside":
                     utilisation_factor_heat_use = 0

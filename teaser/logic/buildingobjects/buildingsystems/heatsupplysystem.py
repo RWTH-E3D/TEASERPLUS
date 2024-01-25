@@ -839,21 +839,27 @@ class HeatSupplySystem(object):
             # DIN EN 15378-1:2017-09 table B.38
             if self.parent.net_leased_area < 1500:
                 if self._building_type == "sfh":
-                    self._heat_load = 45 * self.parent.net_leased_area / 8760  # [kW]
+                    self._heat_load = 45 * self.parent.net_leased_area / (self._annual_operating_time_heating *
+                                                                          self._daily_operating_time_pump)  # [kW]
                 else:
-                    self._heat_load = 25 * self.parent.net_leased_area / 8760
+                    self._heat_load = 25 * self.parent.net_leased_area / (self._annual_operating_time_heating *
+                                                                          self._daily_operating_time_pump)
 
             elif self.parent.net_leased_area < 2500:
                 if self._building_type == "sfh":
-                    self._heat_load = 75 * self.parent.net_leased_area / 8760
+                    self._heat_load = 75 * self.parent.net_leased_area / (self._annual_operating_time_heating *
+                                                                          self._daily_operating_time_pump)
                 else:
-                    self._heat_load = 40 * self.parent.net_leased_area / 8760
+                    self._heat_load = 40 * self.parent.net_leased_area / (self._annual_operating_time_heating *
+                                                                          self._daily_operating_time_pump)
 
             else:
                 if self._building_type == "sfh":
-                    self._heat_load = 100 * self.parent.net_leased_area / 8760
+                    self._heat_load = 100 * self.parent.net_leased_area / (self._annual_operating_time_heating *
+                                                                          self._daily_operating_time_pump)
                 else:
-                    self._heat_load = 60 * self.parent.net_leased_area / 8760
+                    self._heat_load = 60 * self.parent.net_leased_area / (self._annual_operating_time_heating *
+                                                                          self._daily_operating_time_pump)
 
         else:
             self._heat_load = self.parent.simulated_heat_load # todo check, if simulated_heat_load in kW
