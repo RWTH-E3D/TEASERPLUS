@@ -35,7 +35,7 @@ class HeatSupplySystem(object):
     heat_load : float [kW]
         Equals simulated_heat_load of building class. If this is none, it
         is calculated as a function of the area.
-    year_of_retrofit : int
+    year_of_retrofit : int [a]
         Equals year of retrofit of building class. If this is none, it is 1.
     heat_system : str
         Contains information on which supply system is assigned (e.g. gas /

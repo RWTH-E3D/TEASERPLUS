@@ -51,8 +51,10 @@ class FEDemandHeating(object):
         that benefits the heating system. Dependent of the pipe routing and
         geometrical building values.
 
-        Parameters
+        Returns
         ----------
+        result : float [kWh/a]
+            dissipation distribution water for heating
         """
 
         length_horizontal_water = 0
@@ -135,8 +137,10 @@ class FEDemandHeating(object):
         that benefits the heating system. Dependent of the pipe routing and
         the sorage loss that is calculated in FEDemandWater class.
 
-        Parameters
+        Returns
         ----------
+        result : float [kWh/a]
+            dissipation storage water for heating
         """
 
         fedemandwater = FEDemandWater(parent=self.parent)
@@ -165,8 +169,10 @@ class FEDemandHeating(object):
         Calculation of heat dissipation through controll and
         emission of heating system.
 
-        Parameters
+        Returns
         ----------
+        result : float [kWh/a]
+            dissipation controll and emission heating
         """
 
         # iwu chapter 5.5
@@ -187,8 +193,10 @@ class FEDemandHeating(object):
         Calculation of heat dissipation through distribution of heating energy.
         Dependent of the pipe routing and geometrical building values.
 
-        Parameters
+        Returns
         ----------
+        result : float [kWh/a]
+            dissipation distribution heating
         """
 
         length_horizontal_heating = 0
@@ -292,8 +300,10 @@ class FEDemandHeating(object):
         Calculation of heat dissipation through storage of heating energy.
         Dependent of the kind of the storage.
 
-        Parameters
+        Returns
         ----------
+        result : float [kWh/a]
+            dissipation storage heating
         """
 
         # Condition from TABULA for buffer storage
@@ -322,8 +332,10 @@ class FEDemandHeating(object):
         Calculation of heat dissipation through generation of heating energy.
         Dependent of the heat system and generation of the  building.
 
-        Parameters
+        Returns
         ----------
+        expenditure_figure : float [-]
+            for dissipation generation heating
         """
 
         if self.parent.heat_system == "electricity" and self.parent.heat_generation != "night storage":
@@ -426,8 +438,10 @@ class FEDemandHeating(object):
         """
         Sums up the heat demand without auxiliary energy.
 
-        Parameters
+        Returns
         ----------
+        result : float [kWh/a]
+            dissipation heating without auxiliary
         """
 
         try:
@@ -463,8 +477,10 @@ class FEDemandHeating(object):
         Calculation of heat dissipation through auxiliary energy for
         distribution of heating energy.
 
-        Parameters
+        Returns
         ----------
+        result : float [kWh/a]
+            dissipation distribution auxiliary heating
         """
 
         # DIN V 4701-10 table C.3-2d "night storage"
@@ -507,8 +523,10 @@ class FEDemandHeating(object):
         Calculation of heat dissipation through auxiliary energy for
         storage of hot water.
 
-        Parameters
+        Returns
         ----------
+        result : float [kWh/a]
+            dissipation storage auxiliary heating
         """
 
         # Condition from TABULA
@@ -532,8 +550,10 @@ class FEDemandHeating(object):
         Calculation of heat dissipation through auxiliary energy for
         generation of heating energy.
 
-        Parameters
+        Returns
         ----------
+        result : float [kWh/a]
+            dissipation generation auxiliary heating
         """
 
         auxiliary_energy_demand_boiler = None
@@ -581,8 +601,9 @@ class FEDemandHeating(object):
         It uses all the equations above and includes weighting for
         any additional heat generators.
 
-        Parameters
+        Returns
         ----------
+        final energy demand heating : float [kWh/a]
         """
 
         # PE for heating

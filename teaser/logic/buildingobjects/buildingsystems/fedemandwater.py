@@ -37,8 +37,10 @@ class FEDemandWater(object):
         Calculation of heat dissipation through distribution of warm water.
         Dependent of the pipe routing and geometrical building values.
 
-        Parameters
+        Returns
         ----------
+        result : float [kWh/a]
+            dissipation distribution water
         """
         length_horizontal_water = 0
         length_strand_water = 0
@@ -109,8 +111,10 @@ class FEDemandWater(object):
         Calculation of heat dissipation through storage of hot water.
         Dependent of the kind of the storage.
 
-        Parameters
+        Returns
         ----------
+        result : float [kWh/a]
+            dissipation storage water
         """
 
         # iwu chapter 3
@@ -155,8 +159,10 @@ class FEDemandWater(object):
         Calculation of heat dissipation through generation of hot water.
         Dependent of the heat system and generation of the  building.
 
-        Parameters
+        Returns
         ----------
+        expenditure_figure : float [-]
+            for dissipation generation water
         """
 
         # setting values to None
@@ -275,8 +281,10 @@ class FEDemandWater(object):
         """
         Sums up the heat demand without auxiliary energy.
 
-        Parameters
+        Returns
         ----------
+        result : float [kWh/a]
+            dissipation water without auxiliary
         """
 
         result = (12.5 * self.parent.parent.net_leased_area + self._calc_dissipation_distribution_water()
@@ -293,8 +301,10 @@ class FEDemandWater(object):
         Calculation of heat dissipation through auxiliary energy for
         distribution of hot water.
 
-        Parameters
+        Returns
         ----------
+        result : float [kWh/a]
+            dissipation distribution auxiliary water
         """
 
         if self.parent.pipe_routing_water == "centralised with circulation":
@@ -319,8 +329,10 @@ class FEDemandWater(object):
         Calculation of heat dissipation through auxiliary energy for
         storage of hot water.
 
-        Parameters
+        Returns
         ----------
+        result : float [kWh/a]
+            dissipation storage auxiliary water
         """
 
         if self.parent.storage:
@@ -345,8 +357,10 @@ class FEDemandWater(object):
         Calculation of heat dissipation through auxiliary energy for
         generation of hot water.
 
-        Parameters
+        Returns
         ----------
+        result : float [kWh/a]
+            dissipation generation auxiliary water
         """
 
         auxiliary_energy_demand_solar = 0
@@ -416,8 +430,9 @@ class FEDemandWater(object):
         It uses all the equations above and includes weighting for
         any additional heat generators.
 
-        Parameters
+        Returns
         ----------
+        final energy demand water : float [kWh/a]
         """
 
         part_solar = 0
