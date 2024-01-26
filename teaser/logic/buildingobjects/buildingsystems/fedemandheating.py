@@ -1,7 +1,7 @@
 # created November 2023
 # by Clara Schmitz (master thesis)
 
-"""This module includes a class for the Final Energy Calculation of the Heating System
+"""This module includes a class for the final energy calculation of the heating system
 """
 import math
 from teaser.teaser.logic.buildingobjects.buildingsystems.fedemandwater import FEDemandWater
@@ -10,19 +10,27 @@ from teaser.teaser.logic.buildingobjects.buildingsystems.fedemandwater import FE
 class FEDemandHeating(object):
     """FEDemandHeating class
 
-    This class holds information for the Heating System of the Building.
-    The heat losses for the heating system are being set. This class does not affect
-    the calculation in Dymola. It uses the calculated heat load and adds
-    heat losses for heating to calculate the final energy demand.
+    This class holds information for the heating system of the Building.
+    The heat losses for the heating system are being set. This class does
+    not affect the calculation in Dymola. It uses the calculated heat
+    load and adds heat losses for water to calculate the primary energy demand.
 
     Parameters
-        ----------
+    ----------
 
-        parent: HeatSupplySystem()
+    parent: HeatSupplySystem()
+        The parent class of this object, the HeatSupplySystem the final
+        energy demand belongs to. Allows for better control of hierarchical
+        structures.
+        Default is None
 
-        Attributes
-        ----------
+    Attributes
+    ----------
 
+    temp_ambient_water : float [degC]
+        Holds the surrounding temperature of the warm water system.
+    temp_ambient_heating : float [degC]
+        Holds the surrounding temperature of the heating system.
     """
 
     def __init__(self, parent=None):
@@ -38,7 +46,14 @@ class FEDemandHeating(object):
             self._temp_ambient_heating = self.parent.temp_ambient
 
     def _calc_dissipation_distribution_water_for_heating(self):
-        """calculation of heat dissipation through distribution of hot water for heating"""
+        """
+        Calculation of heat dissipation through distribution of warm water
+        that benefits the heating system. Dependent of the pipe routing and
+        geometrical building values.
+
+        Parameters
+        ----------
+        """
 
         length_horizontal_water = 0
         length_strand_water = 0
@@ -115,6 +130,14 @@ class FEDemandHeating(object):
             return result
 
     def _calc_dissipation_storage_water_for_heating(self):
+        """
+        Calculation of heat dissipation through storage of warm water
+        that benefits the heating system. Dependent of the pipe routing and
+        the sorage loss that is calculated in FEDemandWater class.
+
+        Parameters
+        ----------
+        """
 
         fedemandwater = FEDemandWater(parent=self.parent)
         dissipation_storage_water = fedemandwater.calc_dissipation_storage_water()
@@ -138,6 +161,14 @@ class FEDemandHeating(object):
         return result
 
     def _calc_dissipation_controll_emission_heating(self):
+        """
+        Calculation of heat dissipation through controll and
+        emission of heating system.
+
+        Parameters
+        ----------
+        """
+
         # iwu chapter 5.5
         if self.parent.pipe_routing_heating != "decentralised":
             if self.parent.building_type == "sfh":
@@ -152,7 +183,13 @@ class FEDemandHeating(object):
         return result
 
     def _calc_dissipation_distribution_heating(self):
-        # calculation of heat dissipation through distribution of hot water
+        """
+        Calculation of heat dissipation through distribution of heating energy.
+        Dependent of the pipe routing and geometrical building values.
+
+        Parameters
+        ----------
+        """
 
         length_horizontal_heating = 0
         length_strand_heating = 0
@@ -251,6 +288,13 @@ class FEDemandHeating(object):
         return result
 
     def _calc_dissipation_storage_heating(self):
+        """
+        Calculation of heat dissipation through storage of heating energy.
+        Dependent of the kind of the storage.
+
+        Parameters
+        ----------
+        """
 
         # Condition from TABULA for buffer storage
         if self.parent.heat_generation in ["heatpump air", "condensing - chp", "chp"] or \
@@ -274,6 +318,13 @@ class FEDemandHeating(object):
         return result
 
     def _calc_dissipation_generation_heating(self):
+        """
+        Calculation of heat dissipation through generation of heating energy.
+        Dependent of the heat system and generation of the  building.
+
+        Parameters
+        ----------
+        """
 
         if self.parent.heat_system == "electricity" and self.parent.heat_generation != "night storage":
 
@@ -372,6 +423,12 @@ class FEDemandHeating(object):
             return expenditure_figure
 
     def _dissipation_heating(self):
+        """
+        Sums up the heat demand without auxiliary energy.
+
+        Parameters
+        ----------
+        """
 
         try:
             annual_heat_energy = self.parent.parent.calc_simulated_annual_heat_energy()
@@ -402,6 +459,13 @@ class FEDemandHeating(object):
             return result
 
     def _calc_dissipation_distribution_auxiliary_heating(self):
+        """
+        Calculation of heat dissipation through auxiliary energy for
+        distribution of heating energy.
+
+        Parameters
+        ----------
+        """
 
         # DIN V 4701-10 table C.3-2d "night storage"
         # iwu chapter 5.3 "circulating water heater" already in calc_dissipation_generation_auxiliary_heating
@@ -439,6 +503,13 @@ class FEDemandHeating(object):
         return result
 
     def _calc_dissipation_storage_auxiliary_heating(self):
+        """
+        Calculation of heat dissipation through auxiliary energy for
+        storage of hot water.
+
+        Parameters
+        ----------
+        """
 
         # Condition from TABULA
         if self.parent.heat_generation in ["heatpump air", "condensing - chp", "chp"] or \
@@ -457,6 +528,13 @@ class FEDemandHeating(object):
         return result
 
     def _calc_dissipation_generation_auxiliary_heating(self):
+        """
+        Calculation of heat dissipation through auxiliary energy for
+        generation of heating energy.
+
+        Parameters
+        ----------
+        """
 
         auxiliary_energy_demand_boiler = None
         nominal_power_consumption_boiler = None
@@ -498,16 +576,14 @@ class FEDemandHeating(object):
             return auxiliary_energy_demand_boiler
 
     def calc_final_energy_demand_heating(self):
+        """
+        Sums up the final heat demand for heating.
+        It uses all the equations above and includes weighting for
+        any additional heat generators.
 
-        """# DIN V 18599-1 table A.1
-        if self.parent.heat_system in ["gas", "oil"]:
-            primary_energy_factor = 1.1
-        elif self.parent.heat_system == "electricity":
-            primary_energy_factor = 1.8
-        elif self.parent.heat_system == "district":
-            primary_energy_factor = 0.7
-        else:
-            primary_energy_factor = 0.2"""
+        Parameters
+        ----------
+        """
 
         # PE for heating
         if self.parent.heat_generation == "heatpump air":
@@ -562,3 +638,39 @@ class FEDemandHeating(object):
         if value is not None:
             if inspect.isclass(HeatSupplySystem):
                 self.__parent = value
+
+    @property
+    def temp_ambient_water(self):
+        return self._temp_ambient_water
+
+    @temp_ambient_water.setter
+    def temp_ambient_water(self, value):
+
+        if isinstance(value, float):
+            self._temp_ambient_water = value
+        elif value is None:
+            self._temp_ambient_water = value
+        else:
+            try:
+                value = float(value)
+                self._temp_ambient_water = value
+            except:
+                raise ValueError("Can't convert temp_ambient_water to float")\
+
+    @property
+    def temp_ambient_heating(self):
+        return self._temp_ambient_heating
+
+    @temp_ambient_heating.setter
+    def temp_ambient_heating(self, value):
+
+        if isinstance(value, float):
+            self._temp_ambient_heating = value
+        elif value is None:
+            self._temp_ambient_heating = value
+        else:
+            try:
+                value = float(value)
+                self._temp_ambient_heating = value
+            except:
+                raise ValueError("Can't convert temp_ambient_heating to float")

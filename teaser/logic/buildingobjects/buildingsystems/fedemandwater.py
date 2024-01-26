@@ -9,19 +9,22 @@ import math
 class FEDemandWater(object):
     """FEDemandWater class
 
-    This class holds information for the Heating System of the Building.
-    The heat losses for the heating system are being set. This class does not affect
-    the calculation in Dymola. It uses the calculated heat load and adds
-    heat losses for water to calculate the primary energy demand.
+    This class holds information for the warm water System of the Building.
+    The heat losses for the warm water system are being set. This class does
+    not affect the calculation in Dymola. It uses the calculated heat
+    load and adds heat losses for water to calculate the primary energy demand.
 
     Parameters
-        ----------
+    ----------
 
-        parent: HeatSupplySystem()
+    parent: HeatSupplySystem()
+        The parent class of this object, the HeatSupplySystem the final
+        energy demand belongs to. Allows for better control of hierarchical
+        structures.
+        Default is None
 
-        Attributes
-        ----------
-
+    Attributes
+    ----------
     """
 
     def __init__(self, parent=None):
@@ -30,7 +33,13 @@ class FEDemandWater(object):
         self.parent = parent
 
     def _calc_dissipation_distribution_water(self):
-        # calculation of heat dissipation through distribution of hot water
+        """
+        Calculation of heat dissipation through distribution of warm water.
+        Dependent of the pipe routing and geometrical building values.
+
+        Parameters
+        ----------
+        """
         length_horizontal_water = 0
         length_strand_water = 0
         length_stubs_water = 0
@@ -94,7 +103,16 @@ class FEDemandWater(object):
             return 0
         else:
             return result  # [kWh/a]
+
     def calc_dissipation_storage_water(self):
+        """
+        Calculation of heat dissipation through storage of hot water.
+        Dependent of the kind of the storage.
+
+        Parameters
+        ----------
+        """
+
         # iwu chapter 3
         # standby_heat_loss_heating [kWh/d]
         if self.parent.pipe_routing_water == "decentralised":
@@ -133,6 +151,13 @@ class FEDemandWater(object):
             return result
 
     def _calc_dissipation_generation_water(self):
+        """
+        Calculation of heat dissipation through generation of hot water.
+        Dependent of the heat system and generation of the  building.
+
+        Parameters
+        ----------
+        """
 
         # setting values to None
         boiler_efficiency = None
@@ -247,6 +272,12 @@ class FEDemandWater(object):
             return expenditure_figure
 
     def _dissipation_water(self):
+        """
+        Sums up the heat demand without auxiliary energy.
+
+        Parameters
+        ----------
+        """
 
         result = (12.5 * self.parent.parent.net_leased_area + self._calc_dissipation_distribution_water()
                   + self.calc_dissipation_storage_water()) * self._calc_dissipation_generation_water()
@@ -258,6 +289,13 @@ class FEDemandWater(object):
             return result
 
     def _calc_dissipation_distribution_auxiliary_water(self):
+        """
+        Calculation of heat dissipation through auxiliary energy for
+        distribution of hot water.
+
+        Parameters
+        ----------
+        """
 
         if self.parent.pipe_routing_water == "centralised with circulation":
 
@@ -277,6 +315,13 @@ class FEDemandWater(object):
         return result
 
     def _calc_dissipation_storage_auxiliary_water(self):
+        """
+        Calculation of heat dissipation through auxiliary energy for
+        storage of hot water.
+
+        Parameters
+        ----------
+        """
 
         if self.parent.storage:
 
@@ -296,6 +341,13 @@ class FEDemandWater(object):
         return result
 
     def _calc_dissipation_generation_auxiliary_water(self):
+        """
+        Calculation of heat dissipation through auxiliary energy for
+        generation of hot water.
+
+        Parameters
+        ----------
+        """
 
         auxiliary_energy_demand_solar = 0
         
@@ -359,16 +411,14 @@ class FEDemandWater(object):
             return result
 
     def calc_final_energy_demand_water(self):
+        """
+        Sums up the final heat demand for warm water.
+        It uses all the equations above and includes weighting for
+        any additional heat generators.
 
-        """# DIN V 18599-1 table A.1
-        if self.parent.heat_system in ["gas", "oil"]:
-            primary_energy_factor = 1.1
-        elif self.parent.heat_system == "electricity":
-            primary_energy_factor = 1.8
-        elif self.parent.heat_system == "district":
-            primary_energy_factor = 0.7
-        else:
-            primary_energy_factor = 0.2"""
+        Parameters
+        ----------
+        """
 
         part_solar = 0
 

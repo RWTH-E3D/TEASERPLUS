@@ -7,29 +7,88 @@
 
 class HeatSupplySystem(object):
 
-    """HeatingSystem_PE class
+    """HeatSupplySystem class
 
-        This class holds information for the Heating System of the Building.
-        The materials are being set according to the tabula-de values.
+    This class holds information for the Heat Supply System of a Building.
+    The characteristics are being set according to tabula values. This class
+    sets the parameter needed for the LCA final energy demand calculation.
 
-        Parameters
-            ----------
+    Parameters
+        ----------
 
-            parent: Building()
+    parent: Building()
+        The parent class of this object, the Building the heat supply system
+        belongs to. Allows for better control of hierarchical structures. If
+        not None it adds this HeatSupplySystem instance to Building.HeatSupplySystem.
+        Default is None
 
-            Attributes
-            ----------
-
-        """
+    Attributes
+    ----------
+    building_type : str
+        Checks TABULA type of the building and if this is none, it refers to
+        building area / number of residential units.
+        values: "sfh" for TerracedHouse and SingleFamilyHouse, "mfh" for
+        ApartmentBlock and MultiFamilyHouse.
+    length_char : float [m]
+        Characteristic length of the building. Depends on the area of the
+        building.
+    heat_load : float [kW]
+        Equals simulated_heat_load of building class. If this is none, it
+        is calculated as a function of the area.
+    year_of_retrofit : int
+        Equals year of retrofit of building class. If this is none, it is 1.
+    heat_system : str
+        Contains information on which supply system is assigned (e.g. gas /
+        oil / electricity...). Dependent on _type_heat_supply_system.
+    heat_generation : str
+        Contains information on which heat generator is assigned.
+    storage : str
+        Contains information on whether the supply system has a storage
+        and if so, which one (solar/water).
+    combined_water_heating : bool
+        Contains information on whether the warm water and heating system
+        use one common generator.
+    nominal_heat_output_boiler : int [kW]
+        Value is rounded to the nearest 5. Dependent on oversizing_factor
+        and heat_load.
+    temp_ambient : int [degC]
+        Holds the surrounding temperature of the heat system.
+    annual_operating_time_heating : int [d/a]
+        Contains information on how many days per year the heating system
+        is used.
+    annual_operating_time_water : int [d/a]
+        Contains information on how many days per year the water system
+        is used.
+    pipe_routing_heating : str
+        Contains information on how the pipes of the heating system run.
+    pipe_routing_water : str
+        Contains information on how the pipes of the warm water system run.
+    design_temp_flow : int [degC]
+        Holds the design temperature flow of the heat supply system.
+        Default is 70.
+    avg_temp_distribution_water : float [degC]
+        Holds the average temperature of the distribution of warm water.
+    avg_temp_distribution_heating : float [degC]
+        Holds the average temperature of the distribution of heating.
+    oversizing_factor : float [-]
+        This value is set to 1.2 for existing buildings and 1.0 for new
+        buildings. The heat supply system of existing buildings is often
+        overdimensioned due to changes in use.
+    heat_loss_distribution_heating : str
+        Contains information on how the pipes are insulated.
+    daily_operating_time_pump : float [h/d]
+        Holds how many hours per day the pump of the heat supply system
+        needs to work.
+    """
 
     def __init__(self, parent=None):
         """Constructor of HeatSupplySystem class
-
-        heat_load: [kW]
         """
         self.parent = parent
 
         self._building_type = None
+
+        self._length_char
 
         self._heat_load = None
             
@@ -41,7 +100,6 @@ class HeatSupplySystem(object):
         # setting values for generation
         self._heat_system = None
         self._heat_generation = None
-        self._heat_supply_type = None
         self._storage = None
         self._combined_water_heating = True
         self._nominal_heat_output_boiler = None
@@ -74,18 +132,20 @@ class HeatSupplySystem(object):
         Parameters
         ----------
         type_heat_supply_system : int (optional)
-            defines ....
-            Default one (gas) for existing buildings and 3 (electricity)
-            for new buildings
+            Contains information on which supply system is assigned. Most buildings
+            have 3 options. For building_type "sfh" older than 1995, 4 options are
+            possible. For "mfh" older than 1995, 6 options are possible.
+            Default: 1 (gas) for existing buildings and 3 (electricity) for new
+            buildings.
+        type_of_retrofit : str (optional)
+            Can contain three values: standard, retrofit, adv_retrofit derived from
+            TABULA values. Default is standard
         """
         if type_heat_supply_system is None:
-            if self._heat_supply_type is None:
-                if self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016:
-                    type_heat_supply_system = 3  # DENA report 2023 Abb. 41
-                else:
-                    type_heat_supply_system = 1  # DENA report 2023 Abb. 31
+            if self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016:
+                type_heat_supply_system = 3  # DENA report 2023 Abb. 41
             else:
-                type_heat_supply_system = self._heat_supply_type
+                type_heat_supply_system = 1  # DENA report 2023 Abb. 31
 
         if type_of_retrofit is not None and "adv_retrofit" in type_of_retrofit:
             retrofit_type = "adv_retrofit"
@@ -808,6 +868,13 @@ class HeatSupplySystem(object):
         self.setting_derived_values()
 
     def setting_derived_values(self):
+        """
+        Depending on the type of heat supply system, derived values are set here.
+        Like the characteristic length of the building, average temperatures etc.
+
+        Parameters
+        ----------
+        """
 
         try:
             result = self.parent.get_footprint_gml()
@@ -930,20 +997,23 @@ class HeatSupplySystem(object):
     def retrofit_heat_supply_system(self, year_of_retrofit, type_heat_supply_system=None, type_of_retrofit=None):
         """Retrofits all parameters in the system.
 
-        Function call for all elements facing the ambient or ground.
-        Distinguishes if the parent building is a archetype of type 'iwu' or
-        'tabula_de'. If TABULA is used, it will use the pre-defined wall
-        constructions of TABULA.
+        This function retrofits the heat supply system and sets the new values of
+        the system as well as the derived values automatically.
 
         Parameters
         ----------
         year_of_retrofit : int
-            Year of last retrofit
-        type_of_retrofit : str
-            The classification of retrofit, if the archetype building
-            approach of TABULA is used.
-        type_heat_supply_system: int
-            Type of the heat supply system
+            Year of last retrofit. Due to legal reasons, last possible year is 1995.
+            Older systems should already be retrofitted.
+        type_heat_supply_system : int (optional)
+            Contains information on which supply system is assigned. Most buildings
+            have 3 options. For building_type "sfh" older than 1995, 4 options are
+            possible. For "mfh" older than 1995, 6 options are possible.
+            Default: 1 (gas) for existing buildings and 3 (electricity) for new
+            buildings.
+        type_of_retrofit : str (optional)
+            Can contain three values: standard, retrofit, adv_retrofit derived from
+            TABULA values. Default is standard.
         """
 
         if year_of_retrofit < 1995:
@@ -966,13 +1036,10 @@ class HeatSupplySystem(object):
             retrofit_type = "retrofit"
 
         if type_heat_supply_system is None:
-            if self._heat_supply_type is None:
-                if self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016:
-                    type_heat_supply_system = 3  # DENA report 2023 Abb. 41
-                else:
-                    type_heat_supply_system = 1  # DENA report 2023 Abb. 31
+            if self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016:
+                type_heat_supply_system = 3  # DENA report 2023 Abb. 41
             else:
-                type_heat_supply_system = self._heat_supply_type
+                type_heat_supply_system = 1  # DENA report 2023 Abb. 31
 
         self.setting_values(type_heat_supply_system, retrofit_type)
 
@@ -1120,13 +1187,13 @@ class HeatSupplySystem(object):
     @nominal_heat_output_boiler.setter
     def nominal_heat_output_boiler(self, value):
 
-        if isinstance(value, float):
+        if isinstance(value, int):
             self._nominal_heat_output_boiler = value
         elif value is None:
             self._nominal_heat_output_boiler = value
         else:
             try:
-                value = float(value)
+                value = int(value)
                 self._nominal_heat_output_boiler = value
             except:
                 raise ValueError("Can't convert nominal_heat_output_boiler to float")
@@ -1138,11 +1205,11 @@ class HeatSupplySystem(object):
     @temp_ambient.setter
     def temp_ambient(self, value):
 
-        if isinstance(value, float):
+        if isinstance(value, int):
             self._temp_ambient = value
         else:
             try:
-                value = float(value)
+                value = int(value)
                 self._temp_ambient = value
             except:
                 raise ValueError("Can't convert temp_ambient to float")
