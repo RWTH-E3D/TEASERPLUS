@@ -3,7 +3,7 @@
 
 """This module includes a class for the Heat Supply System
 """
-
+import math
 
 class HeatSupplySystem(object):
 
@@ -29,9 +29,15 @@ class HeatSupplySystem(object):
         building area / number of residential units.
         values: "sfh" for TerracedHouse and SingleFamilyHouse, "mfh" for
         ApartmentBlock and MultiFamilyHouse.
+    usable_area : float [m^2]
+        Usable area of the building. Depentent on the heated volume or the
+        living area.
     length_char : float [m]
-        Characteristic length of the building. Depends on the area of the
+        Characteristic length of the building. Dependent on the footprint of the
         building.
+    n_res_units : int [-]
+        Number of residential units in the building. Dependent on the living
+        area.
     heat_load : float [kW]
         Equals simulated_heat_load of building class. If this is none, it
         is calculated as a function of the area.
@@ -88,7 +94,9 @@ class HeatSupplySystem(object):
 
         self._building_type = None
 
-        self._length_char
+        self._usable_area = None
+        self._length_char = None
+        self._n_res_units = None
 
         self._heat_load = None
             
@@ -160,6 +168,16 @@ class HeatSupplySystem(object):
         else:
             self._oversizing_factor = 1.2  # standard for existing buildings (iwu)
 
+        if self.parent.volume:  # chapter 6 iwu
+            self._usable_area = self.parent.volume * 0.32
+        else:
+            self._usable_area = self.parent.net_leased_area * 1.25
+
+        if self.parent.volume:  # formula 4-14 and 4-15 iwu
+            self._n_res_units = math.ceil(self.parent.volume * 0.256 / 80)
+        else:
+            self._n_res_units = math.ceil(self.parent.net_leased_area / 80)
+
         if type(self.parent).__name__:
             if any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for
                    substring in ["singlefamily", "terraced"]):
@@ -168,7 +186,7 @@ class HeatSupplySystem(object):
                    substring in ["multifamily", "apartment"]):
                 self._building_type = "mfh"
         else:
-            if self.parent.net_leased_area / 100 <= 2:
+            if self._n_res_units <= 2:
                 self._building_type = "sfh"
             else:
                 self._building_type = "mfh"
@@ -842,10 +860,10 @@ class HeatSupplySystem(object):
         else:
             print("No heat supply system added due to missing building type!")
 
-        if self._heat_generation in ["night storage", "low temperature - not combined"]:
+        if self._heat_generation in ["night storage", "low temperature - not combined"]:  # TABULA
             self._combined_water_heating = False
 
-        if self._pipe_routing_heating is None:
+        if self._pipe_routing_heating is None:  # TABULA
             if (self._heat_system == "gas" and
                 (self._heat_generation in ["circulating water heater", "condensing - decentralised"])) or \
                     (self._heat_system == "electricity" and self._heat_generation == "night storage"):
@@ -853,13 +871,13 @@ class HeatSupplySystem(object):
             else:
                 self._pipe_routing_heating = "centralised outside"
 
-        if self.parent.net_leased_area / 100 <= 2 and self._pipe_routing_water is None:
+        if self._building_type == "sfh" and self._pipe_routing_water is None:  # TABULA
             if self._pipe_routing_heating == "decentralised" or self._combined_water_heating is False:
                 self._pipe_routing_water = "decentralised"
             else:
                 self._pipe_routing_water = "centralised without circulation"
 
-        else:
+        else:  # TABULA
             if self._pipe_routing_heating == "decentralised" or self._combined_water_heating is False:
                 self._pipe_routing_water = "decentralised"
             else:
@@ -881,11 +899,17 @@ class HeatSupplySystem(object):
             if result is not None:
 
                 self._length_char = self.parent.get_footprint_gml() / 10  # iwu chapter 4.4.1
-            else:
+            """else:
+                if self.parent.volume:
+                    self._length_char = self.parent.volume / (self._n_res_units * 2.8 * 10)  # 2.8 = height_of_floors
+                else:
+                    self._length_char = (self.parent.net_leased_area / 0.256) / (self._n_res_units * 2.8 * 10)"""
 
-                self._length_char = self.parent.net_leased_area / 2.8 / 10  # 2.8 = height_of_floors
         except:
-            self._length_char = self.parent.net_leased_area / 2.8 / 10  # 2.8 = height_of_floors
+            if self.parent.volume:
+                self._length_char = self.parent.volume / (self._n_res_units * 2.8 * 10)  # 2.8 = height_of_floors
+            else:
+                self._length_char = (self.parent.net_leased_area / 0.256) / (self._n_res_units * 2.8 * 10)
 
             print("Mistake while function get_footprint_gml() in Building class.")
 
@@ -1068,6 +1092,24 @@ class HeatSupplySystem(object):
             raise ValueError("building_type no defined value")
 
     @property
+    def usable_area(self):
+        return self._usable_area
+
+    @usable_area.setter
+    def usable_area(self, value):
+
+        if isinstance(value, float):
+            self._usable_area = value
+        elif value is None:
+            self._usable_area = value
+        else:
+            try:
+                value = float(value)
+                self._usable_area = value
+            except:
+                raise ValueError("Can't convert usable_area to float")
+
+    @property
     def length_char(self):
         return self._length_char
 
@@ -1083,7 +1125,25 @@ class HeatSupplySystem(object):
                 value = float(value)
                 self._length_char = value
             except:
-                raise ValueError("Can't convert length_char to float")\
+                raise ValueError("Can't convert length_char to float")
+
+    @property
+    def n_res_units(self):
+        return self._n_res_units
+
+    @n_res_units.setter
+    def n_res_units(self, value):
+
+        if isinstance(value, int):
+            self._n_res_units = value
+        elif value is None:
+            self._n_res_units = value
+        else:
+            try:
+                value = int(value)
+                self._n_res_units = value
+            except:
+                raise ValueError("Can't convert n_res_units to int")
 
     @property
     def heat_load(self):
