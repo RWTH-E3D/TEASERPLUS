@@ -41,6 +41,10 @@ class HeatSupplySystem(object):
     heat_load : float [kW]
         Equals simulated_heat_load of building class. If this is none, it
         is calculated as a function of the area.
+    nominal_heat_output_boiler_heating : int [kW]
+        Dependent on oversizing_factor and heat_load.
+    nominal_heat_output_boiler_water : int [kW]
+        Dependent on number of residential units.
     year_of_retrofit : int [a]
         Equals year of retrofit of building class. If this is none, it is 1.
     heat_system : str
@@ -54,9 +58,6 @@ class HeatSupplySystem(object):
     combined_water_heating : bool
         Contains information on whether the warm water and heating system
         use one common generator.
-    nominal_heat_output_boiler : int [kW]
-        Value is rounded to the nearest 5. Dependent on oversizing_factor
-        and heat_load.
     temp_ambient : int [degC]
         Holds the surrounding temperature of the heat system.
     annual_operating_time_heating : int [d/a]
@@ -94,11 +95,13 @@ class HeatSupplySystem(object):
 
         self._building_type = None
 
-        self._usable_area = None
+        self._usable_area = self.parent.net_leased_area * 1.25  # chapter 6 iwu
         self._length_char = None
         self._n_res_units = None
 
         self._heat_load = None
+        self._nominal_heat_output_boiler_heating = None
+        self._nominal_heat_output_boiler_water = None
             
         if self.parent.year_of_retrofit is None:
             self._year_of_retrofit = 1
@@ -110,9 +113,8 @@ class HeatSupplySystem(object):
         self._heat_generation = None
         self._storage = None
         self._combined_water_heating = True
-        self._nominal_heat_output_boiler = None
         self._temp_ambient = 20
-        self._annual_operating_time_heating = 350
+        self._annual_operating_time_heating = 185
         self._annual_operating_time_water = 350
 
         # setting values for distribution
@@ -168,15 +170,7 @@ class HeatSupplySystem(object):
         else:
             self._oversizing_factor = 1.2  # standard for existing buildings (iwu)
 
-        if self.parent.volume:  # chapter 6 iwu
-            self._usable_area = self.parent.volume * 0.32
-        else:
-            self._usable_area = self.parent.net_leased_area * 1.25
-
-        if self.parent.volume:  # formula 4-14 and 4-15 iwu
-            self._n_res_units = math.ceil(self.parent.volume * 0.256 / 80)
-        else:
-            self._n_res_units = math.ceil(self.parent.net_leased_area / 80)
+        self._n_res_units = math.ceil(self.parent.net_leased_area / 80) # formula 4-14 and 4-15 iwu
 
         if type(self.parent).__name__:
             if any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for
@@ -899,17 +893,10 @@ class HeatSupplySystem(object):
             if result is not None:
 
                 self._length_char = self.parent.get_footprint_gml() / 10  # iwu chapter 4.4.1
-            """else:
-                if self.parent.volume:
-                    self._length_char = self.parent.volume / (self._n_res_units * 2.8 * 10)  # 2.8 = height_of_floors
-                else:
-                    self._length_char = (self.parent.net_leased_area / 0.256) / (self._n_res_units * 2.8 * 10)"""
 
         except:
-            if self.parent.volume:
-                self._length_char = self.parent.volume / (self._n_res_units * 2.8 * 10)  # 2.8 = height_of_floors
-            else:
-                self._length_char = (self.parent.net_leased_area / 0.256) / (self._n_res_units * 2.8 * 10)
+            self._length_char = (self.parent.net_leased_area / 0.256) / (self._n_res_units * 2.8 * 10)
+            # 2.8 = height_of_floors
 
             print("Mistake while function get_footprint_gml() in Building class.")
 
@@ -921,46 +908,38 @@ class HeatSupplySystem(object):
             self._design_temp_flow = 70
 
         # iwu formula 4-4
-        if self.parent.net_leased_area < 10000:
-            self._daily_operating_time_pump = 7.5 + 1 / (0.06 + 7 / self.parent.net_leased_area)
+        if self._usable_area < 10000:
+            self._daily_operating_time_pump = 7.5 + 1 / (0.06 + 7 / self._usable_area)
         else:
             self._daily_operating_time_pump = 24
 
         if self.parent.simulated_heat_load is None:
             # DIN EN 15378-1:2017-09 table B.38
-            if self.parent.net_leased_area < 1500:
-                if self._building_type == "sfh":
-                    self._heat_load = 45 * self.parent.net_leased_area / (self._annual_operating_time_heating *
-                                                                          self._daily_operating_time_pump)  # [kW]
-                else:
-                    self._heat_load = 25 * self.parent.net_leased_area / (self._annual_operating_time_heating *
-                                                                          self._daily_operating_time_pump)
-
-            elif self.parent.net_leased_area < 2500:
-                if self._building_type == "sfh":
-                    self._heat_load = 75 * self.parent.net_leased_area / (self._annual_operating_time_heating *
-                                                                          self._daily_operating_time_pump)
-                else:
-                    self._heat_load = 40 * self.parent.net_leased_area / (self._annual_operating_time_heating *
-                                                                          self._daily_operating_time_pump)
-
+            if self._building_type == "sfh":
+                self._heat_load = 100 * self._usable_area / (self._annual_operating_time_heating *
+                                                                       self._daily_operating_time_pump)
             else:
-                if self._building_type == "sfh":
-                    self._heat_load = 100 * self.parent.net_leased_area / (self._annual_operating_time_heating *
-                                                                          self._daily_operating_time_pump)
-                else:
-                    self._heat_load = 60 * self.parent.net_leased_area / (self._annual_operating_time_heating *
-                                                                          self._daily_operating_time_pump)
+                self._heat_load = 60 * self._usable_area / (self._annual_operating_time_heating *
+                                                                      self._daily_operating_time_pump)
 
         else:
             self._heat_load = self.parent.simulated_heat_load # todo check, if simulated_heat_load in kW
             print("self.parent.simulated_heat_load: ", self.parent.simulated_heat_load)
 
-        # iwu formula 2-3, rounded to 5 [kW]
-        if (5 * round(self._oversizing_factor * self._heat_load / 5)) < 15 or None:
-            self._nominal_heat_output_boiler = 15
+        # calculation of nominal heat output
+        # iwu formula 2-3 [kW]
+        if (self._oversizing_factor * self._heat_load / 5) <= 15 or self._heat_load is None:
+            self._nominal_heat_output_boiler_heating = 15
         else:
-            self._nominal_heat_output_boiler = 5 * round(self._oversizing_factor * self._heat_load / 5)
+            self._nominal_heat_output_boiler_heating = self._oversizing_factor * self._heat_load
+
+        # iwu formula 2-5 [kW]
+        self._nominal_heat_output_boiler_water = -0.0014 * self._n_res_units ** 2 + 1.4 * self._n_res_units + 7
+
+        if self._combined_water_heating:
+            max_result = max(self._nominal_heat_output_boiler_heating, self._nominal_heat_output_boiler_water)
+            self._nominal_heat_output_boiler_heating = max_result
+            self._nominal_heat_output_boiler_water = max_result
 
         # calculation of the average temperature of the water distribution
         # iwu chapter 1.2.2
@@ -972,7 +951,7 @@ class HeatSupplySystem(object):
 
         # calculation of the average temperature of the heating distribution
         # iwu table 1
-        if self.parent.net_leased_area / 100 >= 10:  # todo ">= 6" after September 2024
+        if self._n_res_units >= 10:  # todo ">= 6" after September 2024
             # heating mode "optimised": hydraulic balancing
 
             if self._design_temp_flow == 70:
@@ -1162,6 +1141,42 @@ class HeatSupplySystem(object):
                 raise ValueError("Can't convert heat_load to float")
 
     @property
+    def nominal_heat_output_boiler_heating(self):
+        return self._nominal_heat_output_boiler_heating
+
+    @nominal_heat_output_boiler_heating.setter
+    def nominal_heat_output_boiler_heating(self, value):
+
+        if isinstance(value, float):
+            self._nominal_heat_output_boiler_heating = value
+        elif value is None:
+            self._nominal_heat_output_boiler_heating = value
+        else:
+            try:
+                value = float(value)
+                self._nominal_heat_output_boiler_heating = value
+            except:
+                raise ValueError("Can't convert nominal_heat_output_boiler_heating to float")
+
+    @property
+    def nominal_heat_output_boiler_water(self):
+        return self._nominal_heat_output_boiler_water
+
+    @nominal_heat_output_boiler_water.setter
+    def nominal_heat_output_boiler_water(self, value):
+
+        if isinstance(value, float):
+            self._nominal_heat_output_boiler_water = value
+        elif value is None:
+            self._nominal_heat_output_boiler_water = value
+        else:
+            try:
+                value = float(value)
+                self._nominal_heat_output_boiler_water = value
+            except:
+                raise ValueError("Can't convert nominal_heat_output_boiler_water to float")
+
+    @property
     def year_of_retrofit(self):
         return self._year_of_retrofit
 
@@ -1239,24 +1254,6 @@ class HeatSupplySystem(object):
                 self._combined_water_heating = value
             except:
                 raise ValueError("Can't convert combined_water_heating to boolean")
-
-    @property
-    def nominal_heat_output_boiler(self):
-        return self._nominal_heat_output_boiler
-
-    @nominal_heat_output_boiler.setter
-    def nominal_heat_output_boiler(self, value):
-
-        if isinstance(value, int):
-            self._nominal_heat_output_boiler = value
-        elif value is None:
-            self._nominal_heat_output_boiler = value
-        else:
-            try:
-                value = int(value)
-                self._nominal_heat_output_boiler = value
-            except:
-                raise ValueError("Can't convert nominal_heat_output_boiler to float")
 
     @property
     def temp_ambient(self):

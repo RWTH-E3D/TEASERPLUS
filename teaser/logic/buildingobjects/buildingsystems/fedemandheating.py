@@ -13,7 +13,7 @@ class FEDemandHeating(object):
     This class holds information for the heating system of the Building.
     The heat losses for the heating system are being set. This class does
     not affect the calculation in Dymola. It uses the calculated heat
-    load and adds heat losses for water to calculate the primary energy demand.
+    load and adds heat losses for water to calculate the final energy demand.
 
     Parameters
     ----------
@@ -45,16 +45,16 @@ class FEDemandHeating(object):
         else:
             self._temp_ambient_heating = self.parent.temp_ambient
 
-    def _calc_dissipation_distribution_water_for_heating(self):
+    def _calc_gains_distribution_water_for_heating(self):
         """
-        Calculation of heat dissipation through distribution of warm water
+        Calculation of heat gains through distribution of warm water
         that benefits the heating system. Dependent of the pipe routing and
         geometrical building values.
 
         Returns
         ----------
         result : float [kWh/a]
-            dissipation distribution water for heating
+            gains distribution water for heating
         """
 
         length_horizontal_water = 0
@@ -125,42 +125,38 @@ class FEDemandHeating(object):
                    * self.parent.annual_operating_time_water * \
                    self.parent.annual_operating_time_heating / self.parent.annual_operating_time_water  # [kWh/a]
 
-        # print("_calc_dissipation_distribution_water_for_heating: " + str(result))
+        # print("_calc_gains_distribution_water_for_heating: " + str(result))
         if result is None or result == 0:
             return 0
         else:
             return result
 
-    def _calc_dissipation_storage_water_for_heating(self):
+    def _calc_gains_storage_water_for_heating(self):
         """
-        Calculation of heat dissipation through storage of warm water
+        Calculation of heat gains through storage of warm water
         that benefits the heating system. Dependent of the pipe routing and
-        the sorage loss that is calculated in FEDemandWater class.
+        the storage loss that is calculated in FEDemandWater class.
 
         Returns
         ----------
         result : float [kWh/a]
-            dissipation storage water for heating
+            gains storage water for heating
         """
 
         fedemandwater = FEDemandWater(parent=self.parent)
         dissipation_storage_water = fedemandwater.calc_dissipation_storage_water()
 
         # DIN V 4701-10 table C.1-3a
-        if self.parent.pipe_routing_heating == "centralised inside":
-
-            if self.parent.pipe_routing_water == "decentralised":
-                result = 0.5 * self.parent.parent.net_leased_area
+        if self.parent.pipe_routing_heating != "centralised outside" and self.parent.pipe_routing_heating is not None:
 
             # DIN V 4701-10 formula 5.1.3-10
-            else:
-                result = self.parent.annual_operating_time_heating / self.parent.annual_operating_time_water * \
-                       (1 - 0.15) * dissipation_storage_water  # [kWh/a]
-                # 0.15 = Heat loss factor for components within the thermal envelope, DIN V 4701-10 table 5-2
+            result = self.parent.annual_operating_time_heating / self.parent.annual_operating_time_water * \
+                   (1 - 0.15) * dissipation_storage_water  # [kWh/a]
+            # 0.15 = Heat loss factor for components within the thermal envelope, DIN V 4701-10 table 5-2
         else:
             result = 0
 
-        # print("_calc_dissipation_storage_water_for_heating: " + str(result))
+        # print("_calc_gains_storage_water_for_heating: " + str(result))
 
         return result
 
@@ -184,6 +180,9 @@ class FEDemandHeating(object):
 
         else:
             result = 0
+
+        if self.parent.storage == "solar":
+            result += (5 * 8760 / 1000)
 
         # print("_calc_dissipation_controll_emission_heating: " + str(result))
         return result
@@ -317,7 +316,7 @@ class FEDemandHeating(object):
 
             # DIN V 4701-10 formula 5.3.3-1
             result = 1.2 * (self.parent.avg_temp_distribution_heating - self._temp_ambient_heating) / 45 * \
-                   self.parent.annual_operating_time_heating * 0.15 * standby_heat_loss_heating  # [kWh/a]
+                   self.parent.annual_operating_time_heating * 0.15 * standby_heat_loss_heating  # [kWh/a]  # todo 0.15 korrekt??
             # 0.15 = Heat loss factor for components within the thermal envelope, table 5-2 DIN V 4701-10
 
         else:
@@ -369,15 +368,15 @@ class FEDemandHeating(object):
                 standby_heat_loss_heating_70_20kw = 0.015
                 boiler_efficiency_70_20kw = 0.92
 
-                if self.parent.nominal_heat_output_boiler == 20:
+                if self.parent.nominal_heat_output_boiler_heating == 20:
                     standby_heat_loss_heating_70 = standby_heat_loss_heating_70_20kw
                     boiler_efficiency_70 = boiler_efficiency_70_20kw
                 else:
                     # iwu formula 2-1 and 2-2
                     standby_heat_loss_heating_70 = standby_heat_loss_heating_70_20kw * 2.456 * \
-                                                   self.parent.nominal_heat_output_boiler ** (-0.3)
+                                                   self.parent.nominal_heat_output_boiler_heating ** (-0.3)
                     boiler_efficiency_70 = boiler_efficiency_70_20kw - 0.0195 + 0.015 * \
-                                           math.log10(self.parent.nominal_heat_output_boiler)
+                                           math.log10(self.parent.nominal_heat_output_boiler_heating)
 
                 # avg_temp_boiler_heat_period = self.parent.avg_temp_distribution_heating, no standard boiler in archetypes
                 if self.parent.avg_temp_distribution_heating < 70:
@@ -401,7 +400,7 @@ class FEDemandHeating(object):
                                        (self.parent.avg_temp_distribution_heating - self._temp_ambient_heating)  # [-]
                 # print("avg_standby_heat_loss_heating:", avg_standby_heat_loss_heating)
 
-                load_level_boiler = 0.3 * self.parent.heat_load / self.parent.nominal_heat_output_boiler  # [-]
+                load_level_boiler = 0.3 * self.parent.heat_load / self.parent.nominal_heat_output_boiler_heating  # [-]
                 # print("load_level_boiler:", load_level_boiler)
 
                 boiler_efficiency = (boiler_efficiency_70 + efficiency_correction) * \
@@ -455,8 +454,8 @@ class FEDemandHeating(object):
             print("Mistake while function calc_simulated_annual_heat_energy() in Building class.")
 
         result = (annual_heat_energy -
-                self._calc_dissipation_distribution_water_for_heating() -
-                self._calc_dissipation_storage_water_for_heating() +
+                self._calc_gains_distribution_water_for_heating() -
+                self._calc_gains_storage_water_for_heating() +
                 self._calc_dissipation_controll_emission_heating() +
                 self._calc_dissipation_distribution_heating() +
                 self._calc_dissipation_storage_heating()) * \
@@ -581,7 +580,7 @@ class FEDemandHeating(object):
 
         if auxiliary_energy_demand_boiler is None and nominal_power_consumption_boiler is not None:
             # DIN V 4701-10 formula 5.3.4.2-9 and 5.3.4.2-7
-            auxiliary_energy_demand_boiler = (self.parent.heat_load / self.parent.nominal_heat_output_boiler) * \
+            auxiliary_energy_demand_boiler = (self.parent.heat_load / self.parent.nominal_heat_output_boiler_heating) * \
                                              self.parent.annual_operating_time_heating * 24 * \
                                              nominal_power_consumption_boiler  # [kWh/a]
 
@@ -603,7 +602,7 @@ class FEDemandHeating(object):
 
         Returns
         ----------
-        final energy demand heating : float [kWh/a]
+        final energy demand heating : float [MJ]
         """
 
         # PE for heating
@@ -646,7 +645,7 @@ class FEDemandHeating(object):
                                           self._calc_dissipation_storage_auxiliary_heating()
 
         print("final_energy_demand_heating:", final_energy_demand_heating)
-        return final_energy_demand_heating
+        return final_energy_demand_heating / 3.6
 
     @property
     def parent(self):
