@@ -306,18 +306,23 @@ class FEDemandHeating(object):
         """
 
         # Condition from TABULA for buffer storage
-        if self.parent.heat_generation in ["heatpump air", "condensing - chp", "chp"] or \
-                (self.parent.heat_generation == "heatpump ground" and self.parent.building_type == "sfh"):
+        if (self.parent.heat_generation in ["heatpump air", "condensing - chp", "chp"] or \
+                (self.parent.heat_generation == "heatpump ground" and self.parent.building_type == "sfh")) and \
+                    self.parent.avg_temp_distribution_water != 32:
 
             # DIN V 4701-10 formula 5.3.3-2
-            vol_storage = 4 * self.parent.parent.net_leased_area ** 0.7
+            vol_storage = 4 * self.parent.usable_area ** 0.7
             standby_heat_loss_heating = (0.5 + 0.25 * 1000 ** 0.4) * math.floor(vol_storage / 1000) + \
                                0.5 + 0.25 * (vol_storage % 1000) ** 0.4  # including calculation of n_storage
 
-            # DIN V 4701-10 formula 5.3.3-1
-            result = 1.2 * (self.parent.avg_temp_distribution_heating - self._temp_ambient_heating) / 45 * \
-                   self.parent.annual_operating_time_heating * 0.15 * standby_heat_loss_heating  # [kWh/a]  # todo 0.15 korrekt??
-            # 0.15 = Heat loss factor for components within the thermal envelope, table 5-2 DIN V 4701-10
+            if self.parent.pipe_routing_heating == "centralised outside":
+                result = 1.2 * (self.parent.avg_temp_distribution_heating - self._temp_ambient_heating) / 45 * \
+                         self.parent.annual_operating_time_heating * 1 * standby_heat_loss_heating  # [kWh/a]
+            else:
+                # DIN V 4701-10 formula 5.3.3-1
+                result = 1.2 * (self.parent.avg_temp_distribution_heating - self._temp_ambient_heating) / 45 * \
+                       self.parent.annual_operating_time_heating * 0.15 * standby_heat_loss_heating  # [kWh/a]
+                # 0.15 = Heat loss factor for components within the thermal envelope, table 5-2 DIN V 4701-10
 
         else:
             result = 0
@@ -396,8 +401,12 @@ class FEDemandHeating(object):
                 else:
                     utilisation_factor_heat_use = 0.85
 
-                avg_standby_heat_loss_heating = standby_heat_loss_heating_70 / 50 * \
-                                       (self.parent.avg_temp_distribution_heating - self._temp_ambient_heating)  # [-]
+                if self.parent.pipe_routing_heating == "centralised outside":
+                    avg_standby_heat_loss_heating = standby_heat_loss_heating_70 / 50 * \
+                                                    (self.parent.avg_temp_distribution_heating - 15)
+                else:
+                    avg_standby_heat_loss_heating = standby_heat_loss_heating_70 / 50 * \
+                                       (self.parent.avg_temp_distribution_heating - 20)  # [-]
                 # print("avg_standby_heat_loss_heating:", avg_standby_heat_loss_heating)
 
                 load_level_boiler = 0.3 * self.parent.heat_load / self.parent.nominal_heat_output_boiler_heating  # [-]
@@ -414,8 +423,7 @@ class FEDemandHeating(object):
                                      (1 + (1 / load_level_boiler - 1) * avg_standby_heat_loss_heating)  # [-]
                 # print("load_factor_boiler:", load_factor_boiler)
 
-            if self.parent.heat_system in ["gas", "oil"] and \
-                    self.parent.heat_generation not in ["low temperature", "low temperature - not combined"]:
+            if self.parent.heat_system in ["gas", "oil"] and "low temperature" not in self.parent.heat_generation:
 
                 expenditure_figure = 1 / (load_factor_boiler * (boiler_efficiency + 0.003 *
                                                                 (30 - self.parent.avg_temp_distribution_heating)))  # [-]
@@ -503,7 +511,7 @@ class FEDemandHeating(object):
             if self.parent.parent.year_of_construction >= 2016 or self.parent.year_of_retrofit >= 2016:
                 # DIN V 4701-10 formula 5.3.2-4
                 result = nominal_power_consumption_of_circulator * self.parent.annual_operating_time_heating * \
-                       self.parent.daily_operating_time_pump / ((1.4 - 20 / self.parent.parent.net_leased_area) * 1000)
+                       self.parent.daily_operating_time_pump / ((1.4 - 20 / self.parent.usable_area) * 1000)
 
             else:
                 # correction factor for controllable pumps in stock = 1
@@ -534,9 +542,9 @@ class FEDemandHeating(object):
                  self.parent.building_type == "sfh"):
 
             # DIN V 4701-10 formula 5.3.3-3 and 5.3.3-4
-            result = (40 + 0.03 * self.parent.parent.net_leased_area) * 0.3324 * \
+            result = (40 + 0.03 * self.parent.usable_area) * 24 * \
                      self.parent.annual_operating_time_heating / 1000
-            # 0.3324 = simultaneous operation with heat generator (if not simultaneous, set tP = 24)
+            # 0.3324 = simultaneous operation with heat generator (if not simultaneous, tP = 24)
         else:
             result = 0
 
@@ -558,7 +566,7 @@ class FEDemandHeating(object):
         auxiliary_energy_demand_boiler = None
         nominal_power_consumption_boiler = None
 
-        if self.parent.heat_system == "oil":
+        if self.parent.heat_system in ["oil", "biomass"]:
             # iwu formula 5-6
             nominal_power_consumption_boiler = 170 + 1.95 * self.parent.heat_load  # [kW]
 
@@ -567,7 +575,8 @@ class FEDemandHeating(object):
             if self.parent.heat_generation == "circulating water heater":
                 # iwu chapter 5-3
                 auxiliary_energy_demand_boiler = (100 * self.parent.annual_operating_time_heating * 24 +
-                                                  20 * self.parent.annual_operating_time_water * 24) / 1000
+                                                  20 * (self.parent.annual_operating_time_water -
+                                                        self.parent.annual_operating_time_heating) * 24) / 1000
                 # [kWh/a]
 
             else:
@@ -576,11 +585,11 @@ class FEDemandHeating(object):
 
         elif "heatpump ground" in self.parent.heat_generation:
             # DIN V 4701-10 table C3-4c
-            auxiliary_energy_demand_boiler = 1.9 * self.parent.parent.net_leased_area ** (-0.1)
+            auxiliary_energy_demand_boiler = 1.9 * self.parent.usable_area ** (-0.1) * self.parent.usable_area
 
         if auxiliary_energy_demand_boiler is None and nominal_power_consumption_boiler is not None:
             # DIN V 4701-10 formula 5.3.4.2-9 and 5.3.4.2-7
-            auxiliary_energy_demand_boiler = (self.parent.heat_load / self.parent.nominal_heat_output_boiler_heating) * \
+            auxiliary_energy_demand_boiler = (0.3 * self.parent.heat_load / self.parent.nominal_heat_output_boiler_heating) * \
                                              self.parent.annual_operating_time_heating * 24 * \
                                              nominal_power_consumption_boiler  # [kWh/a]
 
