@@ -176,6 +176,8 @@ class SingleFamilyHouse(Residential):
 
         self.inner_wall_names = {"InnerWall": [90.0, 0.0]}
 
+        self.shared_wall_names = {"SharedWall": [90.0, 0.0]}
+
         self.ceiling_names = {"Ceiling": [0.0, -1]}
 
         self.floor_names = {"Floor": [0.0, -2]}
