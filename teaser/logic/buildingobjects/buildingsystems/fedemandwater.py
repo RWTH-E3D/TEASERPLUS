@@ -126,9 +126,11 @@ class FEDemandWater(object):
 
         # iwu chapter 3
         # standby_heat_loss_heating [kWh/d]
+        standby_heat_loss_heating = None
+
         if self.parent.pipe_routing_water == "decentralised":
 
-            vol_storage = self._n_res_units * (80 + 5)  # [l]
+            vol_storage = self.parent.n_res_units * (80 + 5)  # [l]
 
         elif self.parent.storage:
             # water: iwu chapter 3.1, solar: iwu table 8
@@ -148,9 +150,12 @@ class FEDemandWater(object):
             else:
                 standby_heat_loss_heating = 0.29 + 0.019 * vol_storage ** 0.8
 
-        result = 1.2 * (50 - self._temp_ambient_water) / 45 * self.parent.annual_operating_time_water \
-            * standby_heat_loss_heating  # [kWh/a]
-        # DIN V 4701-10 formula 5.1.3-1
+        if standby_heat_loss_heating is not None:
+            result = 1.2 * (50 - self._temp_ambient_water) / 45 * self.parent.annual_operating_time_water \
+                * standby_heat_loss_heating  # [kWh/a]
+            # DIN V 4701-10 formula 5.1.3-1
+        else:
+            result = None
 
         # print("_calc_dissipation_storage_water: " + str(result))
         if result is None or result == 0:
@@ -319,7 +324,7 @@ class FEDemandWater(object):
                        self.parent.daily_operating_time_pump / 1000
 
             else:
-                result = (30 + 5 * self._n_res_units) * self.parent.annual_operating_time_water * \
+                result = (30 + 5 * self.parent.n_res_units) * self.parent.annual_operating_time_water * \
                        self.parent.daily_operating_time_pump / 1000  # [kWh/a]
 
         else:
@@ -343,12 +348,12 @@ class FEDemandWater(object):
 
             if self.parent.storage == "water":
                 # iwu formula 5-20 to 5-22
-                result = (30 + 5 * self._n_res_units) * 1.2 * \
+                result = (30 + 5 * self.parent.n_res_units) * 1.2 * \
                        (12.5 * self.parent.usable_area + self._calc_dissipation_distribution_water() +
                         self.calc_dissipation_storage_water()) / self.parent.nominal_heat_output_boiler_water / 1000  # [kWh/a]
             else:
                 # iwu formula 5-25 and 5-26
-                result = (20 + 5 * self._n_res_units) * 1750 / 1000
+                result = (20 + 5 * self.parent.n_res_units) * 1750 / 1000
 
         else:
             result = 0
@@ -432,7 +437,7 @@ class FEDemandWater(object):
 
         Returns
         ----------
-        final energy demand water : float [MJ]
+        final energy demand water : float [kWh/a]
         """
 
         part_solar = 0
@@ -496,7 +501,7 @@ class FEDemandWater(object):
                                         self._calc_dissipation_storage_auxiliary_water()
 
         print("final_energy_demand_water:", final_energy_demand_water)
-        return final_energy_demand_water / 3.6
+        return final_energy_demand_water
 
     @property
     def parent(self):

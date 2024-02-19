@@ -579,6 +579,7 @@ class SingleFamilyHouse(Residential):
             zone.set_volume_zone()
 
         heatsupplysystem.setting_values(self.type_heat_supply_system, self.construction_type)
+        """Output for testing
         print("year_of_construction: " + str(heatsupplysystem.parent.year_of_construction))
         print("year_of_retrofit: " + str(heatsupplysystem.year_of_retrofit))
         print("oversizing_factor: " + str(heatsupplysystem.oversizing_factor))
@@ -593,13 +594,14 @@ class SingleFamilyHouse(Residential):
         print("combined_water_heating: " + str(heatsupplysystem.combined_water_heating))
         print("avg_temp_distribution_heating: " + str(heatsupplysystem.avg_temp_distribution_heating))
         print("pipe_routing_water: " + str(heatsupplysystem.pipe_routing_water))
-        print("nominal_heat_output_boiler: " + str(heatsupplysystem.nominal_heat_output_boiler))
+        print("nominal_heat_output_boiler_heating: " + str(heatsupplysystem.nominal_heat_output_boiler_heating))
+        print("nominal_heat_output_boiler_water: " + str(heatsupplysystem.nominal_heat_output_boiler_water))
 
-        # water = fedemandwater.calc_final_energy_demand_water()
-        # print("fed_water: " + str(water))
+        water = fedemandwater.calc_final_energy_demand_water()
+        print("fed_water: " + str(water))
 
-        # heating = fedemandheating.calc_final_energy_demand_heating()
-        # print("fed_heating: " + str(heating))
+        heating = fedemandheating.calc_final_energy_demand_heating()
+        print("fed_heating: " + str(heating))"""
 
         heatsupplysystem.calc_lca_data(False, 50)
 

@@ -611,7 +611,7 @@ class FEDemandHeating(object):
 
         Returns
         ----------
-        final energy demand heating : float [MJ]
+        final energy demand heating : float [kWh/a]
         """
 
         # PE for heating
@@ -654,7 +654,7 @@ class FEDemandHeating(object):
                                           self._calc_dissipation_storage_auxiliary_heating()
 
         print("final_energy_demand_heating:", final_energy_demand_heating)
-        return final_energy_demand_heating / 3.6
+        return final_energy_demand_heating
 
     @property
     def parent(self):

@@ -95,7 +95,7 @@ class HeatSupplySystem(object):
 
         self._building_type = None
 
-        self._usable_area = self.parent.net_leased_area * 1.25  # chapter 6 iwu
+        self._usable_area = None
         self._length_char = None
         self._n_res_units = None
 
@@ -151,6 +151,11 @@ class HeatSupplySystem(object):
             Can contain three values: standard, retrofit, adv_retrofit derived from
             TABULA values. Default is standard
         """
+        if self.parent.net_leased_area != 0:
+            self._usable_area = self.parent.net_leased_area * 1.25  # chapter 6 iwu
+        else:
+            print("net_leased_area has to have a value.")
+
         if type_heat_supply_system is None:
             if self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016:
                 type_heat_supply_system = 3  # DENA report 2023 Abb. 41
@@ -908,7 +913,7 @@ class HeatSupplySystem(object):
             self._design_temp_flow = 70
 
         # iwu formula 4-4
-        if self._usable_area < 10000:
+        if self._usable_area != 0 and self._usable_area < 10000:
             self._daily_operating_time_pump = 7.5 + 1 / (0.06 + 7 / self._usable_area)
         else:
             self._daily_operating_time_pump = 24
