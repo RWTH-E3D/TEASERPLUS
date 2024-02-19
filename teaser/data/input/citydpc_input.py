@@ -30,20 +30,48 @@ alkis_th_codes = [] #TerracedHouse
 alkis_office_codes = [] #Offices
 
 
-def load_dpc_buildings():
+def load_dpc_buildings(prj, citydpc_dataset, common_walls, method):
+
+    for dpc_building in citydpc_dataset.get_building_list():
+        # you can get the id by
+        bldg_id = dpc_building.gml_id
+
+        """Assign Archetype"""
+
+        bldg = assign_archetype(prj=prj, building=dpc_building,
+                                    bldg_name=bldg_id, method=method)
+
+        """Extract GML surface from File"""
+        # TODO: is there longer a need for that?
+        # get_gml_surfaces(bldg=bldg, city_object=building)
+        bldg.gml_surfaces = dpc_building.get_surfaces()
+        """Calculate building height through GML surfaces, overwrites measured height from GML Building"""
+        bldg.set_height_gml()
+
+        """Calculates net_floor_area and number of toreys in Building with default storey height"""
+        try:
+            bldg.set_gml_attributes()
+        except (UserWarning, AttributeError):
+            print(f"{bldg.name} bldg.set_gml_attributes() did not work")
+            pass
+        """Sets Building Elements"""
+        try:
+            bldg.generate_from_gml()
+        except (UserWarning, AttributeError):
+            print(f"{bldg.name} bldg.generate_from_gml() did not work")
+        pass
+
     pass
 
 
-def assign_archetype(prj, building_lxml, namespace, bldg_name, method, archetype):
+def assign_archetype(prj, building, bldg_name, method, archetype=None):
     """
-    Assigns a archetype and creates a TEASER building on bases of Bilding Function scrapped from CityGML Building.
+    Assigns a archetype and creates a TEASER building on bases of Building Function scrapped from CityGML Building.
 
     :param prj: Project()
             Teaser instance of Project()
     :param building_lxml: lxml object
             CityGML City Object(Building)
-    :param namespace: lxml.msmap()
-            Original namespaces from CityGML file (root)
     :param bldg_name: Str
             Pass through Building Name extracted from CityGML Building
     :param method: Str
@@ -85,8 +113,8 @@ def assign_archetype(prj, building_lxml, namespace, bldg_name, method, archetype
             prj.data = DataClass(used_statistic='iwu')
             pass
 
-    elif building_lxml.find('bldg:function', namespace) is not None:
-        bldg_function = building_lxml.find('bldg:function', namespace).text
+    elif building.usage is not None:
+        bldg_function = building.usage
 
         if bldg_function in alkis_sfh_codes:  # Single Family Buildings
             if method == "tabula_de":
