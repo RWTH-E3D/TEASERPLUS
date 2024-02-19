@@ -176,6 +176,8 @@ class HeatSupplySystem(object):
             self._oversizing_factor = 1.2  # standard for existing buildings (iwu)
 
         self._n_res_units = math.ceil(self.parent.net_leased_area / 80) # formula 4-14 and 4-15 iwu
+        if self._n_res_units <= 1:
+            self._n_res_units = 1
 
         if type(self.parent).__name__:
             if any(substring.replace("_", "").lower() in type(self.parent).__name__.replace("_", "").lower() for

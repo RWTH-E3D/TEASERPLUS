@@ -601,9 +601,11 @@ class SingleFamilyHouse(Residential):
         print("fed_water: " + str(water))
 
         heating = fedemandheating.calc_final_energy_demand_heating()
-        print("fed_heating: " + str(heating))"""
+        print("fed_heating: " + str(heating))
+        
+        heatsupplysystem.calc_lca_data(False, 50)"""
 
-        heatsupplysystem.calc_lca_data(False, 50)
+
 
 
     def generate_from_gml(self):
