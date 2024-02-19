@@ -684,7 +684,7 @@ class FEDemandHeating(object):
                 value = float(value)
                 self._temp_ambient_water = value
             except:
-                raise ValueError("Can't convert temp_ambient_water to float")\
+                raise ValueError("Can't convert temp_ambient_water to float")
 
     @property
     def temp_ambient_heating(self):
