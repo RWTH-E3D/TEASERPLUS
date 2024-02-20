@@ -46,20 +46,24 @@ def load_dpc_buildings(prj, citydpc_dataset, common_walls, method):
         # get_gml_surfaces(bldg=bldg, city_object=building)
         bldg.gml_surfaces = dpc_building.get_surfaces()
         """Calculate building height through GML surfaces, overwrites measured height from GML Building"""
-        bldg.set_height_gml()
+        bldg.bldg_height = dpc_building.measuredHeight
+        _set_attributes(bldg=bldg, gml_bldg=dpc_building, bldg_name=bldg_id)
+        #bldg.set_height_gml()
 
-        """Calculates net_floor_area and number of toreys in Building with default storey height"""
+        """Calculates net_floor_area and number of storeys in Building with default storey height"""
         try:
             bldg.set_gml_attributes()
         except (UserWarning, AttributeError):
             print(f"{bldg.name} bldg.set_gml_attributes() did not work")
             pass
+
+        bldg.generate_from_gml()
         """Sets Building Elements"""
-        try:
-            bldg.generate_from_gml()
-        except (UserWarning, AttributeError):
-            print(f"{bldg.name} bldg.generate_from_gml() did not work")
-        pass
+        # try:
+        #     bldg.generate_from_gml()
+        # except (UserWarning, AttributeError):
+        #     print(f"{bldg.name} bldg.generate_from_gml() did not work")
+        # pass
 
     pass
 
@@ -113,8 +117,8 @@ def assign_archetype(prj, building, bldg_name, method, archetype=None):
             prj.data = DataClass(used_statistic='iwu')
             pass
 
-    elif building.usage is not None:
-        bldg_function = building.usage
+    elif building.function is not None:
+        bldg_function = building.function
 
         if bldg_function in alkis_sfh_codes:  # Single Family Buildings
             if method == "tabula_de":
@@ -192,7 +196,7 @@ def get_lod(city_object):
     return lod
 
 
-def _set_attributes(bldg, gml_bldg, boundary_box, namespace, bldg_name, gml_bldg_part=None, bldg_part=None,
+def _set_attributes(bldg, gml_bldg, bldg_name, gml_bldg_part=None, bldg_part=None,
                     measured_mean_height=None, bldg_yoc=None):
     """This function tries to set attributes for type building generation.
 
@@ -221,34 +225,41 @@ def _set_attributes(bldg, gml_bldg, boundary_box, namespace, bldg_name, gml_bldg
             try:
                 bldg.name = bldg_name
             except:
-                bldg.name = gml_bldg.name[0].value()
+                bldg.name = bldg_name
         else:
             try:
                 bldg.name = f'{bldg_name}bt_{bldg_part}'
             except:
-                bldg.name = gml_bldg.name[0].value()
+                bldg.name = f'{bldg_name}bt_{bldg_part}'
     except UserWarning:
-        bldg.name = gml_bldg.id
+        bldg.name = gml_bldg.gml_id
         print("no name specified in gml file")
         pass
+
+    #TODO: pass through boundary box
+
+    # try:
+    #     bldg.latitude, bldg.longitude = calc_lat_long(boundary_box=boundary_box, namespace=namespace)
+    # except (UserWarning, AttributeError):
+    #     print("no Envelope Boundary Box is specified in gml file")
+    #     pass
     try:
-        bldg.latitude, bldg.longitude = calc_lat_long(boundary_box=boundary_box, namespace=namespace)
-    except (UserWarning, AttributeError):
-        print("no Envelope Boundary Box is specified in gml file")
-        pass
-    try:
-        bldg.number_of_floors = int(gml_bldg.find(".//bldg:storeysAboveGround", namespace).text)
+        bldg.number_of_floors = int(gml_bldg.storeysAboveGround)
     except (UserWarning, AttributeError):
         print("no storeysAboveGround specified in gml file")
         pass
-    try:
-        bldg.height_of_floors = float(gml_bldg.find(".//bldg:storeyHeightsAboveGround", namespace).text)
-    except (UserWarning, AttributeError):
-        print("no storeyHeightsAboveGround specified in gml file")
-        pass
+
+    #TODO: pass through boundary box
+
+    # try:
+    #     bldg.height_of_floors = float(gml_bldg.find(".//bldg:storeyHeightsAboveGround", namespace).text)
+    # except (UserWarning, AttributeError):
+    #     print("no storeyHeightsAboveGround specified in gml file")
+    #     pass
+
     if bldg_yoc is None:
         try:
-            bldg.year_of_construction = int(gml_bldg.find(".//bldg:yearOfConstruction", namespace).text)
+            bldg.year_of_construction = int(gml_bldg.yearOfConstruction)
         except (UserWarning, AttributeError):
             print("no yearOfConstruction specified in gml file")
             print("default is set to 1980")
@@ -258,7 +269,7 @@ def _set_attributes(bldg, gml_bldg, boundary_box, namespace, bldg_name, gml_bldg
         bldg.year_of_construction = bldg_yoc
     if gml_bldg_part is None:
         try:
-            bldg.bldg_height = float(gml_bldg.find(".//bldg:measuredHeight", namespace).text)
+            bldg.bldg_height = float(gml_bldg.measuredHeight)
         except (UserWarning, AttributeError):
             print("no measuredHeight specified in gml file")
             pass
@@ -266,7 +277,7 @@ def _set_attributes(bldg, gml_bldg, boundary_box, namespace, bldg_name, gml_bldg
         bldg.bldg_height = measured_mean_height
     else:
         try:
-            bldg.bldg_height = float(gml_bldg_part.find(".//bldg:measuredHeight", namespace).text)
+            bldg.bldg_height = float(gml_bldg.measuredHeight)
         except (UserWarning, AttributeError):
             print("no measuredHeight specified in gml file")
             pass

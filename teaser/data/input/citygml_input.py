@@ -172,7 +172,7 @@ def load_gml_lxml(path, prj, method, chosen_gmls=None, yoc_list=None, archetypes
         """Calculate building height through GML surfaces, overwrites measured height from GML Building"""
         bldg.set_height_gml()
 
-        """Calculates net_floor_area and number of toreys in Building with default storey height"""
+        """Calculates net_floor_area and number of storeys in Building with default storey height in building class"""
         try:
             bldg.set_gml_attributes()
         except (UserWarning, AttributeError):
@@ -180,9 +180,9 @@ def load_gml_lxml(path, prj, method, chosen_gmls=None, yoc_list=None, archetypes
             pass
         """Sets Building Elements"""
         try:
-            bldg.generate_from_gml()
+            bldg.generate_from_gml_old()
         except (UserWarning, AttributeError):
-            print(f"{bldg.name} bldg.generate_from_gml() did not work")
+            print(f"{bldg.name} bldg.generate_from_gml_old() did not work")
             pass
 
     return gml_copy_list, boundary_box
@@ -239,9 +239,9 @@ def load_gml_buildingparts_lxml(prj, gml_bldg, boundary_box, namespace, bldg_nam
                 print(f"{bldg.name} bldg.set_gml_attributes() did not work")
                 pass
             try:
-                bldg.generate_from_gml()
+                bldg.generate_from_gml_old()
             except (UserWarning, AttributeError):
-                print(f"{bldg.name} bldg.generate_from_gml() did not work")
+                print(f"{bldg.name} bldg.generate_from_gml_old() did not work")
                 pass
 
         """BuildingParts are merged"""
@@ -272,9 +272,9 @@ def load_gml_buildingparts_lxml(prj, gml_bldg, boundary_box, namespace, bldg_nam
             print(f"{bldg.name} bldg.set_gml_attributes() did not work")
             pass
         try:
-            bldg.generate_from_gml()
+            bldg.generate_from_gml_old()
         except (UserWarning, AttributeError):
-            print(f"{bldg.name} bldg.generate_from_gml() did not work")
+            print(f"{bldg.name} bldg.generate_from_gml_old() did not work")
             pass
 
 

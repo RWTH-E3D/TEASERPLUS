@@ -572,7 +572,7 @@ class SingleFamilyHouse(Residential):
             zone.set_inner_wall_area()
             zone.set_volume_zone()
 
-    def generate_from_gml(self):
+    def generate_from_gml_old(self):
         """Enriches lod1 or lod2 data from CityGML
 
         Adds Zones, BoundaryConditions, Material settings for walls and
@@ -813,6 +813,234 @@ class SingleFamilyHouse(Residential):
             for zone in self.thermal_zones:
                 zone.set_volume_zone()
 
+    def generate_from_gml(self):
+        """Enriches lod1 or lod2 data from CityGML
+
+        Adds Zones, BoundaryConditions, Material settings for walls and
+        windows to the geometric representation of CityGML
+
+        Enrichment of LoD3 and LoD4 added, parallel to original.
+        """
+
+        type_bldg_area = self.net_leased_area
+        self.net_leased_area = 0.0
+        self._check_year_of_construction()
+        print(self.building_age_group)
+
+        # my variable: decider for inner_wall calculation method
+        lod4_innerwalls = False
+        # create zones with their corresponding area, name and usage
+
+        for key, value in self.zone_area_factors.items():
+            zone = ThermalZone(self)
+            zone.area = type_bldg_area * value[0]
+            zone.name = key
+            use_cond = UseCond(zone)
+            use_cond.load_use_conditions(value[1],
+                                         data_class=self.parent.data)
+            zone.use_conditions = use_cond
+            zone.use_conditions.with_ahu = False
+            # zone.use_conditions.persons *= zone.area * 0.01
+            # zone.use_conditions.machines *= zone.area * 0.01
+
+            # TODO: fix with or without Windows scenario 2
+
+            print(self.parent.data.used_statistic)
+            for surface in self.gml_surfaces:
+                if surface.surface_tilt is not None and surface.surface_id is None:
+                    if surface.surface_tilt == 90:
+                        outer_wall = OuterWall(zone)
+                        outer_wall.load_type_element(
+                            year=self.year_of_construction,
+                            construction=self._construction_type_1,
+                            data_class=self.parent.data)
+                        # print(outer_wall.layer)
+                        # print(self.construction_type)
+                        outer_wall.name = surface.name
+                        outer_wall.tilt = surface.surface_tilt
+                        outer_wall.orientation = surface.surface_orientation
+
+                        window = Window(zone)
+                        window.load_type_element(self.year_of_construction,
+                                                 construction=self._construction_type_1,
+                                                 data_class=self.parent.data)
+                        window.name = "asd" + str(surface.surface_tilt)
+                        window.tilt = surface.surface_tilt
+                        window.orientation = surface.surface_orientation
+                        # print("comes through here")
+                        # print(window.layer)
+
+                    elif surface.surface_tilt == 0 and \
+                            surface.surface_orientation == \
+                            -2:
+                        outer_wall = GroundFloor(zone)
+                        outer_wall.load_type_element(
+                            year=self.year_of_construction,
+                            construction=self._construction_type_1,
+                            data_class=self.parent.data)
+                        outer_wall.name = surface.name
+                        outer_wall.tilt = surface.surface_tilt
+                        outer_wall.orientation = surface.surface_orientation
+                    else:
+                        outer_wall = Rooftop(zone)
+                        outer_wall.load_type_element(
+                            year=self.year_of_construction,
+                            construction=self._construction_type_1,
+                            data_class=self.parent.data)
+                        outer_wall.name = surface.name
+                        outer_wall.tilt = surface.surface_tilt
+                        outer_wall.orientation = surface.surface_orientation
+
+                # If Window / Interior Wall area is provided separately
+
+                else:
+                    if surface.surface_tilt == 90:
+                        if surface.surface_id != "Window" and surface.surface_id != "InnerWall":
+                            outer_wall = OuterWall(zone)
+                            outer_wall.load_type_element(
+                                year=self.year_of_construction,
+                                construction=self.construction_type,
+                                data_class=self.parent.data)
+                            outer_wall.name = surface.surface_id
+                            outer_wall.tilt = surface.surface_tilt
+                            outer_wall.orientation = surface.surface_orientation
+                        elif surface.name == "Window":
+                            window = Window(zone)
+                            window.load_type_element(self.year_of_construction,
+                                                     self._construction_type_1,
+                                                     data_class=self.parent.data)
+                            window.name = surface.name + str(surface.surface_orientation)
+                            window.area = surface.surface_area
+                            window.tilt = surface.surface_tilt
+                            window.orientation = surface.surface_orientation
+                        elif surface.name == "InnerWall":
+                            lod4_innerwalls = True
+                            inner_wall = InnerWall(zone)
+                            inner_wall.load_type_element(
+                                year=self.year_of_construction,
+                                construction="tabula_standard",
+                                data_class=self.parent.data)
+                            inner_wall.name = surface.name + str(surface.surface_orientation) \
+                                              + str(surface.surface_area)
+                            inner_wall.tilt = surface.surface_tilt
+                            inner_wall.orientation = surface.surface_orientation
+                            # print(inner_wall.layer)
+
+                    elif surface.surface_tilt == 0 and \
+                            surface.surface_orientation == \
+                            -2 and surface.surface_id != "InnerWall":
+                        outer_wall = GroundFloor(zone)
+                        outer_wall.load_type_element(
+                            year=self.year_of_construction,
+                            construction=self._construction_type_1,
+                            data_class=self.parent.data)
+                        outer_wall.name = surface.surface_id
+                        outer_wall.tilt = surface.surface_tilt
+                        outer_wall.orientation = surface.surface_orientation
+
+                    elif surface.surface_tilt == 0 and \
+                            surface.surface_orientation == \
+                            -2 and surface.name == "InnerWall":
+                        lod4_innerwalls = True
+                        floor = Floor(zone)
+                        floor.load_type_element(
+                            year=self.year_of_construction,
+                            construction="tabula_standard",
+                            data_class=self.parent.data)
+                        floor.name = "floor" + str(surface.surface_orientation) \
+                                     + str(surface.surface_area)
+                        floor.tilt = surface.surface_tilt
+                        floor.orientation = surface.surface_orientation
+
+                    else:
+                        if surface.surface_id != "InnerWall":
+                            outer_wall = Rooftop(zone)
+                            outer_wall.load_type_element(
+                                year=self.year_of_construction,
+                                construction=self._construction_type_1,
+                                data_class=self.parent.data)
+                            outer_wall.name = surface.surface_id
+                            outer_wall.tilt = surface.surface_tilt
+                            outer_wall.orientation = surface.surface_orientation
+
+                        elif surface.surface_id == "InnerWall":
+                            lod4_innerwalls = True
+                            ceiling = Ceiling(zone)
+                            ceiling.load_type_element(
+                                year=self.year_of_construction,
+                                construction="tabula_standard",
+                                data_class=self.parent.data)
+                            ceiling.name = "ceiling" + str(surface.surface_orientation) \
+                                           + str(surface.surface_area)
+                            ceiling.tilt = surface.surface_tilt
+                            ceiling.orientation = surface.surface_orientation
+
+            if lod4_innerwalls is False:
+
+                for key, value in self.inner_wall_names.items():
+                    for zone in self.thermal_zones:
+                        inner_wall = InnerWall(zone)
+                        inner_wall.load_type_element(
+                            year=self.year_of_construction,
+                            construction="tabula_standard",
+                            data_class=self.parent.data)
+                        inner_wall.name = key
+                        inner_wall.tilt = value[0]
+                        inner_wall.orientation = value[1]
+
+                if self.number_of_floors > 1:
+
+                    for key, value in self.ceiling_names.items():
+                        for zone in self.thermal_zones:
+                            ceiling = Ceiling(zone)
+                            ceiling.load_type_element(
+                                year=self.year_of_construction,
+                                construction="tabula_standard",
+                                data_class=self.parent.data)
+                            ceiling.name = key
+                            ceiling.tilt = value[0]
+                            ceiling.orientation = value[1]
+
+                    for key, value in self.floor_names.items():
+                        for zone in self.thermal_zones:
+                            floor = Floor(zone)
+                            floor.load_type_element(
+                                year=self.year_of_construction,
+                                construction="tabula_standard",
+                                data_class=self.parent.data)
+                            floor.name = key
+                            floor.tilt = value[0]
+                            floor.orientation = value[1]
+                else:
+                    pass
+            else:
+                pass
+        for surface in self.gml_surfaces:
+            # print(surface.name)
+            if surface.surface_tilt != 0 and surface.surface_orientation != -2 \
+                    and surface.surface_orientation != -1:  # Walls/Windows
+                self.set_outer_wall_area(surface.surface_area *
+                                         (1 - self.facade_estimation_factors[self.building_age_group]['win1']),
+                                         surface.surface_orientation)
+                # self.set_outer_wall_area(surface.surface_area,
+                #                          surface.surface_orientation, surface.surface_tilt)
+                self.set_window_area(
+                    surface.surface_area * self.facade_estimation_factors[self.building_age_group]['win1'],
+                    surface.surface_orientation)
+                # self.set_window_area(
+                #     surface.surface_area,
+                #     surface.surface_orientation)
+            else:  # Ground/Floor
+                self.set_outer_wall_area(surface.surface_area,
+                                         surface.surface_orientation, surface.surface_tilt)
+
+        if lod4_innerwalls is False:
+            for zone in self.thermal_zones:
+                zone.set_inner_wall_area()
+                zone.set_volume_zone()
+        else:
+            for zone in self.thermal_zones:
+                zone.set_volume_zone()
     @property
     def construction_type(self):
         return self._construction_type
