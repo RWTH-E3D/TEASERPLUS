@@ -904,7 +904,7 @@ class SingleFamilyHouse(Residential):
                             outer_wall.name = surface.surface_id
                             outer_wall.tilt = surface.surface_tilt
                             outer_wall.orientation = surface.surface_orientation
-                        elif surface.name == "Window":
+                        elif surface.surface_id == "Window":
                             window = Window(zone)
                             window.load_type_element(self.year_of_construction,
                                                      self._construction_type_1,
@@ -913,7 +913,7 @@ class SingleFamilyHouse(Residential):
                             window.area = surface.surface_area
                             window.tilt = surface.surface_tilt
                             window.orientation = surface.surface_orientation
-                        elif surface.name == "InnerWall":
+                        elif surface.surface_id == "InnerWall":
                             lod4_innerwalls = True
                             inner_wall = InnerWall(zone)
                             inner_wall.load_type_element(
@@ -940,7 +940,7 @@ class SingleFamilyHouse(Residential):
 
                     elif surface.surface_tilt == 0 and \
                             surface.surface_orientation == \
-                            -2 and surface.name == "InnerWall":
+                            -2 and surface.surface_id == "InnerWall":
                         lod4_innerwalls = True
                         floor = Floor(zone)
                         floor.load_type_element(

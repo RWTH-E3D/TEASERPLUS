@@ -33,6 +33,7 @@ alkis_office_codes = [] #Offices
 def load_dpc_buildings(prj, citydpc_dataset, common_walls, method):
 
     for dpc_building in citydpc_dataset.get_building_list():
+        print(dpc_building.gml_id)
         # you can get the id by
         bldg_id = dpc_building.gml_id
 
