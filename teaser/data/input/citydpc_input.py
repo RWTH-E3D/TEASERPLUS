@@ -37,6 +37,8 @@ def load_dpc_buildings(prj, citydpc_dataset, common_walls, method):
         # you can get the id by
         bldg_id = dpc_building.gml_id
 
+        """Check for each building if shared walls"""
+        bldg_common_walls = [lst for lst in common_walls if bldg_id in lst]
         """Assign Archetype"""
 
         bldg = assign_archetype(prj=prj, building=dpc_building,
@@ -58,7 +60,7 @@ def load_dpc_buildings(prj, citydpc_dataset, common_walls, method):
             print(f"{bldg.name} bldg.set_gml_attributes() did not work")
             pass
 
-        bldg.generate_from_gml()
+        bldg.generate_from_gml(bldg_common_walls)
         """Sets Building Elements"""
         # try:
         #     bldg.generate_from_gml()

@@ -5,7 +5,7 @@ from teaser.logic.buildingobjects.buildingphysics.wall\
 class SharedWall(Wall):
     """InnerWall class
 
-    This class holds information for an inner wall and is a child of Wall()
+    This class holds information for an shared wall and is a child of Wall()
 
     Parameters
     ----------
@@ -126,9 +126,10 @@ class SharedWall(Wall):
             assert type(value).__name__ == "ThermalZone", ass_error_1
 
             self.__parent = value
-
             if type(self).__name__ == "InnerWall":
                 self.__parent.inner_walls.append(self)
+            elif type(self).__name__ == "SharedWall":
+                self.__parent.shared_walls.append(self)
             elif type(self).__name__ == "Ceiling":
                 self.__parent.ceilings.append(self)
             elif type(self).__name__ == "Floor":

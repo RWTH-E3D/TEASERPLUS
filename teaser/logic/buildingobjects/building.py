@@ -295,10 +295,15 @@ class Building(object):
                         # for win in zone.windows:
                         #     if win.area is not None and win.orientation == wall.orientation:
                         #         wall.area -= win.area
+                for shared in zone.shared_walls:
+                    if shared.orientation == orientation and shared.tilt == tilt:
+                        shared.area = ((new_area / self.net_leased_area) * zone.area) / sum(
+                            count.orientation == orientation for count in zone.shared_walls)
                 for roof in zone.rooftops:
                     if roof.orientation == orientation and roof.tilt == tilt:
                         roof.area = ((new_area / self.net_leased_area) * zone.area) / sum(
                             count.orientation == orientation for count in zone.rooftops)
+
                         # Addition for LoD3 and LoD4
                         # for win in zone.windows:
                         #     if win.area is not None and win.orientation == wall.orientation:
@@ -325,6 +330,9 @@ class Building(object):
                             # for win in zone.windows:
                             #     if win.area is not None and win.orientation == wall.orientation:
                             #         wall.area -= win.area
+                    for shared in zone.shared_walls:
+                        if shared.orientation == orientation:
+                            shared.area = ((new_area / self.net_leased_area) * zone.area)
                     for roof in zone.rooftops:
                         if roof.orientation == orientation:
                             roof.area = ((new_area / self.net_leased_area) * zone.area)
@@ -388,6 +396,9 @@ class Building(object):
             for wall_count in zone_count.outer_walls:
                 if wall_count.orientation == orientation and wall_count.area is not None:
                     sum_area += wall_count.area
+            # for wall_count in zone_count.shared_walls:
+            #     if wall_count.orientation == orientation and wall_count.area is not None:
+            #         sum_area += wall_count.area
             for roof_count in zone_count.rooftops:
                 if roof_count.orientation == orientation and roof_count.area is not None:
                     sum_area += roof_count.area
@@ -438,6 +449,9 @@ class Building(object):
         for zone_count in self.thermal_zones:
             for wall_count in zone_count.inner_walls:
                 sum_area += wall_count.area
+            for wall_count in zone_count.shared_walls:
+                print(wall_count.area)
+                sum_area += wall_count.area
             for floor in zone_count.floors:
                 sum_area += floor.area
             for ceiling in zone_count.ceilings:
@@ -462,6 +476,7 @@ class Building(object):
                 self.outer_area[ground.orientation] = None
         for key in self.outer_area:
             self.outer_area[key] = self.get_outer_wall_area(key)
+
 
     def fill_window_area_dict(self):
         """Fills the attribute

@@ -405,6 +405,7 @@ class TwoElement(object):
             win.calc_ua_value()
         for inner_wall in (
             self.thermal_zone.inner_walls
+            + self.thermal_zone.shared_walls
             + self.thermal_zone.floors
             + self.thermal_zone.ceilings
         ):
@@ -427,6 +428,7 @@ class TwoElement(object):
         if (
             len(
                 self.thermal_zone.inner_walls
+                + self.thermal_zone.shared_walls
                 + self.thermal_zone.floors
                 + self.thermal_zone.ceilings
             )
@@ -697,12 +699,14 @@ class TwoElement(object):
         """
         self.area_iw = (
             sum(in_wall.area for in_wall in self.thermal_zone.inner_walls)
+            + sum(sh_wall.area for sh_wall in self.thermal_zone.shared_walls)
             + sum(floor.area for floor in self.thermal_zone.floors)
             + sum(ceiling.area for ceiling in self.thermal_zone.ceilings)
         )
 
         self.ua_value_iw = (
             sum(in_wall.ua_value for in_wall in self.thermal_zone.inner_walls)
+            + sum(sh_wall.ua_value for sh_wall in self.thermal_zone.shared_walls)
             + sum(floor.ua_value for floor in self.thermal_zone.floors)
             + sum(ceiling.ua_value for ceiling in self.thermal_zone.ceilings)
         )
@@ -711,18 +715,21 @@ class TwoElement(object):
 
         self.r_conv_inner_iw = 1 / (
             sum(1 / in_wall.r_inner_conv for in_wall in self.thermal_zone.inner_walls)
+            + sum(1 / sh_wall.r_inner_conv for sh_wall in self.thermal_zone.shared_walls)
             + sum(1 / floor.r_inner_conv for floor in self.thermal_zone.floors)
             + sum(1 / ceiling.r_inner_conv for ceiling in self.thermal_zone.ceilings)
         )
 
         self.r_rad_inner_iw = 1 / (
             sum(1 / in_wall.r_inner_rad for in_wall in self.thermal_zone.inner_walls)
+            + sum(1 / sh_wall.r_inner_rad for sh_wall in self.thermal_zone.shared_walls)
             + sum(1 / floor.r_inner_rad for floor in self.thermal_zone.floors)
             + sum(1 / ceiling.r_inner_rad for ceiling in self.thermal_zone.ceilings)
         )
 
         self.r_comb_inner_iw = 1 / (
             sum(1 / in_wall.r_inner_comb for in_wall in self.thermal_zone.inner_walls)
+            + sum(1 / sh_wall.r_inner_comb for sh_wall in self.thermal_zone.shared_walls)
             + sum(1 / floor.r_inner_comb for floor in self.thermal_zone.floors)
             + sum(1 / ceiling.r_inner_comb for ceiling in self.thermal_zone.ceilings)
         )
@@ -731,6 +738,10 @@ class TwoElement(object):
             sum(
                 in_wall.layer[0].material.ir_emissivity * in_wall.area
                 for in_wall in self.thermal_zone.inner_walls
+            )
+            + sum(
+                sh_wall.layer[0].material.ir_emissivity * sh_wall.area
+                for sh_wall in self.thermal_zone.shared_walls
             )
             + sum(
                 floor.layer[0].material.ir_emissivity * floor.area
@@ -955,6 +966,7 @@ class TwoElement(object):
             self.thermal_zone.inner_walls
             + self.thermal_zone.floors
             + self.thermal_zone.ceilings
+            +self.thermal_zone.shared_walls
         )
 
         for in_wall in inner_walls:
