@@ -21944,5 +21944,4595 @@
                 }
             }
         }
+    },
+    "SharedWall_[0, 1859]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2009]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_standard_2_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[0, 1859]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2010]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_retrofit_2_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[0, 1859]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2010]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_adv_retrofit_2_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2009]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_standard_2_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_standard_2_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_standard_2_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2009]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_retrofit_2_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_retrofit_2_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_retrofit_2_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2009]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_adv_retrofit_2_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_adv_retrofit_2_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_adv_retrofit_2_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[0, 1859]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2009]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[0, 1859]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2009]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[0, 1859]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2009]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_standard_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_standard_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_standard_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_standard_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_standard_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_retrofit_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_retrofit_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_retrofit_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_retrofit_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_retrofit_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_adv_retrofit_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_adv_retrofit_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_adv_retrofit_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_adv_retrofit_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_adv_retrofit_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[0, 1918]_tabula_standard": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_standard": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1968]_tabula_standard": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_standard": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_standard": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_standard": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2015]_tabula_standard": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 5.0,
+        "outer_convection": 20.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
     }
 }
