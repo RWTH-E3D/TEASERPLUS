@@ -847,21 +847,21 @@ class SingleFamilyHouse(Residential):
 
             print(self.parent.data.used_statistic)
             for surface in self.gml_surfaces:
+                print(surface.surface_id, surface.surface_area, round(surface.surface_tilt))
                 # all walls but windows and inner?
                 #if surface.surface_tilt is not None and surface.surface_id is None:
                     #OuterWall and common walls
-                if surface.surface_tilt == 90 and not any(surface.polygon_id in sublist for sublist in common_walls):
+                if round(surface.surface_tilt) == 90 and not any(surface.polygon_id in sublist for sublist in common_walls):
                     outer_wall = OuterWall(zone)
                     outer_wall.load_type_element(
                         year=self.year_of_construction,
                         construction=self._construction_type_1,
                         data_class=self.parent.data)
-                    # print(outer_wall.layer)
-                    # print(self.construction_type)
+
                     outer_wall.name = surface.surface_id
                     outer_wall.tilt = surface.surface_tilt
                     outer_wall.orientation = surface.surface_orientation
-
+                    outer_wall.area = surface.surface_area * 0.8
                     window = Window(zone)
                     window.load_type_element(self.year_of_construction,
                                              construction=self._construction_type_1,
@@ -869,10 +869,9 @@ class SingleFamilyHouse(Residential):
                     window.name = "asd" + str(surface.surface_tilt)
                     window.tilt = surface.surface_tilt
                     window.orientation = surface.surface_orientation
-                    # print("comes through here")
-                    # print(window.layer)
+                    window.area = surface.surface_area*0.2
 
-                if surface.surface_tilt == 90 and any(surface.polygon_id in sublist for sublist in common_walls):
+                elif round(surface.surface_tilt) == 90 and any(surface.polygon_id in sublist for sublist in common_walls):
                     print("here")
                     shared_wall = SharedWall(zone)
                     shared_wall.load_type_element(
@@ -884,6 +883,8 @@ class SingleFamilyHouse(Residential):
                     shared_wall.name = surface.surface_id
                     shared_wall.tilt = surface.surface_tilt
                     shared_wall.orientation = surface.surface_orientation
+                    shared_wall.area = surface.surface_area
+
                 #ground
                 elif surface.surface_tilt == 0 and \
                         surface.surface_orientation == \
@@ -896,6 +897,8 @@ class SingleFamilyHouse(Residential):
                     outer_wall.name = surface.surface_id
                     outer_wall.tilt = surface.surface_tilt
                     outer_wall.orientation = surface.surface_orientation
+                    outer_wall.area = surface.surface_area
+
                 else:
                     outer_wall = Rooftop(zone)
                     outer_wall.load_type_element(
@@ -905,7 +908,7 @@ class SingleFamilyHouse(Residential):
                     outer_wall.name = surface.surface_id
                     outer_wall.tilt = surface.surface_tilt
                     outer_wall.orientation = surface.surface_orientation
-
+                    outer_wall.area = surface.surface_area
                 # If Window / Interior Wall area is provided separately
 
                 #else:
@@ -1030,31 +1033,29 @@ class SingleFamilyHouse(Residential):
                     pass
             else:
                 pass
-        for surface in self.gml_surfaces:
-            # print(surface.name)
-            if surface.surface_tilt != 0 and surface.surface_orientation != -2 \
-                    and surface.surface_orientation != -1 and not\
-                    any(surface.polygon_id in sublist for sublist in common_walls):  # Walls/Windows
-                self.set_outer_wall_area(surface.surface_area *
-                                         (1 - self.facade_estimation_factors[self.building_age_group]['win1']),
-                                         surface.surface_orientation)
-                # self.set_outer_wall_area(surface.surface_area,
-                #                          surface.surface_orientation, surface.surface_tilt)
-                self.set_window_area(
-                    surface.surface_area * self.facade_estimation_factors[self.building_age_group]['win1'],
-                    surface.surface_orientation)
-                # self.set_window_area(
-                #     surface.surface_area,
-                #     surface.surface_orientation)
-            if surface.surface_tilt != 0 and surface.surface_orientation != -2 \
-                    and surface.surface_orientation != -1 and \
-                    any(surface.polygon_id in sublist for sublist in common_walls):  # shared walls
-                self.set_outer_wall_area(surface.surface_area *
-                                         (1 - self.facade_estimation_factors[self.building_age_group]['win1']),
-                                         surface.surface_orientation)
-            else:  # Ground/Floor
-                self.set_outer_wall_area(surface.surface_area,
-                                         surface.surface_orientation, surface.surface_tilt)
+        # for surface in self.gml_surfaces:
+        #     # print(surface.name)
+        #     if surface.surface_tilt == 90 and surface.surface_orientation != -2 \
+        #             and surface.surface_orientation != -1 and not\
+        #             any(surface.polygon_id in sublist for sublist in common_walls):  # Walls/Windows
+        #         self.set_outer_wall_area(surface.surface_area *
+        #                                  (1 - 0.2),
+        #                                  surface.surface_orientation)
+        #         # self.set_outer_wall_area(surface.surface_area,
+        #         #                          surface.surface_orientation, surface.surface_tilt)
+        #         self.set_window_area(
+        #             surface.surface_area * 0.2,
+        #             surface.surface_orientation)
+        #
+        #     if surface.surface_tilt != 0 and surface.surface_orientation != -2 \
+        #             and surface.surface_orientation != -1 and \
+        #             any(surface.polygon_id in sublist for sublist in common_walls):  # shared walls
+        #         self.set_outer_wall_area(surface.surface_area *
+        #                                  (1 - self.facade_estimation_factors[self.building_age_group]['win1']),
+        #                                  surface.surface_orientation)
+        #     else:  # Ground/Floor
+        #         self.set_outer_wall_area(surface.surface_area,
+        #                                  surface.surface_orientation, surface.surface_tilt)
 
         if lod4_innerwalls is False:
             for zone in self.thermal_zones:
