@@ -825,7 +825,6 @@ class SingleFamilyHouse(Residential):
         type_bldg_area = self.net_leased_area
         self.net_leased_area = 0.0
         self._check_year_of_construction()
-        print(self.building_age_group)
 
         # my variable: decider for inner_wall calculation method
         lod4_innerwalls = False
@@ -844,12 +843,7 @@ class SingleFamilyHouse(Residential):
             # zone.use_conditions.machines *= zone.area * 0.01
 
             # TODO: fix with or without Windows scenario 2
-
-            print(self.parent.data.used_statistic)
             for surface in self.gml_surfaces:
-                print(surface.surface_id, surface.surface_area, round(surface.surface_tilt))
-                # all walls but windows and inner?
-                #if surface.surface_tilt is not None and surface.surface_id is None:
                     #OuterWall and common walls
                 if round(surface.surface_tilt) == 90 and not any(surface.polygon_id in sublist for sublist in common_walls):
                     outer_wall = OuterWall(zone)
@@ -878,8 +872,6 @@ class SingleFamilyHouse(Residential):
                         year=self.year_of_construction,
                         construction=self._construction_type_1,
                         data_class=self.parent.data)
-                    print(shared_wall.layer)
-                    # print(self.construction_type)
                     shared_wall.name = surface.surface_id
                     shared_wall.tilt = surface.surface_tilt
                     shared_wall.orientation = surface.surface_orientation
