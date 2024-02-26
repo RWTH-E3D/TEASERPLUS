@@ -29,8 +29,9 @@ def simulate(path, prj, loading_time, result_path, visualization=False, save_in_
 
     po = Pool()
     # result = po.map(simulateCase, li, chunksize=8)
-    for _ in tqdm.tqdm(po.imap(simulateCase, li, chunksize=15), total=len(li)):
-        pass
+    result_list_tqdm = []
+    for _ in tqdm.tqdm(po.imap(simulateCase, li), total=len(li)):
+        result_list_tqdm.append(_)
     end_simulation = timer()
     simulation_time = (end_simulation-start_simulation)
 

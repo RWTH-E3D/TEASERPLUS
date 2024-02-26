@@ -855,6 +855,7 @@ class SingleFamilyHouse(Residential):
                     outer_wall.tilt = surface.surface_tilt
                     outer_wall.orientation = surface.surface_orientation
                     outer_wall.area = surface.surface_area * 0.8
+                    print(len(outer_wall.layer))
                     window = Window(zone)
                     window.load_type_element(self.year_of_construction,
                                              construction=self._construction_type_1,
@@ -863,6 +864,7 @@ class SingleFamilyHouse(Residential):
                     window.tilt = surface.surface_tilt
                     window.orientation = surface.surface_orientation
                     window.area = surface.surface_area*0.2
+                    print(len(window.layer))
 
                 elif round(surface.surface_tilt) == 90 and any(surface.polygon_id in sublist for sublist in common_walls):
                     print("here")
@@ -875,6 +877,7 @@ class SingleFamilyHouse(Residential):
                     shared_wall.tilt = surface.surface_tilt
                     shared_wall.orientation = surface.surface_orientation
                     shared_wall.area = surface.surface_area
+                    print(len(shared_wall.layer))
 
                 #ground
                 elif surface.surface_tilt == 0 and \
