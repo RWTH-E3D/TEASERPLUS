@@ -264,7 +264,8 @@ class Building(object):
                                        self.number_of_floors
 
             if self.net_leased_area < 50.0:
-                raise Exception('The calculated net leased area is under 50m²')
+                # raise Exception('The calculated net leased area is under 50m²')
+                pass
                 # self.net_leased_area = 50.0
 
     def set_outer_wall_area(self, new_area, orientation, tilt=None):

@@ -185,7 +185,6 @@ class Wall(BuildingElement):
 
         for count_layer in a_layer:
             new_mat = np.dot(new_mat, count_layer)
-
         # calculation of equivalent Resistance and capacities of each element
         self.r1 = (1 / self.area) * ((new_mat[3][3] - 1) *
                                      new_mat[0][2] + new_mat[2][3] *

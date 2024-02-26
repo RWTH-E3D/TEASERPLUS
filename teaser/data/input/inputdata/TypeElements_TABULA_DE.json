@@ -22253,8 +22253,8 @@
     },
     "SharedWall_[2016, 2100]_tabula_standard_1_SFH": {
         "building_age_group": [
-            1949,
-            1957
+            2016,
+            2100
         ],
         "construction_type": "tabula_standard_1_SFH",
         "inner_radiation": 5.0,
@@ -22695,8 +22695,8 @@
     },
     "SharedWall_[2016, 2100]_tabula_retrofit_1_SFH": {
         "building_age_group": [
-            1949,
-            1957
+            2016,
+            2100
         ],
         "construction_type": "tabula_standard_1_SFH",
         "inner_radiation": 5.0,
@@ -23137,8 +23137,8 @@
     },
     "SharedWall_[2016, 2100]_tabula_adv_retrofit_1_SFH": {
         "building_age_group": [
-            1949,
-            1957
+            2016,
+            2100
         ],
         "construction_type": "tabula_standard_1_SFH",
         "inner_radiation": 5.0,
@@ -23545,8 +23545,8 @@
     },
     "SharedWall_[2016, 2100]_tabula_standard_1_TH": {
         "building_age_group": [
-            1949,
-            1957
+            2016,
+            2100
         ],
         "construction_type": "tabula_standard_1_SFH",
         "inner_radiation": 5.0,
@@ -23647,8 +23647,8 @@
     },
     "SharedWall_[2016, 2100]_tabula_standard_2_TH": {
         "building_age_group": [
-            1949,
-            1957
+            2016,
+            2100
         ],
         "construction_type": "tabula_standard_1_SFH",
         "inner_radiation": 5.0,
@@ -24021,8 +24021,8 @@
     },
     "SharedWall_[2016, 2100]_tabula_retrofit_1_TH": {
         "building_age_group": [
-            1949,
-            1957
+            2016,
+            2100
         ],
         "construction_type": "tabula_standard_1_SFH",
         "inner_radiation": 5.0,
@@ -24123,8 +24123,8 @@
     },
     "SharedWall_[2016, 2100]_tabula_retrofit_2_TH": {
         "building_age_group": [
-            1949,
-            1957
+            2016,
+            2100
         ],
         "construction_type": "tabula_standard_1_SFH",
         "inner_radiation": 5.0,
@@ -24497,8 +24497,8 @@
     },
     "SharedWall_[2016, 2100]_tabula_adv_retrofit_1_TH": {
         "building_age_group": [
-            1949,
-            1957
+            2016,
+            2100
         ],
         "construction_type": "tabula_standard_1_SFH",
         "inner_radiation": 5.0,
@@ -24599,8 +24599,8 @@
     },
     "SharedWall_[2016, 2100]_tabula_adv_retrofit_2_TH": {
         "building_age_group": [
-            1949,
-            1957
+            2016,
+            2100
         ],
         "construction_type": "tabula_standard_1_SFH",
         "inner_radiation": 5.0,
@@ -24939,8 +24939,8 @@
     },
     "SharedWall_[2016, 2100]_tabula_standard_1_MFH": {
         "building_age_group": [
-            1949,
-            1957
+            2016,
+            2100
         ],
         "construction_type": "tabula_standard_1_SFH",
         "inner_radiation": 5.0,
@@ -25347,8 +25347,8 @@
     },
     "SharedWall_[2016, 2100]_tabula_retrofit_1_MFH": {
         "building_age_group": [
-            1949,
-            1957
+            2016,
+            2100
         ],
         "construction_type": "tabula_standard_1_SFH",
         "inner_radiation": 5.0,
@@ -25755,8 +25755,8 @@
     },
     "SharedWall_[2016, 2100]_tabula_adv_retrofit_1_MFH": {
         "building_age_group": [
-            1949,
-            1957
+            2016,
+            2100
         ],
         "construction_type": "tabula_standard_1_SFH",
         "inner_radiation": 5.0,

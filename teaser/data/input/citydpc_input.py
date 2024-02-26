@@ -60,13 +60,14 @@ def load_dpc_buildings(prj, citydpc_dataset, common_walls, method):
             print(f"{bldg.name} bldg.set_gml_attributes() did not work")
             pass
 
-        bldg.generate_from_gml(bldg_common_walls)
+
         """Sets Building Elements"""
-        # try:
-        #     bldg.generate_from_gml()
-        # except (UserWarning, AttributeError):
-        #     print(f"{bldg.name} bldg.generate_from_gml() did not work")
-        # pass
+        try:
+            bldg.generate_from_gml(bldg_common_walls)
+        except (UserWarning, AttributeError):
+            print(f"{bldg.name} bldg.generate_from_gml() did not work")
+            prj.buildings.remove(bldg)
+        pass
 
     pass
 
@@ -248,7 +249,7 @@ def _set_attributes(bldg, gml_bldg, bldg_name, gml_bldg_part=None, bldg_part=Non
     #     pass
     try:
         bldg.number_of_floors = int(gml_bldg.storeysAboveGround)
-    except (UserWarning, AttributeError):
+    except (UserWarning, AttributeError, TypeError):
         print("no storeysAboveGround specified in gml file")
         pass
 

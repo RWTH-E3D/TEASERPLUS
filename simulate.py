@@ -7,8 +7,7 @@ from multiprocessing import Pool
 from timeit import default_timer as timer
 import re
 import shutil
-
-
+import tqdm as tqdm
 def simulate(path, prj, loading_time, result_path, visualization=False, save_in_gml=False):
     """BuildingsPy: simulation, loading and saving results, visualization
     :param save_in_gml: saves the heatload series in EnergyADE
@@ -29,8 +28,9 @@ def simulate(path, prj, loading_time, result_path, visualization=False, save_in_
         li.append(s)
 
     po = Pool()
-    po.map(simulateCase, li)
-
+    # result = po.map(simulateCase, li, chunksize=8)
+    for _ in tqdm.tqdm(po.imap(simulateCase, li, chunksize=15), total=len(li)):
+        pass
     end_simulation = timer()
     simulation_time = (end_simulation-start_simulation)
 
@@ -117,10 +117,10 @@ def simulateCase(s):
     sets the general parameters for the simulation
     :param s: BuildingsPy Simulator object
     """
-    s.showGUI()
+    # s.showGUI()
     # s.translate()
     s.setSolver("Cvode")
-    print(s.printModelAndTime())
+    # print(s.printModelAndTime())
     s.setStartTime(0)
     s.setStopTime(31536000)
     s.setNumberOfIntervals(8760)

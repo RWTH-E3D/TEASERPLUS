@@ -851,7 +851,6 @@ class SingleFamilyHouse(Residential):
                         year=self.year_of_construction,
                         construction=self._construction_type_1,
                         data_class=self.parent.data)
-
                     outer_wall.name = surface.surface_id
                     outer_wall.tilt = surface.surface_tilt
                     outer_wall.orientation = surface.surface_orientation
@@ -890,7 +889,6 @@ class SingleFamilyHouse(Residential):
                     outer_wall.tilt = surface.surface_tilt
                     outer_wall.orientation = surface.surface_orientation
                     outer_wall.area = surface.surface_area
-
                 else:
                     outer_wall = Rooftop(zone)
                     outer_wall.load_type_element(
@@ -991,7 +989,7 @@ class SingleFamilyHouse(Residential):
                     for zone in self.thermal_zones:
                         inner_wall = InnerWall(zone)
                         inner_wall.load_type_element(
-                            year=self.year_of_construction,
+                            year=2015,
                             construction="tabula_standard",
                             data_class=self.parent.data)
                         inner_wall.name = key
@@ -1004,7 +1002,7 @@ class SingleFamilyHouse(Residential):
                         for zone in self.thermal_zones:
                             ceiling = Ceiling(zone)
                             ceiling.load_type_element(
-                                year=self.year_of_construction,
+                                year=2015,
                                 construction="tabula_standard",
                                 data_class=self.parent.data)
                             ceiling.name = key
@@ -1015,7 +1013,7 @@ class SingleFamilyHouse(Residential):
                         for zone in self.thermal_zones:
                             floor = Floor(zone)
                             floor.load_type_element(
-                                year=self.year_of_construction,
+                                year=2015,
                                 construction="tabula_standard",
                                 data_class=self.parent.data)
                             floor.name = key
