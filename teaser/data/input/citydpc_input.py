@@ -127,14 +127,14 @@ def assign_archetype(prj, building, bldg_name, method, archetype=None):
         if bldg_function in alkis_sfh_codes:  # Single Family Buildings
             if method == "tabula_de":
                 prj.data = DataClass(used_statistic="tabula_de")
-                bldg = SingleFamilyHouse(parent=prj, name=bldg_name, construction_type="tabula_retrofit")
+                bldg = SingleFamilyHouse(parent=prj, name=bldg_name)
             else:
                 prj.data = DataClass(used_statistic='iwu')
                 bldg = SingleFamilyDwelling(parent=prj, name=bldg_name)
 
         elif bldg_function in alkis_mfh_codes:  # Multi Family Buildings
             prj.data = DataClass(used_statistic="tabula_de")
-            bldg = MultiFamilyHouse(parent=prj, name=bldg_name, construction_type="tabula_retrofit")
+            bldg = MultiFamilyHouse(parent=prj, name=bldg_name, construction_type='tabula_retrofit')
 
         elif bldg_function in alkis_mfh_codes:  # Offices
             prj.data = DataClass(used_statistic="iwu")
