@@ -128,6 +128,9 @@ class HeatSupplySystem(object):
         self._heat_loss_distribution_heating = None
         self._daily_operating_time_pump = None
 
+        self._type_heat_supply_system = None  # todo integrieren in Kommentar der Klasse
+        self._type_of_retrofit = None  # todo integrieren in Kommentar der Klasse
+
     def setting_values(self, type_heat_supply_system=None, type_of_retrofit=None):
         """
         Setting values from TABULA-DE for heating and warm water systems.
@@ -161,6 +164,8 @@ class HeatSupplySystem(object):
                 type_heat_supply_system = 3  # DENA report 2023 Abb. 41
             else:
                 type_heat_supply_system = 1  # DENA report 2023 Abb. 31
+
+        self._type_heat_supply_system = type_heat_supply_system
 
         if type_of_retrofit is not None and "adv_retrofit" in type_of_retrofit:
             retrofit_type = "adv_retrofit"
@@ -884,6 +889,7 @@ class HeatSupplySystem(object):
             else:
                 self._pipe_routing_water = "centralised with circulation"
 
+        print("Values are set")
         self.setting_derived_values()
 
     def setting_derived_values(self):
@@ -928,14 +934,17 @@ class HeatSupplySystem(object):
             else:
                 self._heat_load = 60 * self._usable_area / (self._annual_operating_time_heating *
                                                                       self._daily_operating_time_pump)
-
+            print("HeatLoad: ", self._heat_load)
         else:
-            self._heat_load = self.parent.simulated_heat_load # todo check, if simulated_heat_load in kW
+            self._heat_load = self.parent.simulated_heat_load
             print("self.parent.simulated_heat_load: ", self.parent.simulated_heat_load)
+
+        if self._heat_load is None:
+            print("No heat load")
 
         # calculation of nominal heat output
         # iwu formula 2-3 [kW]
-        if (self._oversizing_factor * self._heat_load / 5) <= 15 or self._heat_load is None:
+        if (self._oversizing_factor * self.heat_load / 5) <= 15 or self._heat_load is None:
             self._nominal_heat_output_boiler_heating = 15
         else:
             self._nominal_heat_output_boiler_heating = self._oversizing_factor * self._heat_load
@@ -1003,6 +1012,8 @@ class HeatSupplySystem(object):
                     self._avg_temp_distribution_heating = 29
                 elif self._oversizing_factor == 1.2:
                     self._avg_temp_distribution_heating = 29
+
+        print("Derived Values are set")
 
     def retrofit_heat_supply_system(self, year_of_retrofit, type_heat_supply_system=None, type_of_retrofit=None):
         """Retrofits all parameters in the system.
@@ -1429,3 +1440,31 @@ class HeatSupplySystem(object):
                 self._daily_operating_time_pump = value
             except:
                 raise ValueError("Can't convert daily_operating_time_pump to float")
+
+    @property
+    def type_heat_supply_system(self):
+        return self._type_heat_supply_system
+
+    @type_heat_supply_system.setter
+    def type_heat_supply_system(self, value):
+
+        if value in [1,2,3,4,5,6,None]:
+            self._type_heat_supply_system = value
+        else:
+            raise ValueError("type_heat_supply_system no defined value")
+
+    @property
+    def type_of_retrofit(self):
+        return self._type_of_retrofit
+
+    @type_of_retrofit.setter
+    def type_of_retrofit(self, value):
+
+        if "retrofit" in value:
+            self._type_of_retrofit = value
+        elif "standard" in value:
+            self._type_of_retrofit = value
+        elif value is None:
+            self._type_of_retrofit = value
+        else:
+            raise ValueError("type_of_retrofit no defined value")
