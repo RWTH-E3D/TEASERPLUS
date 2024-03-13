@@ -767,11 +767,11 @@ def _set_schedule(schedule_type, usage_zone, usage_zone_id, type_name):
         else:
             uom = "scale"
 
-        if day_type is "weekDay":
+        if day_type == "weekDay":
 
             ET.SubElement(regular_ts, ET.QName(nsClass.energy, 'values'), attrib={'uom': uom}).text = str(usage_zone.schedules[f"{type_name}_profile"].iloc[0:23].values).strip('[]')
 
-        if day_type is "weekEnd":
+        if day_type == "weekEnd":
 
             ET.SubElement(regular_ts, ET.QName(nsClass.energy, 'values'), attrib={'uom': uom}).text = str(usage_zone.schedules[f"{type_name}_profile"].iloc[120:143].values).strip('[]')
 
