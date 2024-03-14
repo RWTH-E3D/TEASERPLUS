@@ -580,6 +580,7 @@ class SingleFamilyHouse(Residential):
 
         # heatsupplysystem.setting_values(self.type_heat_supply_system, self.construction_type)
 
+
     def generate_from_gml(self):
         """Enriches lod1 or lod2 data from CityGML
 
