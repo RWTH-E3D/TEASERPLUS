@@ -926,7 +926,9 @@ class HeatSupplySystem(object):
         else:
             self._daily_operating_time_pump = 24
 
-        if self.parent.simulated_heat_load is None:
+        sum_heat_load = self.parent.calc_simulated_annual_heat_energy()
+
+        if sum_heat_load is None:
             # DIN EN 15378-1:2017-09 table B.38
             if self._building_type == "sfh":
                 self._heat_load = 100 * self._usable_area / (self._annual_operating_time_heating *
@@ -936,8 +938,8 @@ class HeatSupplySystem(object):
                                                                       self._daily_operating_time_pump)
             print("HeatLoad: ", self._heat_load)
         else:
-            self._heat_load = self.parent.simulated_heat_load
-            print("self.parent.simulated_heat_load: ", self.parent.simulated_heat_load)
+            self._heat_load = sum_heat_load[1] / sum_heat_load[0]
+            print("HeatLoadParent: ", self._heat_load)
 
         if self._heat_load is None:
             print("No heat load")
@@ -1070,7 +1072,7 @@ class HeatSupplySystem(object):
 
     @parent.setter
     def parent(self, value):
-        from teaser.teaser.logic.buildingobjects.building import Building
+        from teco.logic.buildingobjects.building import Building
         import inspect
         if value is not None:
             if inspect.isclass(Building):

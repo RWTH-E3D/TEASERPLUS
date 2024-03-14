@@ -451,15 +451,7 @@ class FEDemandHeating(object):
             dissipation heating without auxiliary
         """
 
-        try:
-            annual_heat_energy = self.parent.parent.calc_simulated_annual_heat_energy()
-            if annual_heat_energy is not None:
-                pass
-            else:
-                annual_heat_energy = self.parent.heat_load * self.parent.annual_operating_time_heating * 24
-        except:
-            annual_heat_energy = self.parent.heat_load * self.parent.annual_operating_time_heating * 24
-            print("Mistake while function calc_simulated_annual_heat_energy() in Building class.")
+        annual_heat_energy = self.parent.heat_load * self.parent.annual_operating_time_heating * 24
 
         result = (annual_heat_energy -
                 self._calc_gains_distribution_water_for_heating() -
