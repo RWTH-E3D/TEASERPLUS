@@ -86,6 +86,12 @@ class HeatSupplySystem(object):
     daily_operating_time_pump : float [h/d]
         Holds how many hours per day the pump of the heat supply system
         needs to work.
+    type_heat_supply_system : int [-]
+        Information about the used heat system. Usually 1 = gas, 2 = oil,
+        3 = electricity. For older buildings, more options available
+    type_of_retrofit : str
+        Three options available due to TABULA retrofit: Standard, Retrofit,
+        Advanced Retrofit
     """
 
     def __init__(self, parent=None):
@@ -128,8 +134,8 @@ class HeatSupplySystem(object):
         self._heat_loss_distribution_heating = None
         self._daily_operating_time_pump = None
 
-        self._type_heat_supply_system = None  # todo integrieren in Kommentar der Klasse
-        self._type_of_retrofit = None  # todo integrieren in Kommentar der Klasse
+        self._type_heat_supply_system = None
+        self._type_of_retrofit = None
 
     def setting_values(self, type_heat_supply_system=None, type_of_retrofit=None):
         """
