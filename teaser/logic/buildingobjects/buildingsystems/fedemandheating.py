@@ -306,7 +306,7 @@ class FEDemandHeating(object):
         """
 
         # Condition from TABULA for buffer storage
-        if (self.parent.heat_generation in ["heatpump air", "condensing - chp", "chp"] or \
+        if (self.parent.heat_generation in ["heatpump air", "condensing - chp", "chp"] or
                 (self.parent.heat_generation == "heatpump ground" and self.parent.building_type == "sfh")) and \
                     self.parent.avg_temp_distribution_water != 32:
 
@@ -471,6 +471,108 @@ class FEDemandHeating(object):
 
             return result
 
+    def _dissipation_heating_no_ce(self):  # todo löschen
+
+        annual_heat_energy = self.parent.heat_load * self.parent.annual_operating_time_heating * 24
+
+        result = (annual_heat_energy -
+                self._calc_gains_distribution_water_for_heating() -
+                self._calc_gains_storage_water_for_heating() +
+                self._calc_dissipation_distribution_heating() +
+                self._calc_dissipation_storage_heating()) * \
+               self._calc_dissipation_generation_heating()
+
+        # print("_dissipation_heating: " + str(result))
+
+        if result is None or result == 0:
+
+            return 0
+
+        else:
+
+            return result
+
+    def _dissipation_heating_no_d(self):  # todo löschen
+
+        annual_heat_energy = self.parent.heat_load * self.parent.annual_operating_time_heating * 24
+
+        result = (annual_heat_energy -
+                self._calc_gains_distribution_water_for_heating() -
+                self._calc_gains_storage_water_for_heating() +
+                self._calc_dissipation_controll_emission_heating() +
+                self._calc_dissipation_storage_heating()) * \
+               self._calc_dissipation_generation_heating()
+
+        # print("_dissipation_heating: " + str(result))
+
+        if result is None or result == 0:
+
+            return 0
+
+        else:
+
+            return result
+
+    def _dissipation_heating_no_s(self):  # todo löschen
+
+        annual_heat_energy = self.parent.heat_load * self.parent.annual_operating_time_heating * 24
+
+        result = (annual_heat_energy -
+                self._calc_gains_distribution_water_for_heating() -
+                self._calc_gains_storage_water_for_heating() +
+                self._calc_dissipation_controll_emission_heating() +
+                self._calc_dissipation_distribution_heating()) * \
+               self._calc_dissipation_generation_heating()
+
+        # print("_dissipation_heating: " + str(result))
+
+        if result is None or result == 0:
+
+            return 0
+
+        else:
+
+            return result
+
+    def _dissipation_heating_no_tw_for_h(self):  # todo löschen
+
+        annual_heat_energy = self.parent.heat_load * self.parent.annual_operating_time_heating * 24
+
+        result = (annual_heat_energy +
+                self._calc_dissipation_controll_emission_heating() +
+                self._calc_dissipation_distribution_heating() +
+                self._calc_dissipation_storage_heating()) * \
+               self._calc_dissipation_generation_heating()
+
+        # print("_dissipation_heating: " + str(result))
+
+        if result is None or result == 0:
+
+            return 0
+
+        else:
+
+            return result
+
+    def _dissipation_heating_no_h_or_tw(self):  # todo löschen
+
+        result = (-self._calc_gains_distribution_water_for_heating() -
+                self._calc_gains_storage_water_for_heating() +
+                self._calc_dissipation_controll_emission_heating() +
+                self._calc_dissipation_distribution_heating() +
+                self._calc_dissipation_storage_heating()) * \
+               self._calc_dissipation_generation_heating()
+
+        # print("_dissipation_heating: " + str(result))
+
+        if result is None or result == 0:
+
+            return 0
+
+        else:
+
+            return result
+
     def _calc_dissipation_distribution_auxiliary_heating(self):
         """
         Calculation of heat dissipation through auxiliary energy for
@@ -500,7 +602,7 @@ class FEDemandHeating(object):
             # print("nominal_power_consumption_of_circulator:", nominal_power_consumption_of_circulator)
 
             # iwu formula 5-8
-            if self.parent.parent.year_of_construction >= 2016 or self.parent.year_of_retrofit >= 2016:
+            if self.parent.parent.year_of_construction >= 2010 or self.parent.year_of_retrofit >= 2010:
                 # DIN V 4701-10 formula 5.3.2-4
                 result = nominal_power_consumption_of_circulator * self.parent.annual_operating_time_heating * \
                        self.parent.daily_operating_time_pump / ((1.4 - 20 / self.parent.usable_area) * 1000)
@@ -606,7 +708,7 @@ class FEDemandHeating(object):
         final energy demand heating : float [kWh/a]
         """
 
-        # PE for heating
+        # FE for heating
         if self.parent.heat_generation == "heatpump air":
             # coverage of heat generator from TABULA archetypes
             generator_one = 0.8 * (self._dissipation_heating() + self._calc_dissipation_generation_auxiliary_heating())\
@@ -645,8 +747,297 @@ class FEDemandHeating(object):
                                           self._calc_dissipation_distribution_auxiliary_heating() + \
                                           self._calc_dissipation_storage_auxiliary_heating()
 
-        print("final_energy_demand_heating:", final_energy_demand_heating)
+        print("fed heating: ", final_energy_demand_heating)
+
         return final_energy_demand_heating
+
+    def calc_final_energy_demand_heating_ohneHHE(self):  # todo löschen
+        """
+        Sums up the final heat demand for heating.
+        It uses all the equations above and includes weighting for
+        any additional heat generators.
+
+        Returns
+        ----------
+        final energy demand heating : float [kWh/a]
+        """
+
+        # FE for heating
+        if self.parent.heat_generation == "heatpump air":
+            # coverage of heat generator from TABULA archetypes
+            generator_one = 0.8 * (self._dissipation_heating())
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_two = 0.2 * (self._dissipation_heating())
+
+            final_energy_demand_heating = generator_one + generator_two
+
+        elif self.parent.heat_generation == "condensing - chp":
+            # 0.53  natural gas, condensing, 0.47 chp
+            generator_two = 0.47 * (self._dissipation_heating())
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_one = 0.53 * (self._dissipation_heating())
+
+            final_energy_demand_heating = generator_two + generator_one
+
+        else:
+            final_energy_demand_heating = self._dissipation_heating()
+
+        return final_energy_demand_heating
+
+    def calc_final_energy_demand_heating_no_ce(self):  # todo löschen
+
+        # FE for heating
+        if self.parent.heat_generation == "heatpump air":
+            # coverage of heat generator from TABULA archetypes
+            generator_one = 0.8 * (self._dissipation_heating_no_ce() + self._calc_dissipation_generation_auxiliary_heating())\
+                            + self._calc_dissipation_distribution_auxiliary_heating() + \
+                            self._calc_dissipation_storage_auxiliary_heating()
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_two = 0.2 * (self._dissipation_heating_no_ce() + self._calc_dissipation_generation_auxiliary_heating())
+
+            final_energy_demand_heating = generator_one + generator_two
+
+        elif self.parent.heat_generation == "condensing - chp":
+            # 0.53  natural gas, condensing, 0.47 chp
+            generator_two = 0.47 * (self._dissipation_heating_no_ce() +
+                                    self._calc_dissipation_generation_auxiliary_heating())
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_one = 0.53 * (self._dissipation_heating_no_ce() +
+                                    self._calc_dissipation_generation_auxiliary_heating()) + \
+                            self._calc_dissipation_distribution_auxiliary_heating() + \
+                            self._calc_dissipation_storage_auxiliary_heating()
+
+            final_energy_demand_heating = generator_two + generator_one
+
+        else:
+            final_energy_demand_heating = self._dissipation_heating_no_ce() + \
+                                          self._calc_dissipation_generation_auxiliary_heating() + \
+                                          self._calc_dissipation_distribution_auxiliary_heating() + \
+                                          self._calc_dissipation_storage_auxiliary_heating()
+
+        return final_energy_demand_heating
+
+    def calc_final_energy_demand_heating_no_d(self):  # todo löschen
+
+        # FE for heating
+        if self.parent.heat_generation == "heatpump air":
+            # coverage of heat generator from TABULA archetypes
+            generator_one = 0.8 * (self._dissipation_heating_no_d() + self._calc_dissipation_generation_auxiliary_heating())\
+                            + self._calc_dissipation_storage_auxiliary_heating()
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_two = 0.2 * (self._dissipation_heating_no_d() + self._calc_dissipation_generation_auxiliary_heating())
+
+            final_energy_demand_heating = generator_one + generator_two
+
+        elif self.parent.heat_generation == "condensing - chp":
+            # 0.53  natural gas, condensing, 0.47 chp
+            generator_two = 0.47 * (self._dissipation_heating_no_d() +
+                                    self._calc_dissipation_generation_auxiliary_heating())
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_one = 0.53 * (self._dissipation_heating_no_d() +
+                                    self._calc_dissipation_generation_auxiliary_heating()) + \
+                            self._calc_dissipation_storage_auxiliary_heating()
+
+            final_energy_demand_heating = generator_two + generator_one
+
+        else:
+            final_energy_demand_heating = self._dissipation_heating_no_d() + \
+                                          self._calc_dissipation_generation_auxiliary_heating() + \
+                                          self._calc_dissipation_storage_auxiliary_heating()
+
+        return final_energy_demand_heating
+
+    def calc_final_energy_demand_heating_no_s(self):  # todo löschen
+
+        # FE for heating
+        if self.parent.heat_generation == "heatpump air":
+            # coverage of heat generator from TABULA archetypes
+            generator_one = 0.8 * (self._dissipation_heating_no_s() + self._calc_dissipation_generation_auxiliary_heating())\
+                            + self._calc_dissipation_distribution_auxiliary_heating()
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_two = 0.2 * (self._dissipation_heating_no_s() + self._calc_dissipation_generation_auxiliary_heating())
+
+            final_energy_demand_heating = generator_one + generator_two
+
+        elif self.parent.heat_generation == "condensing - chp":
+            # 0.53  natural gas, condensing, 0.47 chp
+            generator_two = 0.47 * (self._dissipation_heating_no_s() +
+                                    self._calc_dissipation_generation_auxiliary_heating())
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_one = 0.53 * (self._dissipation_heating_no_s() +
+                                    self._calc_dissipation_generation_auxiliary_heating()) + \
+                            self._calc_dissipation_distribution_auxiliary_heating()
+
+            final_energy_demand_heating = generator_two + generator_one
+
+        else:
+            final_energy_demand_heating = self._dissipation_heating_no_s() + \
+                                          self._calc_dissipation_generation_auxiliary_heating() + \
+                                          self._calc_dissipation_distribution_auxiliary_heating()
+
+        return final_energy_demand_heating
+
+    def calc_final_energy_demand_heating_no_tw_for_h(self):  # todo löschen
+
+        # FE for heating
+        if self.parent.heat_generation == "heatpump air":
+            # coverage of heat generator from TABULA archetypes
+            generator_one = 0.8 * (self._dissipation_heating_no_tw_for_h() + self._calc_dissipation_generation_auxiliary_heating())\
+                            + self._calc_dissipation_distribution_auxiliary_heating() + \
+                            self._calc_dissipation_storage_auxiliary_heating()
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_two = 0.2 * (self._dissipation_heating_no_tw_for_h() + self._calc_dissipation_generation_auxiliary_heating())
+
+            final_energy_demand_heating = generator_one + generator_two
+
+        elif self.parent.heat_generation == "condensing - chp":
+            # 0.53  natural gas, condensing, 0.47 chp
+            generator_two = 0.47 * (self._dissipation_heating_no_tw_for_h() +
+                                    self._calc_dissipation_generation_auxiliary_heating())
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_one = 0.53 * (self._dissipation_heating_no_tw_for_h() +
+                                    self._calc_dissipation_generation_auxiliary_heating()) + \
+                            self._calc_dissipation_distribution_auxiliary_heating() + \
+                            self._calc_dissipation_storage_auxiliary_heating()
+
+            final_energy_demand_heating = generator_two + generator_one
+
+        else:
+            final_energy_demand_heating = self._dissipation_heating_no_tw_for_h() + \
+                                          self._calc_dissipation_generation_auxiliary_heating() + \
+                                          self._calc_dissipation_distribution_auxiliary_heating() + \
+                                          self._calc_dissipation_storage_auxiliary_heating()
+
+        return final_energy_demand_heating
+
+    def calc_final_energy_demand_heating_no_h_or_tw(self):  # todo löschen
+
+        # FE for heating
+        if self.parent.heat_generation == "heatpump air":
+            # coverage of heat generator from TABULA archetypes
+            generator_one = 0.8 * (self._dissipation_heating_no_h_or_tw() + self._calc_dissipation_generation_auxiliary_heating())\
+                            + self._calc_dissipation_distribution_auxiliary_heating() + \
+                            self._calc_dissipation_storage_auxiliary_heating()
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_two = 0.2 * (self._dissipation_heating_no_h_or_tw() + self._calc_dissipation_generation_auxiliary_heating())
+
+            final_energy_demand_heating = generator_one + generator_two
+
+        elif self.parent.heat_generation == "condensing - chp":
+            # 0.53  natural gas, condensing, 0.47 chp
+            generator_two = 0.47 * (self._dissipation_heating_no_h_or_tw() +
+                                    self._calc_dissipation_generation_auxiliary_heating())
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_one = 0.53 * (self._dissipation_heating_no_h_or_tw() +
+                                    self._calc_dissipation_generation_auxiliary_heating()) + \
+                            self._calc_dissipation_distribution_auxiliary_heating() + \
+                            self._calc_dissipation_storage_auxiliary_heating()
+
+            final_energy_demand_heating = generator_two + generator_one
+
+        else:
+            final_energy_demand_heating = self._dissipation_heating_no_h_or_tw() + \
+                                          self._calc_dissipation_generation_auxiliary_heating() + \
+                                          self._calc_dissipation_distribution_auxiliary_heating() + \
+                                          self._calc_dissipation_storage_auxiliary_heating()
+
+        return final_energy_demand_heating
+
+    """
+    #ohne h,hilfsenergie
+    def calc_final_energy_demand_heating_no_h_he(self):  # todo löschen
+
+        # FE for heating
+        if self.parent.heat_generation == "heatpump air":
+            # coverage of heat generator from TABULA archetypes
+            generator_one = 0.8 * (self._dissipation_heating())
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_two = 0.2 * (self._dissipation_heating())
+
+            final_energy_demand_heating = generator_one + generator_two
+
+        elif self.parent.heat_generation == "condensing - chp":
+            # 0.53  natural gas, condensing, 0.47 chp
+            generator_two = 0.47 * (self._dissipation_heating())
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_one = 0.53 * self._dissipation_heating()
+
+            final_energy_demand_heating = generator_two + generator_one
+
+        else:
+            final_energy_demand_heating = self._dissipation_heating()
+
+        return final_energy_demand_heating"""
 
     @property
     def parent(self):

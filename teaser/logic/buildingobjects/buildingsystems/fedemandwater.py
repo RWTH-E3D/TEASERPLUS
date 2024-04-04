@@ -305,6 +305,37 @@ class FEDemandWater(object):
         else:
             return result
 
+    def _dissipation_water_no_tw(self):  # todo löschen
+
+        result = (self._calc_dissipation_distribution_water()
+                  + self.calc_dissipation_storage_water()) * self._calc_dissipation_generation_water()
+
+        # print("_dissipation_water: " + str(result))
+        if result is None or result == 0:
+            return 0
+        else:
+            return result
+
+    def _dissipation_water_no_d(self):  # todo löschen
+
+        result = (12.5 * self.parent.usable_area + self.calc_dissipation_storage_water()) * self._calc_dissipation_generation_water()
+
+        # print("_dissipation_water: " + str(result))
+        if result is None or result == 0:
+            return 0
+        else:
+            return result
+
+    def _dissipation_water_no_s(self):  # todo löschen
+
+        result = (12.5 * self.parent.usable_area + self._calc_dissipation_distribution_water()) * self._calc_dissipation_generation_water()
+
+        # print("_dissipation_water: " + str(result))
+        if result is None or result == 0:
+            return 0
+        else:
+            return result
+
     def _calc_dissipation_distribution_auxiliary_water(self):
         """
         Calculation of heat dissipation through auxiliary energy for
@@ -319,7 +350,7 @@ class FEDemandWater(object):
         if self.parent.pipe_routing_water == "centralised with circulation":
 
             # iwu formula 5-23 and 5-24
-            if self.parent.parent.year_of_construction >= 2016 or self.parent.year_of_retrofit >= 2016:
+            if self.parent.parent.year_of_construction >= 2010 or self.parent.year_of_retrofit >= 2010:
                 result = (27 + 0.008 * self.parent.usable_area) * self.parent.annual_operating_time_water * \
                        self.parent.daily_operating_time_pump / 1000
 
@@ -500,8 +531,336 @@ class FEDemandWater(object):
                                         + self._calc_dissipation_distribution_auxiliary_water() + \
                                         self._calc_dissipation_storage_auxiliary_water()
 
-        print("final_energy_demand_water:", final_energy_demand_water)
+        print("fed water: ", final_energy_demand_water)
+
         return final_energy_demand_water
+
+    def calc_final_energy_demand_water_ohneTWHE(self):  # todo löschen
+        """
+        Sums up the final heat demand for warm water.
+        It uses all the equations above and includes weighting for
+        any additional heat generators.
+
+        Returns
+        ----------
+        final energy demand water : float [kWh/a]
+        """
+
+        part_solar = 0
+
+        if self.parent.storage == "solar":
+            if self.parent.building_type == "mfh":
+                # TABULA values
+                if "chp" in self.parent.heat_generation:
+                    part_solar = 0.6
+                else:
+                    part_solar = 0.4
+            else:
+                part_solar = 0.6
+
+        if self.parent.heat_generation == "heatpump air":
+            # TABULA values
+            if self.parent.storage == "solar":
+                part_generator_one = 1 - part_solar - 0.1
+            else:
+                part_generator_one = 0.9
+
+            generator_one = part_generator_one * (self._dissipation_water())
+
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_two = 0.1 * (self._dissipation_water())
+
+            final_energy_demand_water = generator_one + generator_two
+
+        elif self.parent.heat_generation == "condensing - chp":
+            # TABULA values
+            # 0.58 % solar (no system without solar use)
+            generator_two = 0.05 * (self._dissipation_water())
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_one = 0.37 * (self._dissipation_water())
+
+            final_energy_demand_water = generator_two + generator_one
+
+        else:
+
+            if self.parent.storage == "solar":
+                part_generator = 1 - part_solar
+            else:
+                part_generator = 1
+
+            final_energy_demand_water = part_generator * (self._dissipation_water())
+
+        return final_energy_demand_water
+
+    def calc_final_energy_demand_water_no_tw(self):  # todo löschen
+
+        part_solar = 0
+
+        if self.parent.storage == "solar":
+            if self.parent.building_type == "mfh":
+                # TABULA values
+                if "chp" in self.parent.heat_generation:
+                    part_solar = 0.6
+                else:
+                    part_solar = 0.4
+            else:
+                part_solar = 0.6
+
+        if self.parent.heat_generation == "heatpump air":
+            # TABULA values
+            if self.parent.storage == "solar":
+                part_generator_one = 1 - part_solar - 0.1
+            else:
+                part_generator_one = 0.9
+
+            generator_one = part_generator_one * (self._dissipation_water_no_tw() +
+                                                  self._calc_dissipation_generation_auxiliary_water()) + \
+                            self._calc_dissipation_distribution_auxiliary_water() + \
+                            self._calc_dissipation_storage_auxiliary_water()
+
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_two = 0.1 * (self._dissipation_water_no_tw() + self._calc_dissipation_generation_auxiliary_water())
+
+            final_energy_demand_water = generator_one + generator_two
+
+        elif self.parent.heat_generation == "condensing - chp":
+            # TABULA values
+            # 0.58 % solar (no system without solar use)
+            generator_two = 0.05 * (self._dissipation_water_no_tw() + self._calc_dissipation_generation_auxiliary_water())
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_one = 0.37 * (self._dissipation_water_no_tw() + self._calc_dissipation_generation_auxiliary_water()) \
+                            + self._calc_dissipation_distribution_auxiliary_water() \
+                            + self._calc_dissipation_storage_auxiliary_water()
+
+            final_energy_demand_water = generator_two + generator_one
+
+        else:
+
+            if self.parent.storage == "solar":
+                part_generator = 1 - part_solar
+            else:
+                part_generator = 1
+
+            final_energy_demand_water = part_generator * (self._dissipation_water_no_tw() +
+                                                          self._calc_dissipation_generation_auxiliary_water()) \
+                                        + self._calc_dissipation_distribution_auxiliary_water() + \
+                                        self._calc_dissipation_storage_auxiliary_water()
+
+        return final_energy_demand_water
+
+    def calc_final_energy_demand_water_no_d(self):
+        """
+        Sums up the final heat demand for warm water.
+        It uses all the equations above and includes weighting for
+        any additional heat generators.
+
+        Returns
+        ----------
+        final energy demand water : float [kWh/a]
+        """
+
+        part_solar = 0
+
+        if self.parent.storage == "solar":
+            if self.parent.building_type == "mfh":
+                # TABULA values
+                if "chp" in self.parent.heat_generation:
+                    part_solar = 0.6
+                else:
+                    part_solar = 0.4
+            else:
+                part_solar = 0.6
+
+        if self.parent.heat_generation == "heatpump air":
+            # TABULA values
+            if self.parent.storage == "solar":
+                part_generator_one = 1 - part_solar - 0.1
+            else:
+                part_generator_one = 0.9
+
+            generator_one = part_generator_one * (self._dissipation_water_no_d() +
+                                                  self._calc_dissipation_generation_auxiliary_water()) + \
+                            self._calc_dissipation_storage_auxiliary_water()
+
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_two = 0.1 * (self._dissipation_water_no_d() + self._calc_dissipation_generation_auxiliary_water())
+
+            final_energy_demand_water = generator_one + generator_two
+
+        elif self.parent.heat_generation == "condensing - chp":
+            # TABULA values
+            # 0.58 % solar (no system without solar use)
+            generator_two = 0.05 * (self._dissipation_water_no_d() + self._calc_dissipation_generation_auxiliary_water())
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_one = 0.37 * (self._dissipation_water_no_d() + self._calc_dissipation_generation_auxiliary_water()) \
+                            + self._calc_dissipation_storage_auxiliary_water()
+
+            final_energy_demand_water = generator_two + generator_one
+
+        else:
+
+            if self.parent.storage == "solar":
+                part_generator = 1 - part_solar
+            else:
+                part_generator = 1
+
+            final_energy_demand_water = part_generator * (self._dissipation_water_no_d() +
+                                                          self._calc_dissipation_generation_auxiliary_water()) +\
+                                        self._calc_dissipation_storage_auxiliary_water()
+
+        return final_energy_demand_water
+
+    def calc_final_energy_demand_water_no_s(self):
+        """
+        Sums up the final heat demand for warm water.
+        It uses all the equations above and includes weighting for
+        any additional heat generators.
+
+        Returns
+        ----------
+        final energy demand water : float [kWh/a]
+        """
+
+        part_solar = 0
+
+        if self.parent.storage == "solar":
+            if self.parent.building_type == "mfh":
+                # TABULA values
+                if "chp" in self.parent.heat_generation:
+                    part_solar = 0.6
+                else:
+                    part_solar = 0.4
+            else:
+                part_solar = 0.6
+
+        if self.parent.heat_generation == "heatpump air":
+            # TABULA values
+            if self.parent.storage == "solar":
+                part_generator_one = 1 - part_solar - 0.1
+            else:
+                part_generator_one = 0.9
+
+            generator_one = part_generator_one * (self._dissipation_water_no_s() +
+                                                  self._calc_dissipation_generation_auxiliary_water()) + \
+                            self._calc_dissipation_distribution_auxiliary_water()
+
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_two = 0.1 * (self._dissipation_water_no_s() + self._calc_dissipation_generation_auxiliary_water())
+
+            final_energy_demand_water = generator_one + generator_two
+
+        elif self.parent.heat_generation == "condensing - chp":
+            # TABULA values
+            # 0.58 % solar (no system without solar use)
+            generator_two = 0.05 * (self._dissipation_water_no_s() + self._calc_dissipation_generation_auxiliary_water())
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_one = 0.37 * (self._dissipation_water_no_s() + self._calc_dissipation_generation_auxiliary_water()) \
+                            + self._calc_dissipation_distribution_auxiliary_water()
+
+            final_energy_demand_water = generator_two + generator_one
+
+        else:
+
+            if self.parent.storage == "solar":
+                part_generator = 1 - part_solar
+            else:
+                part_generator = 1
+
+            final_energy_demand_water = part_generator * (self._dissipation_water_no_s() +
+                                                          self._calc_dissipation_generation_auxiliary_water()) \
+                                        + self._calc_dissipation_distribution_auxiliary_water()
+
+        return final_energy_demand_water
+
+    """
+    # ohne tw, hilfsenergie
+    def calc_final_energy_demand_water_no_tw_he(self):  # todo löschen
+
+        part_solar = 0
+
+        if self.parent.storage == "solar":
+            if self.parent.building_type == "mfh":
+                # TABULA values
+                if "chp" in self.parent.heat_generation:
+                    part_solar = 0.6
+                else:
+                    part_solar = 0.4
+            else:
+                part_solar = 0.6
+
+        if self.parent.heat_generation == "heatpump air":
+            # TABULA values
+            if self.parent.storage == "solar":
+                part_generator_one = 1 - part_solar - 0.1
+            else:
+                part_generator_one = 0.9
+
+            generator_one = part_generator_one * self._dissipation_water()
+
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_two = 0.1 * self._dissipation_water()
+
+            final_energy_demand_water = generator_one + generator_two
+
+        elif self.parent.heat_generation == "condensing - chp":
+            # TABULA values
+            # 0.58 % solar (no system without solar use)
+            generator_two = 0.05 * (self._dissipation_water())
+
+            # DIN V 4701-10 table C.3-4a
+            self.parent.heat_system = "gas"
+            self.parent.heat_generation = "condensing"
+            self.parent.setting_derived_values()
+
+            generator_one = 0.37 * self._dissipation_water()
+
+            final_energy_demand_water = generator_two + generator_one
+
+        else:
+
+            if self.parent.storage == "solar":
+                part_generator = 1 - part_solar
+            else:
+                part_generator = 1
+
+            final_energy_demand_water = part_generator * self._dissipation_water()
+
+        return final_energy_demand_water"""
 
     @property
     def parent(self):

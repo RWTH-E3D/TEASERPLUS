@@ -160,7 +160,7 @@ class HeatSupplySystem(object):
             print("net_leased_area has to have a value.")
 
         if type_heat_supply_system is None:
-            if self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016:
+            if self.parent.year_of_construction >= 2010 or self._year_of_retrofit >= 2010:
                 type_heat_supply_system = 3  # DENA report 2023 Abb. 41
             else:
                 type_heat_supply_system = 1  # DENA report 2023 Abb. 31
@@ -175,7 +175,7 @@ class HeatSupplySystem(object):
             retrofit_type = "standard"
 
         if (self.parent.year_of_construction is not None and self._year_of_retrofit is not None and
-                (self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016)):
+                (self.parent.year_of_construction >= 2010 or self._year_of_retrofit >= 2010)):
             self._oversizing_factor = 1  # standard for new buildings (iwu)
         else:
             self._oversizing_factor = 1.2  # standard for existing buildings (iwu)
@@ -889,7 +889,9 @@ class HeatSupplySystem(object):
             else:
                 self._pipe_routing_water = "centralised with circulation"
 
-        print("Values are set")
+        print("type_heat_supply_system: ", type_heat_supply_system)
+        print("YoC: ", self.parent.year_of_construction)
+        print("self._heat_system, self._heat_generation: ", self._heat_system, self._heat_generation)
         self.setting_derived_values()
 
     def setting_derived_values(self):
@@ -1015,7 +1017,7 @@ class HeatSupplySystem(object):
                 elif self._oversizing_factor == 1.2:
                     self._avg_temp_distribution_heating = 29
 
-        print("Derived Values are set")
+        #print("Derived Values are set")
 
     def retrofit_heat_supply_system(self, year_of_retrofit, type_heat_supply_system=None, type_of_retrofit=None):
         """Retrofits all parameters in the system.
@@ -1059,7 +1061,7 @@ class HeatSupplySystem(object):
             retrofit_type = "retrofit"
 
         if type_heat_supply_system is None:
-            if self.parent.year_of_construction >= 2016 or self._year_of_retrofit >= 2016:
+            if self.parent.year_of_construction >= 2010 or self._year_of_retrofit >= 2010:
                 type_heat_supply_system = 3  # DENA report 2023 Abb. 41
             else:
                 type_heat_supply_system = 1  # DENA report 2023 Abb. 31

@@ -215,14 +215,23 @@ class Building(object):
         surface_max_help = []
         for surface in self.gml_surfaces:
             # print(surface.surface_area, surface.surface_orientation, surface.surface_tilt)
-            if surface.surface_orientation == -2 or surface.surface_orientation == -1 and surface.surface_tilt == \
+            if (surface.surface_orientation == -2 or surface.surface_orientation == -1) and surface.surface_tilt == \
                     0.0: #horizontal
                 surface_max_help.append(surface.surface_area)
-        if merge_building_part is False:
-            max_area = max(surface_max_help)
-        else:
-            max_area = sum(surface_max_help)
-        return max_area
+                #print(f"orientation: {surface.surface_orientation}, surface_tilt: {surface.surface_tilt}, area: {surface.surface_area}")
+
+        print(f"ID: {self.__name}")
+
+
+        try:
+            if merge_building_part is False:
+                max_area = max(surface_max_help)
+            else:
+                max_area = sum(surface_max_help)
+            return max_area
+        except (UserWarning, AttributeError):
+            print(f"{self.__name} bldg.surface_max_help did not work")
+            pass
 
     def set_gml_attributes(self, height_of_floor=2.8, merge_building_part=False):
         """Sets building attributes from CityGML data
