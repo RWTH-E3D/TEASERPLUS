@@ -2,7 +2,7 @@
 
 import os
 import pandas as pd
-import teaser.teaser.logic.utilities as utilities
+import teaser.logic.utilities as utilities
 
 
 class IBPSA(object):

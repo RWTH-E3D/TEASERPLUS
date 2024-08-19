@@ -2,7 +2,7 @@
 # by TEASER4 Development Team
 
 
-from teaser.teaser.logic.buildingobjects.building import Building
+from teaser.logic.buildingobjects.building import Building
 
 
 class Residential(Building):

@@ -4,8 +4,8 @@
 
 import re
 import uuid
-import teaser.teaser.data.input.material_input_json as material_input
-import teaser.teaser.data.output.material_output as material_output
+import teaser.data.input.material_input_json as material_input
+import teaser.data.output.material_output as material_output
 
 
 class Material(object):

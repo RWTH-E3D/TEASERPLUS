@@ -11,7 +11,7 @@ import os
 import lxml.etree as ET
 from datetime import date, datetime
 import uuid
-import teaser.teaser.data.output.citygml_classes as cl
+import teaser.data.output.citygml_classes as cl
 import pandas as pd
 
 
@@ -766,7 +766,7 @@ def _set_schedule(schedule_type, usage_zone, usage_zone_id, type_name):
             uom = "1/h"
         else:
             uom = "scale"
-
+#This should be more concise since the check is for a string, not object identity?
         if day_type == "weekDay":
 
             ET.SubElement(regular_ts, ET.QName(nsClass.energy, 'values'), attrib={'uom': uom}).text = str(usage_zone.schedules[f"{type_name}_profile"].iloc[0:23].values).strip('[]')

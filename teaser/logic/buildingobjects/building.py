@@ -8,11 +8,11 @@ import random
 import uuid
 import re
 import warnings
-from teaser.teaser.logic.buildingobjects.calculation.aixlib import AixLib
-from teaser.teaser.logic.buildingobjects.calculation.ibpsa import IBPSA
+from teaser.logic.buildingobjects.calculation.aixlib import AixLib
+from teaser.logic.buildingobjects.calculation.ibpsa import IBPSA
 
-from teaser.teaser.logic.buildingobjects.buildingsystems.buildingahu import BuildingAHU
-from teaser.teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
+from teaser.logic.buildingobjects.buildingsystems.buildingahu import BuildingAHU
+from teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
 
 class Building(object):
     """Building Class
@@ -88,7 +88,7 @@ class Building(object):
         Dictionary with orientation as key and sum of outer wall areas of
         that direction as value.
     heat_supply_system : HeatSupplySystem()
-        Holds the HeatSupplySytsem of the Building
+        Holds the HeatSupplySystem of the Building
     window_area : dict [degree: m2]
         Dictionary with orientation as key and sum of window areas of
         that direction as value.
@@ -159,7 +159,7 @@ class Building(object):
         self.building_id = None
         self.street_name = ""
         self.city = ""
-        self.longitude = 6.05 #Aachen
+        self.longitude = 6.05
         self.latitude = 50.79
 
         self.gml_surfaces = []
@@ -194,7 +194,7 @@ class Building(object):
             max_help = 0
             min_help = 9999
             for surface in self.gml_surfaces:
-                z_value = surface.gml_surface[2::3] #starts with 3rd element and from there every 3rd (z-values of coord)
+                z_value = surface.gml_surface[2::3]
                 max_help = max(max_help, max(z_value))
                 min_help = min(min_help, min(z_value))
             self.bldg_height = max_help - min_help
@@ -212,6 +212,8 @@ class Building(object):
             footprint area of a gml building
 
         """
+
+#What is the consequence of the changed logic? :)
         surface_max_help = []
         for surface in self.gml_surfaces:
             # print(surface.surface_area, surface.surface_orientation, surface.surface_tilt)
@@ -221,7 +223,7 @@ class Building(object):
                 #print(f"orientation: {surface.surface_orientation}, surface_tilt: {surface.surface_tilt}, area: {surface.surface_area}")
 
         print(f"ID: {self.__name}")
-
+#Is this generally useful for faulty building compositions?
 
         try:
             if merge_building_part is False:
@@ -232,7 +234,7 @@ class Building(object):
         except (UserWarning, AttributeError):
             print(f"{self.__name} bldg.surface_max_help did not work")
             pass
-
+#Shall we keep 2.8 as standard since 3.5 was arbitrary and 2.8 is actually from the IWU source?
     def set_gml_attributes(self, height_of_floor=2.8, merge_building_part=False):
         """Sets building attributes from CityGML data
 
@@ -552,7 +554,7 @@ class Building(object):
                 self.library_attr.calc_auxiliary_attr()
             elif self.used_library_calc == "IBPSA":
                 self.library_attr = IBPSA(parent=self)
-
+#Keep the function the old way since year_of_retrofit is optional?
     def retrofit_building(
         self,
         year_of_retrofit,
@@ -582,7 +584,7 @@ class Building(object):
         #  Set self.sum_heat_load to zero to prevent summing up of old and new
         #  design heat load calculation values (see #518)
         self.sum_heat_load = 0
-
+#This should work since variable is being initialized with None?
         self.year_of_retrofit = year_of_retrofit
 
         for zone in self.thermal_zones:

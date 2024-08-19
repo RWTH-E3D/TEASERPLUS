@@ -1,9 +1,9 @@
 """This module contains the Base class for all building elements."""
 
 from __future__ import division
-from teaser.teaser.logic.buildingobjects.buildingphysics.layer import Layer
+from teaser.logic.buildingobjects.buildingphysics.layer import Layer
 
-import teaser.teaser.data.input.buildingelement_input_json as buildingelement_input
+import teaser.data.input.buildingelement_input_json as buildingelement_input
 import numpy as np
 import random
 import re
@@ -343,7 +343,7 @@ class BuildingElement(object):
         else:
             data_class = data_class
 
-        import teaser.teaser.data.output.buildingelement_output as \
+        import teaser.data.output.buildingelement_output as \
             buildingelement_output
 
         buildingelement_output.save_type_element(element=self,
@@ -376,7 +376,7 @@ class BuildingElement(object):
         else:
             data_class = data_class
 
-        import teaser.teaser.data.output.buildingelement_output as \
+        import teaser.data.output.buildingelement_output as \
             buildingelement_output
 
         buildingelement_output.delete_type_element(element=self,

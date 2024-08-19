@@ -3,50 +3,50 @@
 import warnings
 import os
 import re
-import teaser.teaser.logic.utilities as utilities
-import teaser.teaser.data.input.teaserjson_input as tjson_in
-import teaser.teaser.data.output.teaserjson_output as tjson_out
-import teaser.teaser.data.output.aixlib_output as aixlib_output
-import teaser.teaser.data.output.ibpsa_output as ibpsa_output
-from teaser.teaser.data.dataclass import DataClass
-from teaser.teaser.logic.archetypebuildings.bmvbs.office import Office
-from teaser.teaser.logic.archetypebuildings.bmvbs.custom.institute import Institute
-from teaser.teaser.logic.archetypebuildings.bmvbs.custom.institute4 import Institute4
-from teaser.teaser.logic.archetypebuildings.bmvbs.custom.institute8 import Institute8
-from teaser.teaser.logic.archetypebuildings.urbanrenet.est1a import EST1a
-from teaser.teaser.logic.archetypebuildings.urbanrenet.est1b import EST1b
-from teaser.teaser.logic.archetypebuildings.urbanrenet.est2 import EST2
-from teaser.teaser.logic.archetypebuildings.urbanrenet.est3 import EST3
-from teaser.teaser.logic.archetypebuildings.urbanrenet.est4a import EST4a
-from teaser.teaser.logic.archetypebuildings.urbanrenet.est4b import EST4b
-from teaser.teaser.logic.archetypebuildings.urbanrenet.est5 import EST5
-from teaser.teaser.logic.archetypebuildings.urbanrenet.est6 import EST6
-from teaser.teaser.logic.archetypebuildings.urbanrenet.est7 import EST7
-from teaser.teaser.logic.archetypebuildings.urbanrenet.est8a import EST8a
-from teaser.teaser.logic.archetypebuildings.urbanrenet.est8b import EST8b
-from teaser.teaser.logic.archetypebuildings.tabula.de.singlefamilyhouse import (
+import teaser.logic.utilities as utilities
+import teaser.data.input.teaserjson_input as tjson_in
+import teaser.data.output.teaserjson_output as tjson_out
+import teaser.data.output.aixlib_output as aixlib_output
+import teaser.data.output.ibpsa_output as ibpsa_output
+from teaser.data.dataclass import DataClass
+from teaser.logic.archetypebuildings.bmvbs.office import Office
+from teaser.logic.archetypebuildings.bmvbs.custom.institute import Institute
+from teaser.logic.archetypebuildings.bmvbs.custom.institute4 import Institute4
+from teaser.logic.archetypebuildings.bmvbs.custom.institute8 import Institute8
+from teaser.logic.archetypebuildings.urbanrenet.est1a import EST1a
+from teaser.logic.archetypebuildings.urbanrenet.est1b import EST1b
+from teaser.logic.archetypebuildings.urbanrenet.est2 import EST2
+from teaser.logic.archetypebuildings.urbanrenet.est3 import EST3
+from teaser.logic.archetypebuildings.urbanrenet.est4a import EST4a
+from teaser.logic.archetypebuildings.urbanrenet.est4b import EST4b
+from teaser.logic.archetypebuildings.urbanrenet.est5 import EST5
+from teaser.logic.archetypebuildings.urbanrenet.est6 import EST6
+from teaser.logic.archetypebuildings.urbanrenet.est7 import EST7
+from teaser.logic.archetypebuildings.urbanrenet.est8a import EST8a
+from teaser.logic.archetypebuildings.urbanrenet.est8b import EST8b
+from teaser.logic.archetypebuildings.tabula.de.singlefamilyhouse import (
     SingleFamilyHouse,
 )
-from teaser.teaser.logic.archetypebuildings.tabula.dk.singlefamilyhouse import (
+from teaser.logic.archetypebuildings.tabula.dk.singlefamilyhouse import (
     SingleFamilyHouse as SingleFamilyHouse_DK,
 )
-from teaser.teaser.logic.archetypebuildings.tabula.de.terracedhouse import TerracedHouse
-from teaser.teaser.logic.archetypebuildings.tabula.dk.terracedhouse import (
+from teaser.logic.archetypebuildings.tabula.de.terracedhouse import TerracedHouse
+from teaser.logic.archetypebuildings.tabula.dk.terracedhouse import (
     TerracedHouse as TerracedHouse_DK,
 )
-from teaser.teaser.logic.archetypebuildings.tabula.de.multifamilyhouse import MultiFamilyHouse
-from teaser.teaser.logic.archetypebuildings.tabula.de.apartmentblock import ApartmentBlock
-from teaser.teaser.logic.archetypebuildings.tabula.dk.apartmentblock import (
+from teaser.logic.archetypebuildings.tabula.de.multifamilyhouse import MultiFamilyHouse
+from teaser.logic.archetypebuildings.tabula.de.apartmentblock import ApartmentBlock
+from teaser.logic.archetypebuildings.tabula.dk.apartmentblock import (
     ApartmentBlock as ApartmentBlock_DK,
 )
-from teaser.teaser.logic.archetypebuildings.bmvbs.singlefamilydwelling import (
+from teaser.logic.archetypebuildings.bmvbs.singlefamilydwelling import (
     SingleFamilyDwelling,
 )
-from teaser.teaser.logic.simulation.modelicainfo import ModelicaInfo
+from teaser.logic.simulation.modelicainfo import ModelicaInfo
 
-import teaser.teaser.data.output.citygml_output as citygml_out
-import teaser.teaser.data.input.citygml_input as citygml_in
-import teaser.teaser.data.input.energyade_input as energyade_in
+import teaser.data.output.citygml_output as citygml_out
+import teaser.data.input.citygml_input as citygml_in
+import teaser.data.input.energyade_input as energyade_in
 
 
 class Project(object):
@@ -160,7 +160,7 @@ class Project(object):
 
         """
         if raise_errors is True:
-            for bldg in reversed(self.buildings): #Loop iterates through the elements in the list self.buildings in reverse order
+            for bldg in reversed(self.buildings):
                 bldg.calc_building_parameter(
                     number_of_elements=self._number_of_elements_calc,
                     merge_windows=self._merge_windows_calc,
@@ -182,7 +182,7 @@ class Project(object):
                         "this building:" + bldg.name
                     )
                     self.buildings.remove(bldg)
-
+#Initializing year_of_retrofit like this saves us the if condition further down?
     def retrofit_all_buildings(
         self,
         year_of_retrofit,
@@ -239,7 +239,7 @@ class Project(object):
         assert type_of_retrofit in [None, "adv_retrofit", "retrofit"], ass_error_type
         tabula_buildings = []
         iwu_buildings = []
-
+#Should we keep it this way?
         for bldg in self.buildings:
             if isinstance(bldg, SingleFamilyHouse):
                 tabula_buildings.append(bldg) #bldg added to the end of tabula_buildings-list
@@ -439,7 +439,7 @@ internal_gains_mode: int [1, 2, 3]
                 construction_type,
             )
 
-        type_bldg.generate_archetype() #generates a prototype of a residential building with various building elements, their orientations, and other characteristics based on input parameters and predefined factors
+        type_bldg.generate_archetype()
         type_bldg.calc_building_parameter(
             number_of_elements=self._number_of_elements_calc,
             merge_windows=self._merge_windows_calc,

@@ -3,7 +3,7 @@
 import collections
 import json
 import warnings
-import teaser.teaser.logic.utilities as utilities
+import teaser.logic.utilities as utilities
 
 
 def save_use_conditions(use_cond, data_class):

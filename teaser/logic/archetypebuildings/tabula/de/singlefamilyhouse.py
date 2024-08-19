@@ -1,20 +1,20 @@
 # created April 2017
 # by TEASER Development Team
 
-from teaser.teaser.logic.archetypebuildings.residential import Residential
-from teaser.teaser.logic.buildingobjects.useconditions import UseConditions as UseCond
-from teaser.teaser.logic.buildingobjects.buildingphysics.ceiling import Ceiling
-from teaser.teaser.logic.buildingobjects.buildingphysics.floor import Floor
-from teaser.teaser.logic.buildingobjects.buildingphysics.groundfloor import GroundFloor
-from teaser.teaser.logic.buildingobjects.buildingphysics.innerwall import InnerWall
-from teaser.teaser.logic.buildingobjects.buildingphysics.outerwall import OuterWall
-from teaser.teaser.logic.buildingobjects.buildingphysics.rooftop import Rooftop
-from teaser.teaser.logic.buildingobjects.buildingphysics.window import Window
-from teaser.teaser.logic.buildingobjects.buildingphysics.door import Door
-from teaser.teaser.logic.buildingobjects.thermalzone import ThermalZone
+from teaser.logic.archetypebuildings.residential import Residential
+from teaser.logic.buildingobjects.useconditions import UseConditions as UseCond
+from teaser.logic.buildingobjects.buildingphysics.ceiling import Ceiling
+from teaser.logic.buildingobjects.buildingphysics.floor import Floor
+from teaser.logic.buildingobjects.buildingphysics.groundfloor import GroundFloor
+from teaser.logic.buildingobjects.buildingphysics.innerwall import InnerWall
+from teaser.logic.buildingobjects.buildingphysics.outerwall import OuterWall
+from teaser.logic.buildingobjects.buildingphysics.rooftop import Rooftop
+from teaser.logic.buildingobjects.buildingphysics.window import Window
+from teaser.logic.buildingobjects.buildingphysics.door import Door
+from teaser.logic.buildingobjects.thermalzone import ThermalZone
 from teco.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
-from teaser.teaser.logic.buildingobjects.buildingsystems.fedemandwater import FEDemandWater
-from teaser.teaser.logic.buildingobjects.buildingsystems.fedemandheating import FEDemandHeating
+from teaser.logic.buildingobjects.buildingsystems.fedemandwater import FEDemandWater
+from teaser.logic.buildingobjects.buildingsystems.fedemandheating import FEDemandHeating
 
 
 class SingleFamilyHouse(Residential):
@@ -577,7 +577,7 @@ class SingleFamilyHouse(Residential):
         for zone in self.thermal_zones:
             zone.set_inner_wall_area()
             zone.set_volume_zone()
-
+#Why is this commented out in de but not in dk?
         # heatsupplysystem.setting_values(self.type_heat_supply_system, self.construction_type)
 
 
@@ -593,7 +593,7 @@ class SingleFamilyHouse(Residential):
         type_bldg_area = self.net_leased_area
         self.net_leased_area = 0.0
         self._check_year_of_construction()
-        # print(self.building_age_group)
+        print(self.building_age_group)
 
         # my variable: decider for inner_wall calculation method
         lod4_innerwalls = False
@@ -613,7 +613,7 @@ class SingleFamilyHouse(Residential):
 
             # TODO: fix with or without Windows scenario 2
 
-            # print(self.parent.data.used_statistic)
+            print(self.parent.data.used_statistic)
             for surface in self.gml_surfaces:
                 if surface.surface_tilt is not None and surface.name is None:
                     if surface.surface_tilt == 90:

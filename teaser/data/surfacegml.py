@@ -46,7 +46,7 @@ class SurfaceGML(object):
             returns the area of the surface
         """
 
-        split_surface = list(zip(*[iter(self.gml_surface)] * 3)) #grouping coordinates from sequence gml_surface in groups of 3
+        split_surface = list(zip(*[iter(self.gml_surface)] * 3))
         self.surface_area = self.poly_area(poly=split_surface)
         return self.surface_area
 
@@ -99,7 +99,7 @@ class SurfaceGML(object):
         gml2 = gml_surface[3:6]
         gml3 = gml_surface[6:9]
         gml4 = gml_surface[9:12]
-        if len(gml_surface) > 12: #indicator higher than 11
+        if len(gml_surface) > 12:
             vektor_1 = gml2 - gml1
             vektor_2 = gml4 - gml1
         else:

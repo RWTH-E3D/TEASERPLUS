@@ -8,10 +8,10 @@ import random
 import re
 import warnings
 import uuid
-from teaser.teaser.logic.buildingobjects.calculation.one_element import OneElement
-from teaser.teaser.logic.buildingobjects.calculation.two_element import TwoElement
-from teaser.teaser.logic.buildingobjects.calculation.three_element import ThreeElement
-from teaser.teaser.logic.buildingobjects.calculation.four_element import FourElement
+from teaser.logic.buildingobjects.calculation.one_element import OneElement
+from teaser.logic.buildingobjects.calculation.two_element import TwoElement
+from teaser.logic.buildingobjects.calculation.three_element import ThreeElement
+from teaser.logic.buildingobjects.calculation.four_element import FourElement
 
 
 class ThermalZone(object):
@@ -465,7 +465,7 @@ class ThermalZone(object):
 
     @parent.setter
     def parent(self, value):
-        from teaser.teaser.logic.buildingobjects.building import Building
+        from teaser.logic.buildingobjects.building import Building
         import inspect
         if value is not None:
             if inspect.isclass(Building):

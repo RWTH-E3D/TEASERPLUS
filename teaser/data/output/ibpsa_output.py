@@ -6,9 +6,9 @@
 This module contains function to call Templates for IBPSA model generation
 """
 
-import teaser.teaser.data.output.aixlib_output as ibpsa_output
+import teaser.data.output.aixlib_output as ibpsa_output
 import os.path
-import teaser.teaser.logic.utilities as utilities
+import teaser.logic.utilities as utilities
 from mako.template import Template
 from mako.lookup import TemplateLookup
 
@@ -67,7 +67,7 @@ def export_ibpsa(
         Template for ThermalZoneRecord using 4 element model
 
     """
-
+#How does this even work/how did the development version even work? :)
     uses = uses = [
         'Modelica(version="' + prj.modelica_info.version + '")',
         library + '(version="' + prj.buildings[-1].library_attr.version + '")']

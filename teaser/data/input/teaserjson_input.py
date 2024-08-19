@@ -1,32 +1,32 @@
 """Load Projects in the proprietary TEASER file format .json."""
 
-from teaser.teaser.logic.buildingobjects.building import Building
-from teaser.teaser.logic.archetypebuildings.tabula.de.apartmentblock import ApartmentBlock
-from teaser.teaser.logic.archetypebuildings.tabula.de.multifamilyhouse import MultiFamilyHouse
-from teaser.teaser.logic.archetypebuildings.tabula.de.singlefamilyhouse import (
+from teaser.logic.buildingobjects.building import Building
+from teaser.logic.archetypebuildings.tabula.de.apartmentblock import ApartmentBlock
+from teaser.logic.archetypebuildings.tabula.de.multifamilyhouse import MultiFamilyHouse
+from teaser.logic.archetypebuildings.tabula.de.singlefamilyhouse import (
     SingleFamilyHouse,
 )
-from teaser.teaser.logic.archetypebuildings.tabula.de.terracedhouse import TerracedHouse
-from teaser.teaser.logic.archetypebuildings.bmvbs.office import Office
-from teaser.teaser.logic.archetypebuildings.bmvbs.singlefamilydwelling import (
+from teaser.logic.archetypebuildings.tabula.de.terracedhouse import TerracedHouse
+from teaser.logic.archetypebuildings.bmvbs.office import Office
+from teaser.logic.archetypebuildings.bmvbs.singlefamilydwelling import (
     SingleFamilyDwelling,
 )
-from teaser.teaser.logic.archetypebuildings.bmvbs.custom.institute import Institute
-from teaser.teaser.logic.archetypebuildings.bmvbs.custom.institute4 import Institute4
-from teaser.teaser.logic.archetypebuildings.bmvbs.custom.institute8 import Institute8
-from teaser.teaser.logic.buildingobjects.thermalzone import ThermalZone
-from teaser.teaser.logic.buildingobjects.buildingsystems.buildingahu import BuildingAHU
-from teaser.teaser.logic.buildingobjects.useconditions import UseConditions
-from teaser.teaser.logic.buildingobjects.buildingphysics.outerwall import OuterWall
-from teaser.teaser.logic.buildingobjects.buildingphysics.layer import Layer
-from teaser.teaser.logic.buildingobjects.buildingphysics.material import Material
-from teaser.teaser.logic.buildingobjects.buildingphysics.rooftop import Rooftop
-from teaser.teaser.logic.buildingobjects.buildingphysics.groundfloor import GroundFloor
-from teaser.teaser.logic.buildingobjects.buildingphysics.innerwall import InnerWall
-from teaser.teaser.logic.buildingobjects.buildingphysics.ceiling import Ceiling
-from teaser.teaser.logic.buildingobjects.buildingphysics.floor import Floor
-from teaser.teaser.logic.buildingobjects.buildingphysics.window import Window
-from teaser.teaser.logic.buildingobjects.buildingphysics.door import Door
+from teaser.logic.archetypebuildings.bmvbs.custom.institute import Institute
+from teaser.logic.archetypebuildings.bmvbs.custom.institute4 import Institute4
+from teaser.logic.archetypebuildings.bmvbs.custom.institute8 import Institute8
+from teaser.logic.buildingobjects.thermalzone import ThermalZone
+from teaser.logic.buildingobjects.buildingsystems.buildingahu import BuildingAHU
+from teaser.logic.buildingobjects.useconditions import UseConditions
+from teaser.logic.buildingobjects.buildingphysics.outerwall import OuterWall
+from teaser.logic.buildingobjects.buildingphysics.layer import Layer
+from teaser.logic.buildingobjects.buildingphysics.material import Material
+from teaser.logic.buildingobjects.buildingphysics.rooftop import Rooftop
+from teaser.logic.buildingobjects.buildingphysics.groundfloor import GroundFloor
+from teaser.logic.buildingobjects.buildingphysics.innerwall import InnerWall
+from teaser.logic.buildingobjects.buildingphysics.ceiling import Ceiling
+from teaser.logic.buildingobjects.buildingphysics.floor import Floor
+from teaser.logic.buildingobjects.buildingphysics.window import Window
+from teaser.logic.buildingobjects.buildingphysics.door import Door
 import json
 import collections
 

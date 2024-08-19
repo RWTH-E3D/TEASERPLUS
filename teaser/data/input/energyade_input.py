@@ -1,20 +1,20 @@
 import lxml.etree as ET
 import collections
-from teaser.teaser.logic.buildingobjects.building import Building
-from teaser.teaser.logic.buildingobjects.thermalzone import ThermalZone
-from teaser.teaser.logic.buildingobjects.buildingphysics.rooftop import Rooftop
-from teaser.teaser.logic.buildingobjects.buildingphysics.outerwall import OuterWall
-from teaser.teaser.logic.buildingobjects.buildingphysics.groundfloor import GroundFloor
-from teaser.teaser.logic.buildingobjects.buildingphysics.layer import Layer
-from teaser.teaser.logic.buildingobjects.buildingphysics.material import Material
-from teaser.teaser.logic.buildingobjects.buildingphysics.buildingelement import BuildingElement
-from teaser.teaser.logic.buildingobjects.buildingphysics.window import Window
-from teaser.teaser.logic.buildingobjects.buildingphysics.innerwall import InnerWall
-from teaser.teaser.logic.buildingobjects.buildingphysics.ceiling import Ceiling
-from teaser.teaser.logic.buildingobjects.buildingphysics.floor import Floor
-from teaser.teaser.logic.buildingobjects.buildingphysics.door import Door
-from teaser.teaser.logic.buildingobjects.useconditions import UseConditions
-from teaser.teaser.data.input.citygml_input import _set_attributes
+from teaser.logic.buildingobjects.building import Building
+from teaser.logic.buildingobjects.thermalzone import ThermalZone
+from teaser.logic.buildingobjects.buildingphysics.rooftop import Rooftop
+from teaser.logic.buildingobjects.buildingphysics.outerwall import OuterWall
+from teaser.logic.buildingobjects.buildingphysics.groundfloor import GroundFloor
+from teaser.logic.buildingobjects.buildingphysics.layer import Layer
+from teaser.logic.buildingobjects.buildingphysics.material import Material
+from teaser.logic.buildingobjects.buildingphysics.buildingelement import BuildingElement
+from teaser.logic.buildingobjects.buildingphysics.window import Window
+from teaser.logic.buildingobjects.buildingphysics.innerwall import InnerWall
+from teaser.logic.buildingobjects.buildingphysics.ceiling import Ceiling
+from teaser.logic.buildingobjects.buildingphysics.floor import Floor
+from teaser.logic.buildingobjects.buildingphysics.door import Door
+from teaser.logic.buildingobjects.useconditions import UseConditions
+from teaser.data.input.citygml_input import _set_attributes
 import numpy as np
 
 

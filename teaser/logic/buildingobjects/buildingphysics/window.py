@@ -2,7 +2,7 @@
 # by TEASER4 Development Team
 
 
-from teaser.teaser.logic.buildingobjects.buildingphysics.buildingelement \
+from teaser.logic.buildingobjects.buildingphysics.buildingelement \
     import BuildingElement
 import warnings
 

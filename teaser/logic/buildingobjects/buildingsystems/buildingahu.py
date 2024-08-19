@@ -129,7 +129,7 @@ class BuildingAHU(object):
 
     @parent.setter
     def parent(self, value):
-        from teaser.teaser.logic.buildingobjects.building import Building
+        from teaser.logic.buildingobjects.building import Building
         import inspect
 
         if inspect.isclass(Building):

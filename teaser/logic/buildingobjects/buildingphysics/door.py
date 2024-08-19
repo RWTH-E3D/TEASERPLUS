@@ -2,7 +2,7 @@
 # by TEASER4 Development Team
 
 
-from teaser.teaser.logic.buildingobjects.buildingphysics.outerwall \
+from teaser.logic.buildingobjects.buildingphysics.outerwall \
     import OuterWall
 
 
