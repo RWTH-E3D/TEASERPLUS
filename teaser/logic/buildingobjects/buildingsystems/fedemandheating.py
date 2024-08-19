@@ -4,7 +4,7 @@
 """This module includes a class for the final energy calculation of the heating system
 """
 import math
-from teaser.teaser.logic.buildingobjects.buildingsystems.fedemandwater import FEDemandWater
+from teaser.logic.buildingobjects.buildingsystems.fedemandwater import FEDemandWater
 
 
 class FEDemandHeating(object):
