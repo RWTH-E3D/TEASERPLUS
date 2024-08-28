@@ -40,7 +40,6 @@ def example_create_building():
     bldg.city = "46325FantasticTown"
     bldg.year_of_construction = 2015
     bldg.number_of_floors = 1
-#This no. is actually from the IWU document. Should we keep it as the standard value?
     bldg.height_of_floors = 2.8
 
     # Instantiate a ThermalZone class and set the Building as a parent of it.

@@ -150,7 +150,7 @@ def load_gml_lxml(path, prj, method, chosen_gmls=None, yoc_list=None, archetypes
                 load_gml_buildingparts_lxml(prj=prj, gml_bldg=building_lxml, boundary_box=boundary_box, namespace=namespace,
                                             bldg_name=bldg_name, method=method, archetype=None)
                 continue
-    #Why?
+
         else:
             if building_lxml.find('./bldg:consistsOfBuildingPart', namespace) is not None:
                 load_gml_buildingparts_lxml(prj=prj, gml_bldg=building_lxml, boundary_box=boundary_box, namespace=namespace,
@@ -168,7 +168,7 @@ def load_gml_lxml(path, prj, method, chosen_gmls=None, yoc_list=None, archetypes
         """Extract GML surface from File"""
         # TODO: please make it better:(
         get_gml_surfaces(bldg=bldg, city_object=building_lxml, namespace=namespace)
-#Why the additional arguments?
+
         """Set Building Attribute"""
         if yoc_list is not None:
             _set_attributes(bldg=bldg, gml_bldg=building_lxml, boundary_box=boundary_box, bldg_yoc=yoc_list[i], namespace=namespace, bldg_name=bldg_name)
@@ -194,7 +194,7 @@ def load_gml_lxml(path, prj, method, chosen_gmls=None, yoc_list=None, archetypes
 
     return gml_copy_list, boundary_box
 
-#??
+
 def load_gml_buildingparts_lxml(prj, gml_bldg, boundary_box, namespace, bldg_name, method, yoc=None, calc_sep=True, archetype=None):
     """
     This function loads buildings parts from a CityGML Buildings,
@@ -613,7 +613,7 @@ def _set_attributes(bldg, gml_bldg, boundary_box, namespace, bldg_name, gml_bldg
         except (UserWarning, AttributeError):
             print("no measuredHeight specified in gml file")
             pass
-#Why??
+
     elif gml_bldg_part is not None and measured_mean_height is not None:
         bldg.bldg_height = measured_mean_height
     else:

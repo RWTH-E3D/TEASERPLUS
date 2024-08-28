@@ -67,10 +67,11 @@ def export_ibpsa(
         Template for ThermalZoneRecord using 4 element model
 
     """
-#How does this even work/how did the development version even work? :)
+
     uses = uses = [
         'Modelica(version="' + prj.modelica_info.version + '")',
-        library + '(version="' + prj.buildings[-1].library_attr.version + '")']
+        library + '(version="' + prj.buildings[-1].library_attr.version[
+            library] + '")']
 
     lookup = TemplateLookup(directories=[utilities.get_full_path(
         os.path.join('data', 'output', 'modelicatemplate'))])

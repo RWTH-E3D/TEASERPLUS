@@ -12,7 +12,7 @@ from teaser.logic.buildingobjects.buildingphysics.rooftop import Rooftop
 from teaser.logic.buildingobjects.buildingphysics.window import Window
 from teaser.logic.buildingobjects.buildingphysics.door import Door
 from teaser.logic.buildingobjects.thermalzone import ThermalZone
-from teco.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
+from teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
 from teaser.logic.buildingobjects.buildingsystems.fedemandwater import FEDemandWater
 from teaser.logic.buildingobjects.buildingsystems.fedemandheating import FEDemandHeating
 
@@ -577,9 +577,6 @@ class SingleFamilyHouse(Residential):
         for zone in self.thermal_zones:
             zone.set_inner_wall_area()
             zone.set_volume_zone()
-#Why is this commented out in de but not in dk?
-        # heatsupplysystem.setting_values(self.type_heat_supply_system, self.construction_type)
-
 
     def generate_from_gml(self):
         """Enriches lod1 or lod2 data from CityGML
@@ -821,9 +818,6 @@ class SingleFamilyHouse(Residential):
         else:
             for zone in self.thermal_zones:
                 zone.set_volume_zone()
-
-        # heatsupplysystem = HeatSupplySystem(parent=self)
-        # heatsupplysystem.setting_values(self.type_heat_supply_system, self.construction_type)
 
     @property
     def construction_type(self):

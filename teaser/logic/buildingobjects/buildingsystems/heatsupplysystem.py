@@ -1,6 +1,6 @@
 # created December 2023
 # by Clara Schmitz (master thesis)
-
+#ToDo generalize this class: Extract building type-related info into JSON structure (tbc) to parametrize this class (and enable subsequent addition of archetypes)
 """This module includes a class for the Heat Supply System
 """
 import math
@@ -86,6 +86,7 @@ class HeatSupplySystem(object):
     daily_operating_time_pump : float [h/d]
         Holds how many hours per day the pump of the heat supply system
         needs to work.
+    #ToDo investigate which number of type_heat_supply_system ACTUALLY corresponds to which system, and change number usage to strings
     type_heat_supply_system : int [-]
         Information about the used heat system. Usually 1 = gas, 2 = oil,
         3 = electricity. For older buildings, more options available

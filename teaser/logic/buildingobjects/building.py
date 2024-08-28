@@ -154,6 +154,7 @@ class Building(object):
         self.height_of_floors = None
         self.internal_id = uuid.uuid1()
         self._year_of_retrofit = None
+#ToDo rethink positioning of "type of retrofit" for heating systems (not explicit enough); retrofit is actually in construction type
         self._type_of_retrofit = None
         self.type_of_building = type(self).__name__
         self.building_id = None
@@ -213,7 +214,6 @@ class Building(object):
 
         """
 
-#What is the consequence of the changed logic? :)
         surface_max_help = []
         for surface in self.gml_surfaces:
             # print(surface.surface_area, surface.surface_orientation, surface.surface_tilt)
@@ -234,7 +234,7 @@ class Building(object):
         except (UserWarning, AttributeError):
             print(f"{self.__name} bldg.surface_max_help did not work")
             pass
-#Shall we keep 2.8 as standard since 3.5 was arbitrary and 2.8 is actually from the IWU source?
+
     def set_gml_attributes(self, height_of_floor=2.8, merge_building_part=False):
         """Sets building attributes from CityGML data
 
@@ -554,7 +554,7 @@ class Building(object):
                 self.library_attr.calc_auxiliary_attr()
             elif self.used_library_calc == "IBPSA":
                 self.library_attr = IBPSA(parent=self)
-#Keep the function the old way since year_of_retrofit is optional?
+
     def retrofit_building(
         self,
         year_of_retrofit,
@@ -584,7 +584,7 @@ class Building(object):
         #  Set self.sum_heat_load to zero to prevent summing up of old and new
         #  design heat load calculation values (see #518)
         self.sum_heat_load = 0
-#This should work since variable is being initialized with None?
+
         self.year_of_retrofit = year_of_retrofit
 
         for zone in self.thermal_zones:
