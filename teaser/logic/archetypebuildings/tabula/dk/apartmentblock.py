@@ -78,6 +78,7 @@ class ApartmentBlock(SingleFamilyHouse):
             number_of_floors=None,
             height_of_floors=None,
             net_leased_area=None,
+            type_heat_supply_system=None,
             with_ahu=False,
             internal_gains_mode=1,
             construction_type=None):
@@ -89,6 +90,7 @@ class ApartmentBlock(SingleFamilyHouse):
             number_of_floors,
             height_of_floors,
             net_leased_area,
+            type_heat_supply_system,
             with_ahu,
             internal_gains_mode,
             construction_type)

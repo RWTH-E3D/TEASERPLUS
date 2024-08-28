@@ -182,13 +182,14 @@ class Project(object):
                         "this building:" + bldg.name
                     )
                     self.buildings.remove(bldg)
-
+#Initializing year_of_retrofit like this saves us the if condition further down?
     def retrofit_all_buildings(
         self,
-        year_of_retrofit=None,
+        year_of_retrofit,
         type_of_retrofit=None,
         window_type=None,
         material=None,
+        type_heat_supply_system=None
     ):
         """Retrofits all buildings in the project.
 
@@ -230,20 +231,18 @@ class Project(object):
             Default: EnEv 2014, only 'iwu'/'bmbvs' archetype approach.
         material : str
             Default: EPS035, only 'iwu'/'bmbvs' archetype approach.
+        type_heat_supply_system : int
+            Default 1 for buildings younger than 2016, else 3.
 
         """
         ass_error_type = "only 'retrofit' and 'adv_retrofit' are valid "
         assert type_of_retrofit in [None, "adv_retrofit", "retrofit"], ass_error_type
         tabula_buildings = []
         iwu_buildings = []
-
+#Should we keep it this way?
         for bldg in self.buildings:
             if isinstance(bldg, SingleFamilyHouse):
-                if type_of_retrofit is None:
-                    raise ValueError(
-                        "you need to set type_of_retrofit for " "TABULA retrofit"
-                    )
-                tabula_buildings.append(bldg)
+                tabula_buildings.append(bldg) #bldg added to the end of tabula_buildings-list
             else:
                 if year_of_retrofit is None:
                     raise ValueError("you need to set year_of_retrofit for " "retrofit")
@@ -251,25 +250,19 @@ class Project(object):
 
         if self.data.used_statistic == "iwu":
             for bld_iwu in iwu_buildings:
-                bld_iwu.retrofit_building(
-                    year_of_retrofit=year_of_retrofit,
-                    window_type=window_type,
-                    material=material,
-                )
+                bld_iwu.retrofit_building(year_of_retrofit, window_type, material)
             self.data = DataClass(used_statistic="tabula_de")
             for bld_tabula in tabula_buildings:
-                bld_tabula.retrofit_building(type_of_retrofit=type_of_retrofit)
+                    bld_tabula.retrofit_building(year_of_retrofit, type_of_retrofit, window_type, material,
+                                                 type_heat_supply_system)
 
         else:
             for bld_tabula in tabula_buildings:
-                bld_tabula.retrofit_building(type_of_retrofit=type_of_retrofit)
+                bld_tabula.retrofit_building(year_of_retrofit, type_of_retrofit, window_type, material,
+                                             type_heat_supply_system)
             self.data = DataClass(used_statistic="iwu")
             for bld_iwu in iwu_buildings:
-                bld_iwu.retrofit_building(
-                    year_of_retrofit=year_of_retrofit,
-                    window_type=window_type,
-                    material=material,
-                )
+                bld_iwu.retrofit_building(year_of_retrofit, window_type, material)
 
     def add_non_residential(
         self,
@@ -463,6 +456,7 @@ internal_gains_mode: int [1, 2, 3]
         number_of_floors,
         height_of_floors,
         net_leased_area,
+        type_heat_supply_system,
         with_ahu=False,
         internal_gains_mode=1,
         residential_layout=None,
@@ -471,7 +465,7 @@ internal_gains_mode: int [1, 2, 3]
         cellar=None,
         dormer=None,
         construction_type=None,
-        number_of_apartments=None,
+        number_of_apartments=None
     ):
         """Add a residential building to the TEASER project.
 
@@ -567,6 +561,9 @@ internal_gains_mode: int [1, 2, 3]
         number_of_apartments : int
             number of apartments inside Building (default = 1). CAUTION only
             used for urbanrenet
+        type_heat_supply_system : int
+            Type of the Heat System
+            Default 1 for buildings younger than 2016, else 3.
 
         Returns
         ----------
@@ -625,9 +622,10 @@ internal_gains_mode: int [1, 2, 3]
                     number_of_floors,
                     height_of_floors,
                     net_leased_area,
+                    type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
-                    construction_type,
+                    construction_type
                 )
                 type_bldg.generate_archetype()
                 return type_bldg
@@ -641,9 +639,10 @@ internal_gains_mode: int [1, 2, 3]
                     number_of_floors,
                     height_of_floors,
                     net_leased_area,
+                    type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
-                    construction_type,
+                    construction_type
                 )
                 type_bldg.generate_archetype()
                 return type_bldg
@@ -657,9 +656,10 @@ internal_gains_mode: int [1, 2, 3]
                     number_of_floors,
                     height_of_floors,
                     net_leased_area,
+                    type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
-                    construction_type,
+                    construction_type
                 )
                 type_bldg.generate_archetype()
                 return type_bldg
@@ -673,9 +673,10 @@ internal_gains_mode: int [1, 2, 3]
                     number_of_floors,
                     height_of_floors,
                     net_leased_area,
+                    type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
-                    construction_type,
+                    construction_type
                 )
 
                 type_bldg.generate_archetype()
@@ -706,9 +707,10 @@ internal_gains_mode: int [1, 2, 3]
                     number_of_floors,
                     height_of_floors,
                     net_leased_area,
+                    type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
-                    construction_type,
+                    construction_type
                 )
                 type_bldg.generate_archetype()
                 return type_bldg
@@ -722,9 +724,10 @@ internal_gains_mode: int [1, 2, 3]
                     number_of_floors,
                     height_of_floors,
                     net_leased_area,
+                    type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
-                    construction_type,
+                    construction_type
                 )
                 type_bldg.generate_archetype()
                 return type_bldg
@@ -738,9 +741,10 @@ internal_gains_mode: int [1, 2, 3]
                     number_of_floors,
                     height_of_floors,
                     net_leased_area,
+                    type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
-                    construction_type,
+                    construction_type
                 )
                 type_bldg.generate_archetype()
                 return type_bldg

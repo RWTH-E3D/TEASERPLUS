@@ -320,7 +320,7 @@ class BuildingElement(object):
         """Typical element saver.
 
         Saves typical building elements according to their construction
-        year and their construction type in the the json file for type building
+        year and their construction type in the json file for type building
         elements. If the Project parent is set, it automatically saves it to
         the file given in Project.data. Alternatively you can specify a path to
         a file of TypeBuildingElements. If this file does not exist,
@@ -353,7 +353,7 @@ class BuildingElement(object):
         """Deletes typical element.
 
         Deletes typical building elements according to their construction
-        year and their construction type in the the json file for type building
+        year and their construction type in the json file for type building
         elements. If the Project parent is set, it automatically saves it to
         the file given in Project.data. Alternatively you can specify a path to
         a file of TypeBuildingElements. If this file does not exist,

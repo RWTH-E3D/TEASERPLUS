@@ -52,7 +52,7 @@ class MainWindow(QtWidgets.QWidget):
         self.setLayout(self.vbox)
 
         # Loading banner
-        gf.load_banner(self, r'pictures/TEASER+_header.png', SIZEFACTOR)
+        gf.load_banner(self, r'../pictures/TEASER+_header.png', SIZEFACTOR)
 
         #Setting Layout
         self.uGrid = QtWidgets.QGridLayout()
@@ -232,7 +232,7 @@ class TeaserEnrichment(QtWidgets.QWidget):
         self.vbox = QtWidgets.QVBoxLayout(self)
         self.setLayout(self.vbox)
 
-        gf.load_banner(self, r'pictures/TEASER+_header.png', SIZEFACTOR)
+        gf.load_banner(self, r'../pictures/TEASER+_header.png', SIZEFACTOR)
 
         self.tbl_selBuildings = QtWidgets.QTableWidget()
         self.tbl_selBuildings.setColumnCount(7)
@@ -734,7 +734,7 @@ class about(QtWidgets.QWidget):
         self.vbox = QtWidgets.QVBoxLayout(self)
         self.setLayout(self.vbox)
 
-        gf.load_banner(self, r'pictures/e3dHeader.png', SIZEFACTOR)
+        gf.load_banner(self, r'../pictures/e3dHeader.png', SIZEFACTOR)
 
         self.textwidget = QtWidgets.QTextBrowser()
         self.vbox.addWidget(self.textwidget)

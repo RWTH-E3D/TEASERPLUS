@@ -2414,7 +2414,7 @@ class Test_teaser(object):
         bldg.city = "46325FantasticTown"
         bldg.year_of_construction = 2015
         bldg.number_of_floors = 1
-        bldg.height_of_floors = 3.5
+        bldg.height_of_floors = 2.8
 
         from teaser.logic.buildingobjects.thermalzone import ThermalZone
 
@@ -2507,8 +2507,8 @@ class Test_teaser(object):
         bldg.city = "46325FantasticTown"
         bldg.year_of_construction = 2015
         bldg.number_of_floors = 1
-        bldg.height_of_floors = 3.5
-
+        bldg.height_of_floors = 2.8
+#This height should be kept since it's from an actual source
         from teaser.logic.buildingobjects.thermalzone import ThermalZone
 
         tz = ThermalZone(parent=bldg)
@@ -2628,7 +2628,7 @@ class Test_teaser(object):
         bldg.city = "46325FantasticTown"
         bldg.year_of_construction = 2015
         bldg.number_of_floors = 1
-        bldg.height_of_floors = 3.5
+        bldg.height_of_floors = 2.8
 
         from teaser.logic.buildingobjects.thermalzone import ThermalZone
 
@@ -2764,7 +2764,7 @@ class Test_teaser(object):
         bldg.city = "46325FantasticTown"
         bldg.year_of_construction = 2015
         bldg.number_of_floors = 1
-        bldg.height_of_floors = 3.5
+        bldg.height_of_floors = 2.8
 
         from teaser.logic.buildingobjects.thermalzone import ThermalZone
 
@@ -2902,7 +2902,7 @@ class Test_teaser(object):
         bldg.city = "46325FantasticTown"
         bldg.year_of_construction = 2015
         bldg.number_of_floors = 1
-        bldg.height_of_floors = 3.5
+        bldg.height_of_floors = 2.8
 
         from teaser.logic.buildingobjects.thermalzone import ThermalZone
 

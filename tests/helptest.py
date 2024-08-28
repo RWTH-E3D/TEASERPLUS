@@ -23,7 +23,7 @@ def building_test2(prj):
     bldg.city = "46325 Testing Town"
     bldg.year_of_construction = 1988
     bldg.number_of_floors = 1
-    bldg.height_of_floors = 3.5
+    bldg.height_of_floors = 2.8
 
     '''Instantiate a ThermalZone class, with building as parent and set  some
     parameters of the thermal zone'''

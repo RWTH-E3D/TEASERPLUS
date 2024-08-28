@@ -12,7 +12,7 @@ from teaser.logic.buildingobjects.calculation.aixlib import AixLib
 from teaser.logic.buildingobjects.calculation.ibpsa import IBPSA
 
 from teaser.logic.buildingobjects.buildingsystems.buildingahu import BuildingAHU
-
+from teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
 
 class Building(object):
     """Building Class
@@ -87,6 +87,8 @@ class Building(object):
     outer_area : dict [degree: m2]
         Dictionary with orientation as key and sum of outer wall areas of
         that direction as value.
+    heat_supply_system : HeatSupplySystem()
+        Holds the HeatSupplySystem of the Building
     window_area : dict [degree: m2]
         Dictionary with orientation as key and sum of window areas of
         that direction as value.
@@ -128,8 +130,9 @@ class Building(object):
         name=None,
         year_of_construction=None,
         net_leased_area=None,
+        type_heat_supply_system=None,
         with_ahu=False,
-        internal_gains_mode=1,
+        internal_gains_mode=1
     ):
         """Constructor of Building Class
         """
@@ -138,18 +141,21 @@ class Building(object):
         self.name = name
         self.year_of_construction = year_of_construction
         self.net_leased_area = net_leased_area
+        self.type_heat_supply_system = type_heat_supply_system
         self._with_ahu = with_ahu
+        self.internal_gains_mode = internal_gains_mode
 
         if with_ahu is True:
             self.central_ahu = BuildingAHU(self)
         else:
             self._central_ahu = None
 
-        self.internal_gains_mode = internal_gains_mode
         self.number_of_floors = None
         self.height_of_floors = None
         self.internal_id = uuid.uuid1()
         self._year_of_retrofit = None
+#ToDo rethink positioning of "type of retrofit" for heating systems (not explicit enough); retrofit is actually in construction type
+        self._type_of_retrofit = None
         self.type_of_building = type(self).__name__
         self.building_id = None
         self.street_name = ""
@@ -161,6 +167,7 @@ class Building(object):
         self._thermal_zones = []
         self._outer_area = {}
         self._window_area = {}
+        self._heat_supply_system = HeatSupplySystem(parent=self)
 
         self.bldg_height = None
         self.volume = 0
@@ -206,19 +213,29 @@ class Building(object):
             footprint area of a gml building
 
         """
+
         surface_max_help = []
         for surface in self.gml_surfaces:
             # print(surface.surface_area, surface.surface_orientation, surface.surface_tilt)
-            if surface.surface_orientation == -2 or surface.surface_orientation == -1 and surface.surface_tilt == \
-                    0.0:
+            if (surface.surface_orientation == -2 or surface.surface_orientation == -1) and surface.surface_tilt == \
+                    0.0: #horizontal
                 surface_max_help.append(surface.surface_area)
-        if merge_building_part is False:
-            max_area = max(surface_max_help)
-        else:
-            max_area = sum(surface_max_help)
-        return max_area
+                #print(f"orientation: {surface.surface_orientation}, surface_tilt: {surface.surface_tilt}, area: {surface.surface_area}")
 
-    def set_gml_attributes(self, height_of_floor=3.5, merge_building_part=False):
+        print(f"ID: {self.__name}")
+#Is this generally useful for faulty building compositions?
+
+        try:
+            if merge_building_part is False:
+                max_area = max(surface_max_help)
+            else:
+                max_area = sum(surface_max_help)
+            return max_area
+        except (UserWarning, AttributeError):
+            print(f"{self.__name} bldg.surface_max_help did not work")
+            pass
+
+    def set_gml_attributes(self, height_of_floor=2.8, merge_building_part=False):
         """Sets building attributes from CityGML data
 
         Computes the net_leased_area depending on the footprint area,
@@ -232,7 +249,7 @@ class Building(object):
         ----------
         height_of_floor : float
             average height of each floor of the building, the default value
-            is 3.5 and is absolutely random.
+            is 2.8. See iwu document "Energetische Kenngrößen für Heizungsanlagen im Bestand"
         """
 
         if self.bldg_height is None:
@@ -540,11 +557,11 @@ class Building(object):
 
     def retrofit_building(
         self,
-        year_of_retrofit=None,
+        year_of_retrofit,
         type_of_retrofit=None,
         window_type=None,
         material=None,
-    ):
+        type_heat_supply_system=None):
         """Retrofits all zones in the building
 
         Function call for each zone.
@@ -568,17 +585,22 @@ class Building(object):
         #  design heat load calculation values (see #518)
         self.sum_heat_load = 0
 
-        if year_of_retrofit is not None:
-            self.year_of_retrofit = year_of_retrofit
+        self.year_of_retrofit = year_of_retrofit
 
         for zone in self.thermal_zones:
             zone.retrofit_zone(type_of_retrofit, window_type, material)
+
+        self._heat_supply_system.retrofit_heat_supply_system(year_of_retrofit, type_heat_supply_system, type_of_retrofit)
 
         self.calc_building_parameter(
             number_of_elements=self.number_of_elements_calc,
             merge_windows=self.merge_windows_calc,
             used_library=self.used_library_calc,
         )
+        if type_of_retrofit:
+            self._type_of_retrofit = type_of_retrofit
+        else:
+            self._type_of_retrofit = "retrofit"
 
     def rotate_building(self, angle):
         """Rotates the building to a given angle
@@ -619,7 +641,7 @@ class Building(object):
     def add_zone(self, thermal_zone):
         """Adds a thermal zone to the corresponding list
 
-        This function adds a ThermalZone instance to the the thermal_zones list
+        This function adds a ThermalZone instance to the thermal_zones list
 
         Parameters
         ----------
@@ -632,6 +654,23 @@ class Building(object):
         assert type(thermal_zone).__name__ == "ThermalZone", ass_error_1
 
         self._thermal_zones.append(thermal_zone)
+
+    def set_heat_supply_system(self, heat_supply_system):
+        """Adds a heat supply system to the building
+
+                This function adds a HeatSupplySystem instance to the building
+
+                Parameters
+                ----------
+                heat_supply_system : HeatSupplySystem()
+                    HeatSupplySystem() instance of TEASER
+                """
+
+        ass_error_2 = "Heat supply system has to be an instance of HeatSupplySystem()"
+
+        assert type(heat_supply_system).__name__ == "HeatSupplySystem", ass_error_2
+
+        self._heat_supply_system = heat_supply_system
 
     @property
     def parent(self):
@@ -694,7 +733,26 @@ class Building(object):
                 self.__year_of_construction = value
 
             except:
-                raise ValueError("Can't convert year of construction to int")
+                raise ValueError("Can't convert year of construction to int")\
+
+    @property
+    def type_heat_supply_system(self):
+        return self.__type_heat_supply_system
+
+    @type_heat_supply_system.setter
+    def type_heat_supply_system(self, value):
+
+        if value in [1,2,3,4,5,6] or value is None:
+
+            self.__type_heat_supply_system = value
+        else:
+            try:
+                value = int(value)
+                if value in [1, 2, 3, 4, 5, 6]:
+                    self.__type_heat_supply_system = value
+
+            except:
+                raise ValueError("Can't convert type heat supply system to int")
 
     @property
     def number_of_floors(self):

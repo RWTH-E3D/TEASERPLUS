@@ -12,6 +12,9 @@ from teaser.logic.buildingobjects.buildingphysics.rooftop import Rooftop
 from teaser.logic.buildingobjects.buildingphysics.window import Window
 from teaser.logic.buildingobjects.buildingphysics.door import Door
 from teaser.logic.buildingobjects.thermalzone import ThermalZone
+from teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
+from teaser.logic.buildingobjects.buildingsystems.fedemandwater import FEDemandWater
+from teaser.logic.buildingobjects.buildingsystems.fedemandheating import FEDemandHeating
 
 
 class SingleFamilyHouse(Residential):
@@ -106,9 +109,10 @@ class SingleFamilyHouse(Residential):
         number_of_floors=None,
         height_of_floors=None,
         net_leased_area=None,
+        type_heat_supply_system=None,
         with_ahu=False,
         internal_gains_mode=1,
-        construction_type=None,
+        construction_type=None
     ):
 
         super(SingleFamilyHouse, self).__init__(
@@ -116,6 +120,7 @@ class SingleFamilyHouse(Residential):
             name,
             year_of_construction,
             net_leased_area,
+            type_heat_supply_system,
             with_ahu,
             internal_gains_mode
         )
@@ -356,6 +361,9 @@ class SingleFamilyHouse(Residential):
         # help area for the correct building area setting while using typeBldgs
         type_bldg_area = self.net_leased_area
         self.net_leased_area = 0.0
+        heatsupplysystem = HeatSupplySystem(parent=self)
+        fedemandwater = FEDemandWater(parent=heatsupplysystem)
+        fedemandheating = FEDemandHeating(parent=heatsupplysystem)
 
         for key, value in self.zone_area_factors.items():
             zone = ThermalZone(parent=self)

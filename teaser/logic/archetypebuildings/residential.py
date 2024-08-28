@@ -114,8 +114,9 @@ class Residential(Building):
         name,
         year_of_construction,
         net_leased_area,
+        type_heat_supply_system,
         with_ahu=False,
-        internal_gains_mode=1,
+        internal_gains_mode=1
     ):
         """Constructor of Residential archetype building
         """
@@ -125,8 +126,9 @@ class Residential(Building):
             name,
             year_of_construction,
             net_leased_area,
+            type_heat_supply_system,
             with_ahu,
-            internal_gains_mode,
+            internal_gains_mode
         )
 
     def generate_archetype(self):
