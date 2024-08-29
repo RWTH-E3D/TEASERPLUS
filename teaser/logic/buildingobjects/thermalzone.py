@@ -12,7 +12,11 @@ from teaser.logic.buildingobjects.calculation.one_element import OneElement
 from teaser.logic.buildingobjects.calculation.two_element import TwoElement
 from teaser.logic.buildingobjects.calculation.three_element import ThreeElement
 from teaser.logic.buildingobjects.calculation.four_element import FourElement
-
+from teaser.logic.buildingobjects.buildingphysics.innerwallarea.graphbased_method_for_SFH import IntWallAreaSFH
+from teaser.logic.buildingobjects.buildingphysics.innerwallarea.graphbased_method_for_MFH import IntWallAreaMFH
+from teaser.logic.buildingobjects.buildingphysics.innerwallarea.graphbased_method_for_Office import IntWallAreaOffice
+#from teaser.logic.buildingobjects.buildingphysics.innerwallarea.mathematical_method_for_MFH import IntWallAreaMFH
+#from teaser.logic.buildingobjects.buildingphysics.innerwallarea.mathematical_method_for_SFH import IntWallAreaSFH
 
 class ThermalZone(object):
     """Thermal zone class.
@@ -309,6 +313,7 @@ class ThermalZone(object):
 
         assert self.parent is not None, ass_error_1
 
+        """TEASER"""
         for floor in self.floors:
             floor.area = (
                 (self.parent.number_of_floors - 1) /
@@ -328,6 +333,44 @@ class ThermalZone(object):
                                         self.parent.height_of_floors +
                                         2 * self.use_conditions.typical_width *
                                         self.parent.height_of_floors))
+
+    """Teco"""
+
+    # ToDo restructure Teco innerwall part as own function
+    # ToDo call usage type from bldg type of parent (see Clara)
+    # ToDo decide for one innerwall function and replace
+    # ToDo wall.area_teco does not exist! Also get rid of evaluation part-functions
+    # ToDo Rename building to unique name (such as intwall)
+    # To obtain the median of elements within a list as the final result
+    def calculate_average(my_list):
+        # Check if the list is not empty to avoid division by zero
+        if len(my_list) == 0:
+            return 0  # You can choose to return 0 or handle the empty list case differently
+        # Calculate the average
+        average = sum(my_list) / len(my_list)
+        return average
+
+    for wall in self.inner_walls:
+        if self.parent.usage == "single_family_house":
+            building = IntWallAreaSFH(NLA=self.parent.net_leased_area,
+                                      number_of_storeys=self.parent.number_of_floors,
+                                      storey_height=self.parent.height_of_floors)
+            intwall_output_list = building.intwall_list()
+        elif self.parent.usage == "multi_family_house":
+            print("Area of Building:", self.parent.net_leased_area, "Number of Storeys:",
+                  self.parent.number_of_floors, "Storey Height:", self.parent.height_of_floors)
+            building = IntWallAreaMFH(area_of_building=self.parent.net_leased_area,
+                                      number_of_storeys=self.parent.number_of_floors,
+                                      storey_height=self.parent.height_of_floors)
+            intwall_output_list = building.total_intwall()
+        elif self.parent.usage == "office":
+            building = IntWallAreaOffice(area_of_floor=self.parent.net_leased_area / self.parent.number_of_floors,
+                                         number_of_storeys=self.parent.number_of_floors,
+                                         storey_height=self.parent.height_of_floors)
+            intwall_output_list = building.floor_layout()
+
+        # wall.area = calculate_median(intwall_output_list)
+        wall.area_Teco = calculate_average(intwall_output_list)
 
     def set_volume_zone(self):
         """Sets the zone volume according to area and height of floors
