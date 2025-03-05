@@ -7461,5 +7461,59 @@
         "thickness_default": 0.0,
         "thickness_list": [],
         "solar_absorp": 0.5
+    },
+    "f8808506-6ccb-11ed-9a99-5405db524342": {
+        "name": "contructionwood_dh",
+        "density": 450.0,
+        "thermal_conduc": 0.12,
+        "heat_capac": 1.6,
+        "thickness_default": 0.0,
+        "thickness_list": [],
+        "solar_absorp": 0.5
+    },
+    "f880ac02-6ccb-11ed-a0b0-5405db524342": {
+        "name": "WF_insulation_board_180_dh",
+        "density": 180.0,
+        "thermal_conduc": 0.045,
+        "heat_capac": 2.1,
+        "thickness_default": 0.0,
+        "thickness_list": [],
+        "solar_absorp": 0.5
+    },
+    "f880ac03-6ccb-11ed-95db-5405db524342": {
+        "name": "plaster_system_dh",
+        "density": 2000.0,
+        "thermal_conduc": 1.0,
+        "heat_capac": 1.13,
+        "thickness_default": 0.0,
+        "thickness_list": [],
+        "solar_absorp": 0.5
+    },
+    "f880ac04-6ccb-11ed-9016-5405db524342": {
+        "name": "gypsum_plasterboard_DF_GKF_dh",
+        "density": 800.0,
+        "thermal_conduc": 0.25,
+        "heat_capac": 1.05,
+        "thickness_default": 0.0,
+        "thickness_list": [],
+        "solar_absorp": 0.5
+    },
+    "f880ac05-6ccb-11ed-85c9-5405db524342": {
+        "name": "dry_screed_dh",
+        "density": 900.0,
+        "thermal_conduc": 0.21,
+        "heat_capac": 1.05,
+        "thickness_default": 0.0,
+        "thickness_list": [],
+        "solar_absorp": 0.5
+    },
+    "60873b48-7616-11ed-9b8f-5405db524342": {
+        "name": "impact_sound_insulation_MW_T_dh",
+        "density": 68.0,
+        "thermal_conduc": 0.035,
+        "heat_capac": 1.03,
+        "thickness_default": 0.0,
+        "thickness_list": [],
+        "solar_absorp": 0.5
     }
 }

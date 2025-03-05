@@ -20,6 +20,7 @@ setup(
         "teaser.logic.archetypebuildings.bmvbs",
         "teaser.logic.archetypebuildings.bmvbs.custom",
         "teaser.logic.archetypebuildings.urbanrenet",
+        "teaser.logic.archetypebuildings.kfw",
         "teaser.logic.buildingobjects",
         "teaser.logic.buildingobjects.buildingphysics",
         "teaser.logic.buildingobjects.buildingsystems",

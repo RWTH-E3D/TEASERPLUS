@@ -42,6 +42,10 @@ from teaser.logic.archetypebuildings.tabula.dk.apartmentblock import (
 from teaser.logic.archetypebuildings.bmvbs.singlefamilydwelling import (
     SingleFamilyDwelling,
 )
+from teaser.logic.archetypebuildings.kfw.kfwsinglefamilyhouse import KfwSingleFamilyHouse
+from teaser.logic.archetypebuildings.kfw.kfwterracedhouse import KfwTerracedHouse
+from teaser.logic.archetypebuildings.kfw.kfwmultifamilyhouse import KfwMultiFamilyHouse
+
 from teaser.logic.simulation.modelicainfo import ModelicaInfo
 
 import teaser.data.output.citygml_output as citygml_out
@@ -472,7 +476,7 @@ internal_gains_mode: int [1, 2, 3]
         This function adds a residential archetype building to the TEASER
         project. You need to specify the method of the archetype generation.
         Currently TEASER supports only method according 'iwu', 'urbanrenet',
-        'tabula_de' and 'tabula_dk' for residential buildings. Further the
+        'tabula_de', 'tabula_dk' and 'kfw' for residential buildings. Further the
         type of usage needs to be specified. Currently TEASER supports one type
         of
         residential building for 'iwu' and eleven types for 'urbanrenet'. For
@@ -571,8 +575,8 @@ internal_gains_mode: int [1, 2, 3]
 
         """
         ass_error_method = (
-            "only'tabula_de', 'tabula_dk', 'iwu' and "
-            "'urbanrenet' "
+            "only'tabula_de', 'tabula_dk', 'iwu', "
+            "'urbanrenet' and 'kfw' "
             "are valid methods for residential archetype "
             "generation"
         )
@@ -582,19 +586,84 @@ internal_gains_mode: int [1, 2, 3]
             "iwu",
             "urbanrenet",
             "tabula_dk",
+            "kfw",
         ], ass_error_method
 
         ass_error_apart = (
             "The keyword number_of_apartments does not have any "
-            "effect on archetype generation for 'iwu' or"
-            "'tabula_de', see docs for more information"
+            "effect on archetype generation for 'iwu', "
+            "'tabula_de' or 'kfw', see docs for more information"
         )
 
         if (
-            method in ["iwu", "tabula_de", "tabula_dk"]
+            method in ["iwu", "tabula_de", "tabula_dk", "kfw"]
             and number_of_apartments is not None
         ):
             warnings.warn(ass_error_apart)
+
+        if method == "kfw":
+
+            if self.data is None:
+                self.data = DataClass(used_statistic=method)
+            elif self.data.used_statistic != "kfw":
+                self.data = DataClass(used_statistic=method)
+
+            ass_error_usage_tabula = "only 'single_family_house',"
+            "'terraced_house' and 'multi_family_house' are"
+            "valid usages for kfw archetype method"
+            assert usage in [
+                "single_family_house",
+                "terraced_house",
+                "multi_family_house",
+            ], ass_error_usage_tabula
+
+            if usage == "single_family_house":
+
+                type_bldg = KfwSingleFamilyHouse(
+                    self,
+                    name,
+                    year_of_construction,
+                    number_of_floors,
+                    height_of_floors,
+                    net_leased_area,
+                    with_ahu,
+                    internal_gains_mode,
+                    construction_type,
+                )
+                type_bldg.generate_archetype()
+                return type_bldg
+
+            elif usage == "terraced_house":
+
+                type_bldg = KfwTerracedHouse(
+                    self,
+                    name,
+                    year_of_construction,
+                    number_of_floors,
+                    height_of_floors,
+                    net_leased_area,
+                    with_ahu,
+                    internal_gains_mode,
+                    construction_type,
+                )
+                type_bldg.generate_archetype()
+                return type_bldg
+
+            elif usage == "multi_family_house":
+
+                type_bldg = KfwMultiFamilyHouse(
+                    self,
+                    name,
+                    year_of_construction,
+                    number_of_floors,
+                    height_of_floors,
+                    net_leased_area,
+                    with_ahu,
+                    internal_gains_mode,
+                    construction_type,
+                )
+                type_bldg.generate_archetype()
+                return type_bldg
 
         if method == "tabula_de":
 
