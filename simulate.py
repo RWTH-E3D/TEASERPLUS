@@ -1,6 +1,6 @@
 import os
 import pandas as pd
-from buildingspy.simulate.Simulator import Simulator
+from buildingspy.simulate.OpenModelica import Simulator
 from buildingspy.io.outputfile import Reader
 import matplotlib.pyplot as plt
 from multiprocessing import Pool
@@ -8,12 +8,13 @@ from timeit import default_timer as timer
 import re
 import shutil
 import tqdm as tqdm
+
 def simulate(path, prj, loading_time, result_path, visualization=False, save_in_gml=False):
     """BuildingsPy: simulation, loading and saving results, visualization
     :param save_in_gml: saves the heatload series in EnergyADE
     :param visualization: Graphs the heatload, inner and outside temperature
     :param result_path: path to the excated heating load Dataframe
-    :param loading_time: Initial TEASER+ loasing time
+    :param loading_time: Initial TEASER+ loading time
     :param prj: TEASER+ Instance
     :param path: Simulation Result path
     """
@@ -23,8 +24,8 @@ def simulate(path, prj, loading_time, result_path, visualization=False, save_in_
     li = []
     for buildings in prj.buildings:
         s = Simulator(modelName=prj.name + "." + buildings.name + "." + buildings.name,
-                          simulator="dymola", packagePath=path + "\\" + prj.name,
-                          outputDirectory=path + "\\" + 'BuildingsPyResults' + "\\" + prj.name + "\\results")
+                      packagePath="C:/Users/shamovich/TEASEROutput/omctest",
+                      outputDirectory=path + "\\" + 'BuildingsPyResults'+ "\\results\\")
         li.append(s)
 
     po = Pool()
@@ -62,9 +63,11 @@ def simulate(path, prj, loading_time, result_path, visualization=False, save_in_
                 print(f'failed simulation for building {buildings.name}')
         else:
             try:
-                results = os.path.join(path + "\\" + 'BuildingsPyResults' + "\\" +
-                                       prj.name + "\\results\\" + buildings.name)
+                results = os.path.join(path + "\\" + 'BuildingsPyResults' + "\\results\\"
+                                       +prj.name+"." +buildings.name+"."+buildings.name+"_res.MAT")
+                print(results)
                 r = Reader(results, "dymola")
+                print(r)
                 (time1, heatload) = r.values('multizone.PHeater[1]')
                 # print(len(heatload))
 
@@ -120,7 +123,7 @@ def simulateCase(s):
     """
     # s.showGUI()
     # s.translate()
-    s.setSolver("Cvode")
+    s.setSolver("cvode")
     # print(s.printModelAndTime())
     s.setStartTime(0)
     s.setStopTime(31536000)

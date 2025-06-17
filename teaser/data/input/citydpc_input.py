@@ -24,13 +24,15 @@ import copy
 
 
 """Alkis Building Function Codes Lists"""
+# ToDo: implement archetype asignment logic from KWP Lanuv? (by Net lease area)
+
 alkis_sfh_codes = ["1000", "31001_1000"] #Single Famuly House
 alkis_mfh_codes = ["1010", "31001_1010"] #MultiFamilyHouse
 alkis_th_codes = [] #TerracedHouse
 alkis_office_codes = [] #Offices
 
 
-def load_dpc_buildings(prj, citydpc_dataset, common_walls, method):
+def load_dpc_buildings(prj, citydpc_dataset, common_walls, method, archetypes=None):
 
     for dpc_building in citydpc_dataset.get_building_list():
         print(dpc_building.gml_id)
