@@ -56,7 +56,7 @@ def get_default_path():
     # teaser_default_path = os.path.join(directory[:last_index], "teaser",
     # "OutputData")
 
-    return teaser_default_path
+    return teaser_default_path.replace('\\', '/')
 
 
 def get_full_path(rel_path):

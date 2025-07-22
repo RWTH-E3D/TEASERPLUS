@@ -1,44 +1,66 @@
 import os
 import pandas as pd
-from buildingspy.simulate.OpenModelica import Simulator
+from contextlib import contextmanager
+from buildingspy.simulate.OpenModelica import Simulator as OpenModelicaSimulator
+from buildingspy.simulate.Dymola import Simulator as DymolaSimulator
 from buildingspy.io.outputfile import Reader
-import matplotlib.pyplot as plt
 from multiprocessing import Pool
 from timeit import default_timer as timer
 import re
-import shutil
 import tqdm as tqdm
 
-def simulate(path, prj, loading_time, result_path, visualization=False, save_in_gml=False):
-    """BuildingsPy: simulation, loading and saving results, visualization
+@contextmanager
+def timing(description: str):
+    """Context Manager for simulation time measurement.
+
+    Parameters
+    ----------
+    description : str, name and description of timer
+    """
+    start = timer()
+    yield
+    elapsed = timer() - start
+    print(f"{description}: {elapsed:.2f} Seconds")
+
+def simulate(path, prj, loading_time, result_path, simulator="omc",  save_in_gml=False):
+    """
+    BuildingsPy: simulation, loading and saving results with either OpenModelica or Dymola
+    For that either software must be installed and the executable in the PATH.
+    Furthermore, the correct AixLib version must be also set.
+    By default is using pooling to use all cores for simulation.
+
     :param save_in_gml: saves the heatload series in EnergyADE
-    :param visualization: Graphs the heatload, inner and outside temperature
+    :param simulator: omc or dymola currently supported
     :param result_path: path to the excated heating load Dataframe
     :param loading_time: Initial TEASER+ loading time
     :param prj: TEASER+ Instance
     :param path: Simulation Result path
+
     """
 
-    """BuildingsPy: Setup / Simulation"""
-    start_simulation = timer()
-    li = []
-    for buildings in prj.buildings:
-        s = Simulator(modelName=prj.name + "." + buildings.name + "." + buildings.name,
-                      packagePath="C:/Users/shamovich/TEASEROutput/omctest",
-                      outputDirectory=path + "\\" + 'BuildingsPyResults'+ "\\results\\")
-        li.append(s)
+    with timing("BuildingsPy-Simulation") as sim_time:
+        simulators = []
+        for buildings in prj.buildings:
+            if simulator == "omc":
+                s = OpenModelicaSimulator(modelName=prj.name + "." + buildings.name + "." + buildings.name,
+                              packagePath=path + "/" + prj.name,
+                              outputDirectory=path + "/" +prj.name + 'BuildingsPyResults'+ "\\results\\")
+            elif simulator == "dymola":
+                s = DymolaSimulator(modelName=prj.name + "." + buildings.name + "." + buildings.name,
+                              packagePath=path + "/" + prj.name,
+                              outputDirectory=path + "/" + prj.name + 'BuildingsPyResults'+ "\\results\\")
+            else:
+                raise Exception("Simulation not supported. Only omc or dymola are currently supported")
+            simulators.append(s)
 
-    po = Pool()
-    # result = po.map(simulateCase, li, chunksize=8)
-    result_list_tqdm = []
-    for _ in tqdm.tqdm(po.imap(simulateCase, li), total=len(li)):
-        result_list_tqdm.append(_)
-    end_simulation = timer()
-    simulation_time = (end_simulation-start_simulation)
+        with Pool() as pool:
+            for _ in tqdm.tqdm(
+                    pool.imap_unordered(simulateCase, simulators),
+                    total=len(simulators),
+                    desc="Simulated Buildings:"
+            ):
+                pass
 
-    """Clean up"""
-    # for buildings in prj1.buildings:
-    #     shutil.rmtree(path + "\\" + prj1.name)
 
     """BuildingsPy: Load Results"""
     df_results = pd.DataFrame()
@@ -79,38 +101,16 @@ def simulate(path, prj, loading_time, result_path, visualization=False, save_in_
                 """Write in a DataFrame, Each buiding gets a column for the heatload"""
                 df_results[f'{buildings.name}'] = heatload
 
-                # df_results.to_csv(f'C:/Users/MaxPaine33/PycharmProjects/teaserplus/gmlfiles/Hamburg/'
-                #                   f'Results_pandas_csv/5_Buildings_test/{prj.name}_results.csv')
-
             except:
                 print(f'failed simulation for building {buildings.name}')
 
-    if visualization:
-        """BuildingsPy: plot Results"""
-        fig = plt.figure(figsize=(12.8, 7.2), frameon=False, dpi=150)
-        ax = fig.add_subplot(211)
-        ax.plot(time1 / 3600, heatload / 1000, 'b', label=f'{buildings.name}', linewidth=1)
-        ax.set_xlabel('Time [h]')
-        ax.set_ylabel('Heat load [kW]')
-        ax.xaxis.get_major_ticks(1440)
-        ax.set_xlim(0, 8760)
-        ax.legend()
 
-        ax = fig.add_subplot(212)
-        ax.plot(time3 / 3600, outsidetemperature - 273.15, 'b', label='Outside Temperature', linewidth=1)
-        ax.plot(time2 / 3600, insidetemperature - 273.15, 'r', label='Inside Temperature', linewidth=1)
-        ax.set_xlabel('Time [h]')
-        ax.set_ylabel('temperature [$^\circ$C]')
-        ax.xaxis.get_major_ticks(1440)
-        ax.set_xlim(0, 8760)
-        ax.legend()
-        plt.show()
 
     '''calculating the simulation time'''
     end_post_processing = timer()
     post_processing_time = (end_post_processing-start_post_processing)
     df_results['loading time'] = loading_time
-    df_results['simulation time'] = simulation_time
+    df_results['simulation time'] = sim_time
     df_results['post processing time'] = post_processing_time
 
     df_results.to_csv(result_path)
@@ -122,8 +122,8 @@ def simulateCase(s):
     :param s: BuildingsPy Simulator object
     """
     # s.showGUI()
-    # s.translate()
-    s.setSolver("cvode")
+    s.translate()
+    s.setSolver("dassl")
     # print(s.printModelAndTime())
     s.setStartTime(0)
     s.setStopTime(31536000)
