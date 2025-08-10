@@ -3,7 +3,6 @@
 from teaser.project import Project
 from teaser.logic.simulation import simulate as s
 import os
-# Angenommen, es gibt eine simulate-Funktion
 
 def test_simulate_with_different_simulators():
     # Projekt anlegen und Gebäude hinzufügen
