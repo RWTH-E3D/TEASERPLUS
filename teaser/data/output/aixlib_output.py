@@ -7,7 +7,8 @@ from mako.template import Template
 from mako.lookup import TemplateLookup
 import teaser.logic.utilities as utilities
 import re
-import gc
+from pathlib import Path
+from typing import Optional
 import json
 
 def export_multizone(buildings, prj, path=None):
@@ -346,26 +347,3 @@ def _copy_script_unit_tests(destination_path):
 
     source_path = utilities.get_full_path("data/output/runUnitTests.py")
     shutil.copy2(source_path, destination_path)
-
-
-def _create_manifest(prj, path=None):
-    """
-    creates a manifest file in the path dir and should free the memory before simulation
-    manifest is used to start the simulation and later in the results reader
-
-    Parameters
-    ----------
-    prj: instance of Project
-        Instance of TEASER Project object to access Project related
-        information, e.g. name or version of used libraries
-    path: string
-        path of where the package.order should be placed
-    """
-    manifest = [{"model": f"{prj.name}.{b.name}.{b.name}",
-                 "type": re.match(r"(\w+)bt_", b.name).group(1)
-                 if re.match(r"(\w+)bt_", b.name) else None}
-                for b in prj.buildings]
-
-    json.dump(manifest, open(path/"manifest.json", "w"))
-    prj.buildings.clear()
-    gc.collect()
