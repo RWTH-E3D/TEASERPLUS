@@ -6,7 +6,7 @@ from pathlib import Path
 from typing import Optional
 
 # Use TEASER's existing utilities
-from teaser.logic.utilities import get_default_path, create_path
+from teaser.logic.utilities import get_default_path, create_path, check_and_fix_case_collisions
 
 
 def build_manifest(prj, export_dir: Optional[str] = None, *, engine: Optional[str] = None) -> Path:
@@ -64,6 +64,9 @@ def export_and_manifest(prj, export_dir: Optional[str] = None, *, engine: Option
     """
     root = Path(export_dir) if export_dir else Path(get_default_path())
     create_path(str(root))
+
+    # Sanitize names before exporting (writes name_corrections.txt)
+    check_and_fix_case_collisions(prj, export_root=str(root))
 
     # Export
     prj.export_aixlib(path=str(root))
