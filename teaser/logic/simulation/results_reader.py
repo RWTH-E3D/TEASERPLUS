@@ -55,8 +55,14 @@ class ResultStreamReader:
 
             try:
                 reader = Reader(str(mat), "dymola")
-                _, series = reader.values("multizone.PHeater[1]")
-                heat = np.asarray(series, dtype=np.float32)
+                zone_vars = reader.varNames(r"^multizone\.PHeater\[\d+\]$")
+                # align each zone series using your existing helper, then sum
+                heats = []
+                for v in zone_vars:
+                    _, series = reader.values(v)
+                    arr = np.asarray(series, dtype=np.float32)
+                    heats.append(self._align_len(arr))
+                heat = np.add.reduce(heats)
 
                 # Align to expected_len for consistent columns/aggregates
                 heat = self._align_len(heat)
