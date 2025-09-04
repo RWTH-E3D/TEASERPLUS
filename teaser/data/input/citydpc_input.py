@@ -26,7 +26,7 @@ import copy
 """Alkis Building Function Codes Lists"""
 # ToDo: implement archetype asignment logic from KWP Lanuv? (by Net lease area)
 
-alkis_sfh_codes = ["1000", "31001_1000"] #Single Famuly House
+alkis_sfh_codes = ["1000", "31001_1000"] #Single Family House
 alkis_mfh_codes = ["1010", "31001_1010"] #MultiFamilyHouse
 alkis_th_codes = [] #TerracedHouse
 alkis_office_codes = [] #Offices
