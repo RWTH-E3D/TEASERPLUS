@@ -8,26 +8,26 @@ from teaser.logic.simulation.simulate import simulate
 def main():
     # Projekt anlegen und Gebäude hinzufügen
     prj = Project(load_data=True)
-    prj.name = "TestSimulate_non_residential_without_AHU"
+    prj.name = "dymola_cli"
     prj.add_non_residential(
         method="bmvbs",
         usage="office",
-        name="TestBuilding",
+        name="Office",
         year_of_construction=2015,
         number_of_floors=1,
         height_of_floors=3.0,
         net_leased_area=100.0,
         with_ahu=False
     )
-    # prj.add_residential(
-    #     method="tabula_de",
-    #     usage="single_family_house",
-    #     name="TestBuilding",
-    #     year_of_construction=2015,
-    #     number_of_floors=1,
-    #     height_of_floors=3.0,
-    #     net_leased_area=100.0,
-    # )
+    prj.add_residential(
+        method="tabula_de",
+        usage="single_family_house",
+        name="sfh",
+        year_of_construction=2015,
+        number_of_floors=1,
+        height_of_floors=3.0,
+        net_leased_area=100.0,
+    )
     # prj.add_residential(
     #     method="tabula_de",
     #     usage="single_family_house",
@@ -66,34 +66,35 @@ def main():
     result_csv_om = package_dir / "results_om.csv"
     result_csv_dy = package_dir / "results_dy.csv"
 
+    # Simulation mit Dymola
+    simulate(
+        path=str(export_root),
+        manifest_path=str(manifest_file),
+        loading_time=0.0,
+        result_path=str(result_csv_dy),
+        simulator="Dymola",
+        start_time=start_time,
+        stop_time=stop_time,
+        intervals=intervals,
+    )
+    print("Dymola Simulation erfolgreich:")
+    print(f"Ergebnisse gespeichert in: {result_csv_dy}")
+
     # Simulation mit OpenModelica
-    # simulate(
-    #     path=str(export_root),
-    #     manifest_path=str(manifest_file),
-    #     loading_time=0.0,
-    #     result_path=str(result_csv_om),
-    #     simulator="OpenModelica",
-    #     start_time=start_time,
-    #     stop_time=stop_time,
-    #     intervals=intervals,
-    #     processes=3
-    # )
-    # print("OpenModelica Simulation erfolgreich:")
-    # print(f"Ergebnisse gespeichert in: {result_csv_om}")
-    #
-    # # Simulation mit Dymola
-    # simulate(
-    #     path=str(export_root),
-    #     manifest_path=str(manifest_file),
-    #     loading_time=0.0,
-    #     result_path=str(result_csv_dy),
-    #     simulator="Dymola",
-    #     start_time=start_time,
-    #     stop_time=stop_time,
-    #     intervals=intervals,
-    # )
-    # print("Dymola Simulation erfolgreich:")
-    # print(f"Ergebnisse gespeichert in: {result_csv_dy}")
+    simulate(
+        path=str(export_root),
+        manifest_path=str(manifest_file),
+        loading_time=0.0,
+        result_path=str(result_csv_om),
+        simulator="OpenModelica",
+        start_time=start_time,
+        stop_time=stop_time,
+        intervals=intervals,
+        processes=3
+    )
+    print("OpenModelica Simulation erfolgreich:")
+    print(f"Ergebnisse gespeichert in: {result_csv_om}")
+
 
 
 if __name__ == "__main__":

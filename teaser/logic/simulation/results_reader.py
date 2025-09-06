@@ -26,14 +26,22 @@ class ResultStreamReader:
         self,
         manifest: List[Dict[str, Optional[str]]],
         results_dir: Path,
-        target_csv: Path,
+        target_csv: Optional[Path] = None,
+        target_csv_cool: Optional[Path] = None,
         keep_type_sum: bool = True,
         expected_len: int = 8760,
         layout: str = "wide",
     ) -> None:
         self.manifest = manifest
         self.results_dir = Path(results_dir)
-        self.target_csv = Path(target_csv)
+        if target_csv:
+            self.target_csv = Path(target_csv)
+        else:
+            self.target_csv = Path(self.results_dir / "results_heat.csv")
+        if target_csv_cool:
+            self.target_csv_cool = Path(target_csv_cool)
+        else:
+            self.target_csv_cool = Path(self.results_dir / "results_cool.csv")
         self.keep_type_sum = keep_type_sum
         self.expected_len = expected_len
         assert layout in {"wide", "long"}
@@ -41,10 +49,16 @@ class ResultStreamReader:
         self._type_sums: Dict[str, np.ndarray] = defaultdict(
             lambda: np.zeros(self.expected_len, dtype=np.float32)
         )
-
+        self._heating_sums: Dict[str, np.ndarray] = defaultdict(
+            lambda: np.zeros(self.expected_len, dtype=np.float32)
+        )
+        self._cooling_sums: Dict[str, np.ndarray] = defaultdict(
+            lambda: np.zeros(self.expected_len, dtype=np.float32)
+        )
     # ----------------------- public API -----------------------
     def run(self) -> Dict[str, np.ndarray]:
-        header_written = self.target_csv.exists() and self.target_csv.stat().st_size > 0
+        header_written_heat = self.target_csv.exists() and self.target_csv.stat().st_size > 0
+        header_written_cool = self.target_csv_cool.exists() and self.target_csv_cool.stat().st_size > 0
 
         for item in self.manifest:
             model = item["model"]
@@ -66,14 +80,15 @@ class ResultStreamReader:
 
                 # Align to expected_len for consistent columns/aggregates
                 heat = self._align_len(heat)
+                self._heating_sums[bname] += heat.astype(np.float32, copy=False)
 
                 if self.layout == "wide":
-                    self._append_wide_csv(bname, heat, header=not header_written)
+                    self._append_wide_csv(bname, heat, header=not header_written_heat)
                 else:
                     timesteps = np.arange(len(heat), dtype=np.uint32)
-                    self._append_long_csv(bname, timesteps, heat, header=not header_written)
+                    self._append_long_csv(bname, timesteps, heat, header=not header_written_heat)
 
-                header_written = True
+                header_written_heat = True
 
                 if self.keep_type_sum and btype:
                     self._update_type_sum(btype, heat)
@@ -81,14 +96,44 @@ class ResultStreamReader:
             except Exception as e:  # report and continue
                 print(f"Failed to process {mat}: {e}")
 
-        return dict(self._type_sums)
+            try:
+                zone_vars = reader.varNames(r"^multizone\.PCooler\[\d+\]$")
+                # align each zone series using your existing helper, then sum
+                cools = []
+                for v in zone_vars:
+                    _, series = reader.values(v)
+                    arr = np.asarray(series, dtype=np.float32)
+                    cools.append(self._align_len(arr))
+                cool = np.add.reduce(cools)
+                cool = self._align_len(cool)
+                if not np.allclose(cool, 0.0):
+                    if self.layout == "wide":
+                        self._append_wide_csv(bname, heat, header=not header_written_cool)
+                    else:
+                        timesteps = np.arange(len(heat), dtype=np.uint32)
+                        self._append_long_csv(bname, timesteps, heat, header=not header_written_cool)
+                    self._cooling_sums[bname] += cool.astype(np.float32, copy=False)
+                    header_written_cool = True
+                # else: skip writing this building for cooling (all zeros)
+            except Exception:
+                # no cooler vars or read failure -> skip cooling for this building
+                pass
 
-    def write_type_sums(self, path: Path) -> None:
-        if not self._type_sums:
+    def write_building_sums(self) -> None:
+        path = Path(self.target_csv.parent / "results_sum_heat.csv")
+        if not self._heating_sums:
             return
-        df = pd.DataFrame({k: v for k, v in self._type_sums.items()})
-        df.index.name = "timestep"  # 0..N-1
-        df.to_csv(path)
+        else:
+            df = pd.DataFrame({k: v for k, v in self._heating_sums.items()})
+            df.index.name = "timestep"  # 0..N-1
+            df.to_csv(path)
+        path = Path(self.target_csv_cool / "results_sum_cool.csv")
+        if not self._cooling_sums:
+            return
+        else:
+            df = pd.DataFrame({k: v for k, v in self._heating_sums.items()})
+            df.index.name = "timestep"  # 0..N-1
+            df.to_csv(path)
 
     # ---------------------- internals ------------------------
     def _building_from_model(self, model: str) -> str:
@@ -97,15 +142,15 @@ class ResultStreamReader:
 
     def _locate_results_mat(self, model: str) -> Path:
         # Preferred: per-model subdirectory created by simulate(): <results_dir>/<model>/<model>_res.MAT
-        candidate = self.results_dir / model / f"{model}_res.MAT"
+        candidate = self.results_dir / model / f"{model}_res.mat"
         if candidate.exists():
             return candidate
         # Fallback: directly under results_dir (for legacy runs)
-        legacy = self.results_dir / f"{model}_res.MAT"
+        legacy = self.results_dir / f"{model}_res.mat"
         if legacy.exists():
             return legacy
         # As a last resort, try Modelica-style MAT name without suffix
-        alt = self.results_dir / model / f"{model}.mat"
+        alt = self.results_dir / model / f"{model.split(".")[-1]}.MAT"
         return alt
 
     def _align_len(self, heat: np.ndarray) -> np.ndarray:
