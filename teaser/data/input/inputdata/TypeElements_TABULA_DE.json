@@ -21850,5 +21850,4213 @@
                 }
             }
         }
+    },
+    "SharedWall_[0, 1859]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            0,
+            1859
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "fibrous_loam_1200",
+                    "material_id": "266228a4-3a43-11e7-acde-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1860,
+            1918
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1919,
+            1948
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1958,
+            1968
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1969,
+            1978
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.4,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1979,
+            1983
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.34,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1984,
+            1994
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.19,
+                "material": {
+                    "name": "autoclaved_aerated_concrete_400",
+                    "material_id": "3c2dd8e6-3a43-11e7-8dd3-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            1995,
+            2001
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.1,
+                "material": {
+                    "name": "glass_fibre_glass_wool_80",
+                    "material_id": "27e66a1a-3a43-11e7-a6a6-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2009]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            2002,
+            2009
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.1,
+                "material": {
+                    "name": "glass_fibre_glass_wool_80",
+                    "material_id": "27e66a1a-3a43-11e7-a6a6-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            2010,
+            2015
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_standard_1_SFH": {
+        "building_age_group": [
+            2016,
+            2100
+        ],
+        "construction_type": "tabula_standard_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.2,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_standard_2_SFH": {
+        "building_age_group": [
+            1958,
+            1968
+        ],
+        "construction_type": "tabula_standard_2_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "vapourpermeable_wood_fibreboard",
+                    "material_id": "258fb6be-3a43-11e7-81b6-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.05,
+                "material": {
+                    "name": "glass_fibre_batt_40",
+                    "material_id": "2797e0fa-3a43-11e7-ae72-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[0, 1859]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            0,
+            1859
+        ],
+        "construction_type": "tabula_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.18,
+                "material": {
+                    "name": "fibrous_loam_1200",
+                    "material_id": "266228a4-3a43-11e7-acde-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1860,
+            1918
+        ],
+        "construction_type": "tabula_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1919,
+            1948
+        ],
+        "construction_type": "tabula_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1958,
+            1968
+        ],
+        "construction_type": "tabula_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1969,
+            1978
+        ],
+        "construction_type": "tabula_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.4,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1979,
+            1983
+        ],
+        "construction_type": "tabula_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.34,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1984,
+            1994
+        ],
+        "construction_type": "tabula_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.19,
+                "material": {
+                    "name": "autoclaved_aerated_concrete_400",
+                    "material_id": "3c2dd8e6-3a43-11e7-8dd3-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            1995,
+            2001
+        ],
+        "construction_type": "tabula_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.1,
+                "material": {
+                    "name": "glass_fibre_glass_wool_80",
+                    "material_id": "27e66a1a-3a43-11e7-a6a6-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2010]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            2002,
+            2010
+        ],
+        "construction_type": "tabula_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.1,
+                "material": {
+                    "name": "glass_fibre_glass_wool_80",
+                    "material_id": "27e66a1a-3a43-11e7-a6a6-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            2010,
+            2015
+        ],
+        "construction_type": "tabula_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.17,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_retrofit_1_SFH": {
+        "building_age_group": [
+            2016,
+            2100
+        ],
+        "construction_type": "tabula_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.21,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_retrofit_2_SFH": {
+        "building_age_group": [
+            1958,
+            1968
+        ],
+        "construction_type": "tabula_retrofit_2_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "vapourpermeable_wood_fibreboard",
+                    "material_id": "258fb6be-3a43-11e7-81b6-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.17,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[0, 1859]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            0,
+            1859
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.18,
+                "material": {
+                    "name": "fibrous_loam_1200",
+                    "material_id": "266228a4-3a43-11e7-acde-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1860,
+            1918
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1919,
+            1948
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1958,
+            1968
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1969,
+            1978
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.4,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1979,
+            1983
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.34,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1984,
+            1994
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.19,
+                "material": {
+                    "name": "autoclaved_aerated_concrete_400",
+                    "material_id": "3c2dd8e6-3a43-11e7-8dd3-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            1995,
+            2001
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.1,
+                "material": {
+                    "name": "glass_fibre_glass_wool_80",
+                    "material_id": "27e66a1a-3a43-11e7-a6a6-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2010]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            2002,
+            2010
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.1,
+                "material": {
+                    "name": "glass_fibre_glass_wool_80",
+                    "material_id": "27e66a1a-3a43-11e7-a6a6-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            2010,
+            2015
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.28,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_adv_retrofit_1_SFH": {
+        "building_age_group": [
+            2016,
+            2100
+        ],
+        "construction_type": "tabula_adv_retrofit_1_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.28,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_adv_retrofit_2_SFH": {
+        "building_age_group": [
+            1958,
+            1968
+        ],
+        "construction_type": "tabula_adv_retrofit_2_SFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "vapourpermeable_wood_fibreboard",
+                    "material_id": "258fb6be-3a43-11e7-81b6-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.29,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1860,
+            1918
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1919,
+            1948
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1958,
+            1968
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1969,
+            1978
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.4,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1979,
+            1983
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.35,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1984,
+            1994
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.425,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_standard_1_TH": {
+        "building_age_group": [
+            1995,
+            2001
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.425,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2009]_tabula_standard_1_TH": {
+        "building_age_group": [
+            2002,
+            2009
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.1,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_standard_1_TH": {
+        "building_age_group": [
+            2010,
+            2015
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.2,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_standard_1_TH": {
+        "building_age_group": [
+            2016,
+            2100
+        ],
+        "construction_type": "tabula_standard_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.2,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.22,
+                "material": {
+                    "name": "XPS_2_core_layer",
+                    "material_id": "6377221c-3a43-11e7-9599-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_standard_2_TH": {
+        "building_age_group": [
+            1995,
+            2001
+        ],
+        "construction_type": "tabula_standard_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.425,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_standard_2_TH": {
+        "building_age_group": [
+            2010,
+            2015
+        ],
+        "construction_type": "tabula_standard_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.2,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_standard_2_TH": {
+        "building_age_group": [
+            2016,
+            2100
+        ],
+        "construction_type": "tabula_standard_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.2,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.22,
+                "material": {
+                    "name": "XPS_2_core_layer",
+                    "material_id": "6377221c-3a43-11e7-9599-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1860,
+            1918
+        ],
+        "construction_type": "tabula_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1919,
+            1948
+        ],
+        "construction_type": "tabula_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1958,
+            1968
+        ],
+        "construction_type": "tabula_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1969,
+            1978
+        ],
+        "construction_type": "tabula_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.4,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1979,
+            1983
+        ],
+        "construction_type": "tabula_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.35,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1984,
+            1994
+        ],
+        "construction_type": "tabula_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.425,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            1995,
+            2001
+        ],
+        "construction_type": "tabula_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.425,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2009]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            2002,
+            2009
+        ],
+        "construction_type": "tabula_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.1,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "XPS_2_core_layer",
+                    "material_id": "6377221c-3a43-11e7-9599-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            2010,
+            2015
+        ],
+        "construction_type": "tabula_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.17,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_retrofit_1_TH": {
+        "building_age_group": [
+            2016,
+            2100
+        ],
+        "construction_type": "tabula_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.2,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.22,
+                "material": {
+                    "name": "XPS_2_core_layer",
+                    "material_id": "6377221c-3a43-11e7-9599-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_retrofit_2_TH": {
+        "building_age_group": [
+            1995,
+            2001
+        ],
+        "construction_type": "tabula_retrofit_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.425,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_retrofit_2_TH": {
+        "building_age_group": [
+            2010,
+            2015
+        ],
+        "construction_type": "tabula_retrofit_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.17,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_retrofit_2_TH": {
+        "building_age_group": [
+            2016,
+            2100
+        ],
+        "construction_type": "tabula_retrofit_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.2,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.22,
+                "material": {
+                    "name": "XPS_2_core_layer",
+                    "material_id": "6377221c-3a43-11e7-9599-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1860,
+            1918
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1919,
+            1948
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1958,
+            1968
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1969,
+            1978
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.4,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1979,
+            1983
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.35,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1984,
+            1994
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.425,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            1995,
+            2001
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.425,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2009]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            2002,
+            2009
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.1,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            2010,
+            2015
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.28,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_adv_retrofit_1_TH": {
+        "building_age_group": [
+            2016,
+            2100
+        ],
+        "construction_type": "tabula_adv_retrofit_1_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.28,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_adv_retrofit_2_TH": {
+        "building_age_group": [
+            1995,
+            2001
+        ],
+        "construction_type": "tabula_adv_retrofit_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.425,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_adv_retrofit_2_TH": {
+        "building_age_group": [
+            2010,
+            2015
+        ],
+        "construction_type": "tabula_adv_retrofit_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.28,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_adv_retrofit_2_TH": {
+        "building_age_group": [
+            2016,
+            2100
+        ],
+        "construction_type": "tabula_adv_retrofit_2_TH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.28,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[0, 1859]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            0,
+            1859
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "fibrous_loam_1200",
+                    "material_id": "266228a4-3a43-11e7-acde-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1860,
+            1918
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.26,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1919,
+            1948
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1958,
+            1968
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1969,
+            1978
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.4,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1979,
+            1983
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.35,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1984,
+            1994
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.425,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            1995,
+            2001
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "XPS_55",
+                    "material_id": "26101da2-3a43-11e7-a528-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2009]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            2002,
+            2009
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.14,
+                "material": {
+                    "name": "XPS_55",
+                    "material_id": "26101da2-3a43-11e7-a528-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            2010,
+            2015
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_standard_1_MFH": {
+        "building_age_group": [
+            2016,
+            2100
+        ],
+        "construction_type": "tabula_standard_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.11,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[0, 1859]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            0,
+            1859
+        ],
+        "construction_type": "tabula_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "fibrous_loam_1200",
+                    "material_id": "266228a4-3a43-11e7-acde-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1860,
+            1918
+        ],
+        "construction_type": "tabula_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.26,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1919,
+            1948
+        ],
+        "construction_type": "tabula_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1958,
+            1968
+        ],
+        "construction_type": "tabula_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1969,
+            1978
+        ],
+        "construction_type": "tabula_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.4,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1979,
+            1983
+        ],
+        "construction_type": "tabula_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.35,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1984,
+            1994
+        ],
+        "construction_type": "tabula_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.425,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            1995,
+            2001
+        ],
+        "construction_type": "tabula_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.2,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2009]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            2002,
+            2009
+        ],
+        "construction_type": "tabula_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.26,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            2010,
+            2015
+        ],
+        "construction_type": "tabula_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_retrofit_1_MFH": {
+        "building_age_group": [
+            2016,
+            2100
+        ],
+        "construction_type": "tabula_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.3,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[0, 1859]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            0,
+            1859
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.16,
+                "material": {
+                    "name": "fibrous_loam_1200",
+                    "material_id": "266228a4-3a43-11e7-acde-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1860,
+            1918
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.26,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1919,
+            1948
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1958,
+            1968
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1969,
+            1978
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.4,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1979, 1983]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1979,
+            1983
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.35,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1984, 1994]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1984,
+            1994
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.425,
+                "material": {
+                    "name": "polysterene_lightweight_concrete_900",
+                    "material_id": "3b63ca24-3a43-11e7-ae3c-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1995, 2001]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            1995,
+            2001
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2002, 2009]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            2002,
+            2009
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.26,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2010, 2015]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            2010,
+            2015
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.28,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[2016, 2100]_tabula_adv_retrofit_1_MFH": {
+        "building_age_group": [
+            2016,
+            2100
+        ],
+        "construction_type": "tabula_adv_retrofit_1_MFH",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.3,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_standard_1_AB": {
+        "building_age_group": [
+            1860,
+            1918
+        ],
+        "construction_type": "tabula_standard_1_AB",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_standard_1_AB": {
+        "building_age_group": [
+            1919,
+            1948
+        ],
+        "construction_type": "tabula_standard_1_AB",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_standard_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_standard_1_AB",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_standard_1_AB": {
+        "building_age_group": [
+            1958,
+            1968
+        ],
+        "construction_type": "tabula_standard_1_AB",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_standard_1_AB": {
+        "building_age_group": [
+            1969,
+            1978
+        ],
+        "construction_type": "tabula_standard_1_AB",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.2,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_retrofit_1_AB": {
+        "building_age_group": [
+            1860,
+            1918
+        ],
+        "construction_type": "tabula_retrofit_1_AB",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_retrofit_1_AB": {
+        "building_age_group": [
+            1919,
+            1948
+        ],
+        "construction_type": "tabula_retrofit_1_AB",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.11,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.01,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_retrofit_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_retrofit_1_AB",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_retrofit_1_AB": {
+        "building_age_group": [
+            1958,
+            1968
+        ],
+        "construction_type": "tabula_retrofit_1_AB",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_retrofit_1_AB": {
+        "building_age_group": [
+            1969,
+            1978
+        ],
+        "construction_type": "tabula_retrofit_1_AB",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.2,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.12,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1860, 1918]_tabula_adv_retrofit_1_AB": {
+        "building_age_group": [
+            1860,
+            1918
+        ],
+        "construction_type": "tabula_adv_retrofit_1_AB",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.38,
+                "material": {
+                    "name": "solid_brick_c",
+                    "material_id": "5bebc464-3a43-11e7-b575-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1919, 1948]_tabula_adv_retrofit_1_AB": {
+        "building_age_group": [
+            1919,
+            1948
+        ],
+        "construction_type": "tabula_adv_retrofit_1_AB",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "air_layer",
+                    "material_id": "b362502c-3f99-11e7-b117-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.115,
+                "material": {
+                    "name": "solid_brick_ARB",
+                    "material_id": "5993ffc0-3a43-11e7-af66-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1949, 1957]_tabula_adv_retrofit_1_AB": {
+        "building_age_group": [
+            1949,
+            1957
+        ],
+        "construction_type": "tabula_adv_retrofit_1_AB",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1958, 1968]_tabula_adv_retrofit_1_AB": {
+        "building_age_group": [
+            1958,
+            1968
+        ],
+        "construction_type": "tabula_adv_retrofit_1_AB",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.32,
+                "material": {
+                    "name": "lightweight_concrete_Vermiculit_1100",
+                    "material_id": "570be3be-3a43-11e7-b769-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
+    },
+    "SharedWall_[1969, 1978]_tabula_adv_retrofit_1_AB": {
+        "building_age_group": [
+            1969,
+            1978
+        ],
+        "construction_type": "tabula_adv_retrofit_1_AB",
+        "inner_radiation": 5.0,
+        "inner_convection": 2.7,
+        "outer_radiation": 0.0,
+        "outer_convection": 0.0,
+        "layer": {
+            "0": {
+                "thickness": 0.2,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            },
+            "1": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "2": {
+                "thickness": 0.08,
+                "material": {
+                    "name": "concrete",
+                    "material_id": "2497c138-3a43-11e7-9e0f-2cd444b2e704"
+                }
+            },
+            "3": {
+                "thickness": 0.24,
+                "material": {
+                    "name": "EPS_perimeter_insulation_top_layer",
+                    "material_id": "25eb5d36-3a43-11e7-a085-2cd444b2e704"
+                }
+            },
+            "4": {
+                "thickness": 0.02,
+                "material": {
+                    "name": "insulating_plaster",
+                    "material_id": "61cf5890-3a43-11e7-864c-2cd444b2e704"
+                }
+            }
+        }
     }
 }

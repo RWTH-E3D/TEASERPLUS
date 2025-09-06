@@ -1426,7 +1426,7 @@ class Test_teaser(object):
         assert round(c1_ow, 5) == 3648580.59312
 
         helplist_inner_walls = (
-            therm_zone.inner_walls + therm_zone.ceilings + therm_zone.floors
+            therm_zone.inner_walls + therm_zone.shared_walls + therm_zone.ceilings + therm_zone.floors
         )
 
         r1_iw, c1_iw = calc_attr._calc_parallel_connection(

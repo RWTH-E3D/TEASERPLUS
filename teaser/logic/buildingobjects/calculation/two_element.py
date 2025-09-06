@@ -238,6 +238,17 @@ class TwoElement(object):
         ambient (OuterWalls, Windows, ...).
     heat_load : [W]
         Static heat load of the thermal zone.
+    heat_load_outside_factor : float [W/K]
+        Factor needed for recalculation of the heat load of the thermal zone.
+        This can be used to recalculate the thermalzones heat load inside
+        Modelica export for parametric studies. This works only together with
+        heat_load_ground_factor.
+        heat_load = heat_load_outside_factor * (t_inside - t_outside) +
+        heat_load_ground_factor * (t_inside - t_ground).
+    heat_load_ground_factor : float [W/K]
+        Factor needed for recalculation of the heat load of the thermal zone.
+        This can be used to recalculate the thermalzones heat load inside
+        Modelica export for parametric studies. See heat_load_outside_factor.
     facade_areas : list of floats [m2]
         List containing the area of each facade (with same tilt and
         orientation) this includes also roofs and ground floors and windows.
@@ -387,6 +398,8 @@ class TwoElement(object):
         self.orientation_facade = []
         self.heat_load = 0.0
         self.cool_load = 0.0
+        self.heat_load_outside_factor = 0.0
+        self.heat_load_ground_factor = 0.0
 
     def calc_attributes(self):
         """Calls all necessary function to calculate model attributes"""
@@ -405,6 +418,7 @@ class TwoElement(object):
             win.calc_ua_value()
         for inner_wall in (
             self.thermal_zone.inner_walls
+            + self.thermal_zone.shared_walls
             + self.thermal_zone.floors
             + self.thermal_zone.ceilings
         ):
@@ -427,6 +441,7 @@ class TwoElement(object):
         if (
             len(
                 self.thermal_zone.inner_walls
+                + self.thermal_zone.shared_walls
                 + self.thermal_zone.floors
                 + self.thermal_zone.ceilings
             )
@@ -697,12 +712,14 @@ class TwoElement(object):
         """
         self.area_iw = (
             sum(in_wall.area for in_wall in self.thermal_zone.inner_walls)
+            + sum(sh_wall.area for sh_wall in self.thermal_zone.shared_walls)
             + sum(floor.area for floor in self.thermal_zone.floors)
             + sum(ceiling.area for ceiling in self.thermal_zone.ceilings)
         )
 
         self.ua_value_iw = (
             sum(in_wall.ua_value for in_wall in self.thermal_zone.inner_walls)
+            + sum(sh_wall.ua_value for sh_wall in self.thermal_zone.shared_walls)
             + sum(floor.ua_value for floor in self.thermal_zone.floors)
             + sum(ceiling.ua_value for ceiling in self.thermal_zone.ceilings)
         )
@@ -711,18 +728,21 @@ class TwoElement(object):
 
         self.r_conv_inner_iw = 1 / (
             sum(1 / in_wall.r_inner_conv for in_wall in self.thermal_zone.inner_walls)
+            + sum(1 / sh_wall.r_inner_conv for sh_wall in self.thermal_zone.shared_walls)
             + sum(1 / floor.r_inner_conv for floor in self.thermal_zone.floors)
             + sum(1 / ceiling.r_inner_conv for ceiling in self.thermal_zone.ceilings)
         )
 
         self.r_rad_inner_iw = 1 / (
             sum(1 / in_wall.r_inner_rad for in_wall in self.thermal_zone.inner_walls)
+            + sum(1 / sh_wall.r_inner_rad for sh_wall in self.thermal_zone.shared_walls)
             + sum(1 / floor.r_inner_rad for floor in self.thermal_zone.floors)
             + sum(1 / ceiling.r_inner_rad for ceiling in self.thermal_zone.ceilings)
         )
 
         self.r_comb_inner_iw = 1 / (
             sum(1 / in_wall.r_inner_comb for in_wall in self.thermal_zone.inner_walls)
+            + sum(1 / sh_wall.r_inner_comb for sh_wall in self.thermal_zone.shared_walls)
             + sum(1 / floor.r_inner_comb for floor in self.thermal_zone.floors)
             + sum(1 / ceiling.r_inner_comb for ceiling in self.thermal_zone.ceilings)
         )
@@ -731,6 +751,10 @@ class TwoElement(object):
             sum(
                 in_wall.layer[0].material.ir_emissivity * in_wall.area
                 for in_wall in self.thermal_zone.inner_walls
+            )
+            + sum(
+                sh_wall.layer[0].material.ir_emissivity * sh_wall.area
+                for sh_wall in self.thermal_zone.shared_walls
             )
             + sum(
                 floor.layer[0].material.ir_emissivity * floor.area
@@ -955,6 +979,7 @@ class TwoElement(object):
             self.thermal_zone.inner_walls
             + self.thermal_zone.floors
             + self.thermal_zone.ceilings
+            +self.thermal_zone.shared_walls
         )
 
         for in_wall in inner_walls:
@@ -1162,20 +1187,19 @@ class TwoElement(object):
             ground.ua_value for ground in self.thermal_zone.ground_floors
         )
         ua_value_ow_temp = self.ua_value_ow - ua_value_gf_temp
-        self.heat_load = (
-            (
+        self.heat_load_outside_factor = (
                 (ua_value_ow_temp + self.ua_value_win)
                 + self.thermal_zone.volume
-                * self.thermal_zone.use_conditions.infiltration_rate
-                * 1
-                / 3600
+                * self.thermal_zone.use_conditions.infiltration_rate * 1/ 3600
                 * self.thermal_zone.heat_capac_air
                 * self.thermal_zone.density_air
-            )
-            * (self.thermal_zone.t_inside - self.thermal_zone.t_outside)
-        ) + (
-            ua_value_gf_temp * (self.thermal_zone.t_inside - self.thermal_zone.t_ground)
         )
+        self.heat_load_ground_factor = ua_value_gf_temp
+        self.heat_load = \
+            self.heat_load_outside_factor \
+            * (self.thermal_zone.t_inside - self.thermal_zone.t_outside) \
+            + self.heat_load_ground_factor \
+            * (self.thermal_zone.t_inside - self.thermal_zone.t_ground)
 
     def set_calc_default(self):
         """sets default calculation parameters

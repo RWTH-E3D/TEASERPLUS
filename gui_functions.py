@@ -13,7 +13,7 @@ import numpy as np
 
 
 
-def screenSizer(posx: int, posy: int, width: int, height: int, app: QtWidgets.QApplication) -> tuple[int, int, int, int, float]:
+def screenSizer(posx: int, posy: int, width: int, height: int, app: QtWidgets.QApplication):
     """
     func to get size of screen and scale window dimensions accordingly
     returns posx, posy, width, height, sizefactor
@@ -67,7 +67,7 @@ def next_window(self, window: object, close : bool = True) -> None:
         self.hide()
 
 
-def windowPosition(self) -> tuple[int, int]:
+def windowPosition(self):
     """gets current window x and y position"""
     posx = self.geometry().x()
     posy = self.geometry().y()

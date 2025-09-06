@@ -102,6 +102,7 @@ class ThermalZone(object):
         self._ground_floors = []
         self._windows = []
         self._inner_walls = []
+        self._shared_walls = []
         self._floors = []
         self._ceilings = []
         self._use_conditions = None
@@ -197,6 +198,32 @@ class ThermalZone(object):
             else:
                 pass
         return elements
+
+    # def find_shared_walls(self, orientation, tilt):
+    #     """Returns all outer walls with given orientation and tilt
+    #
+    #     This function returns a list of all OuterWall elements with the
+    #     same orientation and tilt.
+    #
+    #     Parameters
+    #     ----------
+    #     orientation : float [degree]
+    #         Azimuth of the desired walls.
+    #     tilt : float [degree]
+    #         Tilt against the horizontal of the desired walls.
+    #
+    #     Returns
+    #     -------
+    #     elements : list
+    #         List of OuterWalls instances with desired orientation and tilt.
+    #     """
+    #     elements = []
+    #     for i in self.shared_walls:
+    #         if i.orientation == orientation and i.tilt == tilt:
+    #             elements.append(i)
+    #         else:
+    #             pass
+    #     return elements
 
     def find_doors(self, orientation, tilt):
         """Returns all outer walls with given orientation and tilt
@@ -541,6 +568,15 @@ class ThermalZone(object):
     def outer_walls(self, value):
         if value is None:
             self._outer_walls = []
+
+    @property
+    def shared_walls(self):
+        return self._shared_walls
+
+    @shared_walls.setter
+    def shared_walls(self, value):
+        if value is None:
+            self._shared_walls = []
 
     @property
     def doors(self):

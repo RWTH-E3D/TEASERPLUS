@@ -357,7 +357,7 @@ class UseConditions(object):
         ]
 
         self.schedules = pd.DataFrame(
-            index=pd.date_range("2019-01-01 00:00:00", periods=8760, freq="H")
+            index=pd.date_range("2019-01-01 00:00:00", periods=8760, freq="h")
             .to_series()
             .dt.strftime("%m-%d %H:%M:%S"),
             data={

@@ -8,9 +8,53 @@ classes
 import os
 import shutil
 import operator
+import datetime
+from pathlib import Path
 
 ops = {"/": operator.truediv}
 
+
+def check_and_fix_case_collisions(prj, export_root: str = None) -> Path | None:
+    """
+    Scan prj.buildings for names that collide on a case-insensitive FS.
+    If duplicates are found (e.g. 'ABCD' vs 'abcd'), the *later* one
+    gets a suffix '_<n>' to make it unique.
+
+    Writes a short log file with the changes.
+    Returns the path to the log if changes were made, else None.
+    """
+    seen = {}
+    changes = []
+    for b in prj.buildings:
+        raw = str(b.name)
+        key = raw.lower()
+        if key not in seen:
+            seen[key] = raw
+            continue
+        # collision → adjust this one
+        counter = 1
+        new = f"{raw}_{counter}"
+        while new.lower() in seen:
+            counter += 1
+            new = f"{raw}_{counter}"
+        b.name = new
+        seen[new.lower()] = new
+        changes.append((raw, new))
+
+    # log to file
+    base = Path(export_root) if export_root else Path(get_default_path())
+    pkg_root = base / prj.name
+    create_path(str(pkg_root))
+    log_path = pkg_root / "case_name_corrections.txt"
+
+    ts = datetime.datetime.now().strftime("%Y-%m-%d %H:%M:%S")
+    lines = [f"[{ts}] Case-insensitive name corrections for project '{prj.name}'"]
+    lines += [f"{old} -> {new}" for old, new in changes]
+    with open(log_path, "a", encoding="utf-8") as f:
+        f.write("\n".join(lines) + "\n\n")
+
+    print(f"[teaser.utilities] {len(changes)} building name(s) corrected; log at: {log_path}")
+    return log_path
 
 def celsius_to_kelvin(value):
     try:
@@ -56,7 +100,7 @@ def get_default_path():
     # teaser_default_path = os.path.join(directory[:last_index], "teaser",
     # "OutputData")
 
-    return teaser_default_path
+    return teaser_default_path.replace('\\', '/')
 
 
 def get_full_path(rel_path):

@@ -56,7 +56,8 @@ class Layer(object):
                 or type(value).__name__ == "Rooftop" \
                 or type(value).__name__ == "GroundFloor" \
                 or type(value).__name__ == "InnerWall" \
-                or type(value).__name__ == "Ceiling" \
+               or type(value).__name__ == "SharedWall" \
+               or type(value).__name__ == "Ceiling" \
                 or type(value).__name__ == "Floor" \
                 or type(value).__name__ == "Door" \
                 or type(value).__name__ == "Window", ass_error_1

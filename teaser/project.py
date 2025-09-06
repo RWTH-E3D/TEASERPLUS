@@ -51,6 +51,7 @@ from teaser.logic.simulation.modelicainfo import ModelicaInfo
 import teaser.data.output.citygml_output as citygml_out
 import teaser.data.input.citygml_input as citygml_in
 import teaser.data.input.energyade_input as energyade_in
+from teaser.data.input.citydpc_input import load_dpc_buildings
 
 
 class Project(object):
@@ -1195,6 +1196,19 @@ internal_gains_mode: int [1, 2, 3]
                                                               archetypes=archetypes)
 
         return gml_copy, boundary_box
+
+    def load_from_citydpc(self, dataset, common_walls, method, archetypes=None):
+        """
+
+        Parameters
+        ----------
+        dataset
+        common_walls : object
+        method : object
+        archetypes
+        """
+        load_dpc_buildings(self, dataset, common_walls, method)
+        return
 
     def export_aixlib(
         self,
