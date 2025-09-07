@@ -335,18 +335,18 @@ internal_gains_mode: int [1, 2, 3]
            consideration of moisture and co2. The moisture calculation is
            based on SIA 2024 (2015) and regards persons and non-persons, the co2 calculation is based on
            Engineering ToolBox (2004) and regards only persons.
-        inner_wall_approximation_approach : str
-            'teaser_default' (default) sets length of inner walls = typical
-                length * height of floors + 2 * typical width * height of floors
-            'typical_minus_outer' sets length of inner walls = 2 * typical
-                length * height of floors + 2 * typical width * height of floors
-                - length of outer or interzonal walls
-            'typical_minus_outer_extended' like 'typical_minus_outer', but also
-                considers that
-                a) a non-complete "average room" reduces its circumference
-                  proportional to the square root of the area
-                b) rooftops, windows and ground floors (= walls with border to
-                    soil) may have a vertical share
+inner_wall_approximation_approach : str
+    'teaser_default' (default) sets length of inner walls = typical
+        length * height of floors + 2 * typical width * height of floors
+    'typical_minus_outer' sets length of inner walls = 2 * typical
+        length * height of floors + 2 * typical width * height of floors
+        - length of outer or interzonal walls
+    'typical_minus_outer_extended' like 'typical_minus_outer', but also
+        considers that
+        a) a non-complete "average room" reduces its circumference
+          proportional to the square root of the area
+        b) rooftops, windows and ground floors (= walls with border to
+            soil) may have a vertical share
 
         office_layout : int
             Structure of the floor plan of office buildings, default is 1,
@@ -405,6 +405,7 @@ internal_gains_mode: int [1, 2, 3]
                 net_leased_area,
                 with_ahu,
                 internal_gains_mode,
+                inner_wall_approximation_approach,
                 office_layout,
                 window_layout,
                 construction_type,
@@ -759,6 +760,7 @@ internal_gains_mode: int [1, 2, 3]
                     type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
+                    inner_wall_approximation_approach,
                     construction_type
                 )
                 type_bldg.generate_archetype()

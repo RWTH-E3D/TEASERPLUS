@@ -407,28 +407,27 @@ class ThermalZone(object):
                              - self.area)
             wall_area = max(0.01, wall_area)
         elif approximation_approach == 'teco_graph_based':
-            for wall in self.inner_walls:
-                if self.parent.usage == "single_family_house":
-                    building = IntWallAreaSFH(NLA=self.parent.net_leased_area,
-                                              number_of_storeys=self.parent.number_of_floors,
-                                              storey_height=self.parent.height_of_floors)
-                    intwall_output_list = building.intwall_list()
-                elif self.parent.usage == "multi_family_house":
-                    print("Area of Building:", self.parent.net_leased_area, "Number of Storeys:",
-                          self.parent.number_of_floors, "Storey Height:", self.parent.height_of_floors)
-                    building = IntWallAreaMFH(NLA=self.parent.net_leased_area,
-                                              number_of_storeys=self.parent.number_of_floors,
-                                              storey_height=self.parent.height_of_floors)
-                    intwall_output_list = building.total_intwall()
-                elif self.parent.usage == "office":
-                    building = IntWallAreaOffice(
-                        area_of_floor=self.parent.net_leased_area / self.parent.number_of_floors,
-                        number_of_storeys=self.parent.number_of_floors,
-                        storey_height=self.parent.height_of_floors)
-                    intwall_output_list = building.floor_layout()
+            if type(self.parent).__name__ == "SingleFamilyHouse" and 1 <= self.parent.number_of_floors <= 4:
+                intwall = IntWallAreaSFH(NLA=self.parent.net_leased_area,
+                                          number_of_storeys=self.parent.number_of_floors,
+                                          storey_height=self.parent.height_of_floors)
+                intwall_output_list = intwall.intwall_list()
+            elif type(self.parent).__name__ == "MultiFamilyHouse":
+                print("Area of Building:", self.parent.net_leased_area, "Number of Storeys:",
+                      self.parent.number_of_floors, "Storey Height:", self.parent.height_of_floors)
+                intwall = IntWallAreaMFH(NLA=self.parent.net_leased_area,
+                                          number_of_storeys=self.parent.number_of_floors,
+                                          storey_height=self.parent.height_of_floors)
+                intwall_output_list = intwall.total_intwall()
+            elif type(self.parent).__name__ == "Office":
+                intwall = IntWallAreaOffice(
+                    area_of_floor=self.parent.net_leased_area / self.parent.number_of_floors,
+                    number_of_storeys=self.parent.number_of_floors,
+                    storey_height=self.parent.height_of_floors)
+                intwall_output_list = intwall.floor_layout()
 
-                # wall.area = calculate_median(intwall_output_list)
-                wall_area = self._calculate_average(intwall_output_list)
+            # wall.area = calculate_median(intwall_output_list)
+            wall_area = self._calculate_average(intwall_output_list)
         else:
             wall_area = (avg_room_nr
                          * (self.use_conditions.typical_length
@@ -439,13 +438,12 @@ class ThermalZone(object):
         for wall in self.inner_walls:
             wall.area = wall_area
 
-    """Teco"""
-
-    # ToDo restructure Teco innerwall part as own function
-    # ToDo call usage type from bldg type of parent (see Clara)
-    # ToDo decide for one innerwall function and replace
-    # ToDo wall.area_teco does not exist! Also get rid of evaluation part-functions
-    # ToDo Rename building to unique name (such as intwall)
+    """Innerwall Merge"""
+    # ToDo restructure Teco innerwall part as own function - done
+    # ToDo call usage type from bldg type of parent (see Clara) - done
+    # ToDo decide for one innerwall function and replace - no need, can choice, default is old teaser
+    # ToDo wall.area_teco does not exist! Also get rid of evaluation part-functions -done
+    # ToDo Rename building to unique name (such as intwall) -done
 
 
 

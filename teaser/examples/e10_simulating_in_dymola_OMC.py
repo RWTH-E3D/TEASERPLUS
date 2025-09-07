@@ -8,44 +8,37 @@ from teaser.logic.simulation.simulate import simulate
 def main():
     # Projekt anlegen und Gebäude hinzufügen
     prj = Project(load_data=True)
-    prj.name = "dymola_omc"
+    prj.name = "inner_graph_approx"
     # prj.add_non_residential(
     #     method="bmvbs",
     #     usage="office",
     #     name="Office",
     #     year_of_construction=2015,
-    #     number_of_floors=1,
+    #     number_of_floors=2,
     #     height_of_floors=3.0,
     #     net_leased_area=100.0,
-    #     with_ahu=False
+    #     with_ahu=False,
+    #     construction_type="heavy"
     # )
     prj.add_residential(
         method="tabula_de",
         usage="single_family_house",
         name="sfh",
         year_of_construction=2015,
+        number_of_floors=2,
+        height_of_floors=3.0,
+        net_leased_area=45.0,
+        inner_wall_approximation_approach="teco_graph_based"
+    )
+    prj.add_residential(
+        method="tabula_de",
+        usage="multi_family_house",
+        name="mfh",
+        year_of_construction=2005,
         number_of_floors=1,
         height_of_floors=3.0,
         net_leased_area=100.0,
     )
-    # prj.add_residential(
-    #     method="tabula_de",
-    #     usage="single_family_house",
-    #     name="TestBuilding1",
-    #     year_of_construction=2005,
-    #     number_of_floors=1,
-    #     height_of_floors=3.0,
-    #     net_leased_area=100.0,
-    # )
-    # prj.add_residential(
-    #     method="tabula_de",
-    #     usage="multi_family_house",
-    #     name="TestBuilding2",
-    #     year_of_construction=2005,
-    #     number_of_floors=1,
-    #     height_of_floors=3.0,
-    #     net_leased_area=100.0,
-    # )
     prj.number_of_elements_calc = 2
     prj.merge_windows_calc = False
     prj.calc_all_buildings(raise_errors=True)
@@ -67,18 +60,18 @@ def main():
     result_csv_dy = package_dir / "results_dy.csv"
 
     # Simulation mit Dymola
-    simulate(
-        path=str(export_root),
-        manifest_path=str(manifest_file),
-        loading_time=0.0,
-        result_path=str(result_csv_dy),
-        simulator="Dymola",
-        start_time=start_time,
-        stop_time=stop_time,
-        intervals=intervals,
-    )
-    print("Dymola Simulation erfolgreich:")
-    print(f"Ergebnisse gespeichert in: {result_csv_dy}")
+    # simulate(
+    #     path=str(export_root),
+    #     manifest_path=str(manifest_file),
+    #     loading_time=0.0,
+    #     result_path=str(result_csv_dy),
+    #     simulator="Dymola",
+    #     start_time=start_time,
+    #     stop_time=stop_time,
+    #     intervals=intervals,
+    # )
+    # print("Dymola Simulation erfolgreich:")
+    # print(f"Ergebnisse gespeichert in: {result_csv_dy}")
 
     # Simulation mit OpenModelica
     simulate(

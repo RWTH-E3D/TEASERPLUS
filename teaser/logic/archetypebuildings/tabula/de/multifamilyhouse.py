@@ -57,6 +57,18 @@ class MultiFamilyHouse(SingleFamilyHouse):
            consideration of moisture and co2. The moisture calculation is
            based on SIA 2024 (2015) and regards persons and non-persons, the co2 calculation is based on
            Engineering ToolBox (2004) and regards only persons.
+    inner_wall_approximation_approach : str
+        'teaser_default' (default) sets length of inner walls = typical
+            length * height of floors + 2 * typical width * height of floors
+        'typical_minus_outer' sets length of inner walls = 2 * typical
+            length * height of floors + 2 * typical width * height of floors
+            - length of outer or interzonal walls
+        'typical_minus_outer_extended' like 'typical_minus_outer', but also
+            considers that
+            a) a non-complete "average room" reduces its circumference
+              proportional to the square root of the area
+            b) rooftops, windows and ground floors (= walls with border to
+                soil) may have a vertical share
     construction_type : str
         Construction type of used wall constructions default is "existing
         state"
@@ -81,6 +93,7 @@ class MultiFamilyHouse(SingleFamilyHouse):
             type_heat_supply_system=None,
             with_ahu=False,
             internal_gains_mode=1,
+            inner_wall_approximation_approach='teaser_default',
             construction_type=None):
 
         super(MultiFamilyHouse, self).__init__(
@@ -93,6 +106,7 @@ class MultiFamilyHouse(SingleFamilyHouse):
             type_heat_supply_system,
             with_ahu,
             internal_gains_mode,
+            inner_wall_approximation_approach,
             construction_type)
 
         self.construction_type = construction_type
