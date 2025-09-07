@@ -167,8 +167,7 @@ class Building(object):
 
         self.number_of_floors = None
         self.height_of_floors = None
-        self.inner_wall_approximation_approach \
-            = inner_wall_approximation_approach
+        self.inner_wall_approximation_approach = inner_wall_approximation_approach
         self.internal_id = uuid.uuid1()
         self._year_of_retrofit = None
 #ToDo rethink positioning of "type of retrofit" for heating systems (not explicit enough); retrofit is actually in construction type
@@ -987,7 +986,7 @@ class Building(object):
     def inner_wall_approximation_approach(self, value):
         ass_error_1 = "inner wall approximation approach needs to be one of " \
                       "'teaser_default', 'typical_minus_outer', " \
-                      "'typical_minus_outer_extended'"
+                      "'typical_minus_outer_extended' ,'teco_graph_based','teco_math_based'"
 
         assert value in (
             'teaser_default',

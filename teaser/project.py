@@ -278,10 +278,11 @@ class Project(object):
         number_of_floors,
         height_of_floors,
         net_leased_area,
+        type_heat_supply_system=None,
         with_ahu=True,
         internal_gains_mode=1,
-        inner_wall_approximation_approach='teaser_default',
         office_layout=None,
+        inner_wall_approximation_approach='teaser_default',
         window_layout=None,
         construction_type=None,
     ):
@@ -324,29 +325,29 @@ class Project(object):
             and
             assigned to attribute central_ahu. This instance holds information
             for central Air Handling units. Default is False.
-internal_gains_mode: int [1, 2, 3]
-        mode for the internal gains calculation done in AixLib:
-        1: Temperature and activity degree dependent heat flux calculation for persons. The
-           calculation is based on  SIA 2024 (default)
-        2: Temperature and activity degree independent heat flux calculation for persons, the max.
-           heatflowrate is prescribed by the parameter
-           fixed_heat_flow_rate_persons.
-        3: Temperature and activity degree dependent calculation with
-           consideration of moisture and co2. The moisture calculation is
-           based on SIA 2024 (2015) and regards persons and non-persons, the co2 calculation is based on
-           Engineering ToolBox (2004) and regards only persons.
-inner_wall_approximation_approach : str
-    'teaser_default' (default) sets length of inner walls = typical
-        length * height of floors + 2 * typical width * height of floors
-    'typical_minus_outer' sets length of inner walls = 2 * typical
-        length * height of floors + 2 * typical width * height of floors
-        - length of outer or interzonal walls
-    'typical_minus_outer_extended' like 'typical_minus_outer', but also
-        considers that
-        a) a non-complete "average room" reduces its circumference
-          proportional to the square root of the area
-        b) rooftops, windows and ground floors (= walls with border to
-            soil) may have a vertical share
+        internal_gains_mode: int [1, 2, 3]
+                mode for the internal gains calculation done in AixLib:
+                1: Temperature and activity degree dependent heat flux calculation for persons. The
+                   calculation is based on  SIA 2024 (default)
+                2: Temperature and activity degree independent heat flux calculation for persons, the max.
+                   heatflowrate is prescribed by the parameter
+                   fixed_heat_flow_rate_persons.
+                3: Temperature and activity degree dependent calculation with
+                   consideration of moisture and co2. The moisture calculation is
+                   based on SIA 2024 (2015) and regards persons and non-persons, the co2 calculation is based on
+                   Engineering ToolBox (2004) and regards only persons.
+        inner_wall_approximation_approach : str
+            'teaser_default' (default) sets length of inner walls = typical
+                length * height of floors + 2 * typical width * height of floors
+            'typical_minus_outer' sets length of inner walls = 2 * typical
+                length * height of floors + 2 * typical width * height of floors
+                - length of outer or interzonal walls
+            'typical_minus_outer_extended' like 'typical_minus_outer', but also
+                considers that
+                a) a non-complete "average room" reduces its circumference
+                  proportional to the square root of the area
+                b) rooftops, windows and ground floors (= walls with border to
+                    soil) may have a vertical share
 
         office_layout : int
             Structure of the floor plan of office buildings, default is 1,
@@ -403,10 +404,11 @@ inner_wall_approximation_approach : str
                 number_of_floors,
                 height_of_floors,
                 net_leased_area,
+                type_heat_supply_system,
                 with_ahu,
                 internal_gains_mode,
-                inner_wall_approximation_approach,
                 office_layout,
+                inner_wall_approximation_approach,
                 window_layout,
                 construction_type,
             )
@@ -420,9 +422,11 @@ inner_wall_approximation_approach : str
                 number_of_floors,
                 height_of_floors,
                 net_leased_area,
+                type_heat_supply_system,
                 with_ahu,
                 internal_gains_mode,
                 office_layout,
+                inner_wall_approximation_approach,
                 window_layout,
                 construction_type,
             )

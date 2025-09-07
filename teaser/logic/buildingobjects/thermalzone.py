@@ -444,9 +444,7 @@ class ThermalZone(object):
     # ToDo decide for one innerwall function and replace - no need, can choice, default is old teaser
     # ToDo wall.area_teco does not exist! Also get rid of evaluation part-functions -done
     # ToDo Rename building to unique name (such as intwall) -done
-
-
-
+    # ToDo go through office example, area of innerwalls besides the Office is negative
 
     def set_volume_zone(self):
         """Sets the zone volume according to area and height of floors

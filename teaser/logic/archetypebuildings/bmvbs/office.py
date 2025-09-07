@@ -159,9 +159,11 @@ class Office(NonResidential):
         number_of_floors=None,
         height_of_floors=None,
         net_leased_area=None,
+        type_heat_supply_system=None,
         with_ahu=False,
         internal_gains_mode=1,
         office_layout=None,
+        inner_wall_approximation_approach='teaser_default',
         window_layout=None,
         construction_type=None,
     ):
@@ -172,11 +174,15 @@ class Office(NonResidential):
             name,
             year_of_construction,
             net_leased_area,
+            type_heat_supply_system,
             with_ahu,
             internal_gains_mode,
+            inner_wall_approximation_approach,
         )
 
         self.office_layout = office_layout
+        self.inner_wall_approximation_approach \
+            = inner_wall_approximation_approach
         self.window_layout = window_layout
         self.construction_type = construction_type
         self.number_of_floors = number_of_floors
