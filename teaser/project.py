@@ -280,6 +280,7 @@ class Project(object):
         net_leased_area,
         with_ahu=True,
         internal_gains_mode=1,
+        inner_wall_approximation_approach='teaser_default',
         office_layout=None,
         window_layout=None,
         construction_type=None,
@@ -334,6 +335,19 @@ internal_gains_mode: int [1, 2, 3]
            consideration of moisture and co2. The moisture calculation is
            based on SIA 2024 (2015) and regards persons and non-persons, the co2 calculation is based on
            Engineering ToolBox (2004) and regards only persons.
+        inner_wall_approximation_approach : str
+            'teaser_default' (default) sets length of inner walls = typical
+                length * height of floors + 2 * typical width * height of floors
+            'typical_minus_outer' sets length of inner walls = 2 * typical
+                length * height of floors + 2 * typical width * height of floors
+                - length of outer or interzonal walls
+            'typical_minus_outer_extended' like 'typical_minus_outer', but also
+                considers that
+                a) a non-complete "average room" reduces its circumference
+                  proportional to the square root of the area
+                b) rooftops, windows and ground floors (= walls with border to
+                    soil) may have a vertical share
+
         office_layout : int
             Structure of the floor plan of office buildings, default is 1,
             which is representative for one elongated floor.
@@ -461,9 +475,10 @@ internal_gains_mode: int [1, 2, 3]
         number_of_floors,
         height_of_floors,
         net_leased_area,
-        type_heat_supply_system,
+        type_heat_supply_system=1,
         with_ahu=False,
         internal_gains_mode=1,
+        inner_wall_approximation_approach='teaser_default',
         residential_layout=None,
         neighbour_buildings=None,
         attic=None,
@@ -514,29 +529,43 @@ internal_gains_mode: int [1, 2, 3]
             and
             assigned to attribute central_ahu. This instance holds information
             for central Air Handling units. Default is False.
-internal_gains_mode: int [1, 2, 3]
-        mode for the internal gains calculation done in AixLib:
-        1: Temperature and activity degree dependent heat flux calculation for persons. The
-           calculation is based on  SIA 2024 (default)
-        2: Temperature and activity degree independent heat flux calculation for persons, the max.
-           heatflowrate is prescribed by the parameter
-           fixed_heat_flow_rate_persons.
-        3: Temperature and activity degree dependent calculation with
-           consideration of moisture and co2. The moisture calculation is
-           based on SIA 2024 (2015) and regards persons and non-persons, the co2 calculation is based on
-           Engineering ToolBox (2004) and regards only persons.
+        internal_gains_mode: int [1, 2, 3]
+                mode for the internal gains calculation done in AixLib:
+                1: Temperature and activity degree dependent heat flux calculation for persons. The
+                   calculation is based on  SIA 2024 (default)
+                2: Temperature and activity degree independent heat flux calculation for persons, the max.
+                   heatflowrate is prescribed by the parameter
+                   fixed_heat_flow_rate_persons.
+                3: Temperature and activity degree dependent calculation with
+                   consideration of moisture and co2. The moisture calculation is
+                   based on SIA 2024 (2015) and regards persons and non-persons, the co2 calculation is based on
+                   Engineering ToolBox (2004) and regards only persons.
+
+       inner_wall_approximation_approach : str
+            'teaser_default' (default) sets length of inner walls = typical
+                length * height of floors + 2 * typical width * height of floors
+            'typical_minus_outer' sets length of inner walls = 2 * typical
+                length * height of floors + 2 * typical width * height of floors
+                - length of outer or interzonal walls
+            'typical_minus_outer_extended' like 'typical_minus_outer', but also
+                considers that
+                a) a non-complete "average room" reduces its circumference
+                  proportional to the square root of the area
+                b) rooftops, windows and ground floors (= walls with border to
+                    soil) may have a vertical share
+
         residential_layout : int
             Structure of floor plan (default = 0) CAUTION only used for iwu
                 0: compact
                 1: elongated/complex
-        neighbour_buildings : int
+       neighbour_buildings : int
             Number of neighbour buildings. CAUTION: this will not change
             the orientation of the buildings wall, but just the overall
             exterior wall and window area(!) (default = 0)
                 0: no neighbour
                 1: one neighbour
                 2: two neighbours
-        attic : int
+       attic : int
             Design of the attic. CAUTION: this will not change the orientation
             or tilt of the roof instances, but just adapt the roof area(!) (
             default = 0) CAUTION only used for iwu
@@ -544,7 +573,7 @@ internal_gains_mode: int [1, 2, 3]
                 1: non heated attic
                 2: partly heated attic
                 3: heated attic
-        cellar : int
+       cellar : int
             Design of the of cellar CAUTION: this will not change the
             orientation, tilt of GroundFloor instances, nor the number or area
             of ThermalZones, but will change GroundFloor area(!) (default = 0)
@@ -553,20 +582,20 @@ internal_gains_mode: int [1, 2, 3]
                 1: non heated cellar
                 2: partly heated cellar
                 3: heated cellar
-        dormer : str
+       dormer : str
             Is a dormer attached to the roof? CAUTION: this will not
             change roof or window orientation or tilt, but just adapt the roof
             area(!) (default = 0) CAUTION only used for iwu
                 0: no dormer
                 1: dormer
-        construction_type : str
+       construction_type : str
             Construction type of used wall constructions default is "heavy")
                 heavy: heavy construction
                 light: light construction
-        number_of_apartments : int
+       number_of_apartments : int
             number of apartments inside Building (default = 1). CAUTION only
             used for urbanrenet
-        type_heat_supply_system : int
+       type_heat_supply_system : int
             Type of the Heat System
             Default 1 for buildings younger than 2016, else 3.
 
@@ -695,6 +724,7 @@ internal_gains_mode: int [1, 2, 3]
                     type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
+                    inner_wall_approximation_approach,
                     construction_type
                 )
                 type_bldg.generate_archetype()

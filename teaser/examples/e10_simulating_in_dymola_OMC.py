@@ -8,17 +8,17 @@ from teaser.logic.simulation.simulate import simulate
 def main():
     # Projekt anlegen und Gebäude hinzufügen
     prj = Project(load_data=True)
-    prj.name = "dymola_cli"
-    prj.add_non_residential(
-        method="bmvbs",
-        usage="office",
-        name="Office",
-        year_of_construction=2015,
-        number_of_floors=1,
-        height_of_floors=3.0,
-        net_leased_area=100.0,
-        with_ahu=False
-    )
+    prj.name = "dymola_omc"
+    # prj.add_non_residential(
+    #     method="bmvbs",
+    #     usage="office",
+    #     name="Office",
+    #     year_of_construction=2015,
+    #     number_of_floors=1,
+    #     height_of_floors=3.0,
+    #     net_leased_area=100.0,
+    #     with_ahu=False
+    # )
     prj.add_residential(
         method="tabula_de",
         usage="single_family_house",

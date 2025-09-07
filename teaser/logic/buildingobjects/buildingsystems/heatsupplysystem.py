@@ -1081,7 +1081,7 @@ class HeatSupplySystem(object):
 
     @parent.setter
     def parent(self, value):
-        from teco.logic.buildingobjects.building import Building
+        from teaser.logic.buildingobjects.building import Building
         import inspect
         if value is not None:
             if inspect.isclass(Building):

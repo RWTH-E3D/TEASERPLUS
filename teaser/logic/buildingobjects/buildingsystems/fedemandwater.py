@@ -509,7 +509,7 @@ class FEDemandWater(object):
 
     @parent.setter
     def parent(self, value):
-        from teaser.teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
+        from teaser.logic.buildingobjects.buildingsystems.heatsupplysystem import HeatSupplySystem
         import inspect
         if value is not None:
             if inspect.isclass(HeatSupplySystem):

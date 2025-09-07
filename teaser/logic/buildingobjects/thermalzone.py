@@ -5,6 +5,7 @@
 """
 from __future__ import division
 import random
+import math
 import re
 import warnings
 import uuid
@@ -329,6 +330,16 @@ class ThermalZone(object):
                 pass
         return elements
 
+    @staticmethod
+    def _calculate_average(my_list):
+        # To obtain the median of elements within a list as the final result
+        # Check if the list is not empty to avoid division by zero
+        if len(my_list) == 0:
+            return 0  # You can choose to return 0 or handle the empty list case differently
+        # Calculate the average
+        average = sum(my_list) / len(my_list)
+        return average
+
     def set_inner_wall_area(self):
         """Sets the inner wall area according to zone area
 
@@ -350,16 +361,83 @@ class ThermalZone(object):
                 (self.parent.number_of_floors - 1) /
                 self.parent.number_of_floors) * self.area
 
+        typical_area = self.use_conditions.typical_length * \
+                       self.use_conditions.typical_width
+
+        avg_room_nr = self.area / typical_area
+
+        approximation_approach \
+            = self.parent.inner_wall_approximation_approach
+        if approximation_approach not in (
+                'teaser_default',
+                'typical_minus_outer',
+                'typical_minus_outer_extended',
+                'teco_graph_based',
+                'teco_math_based'
+        ):
+            warnings.warn(f'Inner wall approximation approach '
+                          f'{approximation_approach} unknown. '
+                          f'Falling back to teaser_default.')
+            approximation_approach = 'teaser_default'
+        if approximation_approach == 'typical_minus_outer':
+            wall_area = ((int(avg_room_nr)
+                          + math.sqrt(avg_room_nr - int(avg_room_nr)))
+                         * (2 * self.use_conditions.typical_length
+                            * self.parent.height_of_floors
+                            + 2 * self.use_conditions.typical_width
+                            * self.parent.height_of_floors))
+            for other_verticals in self.outer_walls + self.interzonal_walls\
+                    + self.windows + self.doors:
+                wall_area -= other_verticals.area
+            wall_area = max(0.01, wall_area)
+        elif approximation_approach == 'typical_minus_outer_extended':
+            wall_area = ((int(avg_room_nr)
+                          + math.sqrt(avg_room_nr - int(avg_room_nr)))
+                         * (2 * self.use_conditions.typical_length
+                            * self.parent.height_of_floors
+                            + 2 * self.use_conditions.typical_width
+                            * self.parent.height_of_floors))
+            for other_verticals in self.outer_walls + self.interzonal_walls\
+                    + self.doors:
+                wall_area -= other_verticals.area
+            for pot_vert_be in self.rooftops + self.windows:
+                wall_area -= pot_vert_be.area \
+                             * math.sin(pot_vert_be.tilt * math.pi / 180)
+            wall_area -= max(0.0, sum(gf.area for gf in self.ground_floors)
+                             - self.area)
+            wall_area = max(0.01, wall_area)
+        elif approximation_approach == 'teco_graph_based':
+            for wall in self.inner_walls:
+                if self.parent.usage == "single_family_house":
+                    building = IntWallAreaSFH(NLA=self.parent.net_leased_area,
+                                              number_of_storeys=self.parent.number_of_floors,
+                                              storey_height=self.parent.height_of_floors)
+                    intwall_output_list = building.intwall_list()
+                elif self.parent.usage == "multi_family_house":
+                    print("Area of Building:", self.parent.net_leased_area, "Number of Storeys:",
+                          self.parent.number_of_floors, "Storey Height:", self.parent.height_of_floors)
+                    building = IntWallAreaMFH(NLA=self.parent.net_leased_area,
+                                              number_of_storeys=self.parent.number_of_floors,
+                                              storey_height=self.parent.height_of_floors)
+                    intwall_output_list = building.total_intwall()
+                elif self.parent.usage == "office":
+                    building = IntWallAreaOffice(
+                        area_of_floor=self.parent.net_leased_area / self.parent.number_of_floors,
+                        number_of_storeys=self.parent.number_of_floors,
+                        storey_height=self.parent.height_of_floors)
+                    intwall_output_list = building.floor_layout()
+
+                # wall.area = calculate_median(intwall_output_list)
+                wall_area = self._calculate_average(intwall_output_list)
+        else:
+            wall_area = (avg_room_nr
+                         * (self.use_conditions.typical_length
+                            * self.parent.height_of_floors
+                            + 2 * self.use_conditions.typical_width
+                            * self.parent.height_of_floors))
+
         for wall in self.inner_walls:
-            typical_area = self.use_conditions.typical_length * \
-                self.use_conditions.typical_width
-
-            avg_room_nr = self.area / typical_area
-
-            wall.area = (avg_room_nr * (self.use_conditions.typical_length *
-                                        self.parent.height_of_floors +
-                                        2 * self.use_conditions.typical_width *
-                                        self.parent.height_of_floors))
+            wall.area = wall_area
 
     """Teco"""
 
@@ -368,36 +446,9 @@ class ThermalZone(object):
     # ToDo decide for one innerwall function and replace
     # ToDo wall.area_teco does not exist! Also get rid of evaluation part-functions
     # ToDo Rename building to unique name (such as intwall)
-    # To obtain the median of elements within a list as the final result
-    def calculate_average(my_list):
-        # Check if the list is not empty to avoid division by zero
-        if len(my_list) == 0:
-            return 0  # You can choose to return 0 or handle the empty list case differently
-        # Calculate the average
-        average = sum(my_list) / len(my_list)
-        return average
 
-    for wall in self.inner_walls:
-        if self.parent.usage == "single_family_house":
-            building = IntWallAreaSFH(NLA=self.parent.net_leased_area,
-                                      number_of_storeys=self.parent.number_of_floors,
-                                      storey_height=self.parent.height_of_floors)
-            intwall_output_list = building.intwall_list()
-        elif self.parent.usage == "multi_family_house":
-            print("Area of Building:", self.parent.net_leased_area, "Number of Storeys:",
-                  self.parent.number_of_floors, "Storey Height:", self.parent.height_of_floors)
-            building = IntWallAreaMFH(area_of_building=self.parent.net_leased_area,
-                                      number_of_storeys=self.parent.number_of_floors,
-                                      storey_height=self.parent.height_of_floors)
-            intwall_output_list = building.total_intwall()
-        elif self.parent.usage == "office":
-            building = IntWallAreaOffice(area_of_floor=self.parent.net_leased_area / self.parent.number_of_floors,
-                                         number_of_storeys=self.parent.number_of_floors,
-                                         storey_height=self.parent.height_of_floors)
-            intwall_output_list = building.floor_layout()
 
-        # wall.area = calculate_median(intwall_output_list)
-        wall.area_Teco = calculate_average(intwall_output_list)
+
 
     def set_volume_zone(self):
         """Sets the zone volume according to area and height of floors

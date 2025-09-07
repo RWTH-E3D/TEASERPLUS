@@ -53,7 +53,21 @@ class Building(object):
            consideration of moisture and co2. The moisture calculation is
            based on SIA 2024 (2015) and regards persons and non-persons, the co2 calculation is based on
            Engineering ToolBox (2004) and regards only persons.
-
+    inner_wall_approximation_approach : str
+        'teaser_default' (default) assumes area of inner wall per room as equal
+            to one typical length (defined in use conditions) * height of
+            floors, where number of rooms is
+            zone area/(typical length + typical width)
+        'typical_minus_outer' sets length of inner walls per room = 2 * typical
+            length * height of floors + 2 * typical width * height of floors
+            - length of outer or interzonal walls. When calculating the number
+            of rooms, considers the square root of the share for non-complete
+            rooms in comparison to 'teaser_default'.
+        'typical_minus_outer_extended' like 'typical_minus_outer', but also
+            considers that rooftops, windows and ground floors (= walls with
+            border to soil) may have vertical and horizontal shares
+        area of floors and ceilings is not affected by this and always equal to
+        (zone number of floors - 1) * zone area
     Attributes
     ----------
     central_ahu : instance of BuildingAHU
@@ -132,7 +146,8 @@ class Building(object):
         net_leased_area=None,
         type_heat_supply_system=None,
         with_ahu=False,
-        internal_gains_mode=1
+        internal_gains_mode=1,
+        inner_wall_approximation_approach='teaser_default'
     ):
         """Constructor of Building Class
         """
@@ -152,6 +167,8 @@ class Building(object):
 
         self.number_of_floors = None
         self.height_of_floors = None
+        self.inner_wall_approximation_approach \
+            = inner_wall_approximation_approach
         self.internal_id = uuid.uuid1()
         self._year_of_retrofit = None
 #ToDo rethink positioning of "type of retrofit" for heating systems (not explicit enough); retrofit is actually in construction type
@@ -961,4 +978,25 @@ class Building(object):
     @simulated_heat_load.setter
     def simulated_heat_load(self, value):
         self._simulated_heat_load = value
+
+    @property
+    def inner_wall_approximation_approach(self):
+        return self._inner_wall_approximation_approach
+
+    @inner_wall_approximation_approach.setter
+    def inner_wall_approximation_approach(self, value):
+        ass_error_1 = "inner wall approximation approach needs to be one of " \
+                      "'teaser_default', 'typical_minus_outer', " \
+                      "'typical_minus_outer_extended'"
+
+        assert value in (
+            'teaser_default',
+            'typical_minus_outer',
+            'typical_minus_outer_extended',
+            'teco_graph_based',
+            'teco_math_based'
+        ), ass_error_1
+
+        self._inner_wall_approximation_approach = value
+
 
