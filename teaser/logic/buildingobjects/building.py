@@ -68,6 +68,16 @@ class Building(object):
             border to soil) may have vertical and horizontal shares
         area of floors and ceilings is not affected by this and always equal to
         (zone number of floors - 1) * zone area
+        'teco_graph_based' uses evidence-(literature-)based values for room sizes and
+            distributions thereof to derive interior walls' lengths and areas.
+            ! Only available for single-family/terraced houses with 2 to 4 floors, multi-family houses,
+            and offices with at least 200m^2 net_leased_area !
+        'teco_analytical' starts from shared walls between different rooms and assembles rooms
+            to fit into the (simplified) rectangular building cubage.
+            ! Only available for single-family/terraced houses with 2 to 4 floors, or multi-family houses !
+        Both teco-based approaches use Latin Hypercube Sampling (LHS) to find median values for
+        the interior wall area in parametrized building interior setups. Neither has alternative
+        calculation approaches for the floor and ceiling areas.
     Attributes
     ----------
     central_ahu : instance of BuildingAHU
@@ -986,14 +996,14 @@ class Building(object):
     def inner_wall_approximation_approach(self, value):
         ass_error_1 = "inner wall approximation approach needs to be one of " \
                       "'teaser_default', 'typical_minus_outer', " \
-                      "'typical_minus_outer_extended' ,'teco_graph_based','teco_math_based'"
+                      "'typical_minus_outer_extended' ,'teco_graph_based','teco_analytical'"
 
         assert value in (
             'teaser_default',
             'typical_minus_outer',
             'typical_minus_outer_extended',
             'teco_graph_based',
-            'teco_math_based'
+            'teco_analytical'
         ), ass_error_1
 
         self._inner_wall_approximation_approach = value

@@ -345,6 +345,29 @@ class ThermalZone(object):
 
         Sets the inner wall area according to zone area size if type building
         approach is used. This function covers Floors, Ceilings and InnerWalls.
+
+        approximation_approach: str
+        'teaser_default' (default) sets length of inner walls = typical
+            length * height of floors + 2 * typical width * height of floors
+        'typical_minus_outer' sets length of inner walls = 2 * typical
+            length * height of floors + 2 * typical width * height of floors
+            - length of outer or interzonal walls
+        'typical_minus_outer_extended' like 'typical_minus_outer', but also
+            considers that
+            a) a non-complete "average room" reduces its circumference
+              proportional to the square root of the area
+            b) rooftops, windows and ground floors (= walls with border to
+                soil) may have a vertical share
+        'teco_graph_based' uses evidence-(literature-)based values for room sizes and
+            distributions thereof to derive interior walls' lengths and areas.
+            ! Only available for single-family/terraced houses with 2 to 4 floors, multi-family houses,
+            and offices with at least 200m^2 net_leased_area !
+        'teco_analytical' starts from shared walls between different rooms and assembles rooms
+            to fit into the (simplified) rectangular building cubage.
+            ! Only available for single-family/terraced houses with 2 to 4 floors, or multi-family houses !
+        Both teco-based approaches use Latin Hypercube Sampling (LHS) to find median values for
+        the interior wall area in parametrized building interior setups. Neither has alternative
+        calculation approaches for the floor and ceiling areas.
         """
 
         ass_error_1 = "You need to specify parent for thermal zone"
@@ -373,7 +396,7 @@ class ThermalZone(object):
                 'typical_minus_outer',
                 'typical_minus_outer_extended',
                 'teco_graph_based',
-                'teco_math_based'
+                'teco_analytical'
         ):
             warnings.warn(f'Inner wall approximation approach '
                           f'{approximation_approach} unknown. '
@@ -407,15 +430,20 @@ class ThermalZone(object):
                              - self.area)
             wall_area = max(0.01, wall_area)
         elif approximation_approach == 'teco_graph_based':
-            if type(self.parent).__name__ == "SingleFamilyHouse" and 1 <= self.parent.number_of_floors <= 4:
-                intwall = IntWallAreaSFH(NLA=self.parent.net_leased_area,
+            if type(self.parent).__name__ == "SingleFamilyHouse" and 2 <= self.parent.number_of_floors <= 4:
+                intwall = IntWallAreaSFH(net_leased_area=self.parent.net_leased_area,
+                                          number_of_storeys=self.parent.number_of_floors,
+                                          storey_height=self.parent.height_of_floors)
+                intwall_output_list = intwall.intwall_list()
+            elif type(self.parent).__name__ == "TerracedHouse" and 2 <= self.parent.number_of_floors <= 4:
+                intwall = IntWallAreaSFH(net_leased_area=self.parent.net_leased_area,
                                           number_of_storeys=self.parent.number_of_floors,
                                           storey_height=self.parent.height_of_floors)
                 intwall_output_list = intwall.intwall_list()
             elif type(self.parent).__name__ == "MultiFamilyHouse":
                 print("Area of Building:", self.parent.net_leased_area, "Number of Storeys:",
                       self.parent.number_of_floors, "Storey Height:", self.parent.height_of_floors)
-                intwall = IntWallAreaMFH(NLA=self.parent.net_leased_area,
+                intwall = IntWallAreaMFH(net_leased_area=self.parent.net_leased_area,
                                           number_of_storeys=self.parent.number_of_floors,
                                           storey_height=self.parent.height_of_floors)
                 intwall_output_list = intwall.total_intwall()
@@ -437,14 +465,11 @@ class ThermalZone(object):
 
         for wall in self.inner_walls:
             wall.area = wall_area
+        #print(wall.area)
 
     """Innerwall Merge"""
-    # ToDo restructure Teco innerwall part as own function - done
-    # ToDo call usage type from bldg type of parent (see Clara) - done
-    # ToDo decide for one innerwall function and replace - no need, can choice, default is old teaser
-    # ToDo wall.area_teco does not exist! Also get rid of evaluation part-functions -done
-    # ToDo Rename building to unique name (such as intwall) -done
     # ToDo go through office example, area of innerwalls besides the Office is negative
+    # ToDo add "mathematical" approach (rename to analytical)
 
     def set_volume_zone(self):
         """Sets the zone volume according to area and height of floors

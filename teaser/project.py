@@ -558,6 +558,16 @@ class Project(object):
                   proportional to the square root of the area
                 b) rooftops, windows and ground floors (= walls with border to
                     soil) may have a vertical share
+            'teco_graph_based' uses evidence-(literature-)based values for room sizes and
+                distributions thereof to derive interior walls' lengths and areas.
+                ! Only available for single-family/terraced houses with 2 to 4 floors, multi-family houses,
+                and offices with at least 200m^2 net_leased_area !
+            'teco_analytical' starts from shared walls between different rooms and assembles rooms
+                to fit into the (simplified) rectangular building cubage.
+                ! Only available for single-family/terraced houses with 2 to 4 floors, or multi-family houses !
+            Both teco-based approaches use Latin Hypercube Sampling (LHS) to find median values for
+            the interior wall area in parametrized building interior setups. Neither has alternative
+            calculation approaches for the floor and ceiling areas.
 
         residential_layout : int
             Structure of floor plan (default = 0) CAUTION only used for iwu
@@ -679,7 +689,7 @@ class Project(object):
                     net_leased_area,
                     with_ahu,
                     internal_gains_mode,
-                    construction_type,
+                    construction_type
                 )
                 type_bldg.generate_archetype()
                 return type_bldg
@@ -747,6 +757,7 @@ class Project(object):
                     type_heat_supply_system,
                     with_ahu,
                     internal_gains_mode,
+                    inner_wall_approximation_approach,
                     construction_type
                 )
                 type_bldg.generate_archetype()

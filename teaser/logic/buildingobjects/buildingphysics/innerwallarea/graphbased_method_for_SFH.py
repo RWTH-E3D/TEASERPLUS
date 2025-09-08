@@ -21,12 +21,12 @@ import numpy as np
 from pyDOE import lhs
 
 class IntWallAreaSFH:
-    def __init__(self, NLA, number_of_storeys, storey_height):
+    def __init__(self, net_leased_area, number_of_storeys, storey_height):
 
         """
         Constructor of IntWallArea class
 
-        NLA: Net Leased Area
+        net_leased_area
         number_of_storeys: number of storeys in the building
         has_basement: Boolean
         storey_height: average height of storeys
@@ -36,10 +36,10 @@ class IntWallAreaSFH:
         Each floor has a number of rooms of different usage types, assumed to be the common denominator of SFH in Germany.
         """
 
-        self.NLA = NLA
+        self.net_leased_area = net_leased_area
         self.number_of_storeys = number_of_storeys
         self.storey_height = storey_height
-        self.area_of_floor = self.NLA / self.number_of_storeys
+        self.area_of_floor = self.net_leased_area / self.number_of_storeys
 
         self.door_width = 1.1
         self.n_sample = 200
