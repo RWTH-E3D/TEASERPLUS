@@ -4,7 +4,7 @@ import random
 import numpy as np
 from pyDOE import lhs
 
-class IntWallAreaMFH:
+class IntWallAreaMFH_analytical:
     def __init__(self, NLA, number_of_storeys, storey_height):
 
         self.NLA = NLA

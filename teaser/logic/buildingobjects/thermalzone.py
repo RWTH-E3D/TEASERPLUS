@@ -13,9 +13,9 @@ from teaser.logic.buildingobjects.calculation.one_element import OneElement
 from teaser.logic.buildingobjects.calculation.two_element import TwoElement
 from teaser.logic.buildingobjects.calculation.three_element import ThreeElement
 from teaser.logic.buildingobjects.calculation.four_element import FourElement
-from teaser.logic.buildingobjects.buildingphysics.innerwallarea.graphbased_method_for_SFH import IntWallAreaSFH
-from teaser.logic.buildingobjects.buildingphysics.innerwallarea.graphbased_method_for_MFH import IntWallAreaMFH
-from teaser.logic.buildingobjects.buildingphysics.innerwallarea.graphbased_method_for_Office import IntWallAreaOffice
+from teaser.logic.buildingobjects.buildingphysics.innerwallarea.graphbased_method_for_SFH import IntWallAreaSFH_graph_based
+from teaser.logic.buildingobjects.buildingphysics.innerwallarea.graphbased_method_for_MFH import IntWallAreaMFH_graph_based
+from teaser.logic.buildingobjects.buildingphysics.innerwallarea.graphbased_method_for_Office import IntWallAreaOffice_graph_based
 #from teaser.logic.buildingobjects.buildingphysics.innerwallarea.mathematical_method_for_MFH import IntWallAreaMFH
 #from teaser.logic.buildingobjects.buildingphysics.innerwallarea.mathematical_method_for_SFH import IntWallAreaSFH
 
@@ -361,7 +361,7 @@ class ThermalZone(object):
         'teco_graph_based' uses evidence-(literature-)based values for room sizes and
             distributions thereof to derive interior walls' lengths and areas.
             ! Only available for single-family/terraced houses with 2 to 4 floors, multi-family houses,
-            and offices with at least 200m^2 net_leased_area !
+            and offices with at least 200m^2 net_leased_area per floor !
         'teco_analytical' starts from shared walls between different rooms and assembles rooms
             to fit into the (simplified) rectangular building cubage.
             ! Only available for single-family/terraced houses with 2 to 4 floors, or multi-family houses !
@@ -431,25 +431,25 @@ class ThermalZone(object):
             wall_area = max(0.01, wall_area)
         elif approximation_approach == 'teco_graph_based':
             if type(self.parent).__name__ == "SingleFamilyHouse" and 2 <= self.parent.number_of_floors <= 4:
-                intwall = IntWallAreaSFH(net_leased_area=self.parent.net_leased_area,
+                intwall = IntWallAreaSFH_graph_based(net_leased_area=self.parent.net_leased_area,
                                           number_of_storeys=self.parent.number_of_floors,
                                           storey_height=self.parent.height_of_floors)
                 intwall_output_list = intwall.intwall_list()
             elif type(self.parent).__name__ == "TerracedHouse" and 2 <= self.parent.number_of_floors <= 4:
-                intwall = IntWallAreaSFH(net_leased_area=self.parent.net_leased_area,
+                intwall = IntWallAreaSFH_graph_based(net_leased_area=self.parent.net_leased_area,
                                           number_of_storeys=self.parent.number_of_floors,
                                           storey_height=self.parent.height_of_floors)
                 intwall_output_list = intwall.intwall_list()
             elif type(self.parent).__name__ == "MultiFamilyHouse":
                 print("Area of Building:", self.parent.net_leased_area, "Number of Storeys:",
                       self.parent.number_of_floors, "Storey Height:", self.parent.height_of_floors)
-                intwall = IntWallAreaMFH(net_leased_area=self.parent.net_leased_area,
+                intwall = IntWallAreaMFH_graph_based(net_leased_area=self.parent.net_leased_area,
                                           number_of_storeys=self.parent.number_of_floors,
                                           storey_height=self.parent.height_of_floors)
                 intwall_output_list = intwall.total_intwall()
             elif type(self.parent).__name__ == "Office":
-                intwall = IntWallAreaOffice(
-                    area_of_floor=self.parent.net_leased_area / self.parent.number_of_floors,
+                intwall = IntWallAreaOffice_graph_based(
+                    net_leased_area=self.parent.net_leased_area,
                     number_of_storeys=self.parent.number_of_floors,
                     storey_height=self.parent.height_of_floors)
                 intwall_output_list = intwall.floor_layout()
@@ -465,10 +465,9 @@ class ThermalZone(object):
 
         for wall in self.inner_walls:
             wall.area = wall_area
-        #print(wall.area)
+        print(wall.area)
 
     """Innerwall Merge"""
-    # ToDo go through office example, area of innerwalls besides the Office is negative
     # ToDo add "mathematical" approach (rename to analytical)
 
     def set_volume_zone(self):

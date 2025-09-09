@@ -20,7 +20,7 @@ import random
 import numpy as np
 from pyDOE import lhs
 
-class IntWallAreaSFH:
+class IntWallAreaSFH_graph_based:
     def __init__(self, net_leased_area, number_of_storeys, storey_height):
 
         """
