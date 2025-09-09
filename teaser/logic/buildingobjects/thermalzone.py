@@ -435,38 +435,59 @@ class ThermalZone(object):
                                           number_of_storeys=self.parent.number_of_floors,
                                           storey_height=self.parent.height_of_floors)
                 intwall_output_list = intwall.intwall_list()
+            elif (type(self.parent).__name__ == "SingleFamilyHouse" and
+                  (self.parent.number_of_floors < 2 or self.parent.number_of_floors > 4)):
+                raise ValueError("For SFH the graph-based interior wall approximation approach can only be used for a number of floors between 2 and 4!"
+                      " Usage of the teaser_default approach is recommended.")
             elif type(self.parent).__name__ == "TerracedHouse" and 2 <= self.parent.number_of_floors <= 4:
                 intwall = IntWallAreaSFH_graph_based(net_leased_area=self.parent.net_leased_area,
                                           number_of_storeys=self.parent.number_of_floors,
                                           storey_height=self.parent.height_of_floors)
                 intwall_output_list = intwall.intwall_list()
+            elif type(self.parent).__name__ == "TerracedHouse" and (
+                    self.parent.number_of_floors < 2 or self.parent.number_of_floors > 4):
+                raise ValueError(
+                    "For TH the graph-based interior wall approximation approach can only be used for a number of floors between 2 and 4!"
+                    " Usage of the teaser_default approach is recommended.")
             elif type(self.parent).__name__ == "MultiFamilyHouse":
-                print("Area of Building:", self.parent.net_leased_area, "Number of Storeys:",
-                      self.parent.number_of_floors, "Storey Height:", self.parent.height_of_floors)
+                #print("Area of Building:", self.parent.net_leased_area, "Number of Storeys:",
+                #      self.parent.number_of_floors, "Storey Height:", self.parent.height_of_floors)
                 intwall = IntWallAreaMFH_graph_based(net_leased_area=self.parent.net_leased_area,
                                           number_of_storeys=self.parent.number_of_floors,
                                           storey_height=self.parent.height_of_floors)
                 intwall_output_list = intwall.total_intwall()
-            elif type(self.parent).__name__ == "Office":
+            elif type(self.parent).__name__ == "Office" and (self.parent.net_leased_area / self.parent.number_of_floors > 200):
                 intwall = IntWallAreaOffice_graph_based(
                     net_leased_area=self.parent.net_leased_area,
                     number_of_storeys=self.parent.number_of_floors,
                     storey_height=self.parent.height_of_floors)
                 intwall_output_list = intwall.floor_layout()
-
+            elif type(self.parent).__name__ == "Office" and (self.parent.net_leased_area / self.parent.number_of_floors < 200):
+                raise ValueError("Using the graph-based interior wall approximation approach with Office type buildings"
+                       " of less than 200m^2 net leased are per floor will likely lead to calculation errors."
+                      " Usage of the teaser_default approach is recommended.")
             # wall.area = calculate_median(intwall_output_list)
             wall_area = self._calculate_average(intwall_output_list)
-        elif approximation_approach == 'teco_analytical':
+        elif approximation_approach == "teco_analytical":
             if type(self.parent).__name__ == "SingleFamilyHouse" and 2 <= self.parent.number_of_floors <= 4:
                 intwall = IntWallAreaSFH_analytical(net_leased_area=self.parent.net_leased_area,
                                           number_of_storeys=self.parent.number_of_floors,
                                           storey_height=self.parent.height_of_floors)
                 intwall_output_list = intwall.intwall_list()
+            elif (type(self.parent).__name__ == "SingleFamilyHouse" and
+                  (self.parent.number_of_floors < 2 or self.parent.number_of_floors > 4)):
+                raise ValueError("For SFH the analytical interior wall approximation approach can only be used for a number of floors between 2 and 4!"
+                      " Usage of the teaser_default approach is recommended.")
             elif type(self.parent).__name__ == "TerracedHouse" and 2 <= self.parent.number_of_floors <= 4:
                 intwall = IntWallAreaSFH_analytical(net_leased_area=self.parent.net_leased_area,
                                           number_of_storeys=self.parent.number_of_floors,
                                           storey_height=self.parent.height_of_floors)
                 intwall_output_list = intwall.intwall_list()
+            elif type(self.parent).__name__ == "TerracedHouse" and (
+                    self.parent.number_of_floors < 2 or self.parent.number_of_floors > 4):
+                raise ValueError(
+                    "For TH the analytical interior wall approximation approach can only be used for a number of floors between 2 and 4!"
+                    " Usage of the teaser_default approach is recommended.")
             elif type(self.parent).__name__ == "MultiFamilyHouse":
                 #print("Area of Building:", self.parent.net_leased_area, "Number of Storeys:",
                 #      self.parent.number_of_floors, "Storey Height:", self.parent.height_of_floors)
@@ -484,7 +505,7 @@ class ThermalZone(object):
 
         for wall in self.inner_walls:
             wall.area = wall_area
-        #print(wall.area)
+        print(wall.area)
 
     """Innerwall Merge"""
 
