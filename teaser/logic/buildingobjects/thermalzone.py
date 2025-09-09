@@ -16,8 +16,8 @@ from teaser.logic.buildingobjects.calculation.four_element import FourElement
 from teaser.logic.buildingobjects.buildingphysics.innerwallarea.graphbased_method_for_SFH import IntWallAreaSFH_graph_based
 from teaser.logic.buildingobjects.buildingphysics.innerwallarea.graphbased_method_for_MFH import IntWallAreaMFH_graph_based
 from teaser.logic.buildingobjects.buildingphysics.innerwallarea.graphbased_method_for_Office import IntWallAreaOffice_graph_based
-#from teaser.logic.buildingobjects.buildingphysics.innerwallarea.mathematical_method_for_MFH import IntWallAreaMFH
-#from teaser.logic.buildingobjects.buildingphysics.innerwallarea.mathematical_method_for_SFH import IntWallAreaSFH
+from teaser.logic.buildingobjects.buildingphysics.innerwallarea.analytical_method_for_MFH import IntWallAreaMFH_analytical
+from teaser.logic.buildingobjects.buildingphysics.innerwallarea.analytical_method_for_SFH import IntWallAreaSFH_analytical
 
 class ThermalZone(object):
     """Thermal zone class.
@@ -456,6 +456,25 @@ class ThermalZone(object):
 
             # wall.area = calculate_median(intwall_output_list)
             wall_area = self._calculate_average(intwall_output_list)
+        elif approximation_approach == 'teco_analytical':
+            if type(self.parent).__name__ == "SingleFamilyHouse" and 2 <= self.parent.number_of_floors <= 4:
+                intwall = IntWallAreaSFH_analytical(net_leased_area=self.parent.net_leased_area,
+                                          number_of_storeys=self.parent.number_of_floors,
+                                          storey_height=self.parent.height_of_floors)
+                intwall_output_list = intwall.intwall_list()
+            elif type(self.parent).__name__ == "TerracedHouse" and 2 <= self.parent.number_of_floors <= 4:
+                intwall = IntWallAreaSFH_analytical(net_leased_area=self.parent.net_leased_area,
+                                          number_of_storeys=self.parent.number_of_floors,
+                                          storey_height=self.parent.height_of_floors)
+                intwall_output_list = intwall.intwall_list()
+            elif type(self.parent).__name__ == "MultiFamilyHouse":
+                #print("Area of Building:", self.parent.net_leased_area, "Number of Storeys:",
+                #      self.parent.number_of_floors, "Storey Height:", self.parent.height_of_floors)
+                intwall = IntWallAreaMFH_graph_based(net_leased_area=self.parent.net_leased_area,
+                                          number_of_storeys=self.parent.number_of_floors,
+                                          storey_height=self.parent.height_of_floors)
+                intwall_output_list = intwall.total_intwall()
+            wall_area = self._calculate_average(intwall_output_list)
         else:
             wall_area = (avg_room_nr
                          * (self.use_conditions.typical_length
@@ -465,10 +484,9 @@ class ThermalZone(object):
 
         for wall in self.inner_walls:
             wall.area = wall_area
-        print(wall.area)
+        #print(wall.area)
 
     """Innerwall Merge"""
-    # ToDo add "mathematical" approach (rename to analytical)
 
     def set_volume_zone(self):
         """Sets the zone volume according to area and height of floors
