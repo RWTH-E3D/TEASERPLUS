@@ -607,6 +607,28 @@ class Project(object):
             Construction type of used wall constructions default is "heavy")
                 heavy: heavy construction
                 light: light construction
+       inner_wall_approximation_approach : str
+        'teaser_default' (default) sets length of inner walls = typical
+            length * height of floors + 2 * typical width * height of floors
+        'typical_minus_outer' sets length of inner walls = 2 * typical
+            length * height of floors + 2 * typical width * height of floors
+            - length of outer or interzonal walls
+        'typical_minus_outer_extended' like 'typical_minus_outer', but also
+            considers that
+            a) a non-complete "average room" reduces its circumference
+              proportional to the square root of the area
+            b) rooftops, windows and ground floors (= walls with border to
+                soil) may have a vertical share
+        'teco_graph_based' uses evidence-(literature-)based values for room sizes and
+            distributions thereof to derive interior walls' lengths and areas.
+            ! Only available for single-family/terraced houses with 2 to 4 floors, multi-family houses,
+            and offices with at least 200m^2 net_leased_area per floor !
+        'teco_analytical' starts from shared walls between different rooms and assembles rooms
+            to fit into the (simplified) rectangular building cubage.
+            ! Only available for single-family/terraced houses with 2 to 4 floors, or multi-family houses !
+        Both teco-based approaches use Latin Hypercube Sampling (LHS) to find median values for
+        the interior wall area in parametrized building interior setups. Neither has alternative
+        calculation approaches for the floor and ceiling areas.
        number_of_apartments : int
             number of apartments inside Building (default = 1). CAUTION only
             used for urbanrenet
@@ -673,6 +695,7 @@ class Project(object):
                     net_leased_area,
                     with_ahu,
                     internal_gains_mode,
+                    inner_wall_approximation_approach,
                     construction_type,
                 )
                 type_bldg.generate_archetype()
@@ -689,6 +712,7 @@ class Project(object):
                     net_leased_area,
                     with_ahu,
                     internal_gains_mode,
+                    inner_wall_approximation_approach,
                     construction_type
                 )
                 type_bldg.generate_archetype()
@@ -705,10 +729,14 @@ class Project(object):
                     net_leased_area,
                     with_ahu,
                     internal_gains_mode,
+                    inner_wall_approximation_approach,
                     construction_type,
                 )
                 type_bldg.generate_archetype()
                 return type_bldg
+
+
+
 
         if method == "tabula_de":
 
