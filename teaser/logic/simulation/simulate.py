@@ -32,6 +32,15 @@ def timing(description: str):
     elapsed = timer() - start
     print(f"{description}: {elapsed:.2f} Seconds")
 
+@contextmanager
+def pushd(path: Path):
+    old = os.getcwd()
+    os.chdir(path)
+    try:
+        yield
+    finally:
+        os.chdir(old)
+
 def _to_posix(p: Union[str, Path]) -> str:
     return Path(p).as_posix()
 
@@ -114,6 +123,10 @@ def _simulate_one(task: Dict[str, Union[str, float, int]]):
     # Ensure the per-model output directory exists (safety in workers too)
     create_path(str(task["outputDir"]))
 
+    # dedicated compile/work dir under the model's output directory
+    work_dir = Path(str(task["outputDir"])) / "work"
+    create_path(str(work_dir))
+
     s = Sim(
         modelName=task["model"],
         packagePath=task["packagePath"],
@@ -133,8 +146,10 @@ def _simulate_one(task: Dict[str, Union[str, float, int]]):
         s.showGUI()
     else:
         pass
-    s.translate()
-    s.simulate()
+
+    with pushd(work_dir):
+        s.translate()
+        s.simulate()
 
     return task["model"]
 

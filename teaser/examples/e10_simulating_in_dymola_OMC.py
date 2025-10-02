@@ -70,6 +70,7 @@ def main():
         start_time=start_time,
         stop_time=stop_time,
         intervals=intervals,
+        processes=4
     )
     print("Dymola Simulation erfolgreich:")
     print(f"Ergebnisse gespeichert in: {result_csv_dy}")
