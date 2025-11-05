@@ -116,6 +116,7 @@ class KfwSingleFamilyHouse(Residential):
         net_leased_area=None,
         with_ahu=False,
         internal_gains_mode=1,
+        inner_wall_approximation_approach='teaser_default',
         construction_type=None,
     ):
 
@@ -125,7 +126,9 @@ class KfwSingleFamilyHouse(Residential):
             year_of_construction,
             net_leased_area,
             with_ahu,
-            internal_gains_mode
+            internal_gains_mode,
+            inner_wall_approximation_approach
+
         )
 
         self.construction_type = construction_type
@@ -535,8 +538,8 @@ class KfwSingleFamilyHouse(Residential):
                                          data_class=self.parent.data)
             zone.use_conditions = use_cond
             zone.use_conditions.with_ahu = False
-            zone.use_conditions.persons *= zone.area * 0.01
-            zone.use_conditions.machines *= zone.area * 0.01
+            # zone.use_conditions.persons *= zone.area * 0.01
+            # zone.use_conditions.machines *= zone.area * 0.01
 
             # TODO: fix with or without Windows scenario 2
 
@@ -549,8 +552,7 @@ class KfwSingleFamilyHouse(Residential):
                             year=self.year_of_construction,
                             construction=self._construction_type_1,
                             data_class=self.parent.data)
-                        # print(outer_wall.layer)
-                        # print(self.construction_type)
+
                         outer_wall.name = surface.name
                         outer_wall.tilt = surface.surface_tilt
                         outer_wall.orientation = surface.surface_orientation
@@ -562,8 +564,7 @@ class KfwSingleFamilyHouse(Residential):
                         window.name = "asd" + str(surface.surface_tilt)
                         window.tilt = surface.surface_tilt
                         window.orientation = surface.surface_orientation
-                        # print("comes through here")
-                        # print(window.layer)
+
 
                     elif surface.surface_tilt == 0 and \
                             surface.surface_orientation == \
@@ -619,7 +620,6 @@ class KfwSingleFamilyHouse(Residential):
                                               + str(surface.surface_area)
                             inner_wall.tilt = surface.surface_tilt
                             inner_wall.orientation = surface.surface_orientation
-                            # print(inner_wall.layer)
 
                     elif surface.surface_tilt == 0 and \
                             surface.surface_orientation == \
@@ -711,7 +711,6 @@ class KfwSingleFamilyHouse(Residential):
             else:
                 pass
         for surface in self.gml_surfaces:
-            # print(surface.name)
             if surface.name is None:  # LoD0-2
                 if surface.surface_tilt != 0 and surface.surface_orientation != -2 \
                         and surface.surface_orientation != -1:  # Walls/Windows

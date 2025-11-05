@@ -8,7 +8,7 @@ from teaser.logic.simulation.simulate import simulate
 def main():
     # Projekt anlegen und Gebäude hinzufügen
     prj = Project(load_data=True)
-    prj.name = "inner_graph_approx"
+    prj.name = "dymola_cli_test"
     prj.add_non_residential(
         method="bmvbs",
         usage="office",
@@ -24,11 +24,11 @@ def main():
         method="tabula_de",
         usage="single_family_house",
         name="sfh",
-        year_of_construction=2015,
+        year_of_construction=2016,
         number_of_floors=2,
         height_of_floors=3.0,
         net_leased_area=45.0,
-        inner_wall_approximation_approach="teco_graph_based"
+        inner_wall_approximation_approach="teaser_default"
     )
     prj.add_residential(
         method="tabula_de",
@@ -38,8 +38,9 @@ def main():
         number_of_floors=1,
         height_of_floors=3.0,
         net_leased_area=100.0,
-        inner_wall_approximation_approach="teco_graph_based",
+        inner_wall_approximation_approach='teaser_default'
     )
+
     prj.number_of_elements_calc = 2
     prj.merge_windows_calc = False
     prj.calc_all_buildings(raise_errors=True)
@@ -70,6 +71,7 @@ def main():
         start_time=start_time,
         stop_time=stop_time,
         intervals=intervals,
+        processes=1
     )
     print("Dymola Simulation erfolgreich:")
     print(f"Ergebnisse gespeichert in: {result_csv_dy}")

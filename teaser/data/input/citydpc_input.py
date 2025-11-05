@@ -18,6 +18,9 @@ from teaser.logic.archetypebuildings.tabula.de.singlefamilyhouse import SingleFa
 from teaser.logic.archetypebuildings.tabula.de.multifamilyhouse import MultiFamilyHouse
 from teaser.logic.archetypebuildings.tabula.de.terracedhouse import TerracedHouse
 from teaser.logic.archetypebuildings.tabula.de.apartmentblock import ApartmentBlock
+from teaser.logic.archetypebuildings.kfw.kfwsinglefamilyhouse import KfwSingleFamilyHouse
+from teaser.logic.archetypebuildings.kfw.kfwmultifamilyhouse import KfwMultiFamilyHouse
+from teaser.logic.archetypebuildings.kfw.kfwterracedhouse import KfwTerracedHouse
 from teaser.logic.buildingobjects.building import Building
 
 import copy
@@ -44,7 +47,7 @@ def load_dpc_buildings(prj, citydpc_dataset, common_walls, method, archetypes=No
         """Assign Archetype"""
 
         bldg = assign_archetype(prj=prj, building=dpc_building,
-                                    bldg_name=bldg_id, method=method)
+                                    bldg_name=bldg_id, method=method, archetype="sfh")
 
         """Extract GML surface from File"""
         # TODO: is there longer a need for that?
@@ -98,13 +101,26 @@ def assign_archetype(prj, building, bldg_name, method, archetype=None):
         if method == "tabula_de":
             prj.data = DataClass(used_statistic="tabula_de")
             if archetype == "sfh":
-                bldg = SingleFamilyHouse(parent=prj, name=bldg_name)
+                bldg = SingleFamilyHouse(parent=prj, name=bldg_name, construction_type="tabula_retrofit")
             elif archetype == "mfh":
                 bldg = MultiFamilyHouse(parent=prj, name=bldg_name)
             elif archetype == "th":
                 bldg = TerracedHouse(parent=prj, name=bldg_name)
             elif archetype == "ap":
                 bldg = ApartmentBlock(parent=prj, name=bldg_name)
+            else:
+                print("Unknown Archetype")
+                bldg = Building(parent=prj, name=bldg_name)
+
+        elif method == "kfw":
+            prj.data = DataClass(used_statistic="kfw")
+            if archetype == "sfh":
+                bldg = KfwSingleFamilyHouse(parent=prj, name=bldg_name, construction_type="kfw55_tabula")
+            elif archetype == "mfh":
+                bldg = KfwMultiFamilyHouse(parent=prj, name=bldg_name)
+            elif archetype == "th":
+                bldg = KfwTerracedHouse(parent=prj, name=bldg_name)
+
             else:
                 print("Unknown Archetype")
                 bldg = Building(parent=prj, name=bldg_name)

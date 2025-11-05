@@ -337,7 +337,7 @@ class SingleFamilyHouse(Residential):
                 "win1": 0.2246,
                 "win2": 0.0,
                 "door": 0.014,
-            },
+            }
         }
 
         self.building_age_group = None

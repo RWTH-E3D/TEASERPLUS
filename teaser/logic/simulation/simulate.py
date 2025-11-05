@@ -130,10 +130,19 @@ def _simulate_one(task: Dict[str, Union[str, float, int]]):
 
     # Translate + simulate
     if task["engine"] == "dymola":
-        s.showGUI()
+        s.showGUI(True)
+        s.setTimeOut(120)  # e.g., 15 minutes
+
+        # Force verbose Dymola logs into the command log & file
+        s.addPreProcessingStatement("Advanced.TranslationInCommandLog = true;")
+        s.addPreProcessingStatement("Advanced.GenerateTimers = true;")
+        s.addPreProcessingStatement("Advanced.Translation.Log.FunctionCallEvaluation = true;")
+
+        # Keep outputs together so you know where to look
+        # s.setOutputDirectory(r"C:\tmp\my_dmc_run")
     else:
         pass
-    s.translate()
+    # s.translate()
     s.simulate()
 
     return task["model"]
@@ -175,7 +184,7 @@ def simulate(
     keep_type_sum : bool
         Maintain lightweight per-type running sums during streaming.
     processes : Optional[int]
-        Max worker processes. Defaults to `os.cpu_count()`.
+        Max worker processes. Defaults to `1`.
     """
 
     base = Path(path)
