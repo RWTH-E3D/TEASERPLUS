@@ -154,7 +154,7 @@ class SingleFamilyDwelling(Residential):
     est_factor_cellar_area : float
         Estimation factor to calculate heated cellar area
     """
-
+# ToDo: Add inner_wall_approximation_approach analogous to tabula archetypes (exc. apartmentblock)
     def __init__(
         self,
         parent,

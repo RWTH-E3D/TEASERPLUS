@@ -151,6 +151,7 @@ class Office(NonResidential):
         estimation factor exponent to calculate window area
     """
 
+# ToDo: Add inner_wall_approximation_approach analogous to tabula archetypes (exc. apartmentblock)
     def __init__(
         self,
         parent,

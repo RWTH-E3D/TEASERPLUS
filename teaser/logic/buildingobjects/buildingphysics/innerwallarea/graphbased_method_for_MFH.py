@@ -4,14 +4,12 @@ import random
 import numpy as np
 from pyDOE import lhs
 
-class IntWallAreaMFH:
-    def __init__(self, NLA, number_of_storeys, storey_height):
-
-        self.NLA = NLA
+class IntWallAreaMFH_graph_based:
+    def __init__(self, net_leased_area, number_of_storeys, storey_height):
+        self.net_leased_area = net_leased_area
         self.number_of_storeys = number_of_storeys
         self.storey_height = storey_height
-
-        self.area_of_floor = self.NLA / self.number_of_storeys
+        self.area_of_floor = self.net_leased_area / self.number_of_storeys
         self.number_of_total_apartments = None
         self.door_width = 1.1
         self.area_of_apartment = None

@@ -5,12 +5,13 @@ import numpy as np
 from pyDOE import lhs
 
 
-class IntWallAreaOffice:
+class IntWallAreaOffice_graph_based:
 
     # set variables. variation_maximum and variation_minimum give more flexible space for the final results.
-    def __init__(self, area_of_floor, number_of_storeys, storey_height):
-        self.area_of_floor = area_of_floor
+    def __init__(self, net_leased_area, number_of_storeys, storey_height):
+        self.net_leased_area = net_leased_area
         self.number_of_storeys = number_of_storeys
+        self.area_of_floor = self.net_leased_area / self.number_of_storeys
         self.grid_dimension = 1.35
         self.storey_height = storey_height
         self.variation_minimum = 0.9
@@ -115,7 +116,7 @@ class IntWallAreaOffice:
 
         # using Latin hypercube sampling method generates samples between [0, 1]
         def generate_lhs_sample():
-            return lhs(1, samples=self.n_samples, criterion='maximin')
+            return lhs(1, samples=self.n_samples, criterion='center')
 
         dict_of_lhs_samples = {}
         dict_of_lhs_samples['length_extwall_y'] = generate_lhs_sample()
@@ -152,7 +153,6 @@ class IntWallAreaOffice:
 
         self.interior_wall_lengths = find_total_of_variable_type(self.list_of_rescaled_intwall_values, self.raw_input_values_intwall)
         self.interior_wall_area = self.interior_wall_lengths * self.storey_height
-
         return self.raw_input_values_intwall, self.interior_wall_lengths, self.interior_wall_area
 
     def floor_layout(self):

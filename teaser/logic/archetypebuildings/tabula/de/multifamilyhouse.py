@@ -69,6 +69,16 @@ class MultiFamilyHouse(SingleFamilyHouse):
               proportional to the square root of the area
             b) rooftops, windows and ground floors (= walls with border to
                 soil) may have a vertical share
+        'teco_graph_based' uses evidence-(literature-)based values for room sizes and
+            distributions thereof to derive interior walls' lengths and areas.
+            ! Only available for single-family/terraced houses with 2 to 4 floors, multi-family houses,
+            and offices with at least 200m^2 net_leased_area per floor !
+        'teco_analytical' starts from shared walls between different rooms and assembles rooms
+            to fit into the (simplified) rectangular building cubage.
+            ! Only available for single-family/terraced houses with 2 to 4 floors, or multi-family houses !
+        Both teco-based approaches use Latin Hypercube Sampling (LHS) to find median values for
+        the interior wall area in parametrized building interior setups. Neither has alternative
+        calculation approaches for the floor and ceiling areas.
     construction_type : str
         Construction type of used wall constructions default is "existing
         state"

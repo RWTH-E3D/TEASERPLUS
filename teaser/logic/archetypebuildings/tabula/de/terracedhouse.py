@@ -81,6 +81,7 @@ class TerracedHouse(SingleFamilyHouse):
             type_heat_supply_system=None,
             with_ahu=False,
             internal_gains_mode=1,
+            inner_wall_approximation_approach='teaser_default',
             construction_type=None):
 
         super(TerracedHouse, self).__init__(
@@ -93,6 +94,7 @@ class TerracedHouse(SingleFamilyHouse):
             type_heat_supply_system,
             with_ahu,
             internal_gains_mode,
+            inner_wall_approximation_approach,
             construction_type)
 
         self.construction_type = construction_type
