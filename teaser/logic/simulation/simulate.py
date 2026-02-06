@@ -35,6 +35,16 @@ def timing(description: str):
 def _to_posix(p: Union[str, Path]) -> str:
     return Path(p).as_posix()
 
+@contextmanager
+def pushd(path: Path):
+    old = os.getcwd()
+    os.chdir(path)
+    try:
+        yield
+    finally:
+        os.chdir(old)
+
+
 def _simulator_factory(simulator: str):
     if simulator.lower() in {"omc", "openmodelica"}:
         return OpenModelicaSimulator
@@ -113,11 +123,14 @@ def _simulate_one(task: Dict[str, Union[str, float, int]]):
 
     # Ensure the per-model output directory exists (safety in workers too)
     create_path(str(task["outputDir"]))
+    # dedicated compile/work dir under the model's output directory
+    work_dir = Path(str(task["outputDir"])) / "work"
+    create_path(str(work_dir))
 
     s = Sim(
         modelName=task["model"],
         packagePath=task["packagePath"],
-        outputDirectory=task["outputDir"],
+        outputDirectory=task["outputDir"]
     )
 
     # Settings – keep parity with the original code
@@ -131,20 +144,10 @@ def _simulate_one(task: Dict[str, Union[str, float, int]]):
     # Translate + simulate
     if task["engine"] == "dymola":
         s.showGUI(True)
-        s.setTimeOut(120)  # e.g., 15 minutes
-
-        # Force verbose Dymola logs into the command log & file
-        s.addPreProcessingStatement("Advanced.TranslationInCommandLog = true;")
-        s.addPreProcessingStatement("Advanced.GenerateTimers = true;")
-        s.addPreProcessingStatement("Advanced.Translation.Log.FunctionCallEvaluation = true;")
-
-        # Keep outputs together so you know where to look
-        # s.setOutputDirectory(r"C:\tmp\my_dmc_run")
     else:
         pass
-    # s.translate()
-    s.simulate()
-
+    with pushd(work_dir):
+        s.simulate()
     return task["model"]
 
 

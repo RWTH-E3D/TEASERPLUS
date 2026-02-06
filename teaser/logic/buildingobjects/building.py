@@ -180,7 +180,8 @@ class Building(object):
         self.inner_wall_approximation_approach = inner_wall_approximation_approach
         self.internal_id = uuid.uuid1()
         self._year_of_retrofit = None
-#ToDo rethink positioning of "type of retrofit" for heating systems (not explicit enough); retrofit is actually in construction type
+        #ToDo rethink positioning of "type of retrofit" for heating systems (not explicit enough);
+        # retrofit is actually in construction type
         self._type_of_retrofit = None
         self.type_of_building = type(self).__name__
         self.building_id = None
@@ -494,7 +495,6 @@ class Building(object):
             for wall_count in zone_count.inner_walls:
                 sum_area += wall_count.area
             for wall_count in zone_count.shared_walls:
-                print(wall_count.area)
                 sum_area += wall_count.area
             for floor in zone_count.floors:
                 sum_area += floor.area
@@ -632,7 +632,7 @@ class Building(object):
         for zone in self.thermal_zones:
             zone.retrofit_zone(type_of_retrofit, window_type, material)
 
-        self._heat_supply_system.retrofit_heat_supply_system(year_of_retrofit, type_heat_supply_system, type_of_retrofit)
+        self._heat_supply_system.retrofit_heat_supply_system(int(year_of_retrofit), type_heat_supply_system, type_of_retrofit)
 
         self.calc_building_parameter(
             number_of_elements=self.number_of_elements_calc,

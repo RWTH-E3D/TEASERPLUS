@@ -877,8 +877,8 @@ class SingleFamilyHouse(Residential):
             # TODO: fix with or without Windows scenario 2
             for surface in self.gml_surfaces:
                 #OuterWall and common walls
-                print(self.year_of_construction)
-                if round(surface.surface_tilt) == 90 and not any(surface.polygon_id in sublist for sublist in common_walls):
+                # print(self.year_of_construction)
+                if round(surface.surface_tilt) == 90 and not any(surface.surface_id in sublist for sublist in common_walls):
                     outer_wall = OuterWall(zone)
                     outer_wall.load_type_element(
                         year=self.year_of_construction,
@@ -888,7 +888,7 @@ class SingleFamilyHouse(Residential):
                     outer_wall.tilt = surface.surface_tilt
                     outer_wall.orientation = surface.surface_orientation
                     outer_wall.area = surface.surface_area * 0.8
-                    print(len(outer_wall.layer),outer_wall.layer[0].id)
+                    print("OuterWall:",len(outer_wall.layer),outer_wall.layer[0]._material.name)
                     window = Window(zone)
                     window.load_type_element(self.year_of_construction,
                                              construction=self._construction_type_1,
@@ -897,10 +897,10 @@ class SingleFamilyHouse(Residential):
                     window.tilt = surface.surface_tilt
                     window.orientation = surface.surface_orientation
                     window.area = surface.surface_area*0.2
-                    print(len(window.layer), window.layer[0].id)
+                    print("Window:",len(window.layer), window.layer[0]._material.name)
 
-                elif round(surface.surface_tilt) == 90 and any(surface.polygon_id in sublist for sublist in common_walls):
-                    print("here")
+                elif round(surface.surface_tilt) == 90 and any(surface.surface_id in sublist for sublist in common_walls):
+                    print(f"here, should be polygon_id:{surface.polygon_id}")
                     shared_wall = SharedWall(zone)
                     shared_wall.load_type_element(
                         year=self.year_of_construction,
@@ -910,34 +910,34 @@ class SingleFamilyHouse(Residential):
                     shared_wall.tilt = surface.surface_tilt
                     shared_wall.orientation = surface.surface_orientation
                     shared_wall.area = surface.surface_area
-                    print(len(shared_wall.layer), shared_wall.layer[0].id)
+                    print("Shared_Wall:",len(shared_wall.layer), shared_wall.layer[0]._material.name)
 
                 #ground
                 elif surface.surface_tilt == 0 and \
                         surface.surface_orientation == \
                         -2:
-                    outer_wall = GroundFloor(zone)
-                    outer_wall.load_type_element(
+                    gf = GroundFloor(zone)
+                    gf.load_type_element(
                         year=self.year_of_construction,
                         construction=self._construction_type_1,
                         data_class=self.parent.data)
-                    outer_wall.name = surface.surface_id
-                    outer_wall.tilt = surface.surface_tilt
-                    outer_wall.orientation = surface.surface_orientation
-                    outer_wall.area = surface.surface_area
-                    print(len(outer_wall.layer), outer_wall.layer[0].id)
+                    gf.name = surface.surface_id
+                    gf.tilt = surface.surface_tilt
+                    gf.orientation = surface.surface_orientation
+                    gf.area = surface.surface_area
+                    # print(len(gf.layer), gf.layer[0].id)
 
                 else:
-                    outer_wall = Rooftop(zone)
-                    outer_wall.load_type_element(
+                    rt = Rooftop(zone)
+                    rt.load_type_element(
                         year=self.year_of_construction,
                         construction=self._construction_type_1,
                         data_class=self.parent.data)
-                    outer_wall.name = surface.surface_id
-                    outer_wall.tilt = surface.surface_tilt
-                    outer_wall.orientation = surface.surface_orientation
-                    outer_wall.area = surface.surface_area
-                    print(len(outer_wall.layer), outer_wall.layer[0].id)
+                    rt.name = surface.surface_id
+                    rt.tilt = surface.surface_tilt
+                    rt.orientation = surface.surface_orientation
+                    rt.area = surface.surface_area
+                    # print(len(rt.layer), rt.layer[0].id)
 
                 # If Window / Interior Wall area is provided separately
 

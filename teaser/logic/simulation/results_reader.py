@@ -120,20 +120,21 @@ class ResultStreamReader:
                 pass
 
     def write_building_sums(self) -> None:
-        path = Path(self.target_csv.parent / "results_sum_heat.csv")
-        if not self._heating_sums:
-            return
-        else:
-            df = pd.DataFrame({k: v for k, v in self._heating_sums.items()})
-            df.index.name = "timestep"  # 0..N-1
-            df.to_csv(path)
-        path = Path(self.target_csv_cool / "results_sum_cool.csv")
-        if not self._cooling_sums:
-            return
-        else:
-            df = pd.DataFrame({k: v for k, v in self._heating_sums.items()})
-            df.index.name = "timestep"  # 0..N-1
-            df.to_csv(path)
+        # Heat sums
+        heat_path = Path(self.target_csv.parent / "results_sum_heat.csv")
+        heat_path.parent.mkdir(parents=True, exist_ok=True)
+        if self._heating_sums:
+            rows = [(k, float(np.sum(v))) for k, v in self._heating_sums.items()]
+            df = pd.DataFrame(rows, columns=["building", "sum"])
+            df.to_csv(heat_path, index=False)
+
+        # Cooling sums
+        cool_path = Path(self.target_csv_cool.parent / "results_sum_cool.csv")
+        cool_path.parent.mkdir(parents=True, exist_ok=True)
+        if self._cooling_sums:
+            rows = [(k, float(np.sum(v))) for k, v in self._cooling_sums.items()]
+            df = pd.DataFrame(rows, columns=["building", "sum"])
+            df.to_csv(cool_path, index=False)
 
     # ---------------------- internals ------------------------
     def _building_from_model(self, model: str) -> str:
